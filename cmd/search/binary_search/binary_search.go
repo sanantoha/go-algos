@@ -1,9 +1,25 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
+// O(log(n)) time | O(1) space
 func binarySearch(arr []int, target int) int {
-	return -1
+	l := 0
+	r := len(arr) - 1
+
+	for l <= r {
+		mid := int(uint(l+r) >> 1) // avoid overflow
+		if target < arr[mid] {
+			r = mid - 1
+		} else if target > arr[mid] {
+			l = mid + 1
+		} else {
+			return mid
+		}
+	}
+	return -(l + 1)
 }
 
 func main() {
