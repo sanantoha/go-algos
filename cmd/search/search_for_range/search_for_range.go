@@ -4,6 +4,10 @@ import "fmt"
 
 // O(log(n)) time | O(1) space
 func searchRange(arr []int, target int) []int {
+	if arr == nil || len(arr) == 0 {
+		return []int{}
+	}
+
 	l := leftBinarySearch(arr, target)
 
 	if l < 0 {
@@ -40,7 +44,7 @@ func leftBinarySearch(arr []int, target int) int {
 		}
 	}
 
-	if len(arr) > 0 && arr[l] == target {
+	if arr[l] == target {
 		return l
 	} else {
 		return -(l + 1)
