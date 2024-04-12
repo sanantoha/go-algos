@@ -2,7 +2,25 @@ package main
 
 import "fmt"
 
+// O(w + h) time | O(1) space
 func searchMatrix(matrix [][]int, key int) bool {
+	if matrix == nil || len(matrix) == 0 {
+		return false
+	}
+
+	row := 0
+	col := len(matrix[row]) - 1
+
+	for row < len(matrix) && col >= 0 {
+
+		if matrix[row][col] == key {
+			return true
+		} else if matrix[row][col] < key {
+			row++
+		} else {
+			col--
+		}
+	}
 	return false
 }
 
