@@ -2,8 +2,16 @@ package main
 
 import "fmt"
 
+// O(n) time | O(1) space
 func reverseString(arr []rune) {
+	l := 0
+	r := len(arr) - 1
 
+	for l < r {
+		arr[l], arr[r] = arr[r], arr[l]
+		l++
+		r--
+	}
 }
 
 func main() {
