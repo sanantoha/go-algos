@@ -12,5 +12,5 @@ func main() {
 
 	fmt.Println(balancedBrackets(input))
 
-	fmt.Println(balancedBrackets("}{"))
+	fmt.Println(!balancedBrackets("}{"))
 }
