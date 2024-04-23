@@ -5,8 +5,44 @@ import (
 	"github.com/sanantoha/go-algos/internals/list"
 )
 
+// O(max(l1, l2)) time | O(max(l1, l2)) space
 func addTwoNumbers(l1 *list.ListNode, l2 *list.ListNode) *list.ListNode {
-	return nil
+
+	c1 := l1
+	c2 := l2
+	carry := 0
+
+	dummy := &list.ListNode{}
+	curr := dummy
+
+	for c1 != nil || c2 != nil {
+		v1 := 0
+		if c1 != nil {
+			v1 = c1.Val
+		}
+		v2 := 0
+		if c2 != nil {
+			v2 = c2.Val
+		}
+		sum := v1 + v2 + carry
+
+		curr.Next = &list.ListNode{Val: sum % 10}
+		carry = sum / 10
+
+		curr = curr.Next
+		if c1 != nil {
+			c1 = c1.Next
+		}
+		if c2 != nil {
+			c2 = c2.Next
+		}
+	}
+
+	if carry > 0 {
+		curr.Next = &list.ListNode{Val: carry}
+	}
+
+	return dummy.Next
 }
 
 func main() {
