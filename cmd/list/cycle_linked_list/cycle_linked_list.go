@@ -5,12 +5,46 @@ import (
 	"github.com/sanantoha/go-algos/internals/list"
 )
 
+// O(n) time | O(n) space
 func isCycle(head *list.ListNode) bool {
+	if head == nil {
+		return false
+	}
+
+	set := make(map[*list.ListNode]bool)
+
+	curr := head
+
+	for curr != nil {
+		if _, exists := set[curr]; exists {
+			return true
+		}
+		set[curr] = true
+		curr = curr.Next
+	}
 	return false
 }
 
+// O(n) time | O(1) space
 func isCycleWithoutSpace(head *list.ListNode) bool {
-	return false
+	if head == nil {
+		return false
+	}
+
+	fast := head.Next
+	slow := head
+
+	for fast != slow {
+
+		if fast == nil || fast.Next == nil {
+			return false
+		}
+
+		fast = fast.Next.Next
+		slow = slow.Next
+	}
+
+	return true
 }
 
 func main() {
@@ -20,8 +54,8 @@ func main() {
 	root1 := &list.ListNode{Val: 0, Next: &list.ListNode{Val: 1, Next: &list.ListNode{Val: 2}}}
 
 	fmt.Println(isCycle(root))
-	fmt.Println(isCycle(root1))
+	fmt.Println(!isCycle(root1))
 
 	fmt.Println(isCycleWithoutSpace(root))
-	fmt.Println(isCycleWithoutSpace(root1))
+	fmt.Println(!isCycleWithoutSpace(root1))
 }
