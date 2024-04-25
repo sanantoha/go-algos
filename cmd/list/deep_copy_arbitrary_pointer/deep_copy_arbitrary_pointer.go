@@ -1,12 +1,52 @@
 package main
 
 import (
+	"fmt"
 	"github.com/sanantoha/go-algos/internals/list"
 	log "github.com/sirupsen/logrus"
 )
 
 func deepCopy(head *list.ArbitraryListNode) *list.ArbitraryListNode {
-	return head
+	if head == nil {
+		return nil
+	}
+
+	mp := make(map[*list.ArbitraryListNode]*list.ArbitraryListNode)
+	mp[head] = &list.ArbitraryListNode{Val: head.Val}
+
+	dummy := &list.ArbitraryListNode{}
+	currCopy := dummy
+
+	curr := head
+
+	for curr != nil {
+		copyNode, ok := mp[curr]
+		if !ok {
+			copyNode = &list.ArbitraryListNode{Val: curr.Val}
+			mp[curr] = copyNode
+		}
+		copyNode.Arbitrary = curr.Arbitrary
+		currCopy.Next = copyNode
+
+		currCopy = currCopy.Next
+		curr = curr.Next
+	}
+
+	currCopy = dummy
+	for currCopy != nil {
+		if currCopy.Arbitrary != nil {
+			node, ok := mp[currCopy.Arbitrary]
+			if !ok {
+				node = &list.ArbitraryListNode{Val: currCopy.Arbitrary.Val}
+				mp[currCopy.Arbitrary] = node
+			}
+			currCopy.Arbitrary = node
+		}
+
+		currCopy = currCopy.Next
+	}
+
+	return dummy.Next
 }
 
 func main() {
@@ -25,9 +65,10 @@ func main() {
 	third.Arbitrary = root
 	five.Arbitrary = second
 
-	copy := deepCopy(root)
+	copyNode := deepCopy(root)
 
-	assertArbitraryListNode(root, copy)
+	assertArbitraryListNode(root, copyNode)
+	fmt.Println(true)
 }
 
 func assertArbitraryListNode(root *list.ArbitraryListNode, copy *list.ArbitraryListNode) {
