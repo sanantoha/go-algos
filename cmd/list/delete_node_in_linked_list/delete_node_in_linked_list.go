@@ -5,8 +5,22 @@ import (
 	"github.com/sanantoha/go-algos/internals/list"
 )
 
+// O(n) time | O(1) space
 func deleteNode(node *list.ListNode) {
 
+	curr := node
+
+	for curr != nil {
+		next := curr.Next
+		if next != nil {
+			curr.Val = next.Val
+			if next.Next == nil {
+				curr.Next = nil
+				break
+			}
+		}
+		curr = next
+	}
 }
 
 func main() {
@@ -16,7 +30,7 @@ func main() {
 
 	fmt.Println(lst)
 
-	deleteNode(lst)
+	deleteNode(node0)
 
 	fmt.Println(lst)
 }
