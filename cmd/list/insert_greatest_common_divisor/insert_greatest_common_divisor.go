@@ -16,8 +16,31 @@ import (
  * The greatest common divisor of two numbers is the largest positive integer that evenly divides
  * both numbers.
  */
+// O(n) time | O(1) space
 func insertGreatestCommonDivisors(head *list.ListNode) *list.ListNode {
+	if head == nil {
+		return nil
+	}
+
+	curr := head
+
+	for curr.Next != nil {
+		next := curr.Next
+		node := &list.ListNode{Val: gcd(curr.Val, curr.Next.Val)}
+		curr.Next = node
+		node.Next = next
+		curr = next
+	}
 	return head
+}
+
+func gcd(x, y int) int {
+	for y != 0 {
+		tmp := y
+		y = x % y
+		x = tmp
+	}
+	return x
 }
 
 func main() {
