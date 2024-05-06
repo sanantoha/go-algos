@@ -3,10 +3,30 @@ package main
 import (
 	"fmt"
 	"github.com/sanantoha/go-algos/internals/tree"
+	"math"
 )
 
+// O(n) time | O(h) space
 func isBalanced(root *tree.TreeNode) bool {
-	return false
+	if root == nil {
+		return false
+	}
+	isBalanced, _ := helper(root)
+	return isBalanced
+}
+
+func helper(root *tree.TreeNode) (bool, int) {
+	if root == nil {
+		return true, 0
+	}
+
+	lb, lh := helper(root.Left)
+	rb, rh := helper(root.Right)
+
+	height := int(math.Max(float64(lh), float64(rh))) + 1
+	isBalanced := lb && rb && math.Abs(float64(lh-rh)) <= 1
+
+	return isBalanced, height
 }
 
 func main() {
