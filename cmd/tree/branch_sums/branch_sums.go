@@ -5,12 +5,62 @@ import (
 	"github.com/sanantoha/go-algos/internals/tree"
 )
 
+// O(n) time | O(h) space
 func branchSums(root *tree.TreeNode) []int {
-	return nil
+	res := make([]int, 0)
+	backtrack(root, 0, &res)
+	return res
+}
+
+func backtrack(root *tree.TreeNode, sum int, res *[]int) {
+	if root == nil {
+		return
+	}
+
+	sum += root.Val
+	if root.Left == nil && root.Right == nil {
+		*res = append(*res, sum)
+	}
+
+	backtrack(root.Left, sum, res)
+	backtrack(root.Right, sum, res)
 }
 
 func branchSumsIter(root *tree.TreeNode) []int {
-	return nil
+	if root == nil {
+		return nil
+	}
+
+	res := make([]int, 0)
+
+	stack := make([]Info, 0)
+	stack = append(stack, Info{node: root, sum: 0})
+
+	for len(stack) > 0 {
+		info := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+
+		if info.node == nil {
+			continue
+		}
+
+		curr := info.node
+		sum := info.sum
+		sum += curr.Val
+		if curr.Left == nil && curr.Right == nil {
+			res = append(res, sum)
+		}
+
+		stack = append(stack, Info{node: curr.Left, sum: sum})
+		stack = append(stack, Info{node: curr.Right, sum: sum})
+	}
+
+	return res
+}
+
+type Info struct {
+	node *tree.TreeNode
+	sum  int
 }
 
 func main() {
