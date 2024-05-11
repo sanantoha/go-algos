@@ -5,8 +5,36 @@ import (
 	"github.com/sanantoha/go-algos/internals/tree"
 )
 
+// O(h) time | O(1) space
 func findInOrderSuccessor(root *tree.Node) *tree.Node {
-	return nil
+	if root == nil {
+		return nil
+	}
+
+	if root.Right != nil {
+		return findMostLeftChild(root.Right)
+	}
+	return findMostParentRight(root)
+}
+
+func findMostParentRight(node *tree.Node) *tree.Node {
+	curr := node
+
+	for curr.Parent != nil && curr.Parent.Right.Key == curr.Key {
+		curr = curr.Parent
+	}
+
+	return curr.Parent
+}
+
+func findMostLeftChild(node *tree.Node) *tree.Node {
+	curr := node
+
+	for curr.Left != nil {
+		curr = curr.Left
+	}
+
+	return curr
 }
 
 func main() {
