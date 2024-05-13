@@ -15,7 +15,7 @@ func (tree *TreeNode) String() string {
 	if tree == nil {
 		return "nil"
 	}
-	return fmt.Sprintf("TreeNode{Key=%d, Left=%s, Right=%s}", tree.Val, tree.Left.String(), tree.Right.String())
+	return fmt.Sprintf("TreeNode{Val=%d, Left=%s, Right=%s}", tree.Val, tree.Left.String(), tree.Right.String())
 }
 
 type Node struct {
