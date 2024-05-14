@@ -5,16 +5,85 @@ import (
 	"github.com/sanantoha/go-algos/internals/tree"
 )
 
+// O(n) time | O(h) space
 func preOrder(root *tree.TreeNode) []int {
-	return nil
+
+	stack := make([]*tree.TreeNode, 1)
+	stack = append(stack, root)
+
+	res := make([]int, 0)
+
+	for len(stack) > 0 {
+		curr := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+
+		if curr == nil {
+			continue
+		}
+
+		res = append(res, curr.Val)
+
+		stack = append(stack, curr.Right)
+		stack = append(stack, curr.Left)
+	}
+
+	return res
 }
 
+// O(n) time | O(h) space
 func inOrder(root *tree.TreeNode) []int {
-	return nil
+
+	res := make([]int, 0)
+
+	stack := make([]*tree.TreeNode, 0)
+	curr := root
+
+	for len(stack) > 0 || curr != nil {
+		for curr != nil {
+			stack = append(stack, curr)
+			curr = curr.Left
+		}
+
+		curr = stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+
+		res = append(res, curr.Val)
+
+		curr = curr.Right
+	}
+
+	return res
 }
 
+// O(n) time | O(h) space
 func postOrder(root *tree.TreeNode) []int {
-	return nil
+
+	res := make([]int, 0)
+
+	fst := make([]*tree.TreeNode, 1)
+	fst = append(fst, root)
+	snd := make([]*tree.TreeNode, 0)
+
+	for len(fst) > 0 {
+		curr := fst[len(fst)-1]
+		fst = fst[:len(fst)-1]
+		if curr == nil {
+			continue
+		}
+
+		snd = append(snd, curr)
+
+		fst = append(fst, curr.Left)
+		fst = append(fst, curr.Right)
+	}
+
+	for len(snd) > 0 {
+		curr := snd[len(snd)-1]
+		snd = snd[:len(snd)-1]
+		res = append(res, curr.Val)
+	}
+
+	return res
 }
 
 func main() {
