@@ -5,8 +5,28 @@ import (
 	"github.com/sanantoha/go-algos/internals/tree"
 )
 
+// O(n) time | O(h) space
 func evaluateExpressionTree(root *tree.TreeNode) int {
-	return -1
+	if root == nil {
+		return 0
+	}
+	if root.Val > 0 {
+		return root.Val
+	}
+
+	lv := evaluateExpressionTree(root.Left)
+	rv := evaluateExpressionTree(root.Right)
+
+	if root.Val == -1 {
+		return lv + rv
+	} else if root.Val == -2 {
+		return lv - rv
+	} else if root.Val == -3 {
+		return lv / rv
+	} else if root.Val == -4 {
+		return lv * rv
+	}
+	return 0
 }
 
 func main() {
