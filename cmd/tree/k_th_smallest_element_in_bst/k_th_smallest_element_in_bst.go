@@ -5,7 +5,34 @@ import (
 	"github.com/sanantoha/go-algos/internals/tree"
 )
 
+// O(n) time | O(n) space
 func kthSmallestElement(root *tree.TreeNode, k int) int {
+	if root == nil {
+		return -1
+	}
+
+	stack := make([]*tree.TreeNode, 0)
+	curr := root
+
+	idx := 1
+
+	for len(stack) > 0 || curr != nil {
+		for curr != nil {
+			stack = append(stack, curr)
+			curr = curr.Left
+		}
+
+		curr = stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+
+		if idx == k {
+			return curr.Val
+		}
+		idx++
+
+		curr = curr.Right
+	}
+
 	return -1
 }
 
@@ -33,5 +60,5 @@ func main() {
 		},
 	}
 
-	fmt.Println(kthSmallestElement(root, 4))
+	fmt.Println(kthSmallestElement(root, 4)) // 5
 }
