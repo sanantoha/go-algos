@@ -5,8 +5,43 @@ import (
 	"github.com/sanantoha/go-algos/internals/tree"
 )
 
+// O(n) time | O(n) space
 func levelOrder(root *tree.TreeNode) [][]int {
-	return nil
+	if root == nil {
+		return nil
+	}
+
+	queue := make([]*tree.TreeNode, 1)
+	queue[0] = root
+
+	res := make([][]int, 0)
+
+	for len(queue) > 0 {
+		size := len(queue)
+
+		subRes := make([]int, 0)
+
+		for size > 0 {
+			size--
+
+			curr := queue[0]
+			queue = queue[1:]
+
+			if curr == nil {
+				continue
+			}
+
+			subRes = append(subRes, curr.Val)
+
+			queue = append(queue, curr.Left)
+			queue = append(queue, curr.Right)
+		}
+
+		if len(subRes) > 0 {
+			res = append(res, subRes)
+		}
+	}
+	return res
 }
 
 func main() {
