@@ -6,7 +6,12 @@ import (
 )
 
 func lowestCommonAncestor(root *tree.TreeNode, p *tree.TreeNode, q *tree.TreeNode) *tree.TreeNode {
-	return nil
+	if root.Val < p.Val && root.Val < q.Val {
+		return lowestCommonAncestor(root.Right, p, q)
+	} else if root.Val > p.Val && root.Val > q.Val {
+		return lowestCommonAncestor(root.Left, p, q)
+	}
+	return root
 }
 
 func main() {
@@ -39,7 +44,7 @@ func main() {
 		},
 	}
 
-	fmt.Println(lowestCommonAncestor(root, &tree.TreeNode{Val: 0}, &tree.TreeNode{Val: 1}))
+	fmt.Println(lowestCommonAncestor(root, &tree.TreeNode{Val: 0}, &tree.TreeNode{Val: 5}))
 
 	root1 := &tree.TreeNode{
 		Val:  2,
