@@ -3,18 +3,93 @@ package main
 import (
 	"fmt"
 	"github.com/sanantoha/go-algos/internals/tree"
+	"math"
 )
 
+// O(n) time | O(h) space
 func maxDepth(root *tree.TreeNode) int {
-	return -1
+	return maxDepthRec(root, 0)
 }
 
+func maxDepthRec(root *tree.TreeNode, depth int) int {
+	if root == nil {
+		return depth
+	}
+	depth++
+	return int(math.Max(float64(maxDepthRec(root.Left, depth)), float64(maxDepthRec(root.Right, depth))))
+}
+
+type Info struct {
+	node  *tree.TreeNode
+	depth int
+}
+
+// O(n) time | O(h) space
 func maxDepthIter(root *tree.TreeNode) int {
-	return -1
+	if root == nil {
+		return 0
+	}
+
+	stack := make([]Info, 1)
+	stack[0] = Info{
+		node:  root,
+		depth: 0,
+	}
+
+	maxDepthVal := 0
+
+	for len(stack) > 0 {
+		info := stack[0]
+		stack = stack[1:]
+
+		depth := info.depth
+		curr := info.node
+
+		maxDepthVal = int(math.Max(float64(depth), float64(maxDepthVal)))
+
+		if curr == nil {
+			continue
+		}
+
+		stack = append(stack, Info{node: curr.Left, depth: depth + 1})
+		stack = append(stack, Info{node: curr.Right, depth: depth + 1})
+	}
+
+	return maxDepthVal
 }
 
+// O(n) time | O(n) space
 func maxDepthBfs(root *tree.TreeNode) int {
-	return -1
+	if root == nil {
+		return 0
+	}
+
+	queue := make([]*tree.TreeNode, 1)
+	queue[0] = root
+
+	depth := 0
+
+	for len(queue) > 0 {
+		size := len(queue)
+
+		depth++
+
+		for size > 0 {
+			size--
+
+			curr := queue[0]
+			queue = queue[1:]
+
+			if curr == nil {
+				continue
+			}
+
+			queue = append(queue, curr.Left)
+			queue = append(queue, curr.Right)
+		}
+	}
+
+	return depth - 1
 }
 
 func main() {
