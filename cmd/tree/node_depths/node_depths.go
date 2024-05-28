@@ -25,22 +25,6 @@ func nodeDepths(root *tree.TreeNode) int {
  *  8   9
  */
 func main() {
-	/*
-		TreeNode root = new TreeNode(1,
-		                new TreeNode(2,
-		                        new TreeNode(4,
-		                                new TreeNode(8),
-		                                new TreeNode(9)),
-		                        new TreeNode(5)),
-		                new TreeNode(3,
-		                        new TreeNode(6),
-		                        new TreeNode(7)));
-
-		        System.out.println(nodeDepths(root));
-		        System.out.println(nodeDepths(root) == 16);
-		        System.out.println(nodeDepthsRec(root));
-		        System.out.println(nodeDepthsRec(root) == 16);
-	*/
 
 	root := &tree.TreeNode{
 		Val: 1,
