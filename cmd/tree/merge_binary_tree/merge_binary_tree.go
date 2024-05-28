@@ -5,12 +5,62 @@ import (
 	"github.com/sanantoha/go-algos/internals/tree"
 )
 
+// O(n) time | O(h) space - where n and h for smallest tree
 func mergeBinaryTrees(tree1, tree2 *tree.TreeNode) *tree.TreeNode {
-	return nil
+	if tree1 == nil {
+		return tree2
+	}
+	if tree2 == nil {
+		return tree1
+	}
+	tree1.Val += tree2.Val
+	tree1.Left = mergeBinaryTrees(tree1.Left, tree2.Left)
+	tree1.Right = mergeBinaryTrees(tree1.Right, tree2.Right)
+	return tree1
 }
 
+// O(n) time | O(h) space - where n and h for smallest tree
 func mergeBinaryTreesIter(tree1, tree2 *tree.TreeNode) *tree.TreeNode {
-	return nil
+	if tree1 == nil {
+		return tree2
+	}
+	if tree2 == nil {
+		return tree1
+	}
+
+	stack1 := make([]*tree.TreeNode, 1)
+	stack1[0] = tree1
+	stack2 := make([]*tree.TreeNode, 1)
+	stack2[0] = tree2
+
+	for len(stack1) > 0 {
+		curr1 := stack1[len(stack1)-1]
+		stack1 = stack1[:len(stack1)-1]
+
+		curr2 := stack2[len(stack2)-1]
+		stack2 = stack2[:len(stack2)-1]
+
+		if curr2 == nil {
+			continue
+		}
+		curr1.Val += curr2.Val
+
+		if curr1.Left == nil {
+			curr1.Left = curr2.Left
+		} else {
+			stack1 = append(stack1, curr1.Left)
+			stack2 = append(stack2, curr2.Left)
+		}
+
+		if curr1.Right == nil {
+			curr1.Right = curr2.Right
+		} else {
+			stack1 = append(stack1, curr1.Right)
+			stack2 = append(stack2, curr2.Right)
+		}
+	}
+
+	return tree1
 }
 
 func main() {
