@@ -5,12 +5,52 @@ import (
 	"github.com/sanantoha/go-algos/internals/tree"
 )
 
+// O(n) time | O(h) space
 func nodeDepthsRec(root *tree.TreeNode) int {
-	return -1
+	return helper(root, 0)
 }
 
+func helper(root *tree.TreeNode, depth int) int {
+	if root == nil {
+		return 0
+	}
+
+	return depth + helper(root.Left, depth+1) + helper(root.Right, depth+1)
+}
+
+// O(n) time | O(h) space
 func nodeDepths(root *tree.TreeNode) int {
-	return -1
+	if root == nil {
+		return 0
+	}
+
+	stack := make([]Info, 1)
+	stack[0] = Info{node: root, depth: 0}
+
+	res := 0
+
+	for len(stack) > 0 {
+		info := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+
+		curr := info.node
+		depth := info.depth
+
+		if curr == nil {
+			continue
+		}
+
+		res += depth
+
+		stack = append(stack, Info{node: curr.Left, depth: depth + 1})
+		stack = append(stack, Info{node: curr.Right, depth: depth + 1})
+	}
+	return res
+}
+
+type Info struct {
+	node  *tree.TreeNode
+	depth int
 }
 
 /**
