@@ -3,10 +3,24 @@ package main
 import (
 	"fmt"
 	"github.com/sanantoha/go-algos/internals/tree"
+	"math"
 )
 
+// O(n) time | O(h) space
 func validate(root *tree.TreeNode) bool {
-	return false
+	return helper(root, math.MinInt, math.MaxInt)
+}
+
+func helper(root *tree.TreeNode, minVal, maxVal int) bool {
+	if root == nil {
+		return true
+	}
+
+	if root.Val < minVal || root.Val >= maxVal {
+		return false
+	}
+
+	return helper(root.Left, minVal, root.Val) && helper(root.Right, root.Val, maxVal)
 }
 
 func main() {
