@@ -1,9 +1,24 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
+// O(n) time | O(1) space
 func maxProfit(arr []int) int {
-	return -1
+	if arr == nil || len(arr) == 0 {
+		return 0
+	}
+
+	minVal := arr[0]
+	maxProfitVal := 0
+
+	for _, price := range arr {
+		maxProfitVal = int(math.Max(float64(maxProfitVal), float64(price-minVal)))
+		minVal = int(math.Min(float64(price), float64(minVal)))
+	}
+	return maxProfitVal
 }
 
 func main() {
@@ -14,5 +29,5 @@ func main() {
 
 	prices1 := []int{7, 6, 4, 3, 1}
 
-	fmt.Println(maxProfit(prices1) == 5)
+	fmt.Println(maxProfit(prices1) == 0)
 }
