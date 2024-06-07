@@ -2,12 +2,42 @@ package main
 
 import "fmt"
 
+// O(n) time | O(n) space
 func climbStairsDP(n int) int {
-	return -1
+	if n <= 0 {
+		return 0
+	}
+	if n == 1 {
+		return 1
+	}
+
+	dp := make([]int, n+1)
+	dp[0] = 1
+	dp[1] = 1
+
+	for i := 2; i <= n; i++ {
+		dp[i] = dp[i-2] + dp[i-1]
+	}
+	return dp[n]
 }
 
+// O(n) time | O(1) space
 func climbStairs(n int) int {
-	return -1
+	if n <= 0 {
+		return 0
+	}
+	if n == 1 {
+		return 1
+	}
+
+	fst := 1
+	snd := 1
+
+	for i := 2; i <= n; i++ {
+		fst, snd = snd, fst+snd
+	}
+
+	return snd
 }
 
 func main() {
