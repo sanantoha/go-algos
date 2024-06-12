@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 )
 
 // O(n) time | O(1) space
@@ -15,8 +14,8 @@ func maxProfit(arr []int) int {
 	maxProfitVal := 0
 
 	for _, price := range arr {
-		maxProfitVal = int(math.Max(float64(maxProfitVal), float64(price-minVal)))
-		minVal = int(math.Min(float64(price), float64(minVal)))
+		maxProfitVal = max(maxProfitVal, price-minVal)
+		minVal = min(price, minVal)
 	}
 	return maxProfitVal
 }

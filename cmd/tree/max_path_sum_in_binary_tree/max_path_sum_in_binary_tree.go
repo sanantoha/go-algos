@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"github.com/sanantoha/go-algos/internals/tree"
-	"math"
 )
 
 // O(n) time | O(h) space
@@ -23,13 +22,9 @@ func helper(root *tree.TreeNode) Info {
 	maxPathSumAsBranch := max(maxPathSumChildAsBranch+root.Val, root.Val)
 
 	maxPathSumAsRootNode := max(maxPathSumAsBranch, li.maxPathSumAsBranch+root.Val+ri.maxPathSumAsBranch)
-	maxPathSum := max(max(li.maxPathSum, ri.maxPathSum), maxPathSumAsRootNode)
+	maxPathSum := max(li.maxPathSum, ri.maxPathSum, maxPathSumAsRootNode)
 
 	return Info{maxPathSum: maxPathSum, maxPathSumAsBranch: maxPathSumAsBranch}
-}
-
-func max(x, y int) int {
-	return int(math.Max(float64(x), float64(y)))
 }
 
 type Info struct {

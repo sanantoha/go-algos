@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"github.com/sanantoha/go-algos/internals/tree"
-	"math"
 )
 
 // O(n) time | O(h) space
@@ -16,7 +15,7 @@ func maxDepthRec(root *tree.TreeNode, depth int) int {
 		return depth
 	}
 	depth++
-	return int(math.Max(float64(maxDepthRec(root.Left, depth)), float64(maxDepthRec(root.Right, depth))))
+	return max(maxDepthRec(root.Left, depth), maxDepthRec(root.Right, depth))
 }
 
 type Info struct {
@@ -45,7 +44,7 @@ func maxDepthIter(root *tree.TreeNode) int {
 		depth := info.depth
 		curr := info.node
 
-		maxDepthVal = int(math.Max(float64(depth), float64(maxDepthVal)))
+		maxDepthVal = max(depth, maxDepthVal)
 
 		if curr == nil {
 			continue

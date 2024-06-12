@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"github.com/sanantoha/go-algos/internals/tree"
-	"math"
 )
 
 // O(n) time | O(h) space
@@ -20,10 +19,10 @@ func helper(root *tree.TreeNode) (int, int) {
 	ld, lh := helper(root.Left)
 	rd, rh := helper(root.Right)
 
-	height := int(math.Max(float64(lh), float64(rh))) + 1
+	height := max(lh, rh) + 1
 
-	maxDiameter := math.Max(float64(ld), float64(rd))
-	diameter := int(math.Max(maxDiameter, float64(lh+rh)))
+	maxDiameter := max(ld, rd)
+	diameter := max(maxDiameter, lh+rh)
 
 	return diameter, height
 }

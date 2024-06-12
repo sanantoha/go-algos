@@ -23,7 +23,7 @@ func helper(root *tree.TreeNode) (bool, int) {
 	lb, lh := helper(root.Left)
 	rb, rh := helper(root.Right)
 
-	height := int(math.Max(float64(lh), float64(rh))) + 1
+	height := max(lh, rh) + 1
 	isBalanced := lb && rb && math.Abs(float64(lh-rh)) <= 1
 
 	return isBalanced, height

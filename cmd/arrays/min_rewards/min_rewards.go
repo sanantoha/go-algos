@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 )
 
 // O(n ^ 2) time | O(n) space
@@ -19,7 +18,7 @@ func minRewards(arr []int) int {
 		} else {
 			j := i - 1
 			for j >= 0 && arr[j] > arr[j+1] {
-				rewards[j] = int(math.Max(float64(rewards[j]), float64(rewards[j+1]+1)))
+				rewards[j] = max(rewards[j], rewards[j+1]+1)
 				j--
 			}
 		}
@@ -47,7 +46,7 @@ func extendsIdxs(arr []int, rewards []int, idx int) {
 
 	l := idx - 1
 	for l >= 0 && arr[l] > arr[l+1] {
-		rewards[l] = int(math.Max(float64(rewards[l]), float64(rewards[l+1])+1))
+		rewards[l] = max(rewards[l], rewards[l+1]+1)
 		l--
 	}
 
@@ -93,7 +92,7 @@ func minRewards2(arr []int) int {
 
 	for i := len(arr) - 2; i >= 0; i-- {
 		if arr[i] > arr[i+1] {
-			rewards[i] = int(math.Max(float64(rewards[i]), float64(rewards[i+1]+1)))
+			rewards[i] = max(rewards[i], rewards[i+1]+1)
 		}
 	}
 

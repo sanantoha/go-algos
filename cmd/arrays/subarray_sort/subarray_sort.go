@@ -16,8 +16,8 @@ func subarraySort(arr []int) []int {
 
 	for i, v := range arr {
 		if outOfOrder(arr, i, v) {
-			minVal = int(math.Min(float64(minVal), float64(v)))
-			maxVal = int(math.Max(float64(maxVal), float64(v)))
+			minVal = min(minVal, v)
+			maxVal = max(maxVal, v)
 		}
 	}
 
