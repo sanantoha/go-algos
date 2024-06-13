@@ -62,14 +62,6 @@ func buildSeq(items [][]int, kp [][]int) []int {
 	return res
 }
 
-func max(i, j int) int {
-	if i > j {
-		return i
-	} else {
-		return j
-	}
-}
-
 func main() {
 
 	input := [][]int{
