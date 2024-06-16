@@ -1,17 +1,83 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+	"slices"
+)
 
+// O(n ^ 2) time | O(n) space
 func lds(arr []int) int {
-	return -1
+	if arr == nil || len(arr) == 0 {
+		return 0
+	}
+
+	lds := make([]int, len(arr))
+	for i, _ := range arr {
+		lds[i] = 1
+	}
+
+	maxVal := math.MinInt
+
+	for i := 1; i < len(arr); i++ {
+		for j := 0; j < i; j++ {
+			if arr[j] > arr[i] && lds[i] < lds[j]+1 {
+				lds[i] = lds[j] + 1
+			}
+		}
+
+		if maxVal < lds[i] {
+			maxVal = lds[i]
+		}
+	}
+	return maxVal
 }
 
 func lds1(arr []int) int {
 	return -1
 }
 
+// O(n ^ 2) time | O(n) space
 func ldsList(arr []int) []int {
-	return nil
+	if arr == nil || len(arr) == 0 {
+		return nil
+	}
+
+	lds := make([]int, len(arr))
+	prev := make([]int, len(arr))
+	for i := 0; i < len(arr); i++ {
+		lds[i] = 1
+		prev[i] = -1
+	}
+
+	maxIdx := 0
+
+	for i := 1; i < len(arr); i++ {
+		for j := 0; j < i; j++ {
+			if arr[j] > arr[i] && lds[i] < lds[j]+1 {
+				lds[i] = lds[j] + 1
+				prev[i] = j
+			}
+		}
+		if lds[maxIdx] < lds[i] {
+			maxIdx = i
+		}
+	}
+	return buildSeq(arr, prev, maxIdx)
+}
+
+func buildSeq(arr []int, prev []int, maxIdx int) []int {
+	res := make([]int, 0)
+
+	idx := maxIdx
+
+	for idx >= 0 {
+		res = append(res, arr[idx])
+		idx = prev[idx]
+	}
+
+	slices.Reverse(res)
+	return res
 }
 
 func ldsList1(arr []int) []int {
