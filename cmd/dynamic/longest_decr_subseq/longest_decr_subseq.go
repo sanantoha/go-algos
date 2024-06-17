@@ -33,8 +33,47 @@ func lds(arr []int) int {
 	return maxVal
 }
 
+// O(n * log(n)) time | O(n) space
 func lds1(arr []int) int {
-	return -1
+	if arr == nil || len(arr) == 0 {
+		return 0
+	}
+
+	res := make([]int, 1)
+	res[0] = arr[0]
+
+	for i := 1; i < len(arr); i++ {
+		prev := res[len(res)-1]
+		if prev > arr[i] {
+			res = append(res, arr[i])
+		} else {
+			j := binarySearch(res, arr[i])
+			if j < 0 {
+				j = -(j + 1)
+			}
+			res[j] = arr[i]
+		}
+	}
+	return len(res)
+}
+
+func binarySearch(arr []int, target int) int {
+	l := 0
+	r := len(arr) - 1
+	for l <= r {
+		mid := int(uint(l+r) >> 1)
+		if target >= arr[mid] {
+			r = mid - 1
+		} else {
+			l = mid + 1
+		}
+	}
+
+	if arr[l] == target {
+		return l
+	} else {
+		return -(l + 1)
+	}
 }
 
 // O(n ^ 2) time | O(n) space
@@ -80,8 +119,43 @@ func buildSeq(arr []int, prev []int, maxIdx int) []int {
 	return res
 }
 
+// O(n * log(n)) time | O(n) space
 func ldsList1(arr []int) []int {
-	return nil
+	if arr == nil || len(arr) == 0 {
+		return nil
+	}
+
+	indices := make([]int, len(arr)+1)
+	for i := 0; i < len(indices); i++ {
+		indices[i] = -1
+	}
+	prev := make([]int, len(arr))
+	for i := 0; i < len(arr); i++ {
+		prev[i] = -1
+	}
+
+	length := 0
+
+	for i := 0; i < len(arr); i++ {
+		maxLen := binarySearchIndices(arr, indices, 1, length, arr[i])
+		indices[maxLen] = i
+		prev[i] = indices[maxLen-1]
+		length = max(length, maxLen)
+	}
+
+	return buildSeq(arr, prev, indices[length])
+}
+
+func binarySearchIndices(arr []int, indices []int, l int, r int, target int) int {
+	for l <= r {
+		mid := int(uint(l+r) >> 1)
+		if target >= arr[indices[mid]] {
+			r = mid - 1
+		} else {
+			l = mid + 1
+		}
+	}
+	return l
 }
 
 func main() {
