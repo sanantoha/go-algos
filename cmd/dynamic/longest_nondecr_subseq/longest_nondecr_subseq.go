@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"slices"
 )
 
 // O(n ^ 2) time | O(n) space
@@ -75,8 +76,48 @@ func binarySearch(arr []int, target int) int {
 	}
 }
 
+// O(n ^ 2) time | O(n) space
 func lndsList(arr []int) []int {
-	return nil
+	if arr == nil || len(arr) == 0 {
+		return nil
+	}
+
+	lnds := make([]int, len(arr))
+	prev := make([]int, len(arr))
+	for i, _ := range arr {
+		lnds[i] = 1
+		prev[i] = -1
+	}
+
+	maxIdx := 0
+
+	for i := 1; i < len(arr); i++ {
+		for j := 0; j < i; j++ {
+			if arr[j] <= arr[i] && lnds[i] < lnds[j]+1 {
+				lnds[i] = lnds[j] + 1
+				prev[i] = j
+			}
+		}
+		if lnds[maxIdx] < lnds[i] {
+			maxIdx = i
+		}
+	}
+
+	return buildSeq(arr, prev, maxIdx)
+}
+
+func buildSeq(arr []int, prev []int, maxIdx int) []int {
+	res := make([]int, 0)
+
+	idx := maxIdx
+
+	for idx >= 0 {
+		res = append(res, arr[idx])
+		idx = prev[idx]
+	}
+
+	slices.Reverse(res)
+	return res
 }
 
 func lndsList1(arr []int) []int {
