@@ -2,8 +2,17 @@ package main
 
 import "fmt"
 
+// O(n) time | O(1) space
 func maximumSubarray(arr []int) int {
-	return -1
+
+	sum := 0
+	maxSubArr := 0
+
+	for _, v := range arr {
+		sum = max(sum+v, v)
+		maxSubArr = max(maxSubArr, sum)
+	}
+	return maxSubArr
 }
 
 func main() {
