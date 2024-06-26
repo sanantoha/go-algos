@@ -2,8 +2,24 @@ package main
 
 import "fmt"
 
-func numberOfWaysToMakeChange(amount int, denoms []int) int {
-	return -1
+// O(n * d) time | O(n) space
+func numberOfWaysToMakeChange(n int, denoms []int) int {
+	if n < 0 || denoms == nil || len(denoms) == 0 {
+		return -1
+	}
+
+	nwmc := make([]int, n+1)
+	nwmc[0] = 1
+
+	for _, denom := range denoms {
+		for amount := 1; amount <= n; amount++ {
+			if amount >= denom {
+				nwmc[amount] += nwmc[amount-denom]
+			}
+		}
+	}
+
+	return nwmc[n]
 }
 
 /**
