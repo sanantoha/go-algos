@@ -36,12 +36,45 @@ func helper(height int, maxSteps int, memo []int) int {
 	return cnt
 }
 
+// O(maxSteps * height) time | O(height) space
 func staircaseTraversalIter(height, maxSteps int) int {
-	return -1
+	if height <= 1 {
+		return 1
+	}
+
+	waysToTap := make([]int, height+1)
+	waysToTap[0] = 1
+
+	for i := 1; i <= height; i++ {
+		steps := 1
+		for steps <= maxSteps && steps <= i {
+			waysToTap[i] += waysToTap[i-steps]
+			steps++
+		}
+	}
+	return waysToTap[height]
 }
 
+// O(height) time | O(height) space
 func staircaseTraversalSlidingWindow(height, maxSteps int) int {
-	return -1
+	if height <= 1 {
+		return 1
+	}
+
+	waysToTap := make([]int, height+1)
+	waysToTap[0] = 1
+	sum := 0
+
+	for i := 1; i <= height; i++ {
+		startIdx := i - maxSteps - 1
+		endIdx := i - 1
+		if startIdx >= 0 {
+			sum -= waysToTap[startIdx]
+		}
+		sum += waysToTap[endIdx]
+		waysToTap[i] = sum
+	}
+	return sum
 }
 
 func main() {
