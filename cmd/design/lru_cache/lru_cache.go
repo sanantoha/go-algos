@@ -30,12 +30,56 @@ func NewLRUCache(capacity int) *LRUCache {
 	}
 }
 
+// O(1) time | O(1) space
 func (lc *LRUCache) put(key, value int) {
+	node, ok := lc.cache[key]
+	if ok {
+		node.value = value
+		remove(node)
+		lc.add(node)
+	} else {
+		node = &Node{
+			key:   key,
+			value: value,
+		}
 
+		if lc.capacity == len(lc.cache) {
+			delete(lc.cache, lc.tail.prev.key)
+			remove(lc.tail.prev)
+		}
+		lc.add(node)
+		lc.cache[key] = node
+	}
 }
 
+// O(1) time | O(1) space
 func (lc *LRUCache) get(key int) int {
-	return -1
+	node, ok := lc.cache[key]
+	if ok {
+		remove(node)
+		lc.add(node)
+		return node.value
+	} else {
+		return -1
+	}
+}
+
+func (lc *LRUCache) add(node *Node) {
+	headNext := lc.head.next
+
+	node.prev = lc.head
+	node.next = headNext
+
+	lc.head.next = node
+	headNext.prev = node
+}
+
+func remove(node *Node) {
+	next := node.next
+	prev := node.prev
+
+	prev.next = next
+	next.prev = prev
 }
 
 func main() {
