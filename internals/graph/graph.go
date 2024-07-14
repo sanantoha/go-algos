@@ -1,9 +1,12 @@
 package graph
 
 import (
+	"bufio"
 	"errors"
 	"fmt"
 	"math"
+	"os"
+	"strconv"
 	"strings"
 )
 
@@ -38,7 +41,119 @@ func (e *DirectedEdge) to() int {
 }
 
 func (e *DirectedEdge) String() string {
-	return fmt.Sprintf("%d->%d %4.2f", e.V, e.W, e.Weight)
+	return fmt.Sprintf("%d->%d %5.2f", e.V, e.W, e.Weight)
+}
+
+type Digraph struct {
+	V   int
+	E   int
+	adj [][]int
+}
+
+func NewDigraph(V int) (*Digraph, error) {
+	if V < 0 {
+		return nil, errors.New("Number of vertices in a Digraph must be nonnegative")
+	}
+
+	adj := make([][]int, V)
+	for v := 0; v < V; v++ {
+		adj[v] = make([]int, 0)
+	}
+
+	graph := Digraph{
+		V:   V,
+		E:   0,
+		adj: adj,
+	}
+	return &graph, nil
+}
+
+func NewDigraphFromFile(filePath string) (*Digraph, error) {
+	file, err := os.ReadFile(filePath)
+	if err != nil {
+		return nil, err
+	}
+	str := string(file)
+
+	scanner := bufio.NewScanner(strings.NewReader(str))
+
+	scanner.Scan()
+	V, err := strconv.Atoi(scanner.Text())
+	if err != nil {
+		return nil, err
+	}
+
+	graph, err := NewDigraph(V)
+	if err != nil {
+		return nil, err
+	}
+
+	scanner.Scan()
+	E, err := strconv.Atoi(scanner.Text())
+
+	if err != nil {
+		return nil, err
+	}
+
+	for i := 0; i < E; i++ {
+		scanner.Scan()
+
+		line := scanner.Text()
+		parts := strings.Fields(line)
+		if len(parts) != 2 {
+			return nil, errors.New("invalid edge format, it should contains from, to vertexes")
+		}
+
+		v, err := strconv.Atoi(parts[0])
+		if err != nil || v < 0 || v >= V {
+			return nil, errors.New(fmt.Sprintf("Can not parse vertex %v or it is not between 0 and %d", parts[0], V-1))
+		}
+		w, err := strconv.Atoi(parts[1])
+		if err != nil || w < 0 || w >= V {
+			return nil, errors.New(fmt.Sprintf("Can not parse vertex %v or it is not between 0 and %d", parts[1], V-1))
+		}
+
+		err = graph.AddEdge(v, w)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	return graph, nil
+}
+
+func (g *Digraph) AddEdge(v int, w int) error {
+	if v < 0 || v >= g.V {
+		return errors.New(fmt.Sprintf("vertex %d is not between 0 and %d", v, g.V-1))
+	}
+	if w < 0 || w >= g.V {
+		return errors.New(fmt.Sprintf("vertex %d is not between 0 and %d", w, g.V-1))
+	}
+	g.adj[v] = append(g.adj[v], w)
+	g.E++
+	return nil
+}
+
+func (g *Digraph) Adj(v int) ([]int, error) {
+	if v < 0 || v >= g.V {
+		return nil, errors.New(fmt.Sprintf("vertex %d is not between 0 and %d", v, g.V-1))
+	}
+	return g.adj[v], nil
+}
+
+func (g *Digraph) String() string {
+	var builder = strings.Builder{}
+	builder.WriteString(fmt.Sprintf("%d vertices, %d edges\n", g.V, g.E))
+
+	for v := 0; v < g.V; v++ {
+		builder.WriteString(fmt.Sprintf("%d: ", v))
+		for _, w := range g.adj[v] {
+			builder.WriteString(fmt.Sprintf("%d ", w))
+		}
+		builder.WriteString("\n")
+	}
+
+	return builder.String()
 }
 
 type EdgeWeightedDigraph struct {
@@ -62,6 +177,64 @@ func NewEdgeWeightedDigraph(V int) (*EdgeWeightedDigraph, error) {
 		adj: adj,
 	}
 	return &graph, nil
+}
+
+func NewEdgeWeightedDigraphFromFile(filePath string) (*EdgeWeightedDigraph, error) {
+	file, err := os.ReadFile(filePath)
+	if err != nil {
+		return nil, err
+	}
+	str := string(file)
+
+	scanner := bufio.NewScanner(strings.NewReader(str))
+
+	scanner.Scan()
+	V, err := strconv.Atoi(scanner.Text())
+	if err != nil {
+		return nil, err
+	}
+
+	graph, err := NewEdgeWeightedDigraph(V)
+	if err != nil {
+		return nil, err
+	}
+
+	scanner.Scan()
+	E, err := strconv.Atoi(scanner.Text())
+	if err != nil {
+		return nil, err
+	}
+
+	for i := 0; i < E; i++ {
+		scanner.Scan()
+		line := scanner.Text()
+		parts := strings.Fields(line)
+		if len(parts) != 3 {
+			return nil, errors.New("invalid edge format, it should contains from, to vertexes and edge weight")
+		}
+
+		v, err := strconv.Atoi(parts[0])
+		if err != nil || v < 0 || v >= V {
+			return nil, errors.New(fmt.Sprintf("Can not parse vertex %v or it is not between 0 and %d", parts[0], V-1))
+		}
+		w, err := strconv.Atoi(parts[1])
+		if err != nil || w < 0 || w >= V {
+			return nil, errors.New(fmt.Sprintf("Can not parse vertex %v or it is not between 0 and %d", parts[1], V-1))
+		}
+
+		weight, err := strconv.ParseFloat(parts[2], 64)
+		if err != nil {
+			return nil, errors.New(fmt.Sprintf("Invalid weight %v", parts[2]))
+		}
+
+		edge, err := NewDirectedEdge(v, w, weight)
+		if err != nil {
+			return nil, err
+		}
+		graph.AddEdge(edge)
+	}
+
+	return graph, nil
 }
 
 func (e *EdgeWeightedDigraph) AddEdge(edge *DirectedEdge) {
@@ -89,6 +262,13 @@ func (e *EdgeWeightedDigraph) Edges() []*DirectedEdge {
 	return list
 }
 
+func (e *EdgeWeightedDigraph) Outdegree(v int) (int, error) {
+	if v < 0 || v >= e.V {
+		return 0, errors.New(fmt.Sprintf("vertex %d is not between 0 and %d", v, e.V-1))
+	}
+	return len(e.adj[v]), nil
+}
+
 func (e *EdgeWeightedDigraph) String() string {
 	var builder = strings.Builder{}
 	builder.WriteString(fmt.Sprintf("%d %d\n", e.V, e.E))
@@ -96,11 +276,16 @@ func (e *EdgeWeightedDigraph) String() string {
 	for v := 0; v < e.V; v++ {
 		builder.WriteString(fmt.Sprintf("%d: ", v))
 		for _, edge := range e.adj[v] {
-			builder.WriteString(fmt.Sprintf("%v  ", edge))
+			builder.WriteString(fmt.Sprintf("%v   ", edge))
 		}
 		builder.WriteString("\n")
 	}
 	return builder.String()
+}
+
+type ShortestPath struct {
+	Shortest []float64
+	Prev     []int
 }
 
 type Node struct {

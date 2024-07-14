@@ -6,41 +6,23 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-func main() {
-	graph, err := grph.NewEdgeWeightedDigraph(3)
+func findShortestPath(graph *grph.EdgeWeightedDigraph, start int) *grph.ShortestPath {
+	return nil
+}
 
+func findNegativeWeightCycle(graph *grph.EdgeWeightedDigraph, path *grph.ShortestPath) []int {
+	return nil
+}
+
+func main() {
+	graph, err := grph.NewEdgeWeightedDigraphFromFile("cmd/graph/bellman_ford/bellmanFord.txt")
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	edge0 := grph.DirectedEdge{
-		V:      0,
-		W:      1,
-		Weight: 5,
-	}
+	sp := findShortestPath(graph, 0)
+	fmt.Println(sp) // ShortestPath{Shortest=[-9.0, -20.0, -18.0, -2.0, -11.0], Prev=[4, 2, 4, 0, 1]}
 
-	edge1 := grph.DirectedEdge{
-		V:      0,
-		W:      2,
-		Weight: 3,
-	}
-
-	edge2 := grph.DirectedEdge{
-		V:      1,
-		W:      2,
-		Weight: 6,
-	}
-
-	edge3 := grph.DirectedEdge{
-		V:      2,
-		W:      0,
-		Weight: 3,
-	}
-
-	graph.AddEdge(&edge0)
-	graph.AddEdge(&edge1)
-	graph.AddEdge(&edge2)
-	graph.AddEdge(&edge3)
-
-	fmt.Println(graph)
+	circle := findNegativeWeightCycle(graph, sp)
+	fmt.Println(circle) // [1, 2, 4]
 }
