@@ -5,8 +5,23 @@ import (
 	"math/rand"
 )
 
+// O(n ^ 2) time | O(1) space
 func selectSort(arr []int) {
+	for i := 0; i < len(arr); i++ {
+		minIdx := i
+		for j := i + 1; j < len(arr); j++ {
+			if arr[minIdx] > arr[j] {
+				minIdx = j
+			}
+		}
+		if i != minIdx {
+			swap(arr, minIdx, i)
+		}
+	}
+}
 
+func swap(arr []int, i int, j int) {
+	arr[i], arr[j] = arr[j], arr[i]
 }
 
 func main() {
