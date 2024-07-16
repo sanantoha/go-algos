@@ -10,11 +10,58 @@ import (
 	"strings"
 )
 
-type DirectedEdge struct {
+type Edge struct {
 	V      int
 	W      int
 	Weight float64
 }
+
+func NewEdge(v, w int, weight float64) (*Edge, error) {
+	if v < 0 || w < 0 {
+		return nil, errors.New("vertex names must be nonnegative integers")
+	}
+	if math.IsNaN(weight) {
+		return nil, errors.New("Weight is NaN")
+	}
+
+	instance := Edge{
+		V:      v,
+		W:      w,
+		Weight: weight,
+	}
+
+	return &instance, nil
+}
+
+func (e *Edge) Either() int {
+	return e.V
+}
+
+func (e *Edge) Other(v int) int {
+	if v == e.V {
+		return e.W
+	} else if v == e.W {
+		return e.V
+	} else {
+		panic("Illegal state")
+	}
+}
+
+func (e *Edge) CompareTo(other *Edge) int {
+	if e.Weight < other.Weight {
+		return -1
+	} else if e.Weight > other.Weight {
+		return 1
+	} else {
+		return 0
+	}
+}
+
+func (e *Edge) String() string {
+	return fmt.Sprintf("%d-%d %.5f", e.V, e.W, e.Weight)
+}
+
+type DirectedEdge Edge
 
 func NewDirectedEdge(v, w int, weight float64) (*DirectedEdge, error) {
 	if v < 0 || w < 0 {
@@ -32,11 +79,11 @@ func NewDirectedEdge(v, w int, weight float64) (*DirectedEdge, error) {
 	return &instance, nil
 }
 
-func (e *DirectedEdge) from() int {
+func (e *DirectedEdge) From() int {
 	return e.V
 }
 
-func (e *DirectedEdge) to() int {
+func (e *DirectedEdge) To() int {
 	return e.W
 }
 
@@ -156,6 +203,34 @@ func (g *Digraph) String() string {
 	return builder.String()
 }
 
+type EdgeWeightedGraph struct {
+	V   int
+	E   int
+	adj [][]*Edge
+}
+
+func NewEdgeWeightedGraph(V int) (*EdgeWeightedGraph, error) {
+	if V < 0 {
+		return nil, errors.New("Number of vertices in a Digraph must be nonnegative")
+	}
+	adj := make([][]*Edge, V)
+	for v := 0; v < V; v++ {
+		adj[v] = make([]*Edge, 0)
+	}
+
+	graph := EdgeWeightedGraph{
+		V:   V,
+		E:   0,
+		adj: adj,
+	}
+	return &graph, nil
+}
+
+func NewEdgeWeightedGraphFromFile(filePath string) (*EdgeWeightedGraph, error) {
+	// ????
+	return nil, nil
+}
+
 type EdgeWeightedDigraph struct {
 	V   int
 	E   int
@@ -238,7 +313,7 @@ func NewEdgeWeightedDigraphFromFile(filePath string) (*EdgeWeightedDigraph, erro
 }
 
 func (e *EdgeWeightedDigraph) AddEdge(edge *DirectedEdge) {
-	v := edge.from()
+	v := edge.From()
 	e.adj[v] = append(e.adj[v], edge)
 	e.E++
 }
