@@ -53,8 +53,62 @@ func dfs(graph *grph.Digraph, visited []int, v int, stack *[]int) error {
 	return nil
 }
 
+// O(E + V) time | O(V) space
 func sortIter(graph *grph.Digraph) ([]int, error) {
-	return nil, nil
+
+	cntMap := make([]int, graph.V)
+
+	for v := 0; v < graph.V; v++ {
+		adj, err := graph.Adj(v)
+		if err != nil {
+			return nil, err
+		}
+		for _, u := range adj {
+			cntMap[u]++
+		}
+	}
+
+	isCircle := true
+	queue := make([]int, 0)
+
+	for k, v := range cntMap {
+		if v == 0 {
+			isCircle = false
+			queue = append(queue, k)
+		}
+	}
+
+	if isCircle {
+		return nil, errors.New("circle in the graph")
+	}
+
+	res := make([]int, 0)
+
+	for len(queue) > 0 {
+		v := queue[0]
+		queue = queue[1:]
+
+		res = append(res, v)
+
+		adj, err := graph.Adj(v)
+		if err != nil {
+			return nil, err
+		}
+
+		for _, u := range adj {
+			cntMap[u]--
+
+			if cntMap[u] == 0 {
+				queue = append(queue, u)
+			}
+		}
+	}
+
+	if len(res) != graph.V {
+		return nil, errors.New("circle in the graph")
+	}
+
+	return res, nil
 }
 
 func main() {
@@ -73,7 +127,7 @@ func main() {
 	}
 	fmt.Println(res)
 
-	// [0, 1, 8, 2, 9, 4, 3, 5, 6, 10, 7, 11, 12, 13]
+	// [0 1 8 2 9 3 4 5 10 6 11 7 12 13]
 	res, err = sortIter(graph)
 	if err != nil {
 		log.Fatalln(err)
