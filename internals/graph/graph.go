@@ -17,12 +17,12 @@ type Edge struct {
 	Weight float64
 }
 
-func NewEdge(v, w int, weight float64) *Edge {
+func NewEdgeWithValidation(v, w int, weight float64) (*Edge, error) {
 	if v < 0 || w < 0 {
-		log.Fatalln(errors.New("vertex names must be nonnegative integers"))
+		return nil, errors.New("vertex names must be nonnegative integers")
 	}
 	if math.IsNaN(weight) {
-		log.Fatalln(errors.New("Weight is NaN"))
+		return nil, errors.New("Weight is NaN")
 	}
 
 	instance := Edge{
@@ -31,7 +31,15 @@ func NewEdge(v, w int, weight float64) *Edge {
 		Weight: weight,
 	}
 
-	return &instance
+	return &instance, nil
+}
+
+func NewEdge(v, w int, weight float64) *Edge {
+	edge, err := NewEdgeWithValidation(v, w, weight)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	return edge
 }
 
 func (e *Edge) Either() int {
@@ -210,9 +218,9 @@ type EdgeWeightedGraph struct {
 	adj [][]*Edge
 }
 
-func NewEdgeWeightedGraph(V int) *EdgeWeightedGraph {
+func NewEdgeWeightedGraphWithValidation(V int) (*EdgeWeightedGraph, error) {
 	if V < 0 {
-		log.Fatalln(errors.New("Number of vertices in a Digraph must be nonnegative"))
+		return nil, errors.New("Number of vertices in a Digraph must be nonnegative")
 	}
 	adj := make([][]*Edge, V)
 	for v := 0; v < V; v++ {
@@ -224,13 +232,21 @@ func NewEdgeWeightedGraph(V int) *EdgeWeightedGraph {
 		E:   0,
 		adj: adj,
 	}
-	return &graph
+	return &graph, nil
 }
 
-func NewEdgeWeightedGraphFromFile(filePath string) *EdgeWeightedGraph {
-	file, err := os.ReadFile(filePath)
+func NewEdgeWeightedGraph(V int) *EdgeWeightedGraph {
+	graph, err := NewEdgeWeightedGraphWithValidation(V)
 	if err != nil {
 		log.Fatalln(err)
+	}
+	return graph
+}
+
+func NewEdgeWeightedGraphFromFile(filePath string) (*EdgeWeightedGraph, error) {
+	file, err := os.ReadFile(filePath)
+	if err != nil {
+		return nil, err
 	}
 	str := string(file)
 
@@ -239,18 +255,15 @@ func NewEdgeWeightedGraphFromFile(filePath string) *EdgeWeightedGraph {
 	scanner.Scan()
 	V, err := strconv.Atoi(scanner.Text())
 	if err != nil {
-		log.Fatalln(err)
+		return nil, err
 	}
 
 	graph := NewEdgeWeightedGraph(V)
-	if err != nil {
-		log.Fatalln(err)
-	}
 
 	scanner.Scan()
 	E, err := strconv.Atoi(scanner.Text())
 	if err != nil {
-		log.Fatalln(err)
+		return nil, err
 	}
 
 	for i := 0; i < E; i++ {
@@ -258,21 +271,21 @@ func NewEdgeWeightedGraphFromFile(filePath string) *EdgeWeightedGraph {
 		line := scanner.Text()
 		parts := strings.Fields(line)
 		if len(parts) != 3 {
-			log.Fatalln(errors.New("invalid edge format, it should contains from, to vertexes and edge weight"))
+			return nil, errors.New("invalid edge format, it should contains from, to vertexes and edge weight")
 		}
 
 		v, err := strconv.Atoi(parts[0])
 		if err != nil || v < 0 || v >= V {
-			log.Fatalln(errors.New(fmt.Sprintf("Can not parse vertex %v or it is not between 0 and %d", parts[0], V-1)))
+			return nil, errors.New(fmt.Sprintf("Can not parse vertex %v or it is not between 0 and %d", parts[0], V-1))
 		}
 		w, err := strconv.Atoi(parts[1])
 		if err != nil || w < 0 || w >= V {
-			log.Fatalln(errors.New(fmt.Sprintf("Can not parse vertex %v or it is not between 0 and %d", parts[1], V-1)))
+			return nil, errors.New(fmt.Sprintf("Can not parse vertex %v or it is not between 0 and %d", parts[1], V-1))
 		}
 
 		weight, err := strconv.ParseFloat(parts[2], 64)
 		if err != nil {
-			log.Fatalln(errors.New(fmt.Sprintf("Invalid weight %v", parts[2])))
+			return nil, errors.New(fmt.Sprintf("Invalid weight %v", parts[2]))
 		}
 
 		edge := Edge{
@@ -280,24 +293,28 @@ func NewEdgeWeightedGraphFromFile(filePath string) *EdgeWeightedGraph {
 			W:      w,
 			Weight: weight,
 		}
-		graph.AddEdge(&edge)
+		err = graph.AddEdge(&edge)
+		if err != nil {
+			return nil, err
+		}
 	}
 
-	return graph
+	return graph, nil
 }
 
-func (g *EdgeWeightedGraph) AddEdge(edge *Edge) {
+func (g *EdgeWeightedGraph) AddEdge(edge *Edge) error {
 	v := edge.Either()
 	w := edge.Other(v)
 	if v < 0 || v >= g.V {
-		log.Fatalln(errors.New(fmt.Sprintf("vertex %d is not between 0 and %d", v, g.V-1)))
+		return errors.New(fmt.Sprintf("vertex %d is not between 0 and %d", v, g.V-1))
 	}
 	if w < 0 || w >= g.V {
-		log.Fatalln(errors.New(fmt.Sprintf("vertex %d is not between 0 and %d", w, g.V-1)))
+		return errors.New(fmt.Sprintf("vertex %d is not between 0 and %d", w, g.V-1))
 	}
 	g.adj[v] = append(g.adj[v], edge)
 	g.adj[w] = append(g.adj[w], edge)
 	g.E++
+	return nil
 }
 
 func (g *EdgeWeightedGraph) String() string {
