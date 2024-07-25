@@ -37,8 +37,32 @@ func relax(shortest []float64, prev []int, edge *grph.DirectedEdge) {
 	}
 }
 
+// O(E + V) time | O(V) space
 func findNegativeWeightCycle(graph *grph.EdgeWeightedDigraph, path *grph.ShortestPath) []int {
-	return nil
+	shortest := path.Shortest
+	prev := path.Prev
+	v := -1
+	for _, edge := range graph.Edges() {
+		newWeight := edge.Weight + shortest[edge.From()]
+		if newWeight < shortest[edge.To()] {
+			v = edge.From()
+		}
+	}
+
+	if v == -1 {
+		return nil
+	}
+	res := make([]int, 1)
+	res[0] = v
+
+	u := prev[v]
+
+	for u != v {
+		res = append(res, u)
+		u = prev[u]
+	}
+
+	return res
 }
 
 func main() {
