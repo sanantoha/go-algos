@@ -5,8 +5,34 @@ import (
 	"github.com/sanantoha/go-algos/internals/graph"
 )
 
+// O(V + E) time | O(V) space
 func cloneGraph(node *graph.Node) *graph.Node {
-	return nil
+	if node == nil {
+		return node
+	}
+
+	cache := make(map[*graph.Node]*graph.Node, 0)
+	cache[node] = &graph.Node{Val: node.Val, Neighbors: make([]*graph.Node, 0)}
+
+	stack := make([]*graph.Node, 1)
+	stack[0] = node
+
+	for len(stack) > 0 {
+		curr := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		currCopy := cache[curr]
+
+		for _, child := range curr.Neighbors {
+			childCopy, ok := cache[child]
+			if !ok {
+				childCopy = &graph.Node{Val: child.Val, Neighbors: make([]*graph.Node, 0)}
+				cache[child] = childCopy
+				stack = append(stack, child)
+			}
+			currCopy.Neighbors = append(currCopy.Neighbors, childCopy)
+		}
+	}
+	return cache[node]
 }
 
 func main() {
