@@ -317,6 +317,23 @@ func (g *EdgeWeightedGraph) AddEdge(edge *Edge) error {
 	return nil
 }
 
+func (g *EdgeWeightedGraph) Edges() []*Edge {
+	mp := make(map[*Edge]struct{}, 0)
+
+	for v := 0; v < g.V; v++ {
+		for _, edge := range g.adj[v] {
+			mp[edge] = struct{}{}
+		}
+	}
+
+	edges := make([]*Edge, 0)
+
+	for k, _ := range mp {
+		edges = append(edges, k)
+	}
+	return edges
+}
+
 func (g *EdgeWeightedGraph) String() string {
 	var builder = strings.Builder{}
 	builder.WriteString(fmt.Sprintf("%d %d\n", g.V, g.E))

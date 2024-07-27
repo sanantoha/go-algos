@@ -3,14 +3,76 @@ package main
 import (
 	"fmt"
 	grph "github.com/sanantoha/go-algos/internals/graph"
+	log "github.com/sirupsen/logrus"
+	"sort"
 )
 
 func mst(graph *grph.EdgeWeightedGraph) *grph.EdgeWeightedGraph {
-	return nil
+	ngraph := grph.NewEdgeWeightedGraph(graph.V)
+
+	edges := graph.Edges()
+
+	sort.Slice(edges, func(i, j int) bool {
+		return edges[i].Weight < edges[j].Weight
+	})
+
+	parents := makeSet(graph.V)
+	ranks := make([]int, graph.V)
+	for v := 0; v < graph.V; v++ {
+		ranks[v] = 0
+	}
+
+	for _, minEdge := range edges {
+		v := minEdge.Either()
+		u := minEdge.Other(v)
+
+		pv := find(parents, v)
+		pu := find(parents, u)
+
+		if pv != pu {
+			union(parents, ranks, pv, pu)
+			edge := grph.NewEdge(v, u, minEdge.Weight)
+			err := ngraph.AddEdge(edge)
+			if err != nil {
+				log.Fatalln(err)
+			}
+		}
+	}
+
+	return ngraph
 }
 
 func mst1(graph *grph.EdgeWeightedGraph) *grph.EdgeWeightedGraph {
-	return nil
+	ngraph := grph.NewEdgeWeightedGraph(graph.V)
+
+	return ngraph
+}
+
+func makeSet(size int) []int {
+	parents := make([]int, size)
+	for v := 0; v < size; v++ {
+		parents[v] = v
+	}
+	return parents
+}
+
+func find(parents []int, v int) int {
+	if parents[v] == v {
+		return v
+	}
+	parents[v] = find(parents, parents[v])
+	return parents[v]
+}
+
+func union(parents []int, ranks []int, pv int, pu int) {
+	if ranks[pv] < ranks[pu] {
+		parents[pv] = pu
+	} else if ranks[pv] > ranks[pu] {
+		parents[pu] = pv
+	} else {
+		ranks[pu]++
+		parents[pv] = pu
+	}
 }
 
 func main() {
@@ -28,17 +90,18 @@ func main() {
 	graph.AddEdge(grph.NewEdge(4, 5, 2.0))
 	/*
 	   6 5
-	   0: 0-1 7.00000
-	   1: 1-2 3.00000  0-1 7.00000
-	   2: 1-2 3.00000  2-4 3.00000
-	   3: 3-4 2.00000
-	   4: 3-4 2.00000  4-5 2.00000  2-4 3.00000
-	   5: 4-5 2.00000
+	   0: 0-1 7.00
+	   1: 1-2 3.00  0-1 7.00
+	   2: 1-2 3.00  2-4 3.00
+	   3: 3-4 2.00
+	   4: 3-4 2.00  4-5 2.00  2-4 3.00
+	   5: 4-5 2.00
 	*/
 	fmt.Println(graph)
 	fmt.Println("=========================================")
 	fmt.Println(mst(graph))
 	fmt.Println("=========================================")
+	fmt.Println(mst1(graph))
 	fmt.Println("\n\n")
 	fmt.Println("=========================================")
 
@@ -65,6 +128,8 @@ func main() {
 	   6: 5-6 2.00000  1-6 3.00000
 	*/
 	fmt.Println(graph1)
+	fmt.Println("=========================================")
+	fmt.Println(mst(graph1))
 	fmt.Println("=========================================")
 	fmt.Println(mst1(graph1))
 }
