@@ -1,12 +1,14 @@
 package main
 
 import (
+	"container/heap"
 	"fmt"
 	grph "github.com/sanantoha/go-algos/internals/graph"
 	log "github.com/sirupsen/logrus"
 	"sort"
 )
 
+// O(E * log(E)) time | O(E + V) space
 func mst(graph *grph.EdgeWeightedGraph) *grph.EdgeWeightedGraph {
 	ngraph := grph.NewEdgeWeightedGraph(graph.V)
 
@@ -42,8 +44,40 @@ func mst(graph *grph.EdgeWeightedGraph) *grph.EdgeWeightedGraph {
 	return ngraph
 }
 
+// O(E * log(E)) time | O(E + V) space
 func mst1(graph *grph.EdgeWeightedGraph) *grph.EdgeWeightedGraph {
 	ngraph := grph.NewEdgeWeightedGraph(graph.V)
+
+	h := &EdgeHeap{}
+
+	for _, edge := range graph.Edges() {
+		heap.Push(h, edge)
+	}
+
+	parents := makeSet(graph.V)
+	ranks := make([]int, graph.V)
+	for v := 0; v < graph.V; v++ {
+		ranks[v] = 0
+	}
+
+	for h.Len() > 0 {
+		minEdge := heap.Pop(h).(*grph.Edge)
+
+		v := minEdge.Either()
+		u := minEdge.Other(v)
+
+		pv := find(parents, v)
+		pu := find(parents, u)
+
+		if pv != pu {
+			union(parents, ranks, pv, pu)
+			edge := grph.NewEdge(v, u, minEdge.Weight)
+			err := ngraph.AddEdge(edge)
+			if err != nil {
+				log.Fatalln(err)
+			}
+		}
+	}
 
 	return ngraph
 }
@@ -73,6 +107,32 @@ func union(parents []int, ranks []int, pv int, pu int) {
 		ranks[pu]++
 		parents[pv] = pu
 	}
+}
+
+type EdgeHeap []*grph.Edge
+
+func (h EdgeHeap) Len() int {
+	return len(h)
+}
+
+func (h EdgeHeap) Less(i, j int) bool {
+	return h[i].Weight < h[j].Weight
+}
+
+func (h EdgeHeap) Swap(i, j int) {
+	h[i], h[j] = h[j], h[i]
+}
+
+func (h *EdgeHeap) Push(x interface{}) {
+	*h = append(*h, x.(*grph.Edge))
+}
+
+func (h *EdgeHeap) Pop() interface{} {
+	old := *h
+	l := len(old)
+	x := old[l-1]
+	*h = old[:l-1]
+	return x
 }
 
 func main() {
