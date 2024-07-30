@@ -67,8 +67,75 @@ func getNeighbors(matrix [][]int, row int, col int) [][]int {
 	return res
 }
 
+// O(w * h) time | O(w * h) space
 func largestIsland1(matrix [][]int) int {
-	return -1
+	if len(matrix) == 0 {
+		return 0
+	}
+
+	largestIsland := 0
+
+	islandId := 2
+	islandsLength := make([]int, 0)
+
+	for row := 0; row < len(matrix); row++ {
+		for col := 0; col < len(matrix[row]); col++ {
+			if matrix[row][col] == 0 {
+				islandsLength = append(islandsLength, dfsSizeById(matrix, row, col, islandId))
+				islandId++
+			}
+		}
+	}
+
+	for row := 0; row < len(matrix); row++ {
+		for col := 0; col < len(matrix[row]); col++ {
+			if matrix[row][col] != 1 {
+				continue
+			}
+
+			islands := make(map[int]struct{}, 0)
+			for _, p := range getNeighbors(matrix, row, col) {
+				nrow := p[0]
+				ncol := p[1]
+				if matrix[nrow][ncol] == 1 {
+					continue
+				}
+				islands[matrix[nrow][ncol]] = struct{}{}
+			}
+
+			size := 1
+			for k, _ := range islands {
+				size += islandsLength[k-2]
+			}
+			largestIsland = max(size, largestIsland)
+		}
+	}
+
+	return largestIsland
+}
+
+func dfsSizeById(matrix [][]int, startRow int, startCol int, islandId int) int {
+	size := 0
+
+	stack := make([][]int, 1)
+	stack[0] = []int{startRow, startCol}
+
+	for len(stack) > 0 {
+		p := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		row := p[0]
+		col := p[1]
+
+		if matrix[row][col] != 0 {
+			continue
+		}
+		matrix[row][col] = islandId
+		size++
+
+		stack = append(stack, getNeighbors(matrix, row, col)...)
+	}
+
+	return size
 }
 
 func main() {
