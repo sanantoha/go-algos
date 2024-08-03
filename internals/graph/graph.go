@@ -475,6 +475,94 @@ func (g *EdgeWeightedDigraph) String() string {
 	return builder.String()
 }
 
+type EdgeT[T any] struct {
+	V      T
+	U      T
+	Weight float64
+}
+
+func NewEdgeT[T any](v T, u T, weight float64) (*EdgeT[T], error) {
+	if math.IsNaN(weight) {
+		return nil, errors.New("Weight is NaN")
+	}
+	return &EdgeT[T]{
+		V:      v,
+		U:      u,
+		Weight: weight,
+	}, nil
+}
+
+func NewGraphAsAdjListFromFile(filePath string) (map[string][]*EdgeT[string], error) {
+	file, err := os.ReadFile(filePath)
+	if err != nil {
+		return nil, err
+	}
+	str := string(file)
+
+	scanner := bufio.NewScanner(strings.NewReader(str))
+
+	graph := make(map[string][]*EdgeT[string], 0)
+
+	scanner.Scan() // skip V
+	scanner.Scan()
+	E, err := strconv.Atoi(scanner.Text())
+	if err != nil {
+		return nil, err
+	}
+
+	for i := 0; i < E; i++ {
+		scanner.Scan()
+		line := scanner.Text()
+		parts := strings.Fields(line)
+		if len(parts) != 3 {
+			return nil, errors.New("invalid edge format, it should contains from, to vertexes and edge weight")
+		}
+
+		v := strings.TrimSpace(parts[0])
+		w := strings.TrimSpace(parts[1])
+
+		weight, err := strconv.ParseFloat(parts[2], 64)
+		if err != nil {
+			return nil, errors.New(fmt.Sprintf("Invalid weight %v", parts[2]))
+		}
+
+		edge, err := NewEdgeT[string](v, w, weight)
+		if err != nil {
+			return nil, err
+		}
+		lst, ok := graph[v]
+		if !ok {
+			lst = make([]*EdgeT[string], 0)
+		}
+		lst = append(lst, edge)
+		graph[v] = lst
+	}
+
+	return graph, nil
+}
+
+func PrintGraphAsAdjList(graph map[string][]*EdgeT[string]) string {
+	var builder = strings.Builder{}
+
+	edges := make(map[*EdgeT[string]]struct{}, 0)
+
+	var subRes = strings.Builder{}
+	for key, lst := range graph {
+		subRes.WriteString(fmt.Sprintf("%s: ", key))
+		for _, edge := range lst {
+			subRes.WriteString(fmt.Sprintf("%s->%s %.2f  ", edge.V, edge.U, edge.Weight))
+			edges[edge] = struct{}{}
+		}
+		subRes.WriteString("\n")
+
+	}
+
+	builder.WriteString(fmt.Sprintf("%d %d\n", len(graph), len(edges)))
+	builder.WriteString(subRes.String())
+
+	return builder.String()
+}
+
 type ShortestPath struct {
 	Shortest []float64
 	Prev     []int

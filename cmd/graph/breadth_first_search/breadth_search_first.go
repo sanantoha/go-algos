@@ -37,7 +37,7 @@ func bfs(graph *grph.EdgeWeightedDigraph, start int) []int {
 }
 
 func main() {
-	graph, err := grph.NewEdgeWeightedDigraphFromFile("cmd/graph/breadth_search_first/bfs.txt")
+	graph, err := grph.NewEdgeWeightedDigraphFromFile("cmd/graph/breadth_first_search/bfs.txt")
 
 	if err != nil {
 		log.Fatalln(err)

@@ -3,6 +3,7 @@ package main
 import (
 	grph "github.com/sanantoha/go-algos/internals/graph"
 	log "github.com/sirupsen/logrus"
+	"slices"
 )
 
 // O(E + V) time | O(V) space
@@ -32,8 +33,32 @@ func dfs(graph *grph.EdgeWeightedDigraph, visited []bool, v int, res *[]int) {
 	}
 }
 
+// O(E + V) time | O(V) space
 func dfsIter(graph *grph.EdgeWeightedDigraph, start int) []int {
-	return nil
+
+	res := make([]int, 0)
+	visited := make([]bool, graph.V)
+	stack := make([]int, 1)
+	stack[0] = start
+
+	for len(stack) > 0 {
+		v := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+
+		if visited[v] {
+			continue
+		}
+		visited[v] = true
+		res = append(res, v)
+
+		adj, _ := graph.Adj(v)
+		slices.Reverse(adj)
+		for _, edge := range adj {
+			stack = append(stack, edge.To())
+		}
+	}
+
+	return res
 }
 
 func main() {
@@ -43,6 +68,7 @@ func main() {
 	}
 	log.Println(graph)
 
+	log.Println("\n")
 	log.Println("=======================================")
 	log.Println(dfsRec(graph, 0))
 	log.Println("=======================================")
