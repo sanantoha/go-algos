@@ -492,6 +492,14 @@ func NewEdgeT[T any](v T, u T, weight float64) (*EdgeT[T], error) {
 	}, nil
 }
 
+func (e *EdgeT[T]) From() T {
+	return e.V
+}
+
+func (e *EdgeT[T]) To() T {
+	return e.U
+}
+
 func NewGraphAsAdjListFromFile(filePath string) (map[string][]*EdgeT[string], error) {
 	file, err := os.ReadFile(filePath)
 	if err != nil {
@@ -566,6 +574,11 @@ func PrintGraphAsAdjList(graph map[string][]*EdgeT[string]) string {
 type ShortestPath struct {
 	Shortest []float64
 	Prev     []int
+}
+
+type Pair[T any, E any] struct {
+	Fst T
+	Snd E
 }
 
 type Node struct {
