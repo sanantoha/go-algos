@@ -6,8 +6,24 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
+// O(E + V) time | O(V) space
 func dfsRec(graph map[string][]*grph.EdgeT[string], start string) []string {
-	return nil
+	res := make([]string, 0)
+	visited := make(map[string]bool, 0)
+	helper(graph, visited, start, &res)
+	return res
+}
+
+func helper(graph map[string][]*grph.EdgeT[string], visited map[string]bool, v string, res *[]string) {
+	if visited[v] {
+		return
+	}
+	visited[v] = true
+	*res = append(*res, v)
+
+	for _, edge := range graph[v] {
+		helper(graph, visited, edge.To(), res)
+	}
 }
 
 func dfsIter(graph map[string][]*grph.EdgeT[string], start string) []string {

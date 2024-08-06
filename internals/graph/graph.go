@@ -481,7 +481,7 @@ type EdgeT[T any] struct {
 	Weight float64
 }
 
-func NewEdgeT[T any](v T, u T, weight float64) (*EdgeT[T], error) {
+func NewEdgeTSafe[T any](v T, u T, weight float64) (*EdgeT[T], error) {
 	if math.IsNaN(weight) {
 		return nil, errors.New("Weight is NaN")
 	}
@@ -490,6 +490,14 @@ func NewEdgeT[T any](v T, u T, weight float64) (*EdgeT[T], error) {
 		U:      u,
 		Weight: weight,
 	}, nil
+}
+
+func NewEdgeT[T any](v T, u T, weight float64) *EdgeT[T] {
+	edge, err := NewEdgeTSafe[T](v, u, weight)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	return edge
 }
 
 func (e *EdgeT[T]) From() T {
@@ -534,7 +542,7 @@ func NewGraphAsAdjListFromFile(filePath string) (map[string][]*EdgeT[string], er
 			return nil, errors.New(fmt.Sprintf("Invalid weight %v", parts[2]))
 		}
 
-		edge, err := NewEdgeT[string](v, w, weight)
+		edge, err := NewEdgeTSafe[string](v, w, weight)
 		if err != nil {
 			return nil, err
 		}
