@@ -9,10 +9,6 @@ func mst(graph map[string][]*grph.EdgeT[string]) map[string][]*grph.EdgeT[string
 	return nil
 }
 
-func mst1(graph map[string][]*grph.EdgeT[string]) map[string][]*grph.EdgeT[string] {
-	return nil
-}
-
 func main() {
 
 	graph := createGraph()
@@ -29,10 +25,7 @@ func main() {
 	fmt.Println(grph.PrintGraphAsAdjList(graph))
 	fmt.Println("=========================================")
 	fmt.Println(mst(graph))
-	fmt.Println("=========================================")
-	fmt.Println(mst1(graph))
-	fmt.Println("\n\n")
-	fmt.Println("=========================================")
+	fmt.Println("=========================================\n\n")
 
 	graph1 := createGraph1()
 
@@ -49,8 +42,6 @@ func main() {
 	fmt.Println(grph.PrintGraphAsAdjList(graph1))
 	fmt.Println("=========================================")
 	fmt.Println(mst(graph1))
-	fmt.Println("=========================================")
-	fmt.Println(mst1(graph1))
 }
 
 func createGraph() map[string][]*grph.EdgeT[string] {

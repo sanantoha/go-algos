@@ -4,6 +4,7 @@ import (
 	"fmt"
 	grph "github.com/sanantoha/go-algos/internals/graph"
 	log "github.com/sirupsen/logrus"
+	"slices"
 )
 
 // O(E + V) time | O(V) space
@@ -26,8 +27,31 @@ func helper(graph map[string][]*grph.EdgeT[string], visited map[string]bool, v s
 	}
 }
 
+// O(E + V) time | O(V) space
 func dfsIter(graph map[string][]*grph.EdgeT[string], start string) []string {
-	return nil
+
+	stack := make([]string, 1)
+	stack[0] = start
+	visited := make(map[string]bool, 0)
+	res := make([]string, 0)
+
+	for len(stack) > 0 {
+		v := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+
+		if visited[v] {
+			continue
+		}
+		visited[v] = true
+		res = append(res, v)
+
+		edges := graph[v]
+		slices.Reverse(edges)
+		for _, edge := range edges {
+			stack = append(stack, edge.To())
+		}
+	}
+	return res
 }
 
 func main() {
