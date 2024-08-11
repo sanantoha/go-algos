@@ -1,16 +1,167 @@
 package main
 
 import (
+	"container/heap"
 	"fmt"
 	grph "github.com/sanantoha/go-algos/internals/graph"
+	"sort"
 )
 
+// O(E * log(E)) time | O(E + V) space
 func mst(graph map[string][]*grph.EdgeT[string]) map[string][]*grph.EdgeT[string] {
-	return nil
+
+	ngraph := make(map[string][]*grph.EdgeT[string], 0)
+
+	parents := makeSet(graph)
+	rank := makeRank(graph)
+
+	edges := getEdges(graph)
+
+	sort.Slice(edges, func(i, j int) bool {
+		return edges[i].Weight < edges[j].Weight
+	})
+
+	for _, minEdge := range edges {
+		v := minEdge.From()
+		u := minEdge.To()
+
+		pv := find(parents, v)
+		pu := find(parents, u)
+
+		if pv != pu {
+			nedge := *grph.NewEdgeT[string](v, u, minEdge.Weight)
+			fromLst := ngraph[v]
+			fromLst = append(fromLst, &nedge)
+			ngraph[v] = fromLst
+			toLst := ngraph[u]
+			toLst = append(toLst, &nedge)
+			ngraph[u] = toLst
+			union(parents, rank, pv, pu)
+		}
+	}
+
+	return ngraph
 }
 
+// O(E * log(E)) time | O(E + V) space
 func mst1(graph map[string][]*grph.EdgeT[string]) map[string][]*grph.EdgeT[string] {
-	return nil
+	ngraph := make(map[string][]*grph.EdgeT[string], 0)
+	//
+	parents := makeSet(graph)
+	rank := makeRank(graph)
+
+	h := &EdgeHeap{}
+
+	for _, edges := range graph {
+		for _, edge := range edges {
+			heap.Push(h, edge)
+		}
+	}
+
+	for h.Len() > 0 {
+		minEdge := heap.Pop(h).(*grph.EdgeT[string])
+		v := minEdge.From()
+		u := minEdge.To()
+
+		pv := find(parents, v)
+		pu := find(parents, u)
+
+		if pv != pu {
+			nedge := *grph.NewEdgeT[string](v, u, minEdge.Weight)
+			fromLst := ngraph[v]
+			fromLst = append(fromLst, &nedge)
+			ngraph[v] = fromLst
+			toLst := ngraph[u]
+			toLst = append(toLst, &nedge)
+			ngraph[u] = toLst
+			union(parents, rank, pv, pu)
+		}
+	}
+
+	return ngraph
+}
+
+func union(parents map[string]string, ranks map[string]int, v string, u string) {
+	if ranks[v] > ranks[u] {
+		parents[u] = v
+	} else if ranks[v] < ranks[u] {
+		parents[v] = u
+	} else {
+		parents[v] = u
+		ranks[u]++
+	}
+}
+
+func find(parents map[string]string, v string) string {
+	if parents[v] == v {
+		return v
+	} else {
+		parents[v] = find(parents, parents[v])
+		return parents[v]
+	}
+}
+
+func getEdges(graph map[string][]*grph.EdgeT[string]) []*grph.EdgeT[string] {
+
+	edges := make([]*grph.EdgeT[string], 0)
+	seen := make(map[*grph.EdgeT[string]]bool, 0)
+
+	for _, lst := range graph {
+		for _, edge := range lst {
+			if !seen[edge] {
+				seen[edge] = true
+				edges = append(edges, edge)
+			}
+		}
+	}
+
+	return edges
+}
+
+func makeRank(graph map[string][]*grph.EdgeT[string]) map[string]int {
+	ranks := make(map[string]int, len(graph))
+
+	for v, _ := range graph {
+		ranks[v] = 0
+	}
+
+	return ranks
+}
+
+func makeSet(graph map[string][]*grph.EdgeT[string]) map[string]string {
+	parents := make(map[string]string, len(graph))
+
+	for v, _ := range graph {
+		parents[v] = v
+	}
+
+	return parents
+}
+
+type EdgeHeap []*grph.EdgeT[string]
+
+func (h EdgeHeap) Len() int {
+	return len(h)
+}
+
+func (h EdgeHeap) Less(i, j int) bool {
+	return h[i].Weight < h[j].Weight
+}
+
+func (h EdgeHeap) Swap(i, j int) {
+	h[i], h[j] = h[j], h[i]
+}
+
+func (h *EdgeHeap) Push(x interface{}) {
+	*h = append(*h, x.(*grph.EdgeT[string]))
+}
+
+func (h *EdgeHeap) Pop() interface{} {
+	old := *h
+	l := len(old)
+	x := old[l-1]
+	*h = old[:l-1]
+	return x
 }
 
 func main() {
@@ -28,9 +179,9 @@ func main() {
 
 	fmt.Println(grph.PrintGraphAsAdjList(graph))
 	fmt.Println("=========================================")
-	fmt.Println(mst(graph))
+	fmt.Println(grph.PrintGraphAsAdjList(mst(graph)))
 	fmt.Println("=========================================")
-	fmt.Println(mst1(graph))
+	fmt.Println(grph.PrintGraphAsAdjList(mst1(graph)))
 	fmt.Println("\n\n")
 	fmt.Println("=========================================")
 
@@ -48,9 +199,9 @@ func main() {
 	*/
 	fmt.Println(grph.PrintGraphAsAdjList(graph1))
 	fmt.Println("=========================================")
-	fmt.Println(mst(graph1))
+	fmt.Println(grph.PrintGraphAsAdjList(mst(graph1)))
 	fmt.Println("=========================================")
-	fmt.Println(mst1(graph1))
+	fmt.Println(grph.PrintGraphAsAdjList(mst1(graph1)))
 }
 
 func createGraph() map[string][]*grph.EdgeT[string] {
