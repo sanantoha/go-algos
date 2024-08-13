@@ -317,6 +317,21 @@ func (g *EdgeWeightedGraph) AddEdge(edge *Edge) error {
 	return nil
 }
 
+func (g *EdgeWeightedGraph) AdjSafe(v int) ([]*Edge, error) {
+	if v < 0 || v >= g.V {
+		return nil, errors.New(fmt.Sprintf("vertex %d is not between 0 and %d", v, g.V-1))
+	}
+	return g.adj[v], nil
+}
+
+func (g *EdgeWeightedGraph) Adj(v int) []*Edge {
+	edges, err := g.AdjSafe(v)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	return edges
+}
+
 func (g *EdgeWeightedGraph) Edges() []*Edge {
 	mp := make(map[*Edge]struct{}, 0)
 

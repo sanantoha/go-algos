@@ -1,12 +1,81 @@
 package main
 
 import (
+	"container/heap"
 	"fmt"
 	grph "github.com/sanantoha/go-algos/internals/graph"
 )
 
+// O(E * log(V)) time | O(V) space
 func mst(graph *grph.EdgeWeightedGraph) *grph.EdgeWeightedGraph {
-	return nil
+	ngraph := grph.NewEdgeWeightedGraph(graph.V)
+
+	h := &NodeHeap{}
+
+	start := 0
+	for _, edge := range graph.Adj(start) {
+		heap.Push(h, &Node{start, edge})
+	}
+
+	inTree := 1
+	visited := make([]bool, graph.V)
+	visited[start] = true
+
+	for h.Len() > 0 && inTree < graph.V {
+		node := heap.Pop(h).(*Node)
+		from := node.from
+		minEdge := node.edge
+		to := minEdge.Other(from)
+
+		if visited[to] {
+			continue
+		}
+		visited[to] = true
+		inTree++
+
+		nedge := grph.NewEdge(minEdge.Either(), minEdge.Other(minEdge.Either()), minEdge.Weight)
+		ngraph.AddEdge(nedge)
+		for _, edge := range graph.Adj(to) {
+			heap.Push(h, &Node{to, edge})
+		}
+	}
+
+	if inTree < graph.V {
+		return nil
+	}
+
+	return ngraph
+}
+
+type Node struct {
+	from int
+	edge *grph.Edge
+}
+
+type NodeHeap []*Node
+
+func (h NodeHeap) Len() int {
+	return len(h)
+}
+
+func (h NodeHeap) Less(i, j int) bool {
+	return h[i].edge.Weight < h[j].edge.Weight
+}
+
+func (h NodeHeap) Swap(i, j int) {
+	h[i], h[j] = h[j], h[i]
+}
+
+func (h *NodeHeap) Push(x interface{}) {
+	*h = append(*h, x.(*Node))
+}
+
+func (h *NodeHeap) Pop() interface{} {
+	old := *h
+	l := len(old)
+	x := old[l-1]
+	*h = old[:l-1]
+	return x
 }
 
 func main() {
