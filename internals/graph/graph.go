@@ -490,13 +490,13 @@ func (g *EdgeWeightedDigraph) String() string {
 	return builder.String()
 }
 
-type EdgeT[T any] struct {
+type EdgeT[T comparable] struct {
 	V      T
 	U      T
 	Weight float64
 }
 
-func NewEdgeTSafe[T any](v T, u T, weight float64) (*EdgeT[T], error) {
+func NewEdgeTSafe[T comparable](v T, u T, weight float64) (*EdgeT[T], error) {
 	if math.IsNaN(weight) {
 		return nil, errors.New("Weight is NaN")
 	}
@@ -507,7 +507,7 @@ func NewEdgeTSafe[T any](v T, u T, weight float64) (*EdgeT[T], error) {
 	}, nil
 }
 
-func NewEdgeT[T any](v T, u T, weight float64) *EdgeT[T] {
+func NewEdgeT[T comparable](v T, u T, weight float64) *EdgeT[T] {
 	edge, err := NewEdgeTSafe[T](v, u, weight)
 	if err != nil {
 		log.Fatalln(err)
@@ -521,6 +521,20 @@ func (e *EdgeT[T]) From() T {
 
 func (e *EdgeT[T]) To() T {
 	return e.U
+}
+
+func (e *EdgeT[T]) Either() T {
+	return e.V
+}
+
+func (e *EdgeT[T]) Other(t T) T {
+	if e.V == t {
+		return e.U
+	} else if e.U == t {
+		return e.V
+	}
+	log.Fatalf("undefined vertex %s\n", t)
+	return e.V
 }
 
 func NewGraphAsAdjListFromFile(filePath string) (map[string][]*EdgeT[string], error) {

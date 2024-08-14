@@ -1,12 +1,95 @@
 package main
 
 import (
+	"container/heap"
 	"fmt"
 	grph "github.com/sanantoha/go-algos/internals/graph"
 )
 
+// O(E * log(V)) time | O(V) space
 func mst(graph map[string][]*grph.EdgeT[string]) map[string][]*grph.EdgeT[string] {
-	return nil
+	ngraph := make(map[string][]*grph.EdgeT[string], 0)
+
+	start := "0"
+	h := &PointHeap{}
+
+	for _, edge := range graph[start] {
+		heap.Push(h, &Point{start, edge})
+	}
+
+	visited := make(map[string]bool, 1)
+	visited[start] = true
+
+	inTree := 1
+
+	for h.Len() > 0 && inTree < len(graph) {
+		p := heap.Pop(h).(*Point)
+		from := p.from
+		minEdge := p.edge
+		to := minEdge.Other(from)
+
+		if visited[to] {
+			continue
+		}
+		visited[to] = true
+		inTree++
+
+		nedge := grph.NewEdgeT(minEdge.Either(), minEdge.Other(minEdge.Either()), minEdge.Weight)
+		fromLst, ok := ngraph[from]
+		if ok {
+			fromLst = append(fromLst, nedge)
+		} else {
+			fromLst = make([]*grph.EdgeT[string], 1)
+			fromLst[0] = nedge
+		}
+		ngraph[from] = fromLst
+
+		toLst, ok := ngraph[to]
+		if ok {
+			toLst = append(toLst, nedge)
+		} else {
+			toLst = make([]*grph.EdgeT[string], 1)
+			toLst[0] = nedge
+		}
+		ngraph[to] = toLst
+
+		for _, edge := range graph[to] {
+			heap.Push(h, &Point{to, edge})
+		}
+	}
+
+	return ngraph
+}
+
+type Point struct {
+	from string
+	edge *grph.EdgeT[string]
+}
+
+type PointHeap []*Point
+
+func (h PointHeap) Len() int {
+	return len(h)
+}
+
+func (h PointHeap) Less(i, j int) bool {
+	return h[i].edge.Weight < h[j].edge.Weight
+}
+
+func (h PointHeap) Swap(i, j int) {
+	h[i], h[j] = h[j], h[i]
+}
+
+func (h *PointHeap) Push(x interface{}) {
+	*h = append(*h, x.(*Point))
+}
+
+func (h *PointHeap) Pop() interface{} {
+	old := *h
+	l := len(old)
+	x := old[l-1]
+	*h = old[:l-1]
+	return x
 }
 
 func main() {
@@ -24,24 +107,24 @@ func main() {
 
 	fmt.Println(grph.PrintGraphAsAdjList(graph))
 	fmt.Println("=========================================")
-	fmt.Println(mst(graph))
+	fmt.Println(grph.PrintGraphAsAdjList(mst(graph)))
 	fmt.Println("=========================================\n\n")
 
 	graph1 := createGraph1()
 
 	/*
 	   7 6
-	   0: 0-1 2.00000  0-2 3.00000
-	   1: 0-1 2.00000  1-6 3.00000
-	   2: 2-4 1.00000  0-2 3.00000
-	   3: 3-4 5.00000
-	   4: 2-4 1.00000  3-4 5.00000
-	   5: 5-6 2.00000
-	   6: 5-6 2.00000  1-6 3.00000
+	   0: 0-1 2.00  0-2 3.00
+	   1: 0-1 2.00  1-6 3.00
+	   2: 2-4 1.00  0-2 3.00
+	   3: 3-4 5.00
+	   4: 2-4 1.00  3-4 5.00
+	   5: 5-6 2.00
+	   6: 5-6 2.00  1-6 3.00
 	*/
 	fmt.Println(grph.PrintGraphAsAdjList(graph1))
 	fmt.Println("=========================================")
-	fmt.Println(mst(graph1))
+	fmt.Println(grph.PrintGraphAsAdjList(mst(graph1)))
 }
 
 func createGraph() map[string][]*grph.EdgeT[string] {
