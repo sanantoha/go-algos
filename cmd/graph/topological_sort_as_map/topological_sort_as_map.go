@@ -50,8 +50,58 @@ func dfs(graph map[string][]string, visited map[string]int, v string, stack *[]s
 	return nil
 }
 
+// O(E + V) time | O(V) space
 func sortIter(graph map[string][]string) ([]string, error) {
-	return nil, nil
+
+	cntMap := make(map[string]int, len(graph))
+
+	for k, _ := range graph {
+		cntMap[k] = 0
+	}
+
+	for _, lst := range graph {
+		for _, u := range lst {
+			cntMap[u]++
+		}
+	}
+
+	isCircle := true
+
+	queue := make([]string, 0)
+
+	for k, v := range cntMap {
+		if v == 0 {
+			queue = append(queue, k)
+			isCircle = false
+		}
+	}
+
+	if isCircle {
+		return nil, errors.New("circle in the graph")
+	}
+
+	res := make([]string, 0)
+
+	for len(queue) > 0 {
+		v := queue[0]
+		queue = queue[1:]
+
+		res = append(res, v)
+
+		for _, u := range graph[v] {
+			cntMap[u]--
+
+			if cntMap[u] == 0 {
+				queue = append(queue, u)
+			}
+		}
+	}
+
+	if len(res) < len(queue) {
+		return nil, errors.New("circle in the graph")
+	}
+
+	return res, nil
 }
 
 func main() {
@@ -65,13 +115,13 @@ func main() {
 
 	res, err := sort(graph)
 	if err != nil {
-		log.Fatalln(err)
+		log.Println(err)
 	}
 	fmt.Println(res)
 
 	res, err = sortIter(graph)
 	if err != nil {
-		log.Fatalln(err)
+		log.Println(err)
 	}
 	fmt.Println(res)
 }
