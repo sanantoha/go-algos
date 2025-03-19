@@ -105,9 +105,9 @@ func medianOfTwoSortedArrays1(arr1, arr2 []int) float64 {
 		if leftMax1 <= rightMin2 && leftMax2 <= rightMin1 {
 			ln := len1 + len2
 			if ln%2 == 0 {
-				return float64(maxInt(leftMax1, leftMax2)+minInt(rightMin1, rightMin2)) / 2
+				return float64(max(leftMax1, leftMax2)+min(rightMin1, rightMin2)) / 2
 			} else {
-				return float64(maxInt(leftMax1, leftMax2))
+				return float64(min(leftMax1, leftMax2))
 			}
 		} else if leftMax1 > rightMin2 {
 			r = med1 - 1
@@ -116,20 +116,6 @@ func medianOfTwoSortedArrays1(arr1, arr2 []int) float64 {
 		}
 	}
 	return math.NaN()
-}
-
-func minInt(x, y int) int {
-	if x > y {
-		return y
-	}
-	return x
-}
-
-func maxInt(x, y int) int {
-	if x > y {
-		return x
-	}
-	return y
 }
 
 func main() {
