@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	grph "github.com/sanantoha/go-algos/internals/graph"
-	log "github.com/sirupsen/logrus"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -55,6 +53,8 @@ func main() {
 		"string_without_aaa_or_bbb.go":               true,
 		"zig_zag_traverse.go":                        true,
 		"depth_first_search.go":                      true,
+		"levenshtein_distance.go":                    true,
+		"best_time_to_buy_and_sell_stocks.go":        true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -73,23 +73,15 @@ func main() {
 
 func runTask() {
 
-	graph, err := grph.NewEdgeWeightedDigraphFromFile("cmd/graph/depth_first_search/dfs.txt")
-	if err != nil {
-		log.Fatalln(err)
-	}
-	log.Println(graph)
+	prices := []int{7, 1, 5, 3, 6, 4}
 
-	log.Println("\n")
-	log.Println("=======================================")
-	log.Println(dfsRec(graph, 0))
-	log.Println("=======================================")
-	log.Println(dfsIter(graph, 0))
+	fmt.Println(maxProfit(prices) == 5)
+
+	prices1 := []int{7, 6, 4, 3, 1}
+
+	fmt.Println(maxProfit(prices1) == 0)
 }
 
-func dfsRec(graph *grph.EdgeWeightedDigraph, start int) []int {
-	return nil
-}
-
-func dfsIter(graph *grph.EdgeWeightedDigraph, start int) []int {
-	return nil
+func maxProfit(prices []int) int {
+	return 0
 }
