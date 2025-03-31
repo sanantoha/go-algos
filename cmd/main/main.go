@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
+	"reflect"
+	"sort"
 )
 
 func main() {
@@ -58,6 +59,8 @@ func main() {
 		"best_time_to_buy_and_sell_stocks.go":        true,
 		"subarray_sort.go":                           true,
 		"dfs_tree_traverse.go":                       true,
+		"reverse_words_in_string.go":                 true,
+		"stable_internships.go":                      true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -76,110 +79,33 @@ func main() {
 
 func runTask() {
 
-	root := &tree.TreeNode{
-		Val: 5,
-		Left: &tree.TreeNode{
-			Val: 2,
-			Left: &tree.TreeNode{
-				Val: 1,
-			},
-			Right: &tree.TreeNode{
-				Val: 3,
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 8,
-			Left: &tree.TreeNode{
-				Val: 7,
-			},
-			Right: &tree.TreeNode{
-				Val: 9,
-			},
-		},
+	interns := [][]int{
+		{0, 1, 2},
+		{0, 2, 1},
+		{1, 2, 0},
 	}
 
-	fmt.Println(preOrder(root)) // 5 2 1 3 8 7 9
+	teams := [][]int{
+		{2, 1, 0},
+		{0, 1, 2},
+		{0, 1, 2},
+	}
 
-	fmt.Println(inOrder(root)) // 1 2 3 5 7 8 9
+	expected := [][]int{
+		{0, 1},
+		{1, 0},
+		{2, 2},
+	}
 
-	fmt.Println(postOrder(root)) // 1 3 2 7 9 8 5
+	result := stableInternships(interns, teams)
+	sort.Slice(result, func(i, j int) bool {
+		return result[i][0] < result[j][0]
+	})
+
+	fmt.Println(result)
+	fmt.Println(reflect.DeepEqual(expected, result))
 }
 
-// O(n) time | O(h) space
-func preOrder(root *tree.TreeNode) []int {
-
-	stack := make([]*tree.TreeNode, 1)
-	stack[0] = root
-
-	res := make([]int, 0)
-
-	for len(stack) > 0 {
-		curr := stack[len(stack)-1]
-		stack = stack[:len(stack)-1]
-
-		if curr == nil {
-			continue
-		}
-
-		res = append(res, curr.Val)
-
-		stack = append(stack, curr.Right)
-		stack = append(stack, curr.Left)
-	}
-
-	return res
-}
-
-// O(n) time | O(h) space
-func inOrder(root *tree.TreeNode) []int {
-
-	stack := make([]*tree.TreeNode, 0)
-	curr := root
-
-	res := make([]int, 0)
-
-	for len(stack) > 0 || curr != nil {
-		for curr != nil {
-			stack = append(stack, curr)
-			curr = curr.Left
-		}
-
-		curr = stack[len(stack)-1]
-		stack = stack[:len(stack)-1]
-		res = append(res, curr.Val)
-
-		curr = curr.Right
-	}
-
-	return res
-}
-
-// O(n) time | O(h) space
-func postOrder(root *tree.TreeNode) []int {
-
-	res := make([]int, 0)
-
-	fst := make([]*tree.TreeNode, 1)
-	fst[0] = root
-	snd := make([]*tree.TreeNode, 0)
-
-	for len(fst) > 0 {
-		curr := fst[len(fst)-1]
-		fst = fst[:len(fst)-1]
-		if curr == nil {
-			continue
-		}
-		snd = append(snd, curr)
-
-		fst = append(fst, curr.Left)
-		fst = append(fst, curr.Right)
-	}
-
-	for len(snd) > 0 {
-		v := snd[len(snd)-1]
-		snd = snd[:len(snd)-1]
-		res = append(res, v.Val)
-	}
-
-	return res
+func stableInternships(interns [][]int, teams [][]int) [][]int {
+	return nil
 }
