@@ -2,11 +2,11 @@ package main
 
 import (
 	"fmt"
+	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
 	"reflect"
-	"sort"
 )
 
 func main() {
@@ -61,6 +61,7 @@ func main() {
 		"dfs_tree_traverse.go":                       true,
 		"reverse_words_in_string.go":                 true,
 		"stable_internships.go":                      true,
+		"reconstruct_bst.go":                         true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -79,33 +80,59 @@ func main() {
 
 func runTask() {
 
-	interns := [][]int{
-		{0, 1, 2},
-		{0, 2, 1},
-		{1, 2, 0},
+	preOrderTraversalValues := []int{10, 4, 2, 1, 3, 17, 19, 18}
+
+	root := &tree.TreeNode{
+		Val: 10,
+		Left: &tree.TreeNode{
+			Val: 4,
+			Left: &tree.TreeNode{
+				Val: 2,
+				Left: &tree.TreeNode{
+					Val: 1,
+				},
+			},
+			Right: &tree.TreeNode{
+				Val: 3,
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 17,
+			Right: &tree.TreeNode{
+				Val: 19,
+				Left: &tree.TreeNode{
+					Val: 18,
+				},
+			},
+		},
 	}
 
-	teams := [][]int{
-		{2, 1, 0},
-		{0, 1, 2},
-		{0, 1, 2},
-	}
+	expected := getDfsOrder(root, []int{})
 
-	expected := [][]int{
-		{0, 1},
-		{1, 0},
-		{2, 2},
-	}
+	actualTree := reconstructBst(preOrderTraversalValues)
+	actual := getDfsOrder(actualTree, []int{})
+	fmt.Println(actual)
+	fmt.Println(reflect.DeepEqual(actual, expected))
 
-	result := stableInternships(interns, teams)
-	sort.Slice(result, func(i, j int) bool {
-		return result[i][0] < result[j][0]
-	})
-
-	fmt.Println(result)
-	fmt.Println(reflect.DeepEqual(expected, result))
+	actualTree = reconstructBst1(preOrderTraversalValues)
+	actual = getDfsOrder(actualTree, []int{})
+	fmt.Println(actual)
+	fmt.Println(reflect.DeepEqual(actual, expected))
 }
 
-func stableInternships(interns [][]int, teams [][]int) [][]int {
+func getDfsOrder(root *tree.TreeNode, arr []int) []int {
+	if root == nil {
+		return arr
+	}
+	arr = append(arr, root.Val)
+	arr = getDfsOrder(root.Left, arr)
+	return getDfsOrder(root.Right, arr)
+}
+
+func reconstructBst(preorder []int) *tree.TreeNode {
+	return nil
+}
+
+func reconstructBst1(preorder []int) *tree.TreeNode {
 	return nil
 }
