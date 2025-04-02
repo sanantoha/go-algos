@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/tree"
+	"github.com/sanantoha/go-algos/internals/list"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -65,6 +65,7 @@ func main() {
 		"merge_two_sorted_list.go":                           true,
 		"dijkstra_shortest_path.go":                          true,
 		"construct_binary_tree_from_preorder_and_inorder.go": true,
+		"reverse_list.go":                                    true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -72,7 +73,7 @@ func main() {
 	})
 
 	for _, task := range tasks {
-		if strings.HasSuffix(task, ".txt") {
+		if strings.HasSuffix(task, ".txt") || strings.HasSuffix(task, "test.go") {
 			continue
 		}
 		if _, exists := processedTasks[task]; exists {
@@ -86,13 +87,12 @@ func main() {
 
 func runTask() {
 
-	preorder := []int{3, 9, 20, 15, 7}
-	inorder := []int{9, 3, 15, 20, 7}
+	head := &list.ListNode{Val: 1, Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5}}}}}
 
-	root := buildTree(preorder, inorder)
-	fmt.Println(root)
+	fmt.Println(head)
+	fmt.Println(reverseList(head)) // 5 -> 4 -> 3 -> 2 -> 1
 }
 
-func buildTree(preorder, inorder []int) *tree.TreeNode {
+func reverseList(head *list.ListNode) *list.ListNode {
 	return nil
 }
