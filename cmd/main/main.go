@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/list"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -66,6 +65,7 @@ func main() {
 		"dijkstra_shortest_path.go":                          true,
 		"construct_binary_tree_from_preorder_and_inorder.go": true,
 		"reverse_list.go":                                    true,
+		"merge_sort.go":                                      true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -87,12 +87,26 @@ func main() {
 
 func runTask() {
 
-	head := &list.ListNode{Val: 1, Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5}}}}}
+	arr := make([]int, 10)
+	for i := 0; i < len(arr); i++ {
+		arr[i] = rand.Intn(50)
+	}
 
-	fmt.Println(head)
-	fmt.Println(reverseList(head)) // 5 -> 4 -> 3 -> 2 -> 1
+	fmt.Println(arr)
+
+	arr = mergeSort(arr)
+
+	fmt.Println(arr)
+
+	for i := 0; i < len(arr)-1; i++ {
+		if arr[i] > arr[i+1] {
+			panic(fmt.Sprintf("array is not sorted: %d != %d", arr[i], arr[i+1]))
+		}
+	}
+
+	fmt.Println("done")
 }
 
-func reverseList(head *list.ListNode) *list.ListNode {
+func mergeSort(arr []int) []int {
 	return nil
 }
