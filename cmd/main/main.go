@@ -69,6 +69,7 @@ func main() {
 		"palindromic_substrings.go":                          true,
 		"product_of_array.go":                                true,
 		"next_greater_element.go":                            true,
+		"four_sum.go":                                        true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -90,18 +91,15 @@ func main() {
 
 func runTask() {
 
-	input := []int{2, 5, -3, -4, 6, 7, 2}
-	actual := nextGreaterElement(input)
-	fmt.Println(actual) // [5, 6, 6, 6, 7, -1, 5]
+	fmt.Println(fourSum([]int{7, 6, 4, -1, 1, 2}, 16))
 
-	actual = nextGreaterElement1(input)
-	fmt.Println(actual) // [5, 6, 6, 6, 7, -1, 5]
+	fmt.Println(fourSum1([]int{7, 6, 4, -1, 1, 2}, 16))
 }
 
-func nextGreaterElement(arr []int) []int {
+func fourSum(arr []int, target int) [][4]int {
 	return nil
 }
 
-func nextGreaterElement1(arr []int) []int {
+func fourSum1(arr []int, target int) [][4]int {
 	return nil
 }
