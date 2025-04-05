@@ -67,6 +67,8 @@ func main() {
 		"reverse_list.go":                                    true,
 		"merge_sort.go":                                      true,
 		"palindromic_substrings.go":                          true,
+		"product_of_array.go":                                true,
+		"next_greater_element.go":                            true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -88,15 +90,18 @@ func main() {
 
 func runTask() {
 
-	fmt.Println(countSubstrings("abc")) // 3
+	input := []int{2, 5, -3, -4, 6, 7, 2}
+	actual := nextGreaterElement(input)
+	fmt.Println(actual) // [5, 6, 6, 6, 7, -1, 5]
 
-	fmt.Println(countSubstrings("aaa")) // 6
-
-	fmt.Println(countSubstrings("aabbbaa")) // 14
-
-	fmt.Println(countSubstrings("aaab")) // 7
+	actual = nextGreaterElement1(input)
+	fmt.Println(actual) // [5, 6, 6, 6, 7, -1, 5]
 }
 
-func countSubstrings(str string) int {
-	return 0
+func nextGreaterElement(arr []int) []int {
+	return nil
+}
+
+func nextGreaterElement1(arr []int) []int {
+	return nil
 }
