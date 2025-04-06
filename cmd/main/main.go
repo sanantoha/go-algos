@@ -70,6 +70,7 @@ func main() {
 		"product_of_array.go":                                true,
 		"next_greater_element.go":                            true,
 		"four_sum.go":                                        true,
+		"first_unique_character_in_string.go":                true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -91,15 +92,11 @@ func main() {
 
 func runTask() {
 
-	fmt.Println(fourSum([]int{7, 6, 4, -1, 1, 2}, 16))
-
-	fmt.Println(fourSum1([]int{7, 6, 4, -1, 1, 2}, 16))
+	fmt.Println(firstUniqChar("leetcode"))     // 0
+	fmt.Println(firstUniqChar("loveleetcode")) // 2
+	fmt.Println(firstUniqChar("aabb"))         // -1
 }
 
-func fourSum(arr []int, target int) [][4]int {
-	return nil
-}
-
-func fourSum1(arr []int, target int) [][4]int {
-	return nil
+func firstUniqChar(s string) int {
+	return -1
 }
