@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/tree"
+	"math"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -73,6 +73,7 @@ func main() {
 		"four_sum.go":                                        true,
 		"first_unique_character_in_string.go":                true,
 		"reverse_binary_tree.go":                             true,
+		"sqrt.go":                                            true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -94,99 +95,17 @@ func main() {
 
 func runTask() {
 
-	root := &tree.TreeNode{
-		Val: 5,
-		Left: &tree.TreeNode{
-			Val: 2,
-			Left: &tree.TreeNode{
-				Val: 1,
-			},
-			Right: &tree.TreeNode{
-				Val: 3,
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 10,
-			Left: &tree.TreeNode{
-				Val: 7,
-			},
-			Right: &tree.TreeNode{
-				Val: 15,
-				Left: &tree.TreeNode{
-					Val: 14,
-				},
-				Right: &tree.TreeNode{
-					Val: 17,
-				},
-			},
-		},
-	}
+	fmt.Println(sqrt(4))
+	fmt.Println(sqrt(5))
+	fmt.Println(sqrt(6))
+	fmt.Println(sqrt(7))
+	fmt.Println(sqrt(8))
+	fmt.Println(sqrt(9))
+	fmt.Println(sqrt(16))
 
-	fmt.Println(root)
-
-	reverse(root)
-
-	fmt.Println(root)
-	fmt.Println(root.Val == 5)
-	fmt.Println(root.Left.Val == 10)
-	fmt.Println(root.Right.Val == 2)
-	fmt.Println(root.Left.Left.Val == 15)
-	fmt.Println(root.Left.Right.Val == 7)
-	fmt.Println(root.Right.Left.Val == 3)
-	fmt.Println(root.Right.Right.Val == 1)
-	fmt.Println(root.Left.Left.Left.Val == 17)
-	fmt.Println(root.Left.Left.Right.Val == 14)
-
-	fmt.Println("==============================")
-
-	root1 := &tree.TreeNode{
-		Val: 5,
-		Left: &tree.TreeNode{
-			Val: 2,
-			Left: &tree.TreeNode{
-				Val: 1,
-			},
-			Right: &tree.TreeNode{
-				Val: 3,
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 10,
-			Left: &tree.TreeNode{
-				Val: 7,
-			},
-			Right: &tree.TreeNode{
-				Val: 15,
-				Left: &tree.TreeNode{
-					Val: 14,
-				},
-				Right: &tree.TreeNode{
-					Val: 17,
-				},
-			},
-		},
-	}
-
-	fmt.Println(root1)
-
-	reverseIter(root1)
-
-	fmt.Println(root1)
-	fmt.Println(root1.Val == 5)
-	fmt.Println(root1.Left.Val == 10)
-	fmt.Println(root1.Right.Val == 2)
-	fmt.Println(root1.Left.Left.Val == 15)
-	fmt.Println(root1.Left.Right.Val == 7)
-	fmt.Println(root1.Right.Left.Val == 3)
-	fmt.Println(root1.Right.Right.Val == 1)
-	fmt.Println(root1.Left.Left.Left.Val == 17)
-	fmt.Println(root1.Left.Left.Right.Val == 14)
+	fmt.Println(math.Sqrt(7))
 }
 
-func reverse(root *tree.TreeNode) {
-
-}
-
-func reverseIter(root *tree.TreeNode) {
-
+func sqrt(n int) int {
+	return 0
 }
