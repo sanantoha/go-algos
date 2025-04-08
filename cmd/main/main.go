@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -74,6 +73,7 @@ func main() {
 		"first_unique_character_in_string.go":                true,
 		"reverse_binary_tree.go":                             true,
 		"sqrt.go":                                            true,
+		"word_break.go":                                      true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -95,17 +95,13 @@ func main() {
 
 func runTask() {
 
-	fmt.Println(sqrt(4))
-	fmt.Println(sqrt(5))
-	fmt.Println(sqrt(6))
-	fmt.Println(sqrt(7))
-	fmt.Println(sqrt(8))
-	fmt.Println(sqrt(9))
-	fmt.Println(sqrt(16))
+	fmt.Println(wordBreak("leetcode", []string{"leet", "code"})) // true
 
-	fmt.Println(math.Sqrt(7))
+	fmt.Println(wordBreak("applepenapple", []string{"apple", "pen"})) // true
+
+	fmt.Println(wordBreak("catsandog", []string{"cats", "dog", "sand", "and", "cat"})) // false
 }
 
-func sqrt(n int) int {
-	return 0
+func wordBreak(s string, wordDict []string) bool {
+	return false
 }
