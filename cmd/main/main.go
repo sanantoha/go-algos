@@ -74,6 +74,7 @@ func main() {
 		"reverse_binary_tree.go":                             true,
 		"sqrt.go":                                            true,
 		"word_break.go":                                      true,
+		"longest_nondecr_subseq.go":                          true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -95,13 +96,27 @@ func main() {
 
 func runTask() {
 
-	fmt.Println(wordBreak("leetcode", []string{"leet", "code"})) // true
+	arr := []int{-2, -1, 2, 3, 4, 5, 2, 2, 2, 2, 3} // 8
+	// arr := []int{-1, 3, 4, 5, 2, 2, 2, 2} // 5
 
-	fmt.Println(wordBreak("applepenapple", []string{"apple", "pen"})) // true
-
-	fmt.Println(wordBreak("catsandog", []string{"cats", "dog", "sand", "and", "cat"})) // false
+	fmt.Println(lnds(arr))
+	fmt.Println(lnds1(arr))
+	fmt.Println(lndsList(arr))
+	fmt.Println(lndsList1(arr))
 }
 
-func wordBreak(s string, wordDict []string) bool {
-	return false
+func lnds(arr []int) int {
+	return 0
+}
+
+func lnds1(arr []int) int {
+	return 0
+}
+
+func lndsList(arr []int) []int {
+	return nil
+}
+
+func lndsList1(arr []int) []int {
+	return nil
 }
