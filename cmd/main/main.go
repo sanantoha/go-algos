@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -75,6 +76,7 @@ func main() {
 		"sqrt.go":                                            true,
 		"word_break.go":                                      true,
 		"longest_nondecr_subseq.go":                          true,
+		"evaluate_expression_tree.go":                        true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -96,27 +98,24 @@ func main() {
 
 func runTask() {
 
-	arr := []int{-2, -1, 2, 3, 4, 5, 2, 2, 2, 2, 3} // 8
-	// arr := []int{-1, 3, 4, 5, 2, 2, 2, 2} // 5
+	root := &tree.TreeNode{Val: -1}
+	root.Left = &tree.TreeNode{Val: -2}
+	root.Left.Left = &tree.TreeNode{Val: -4}
+	root.Left.Right = &tree.TreeNode{Val: 2}
+	root.Left.Left.Left = &tree.TreeNode{Val: 3}
+	root.Left.Left.Right = &tree.TreeNode{Val: 2}
 
-	fmt.Println(lnds(arr))
-	fmt.Println(lnds1(arr))
-	fmt.Println(lndsList(arr))
-	fmt.Println(lndsList1(arr))
+	root.Right = &tree.TreeNode{Val: -3}
+	root.Right.Left = &tree.TreeNode{Val: 8}
+	root.Right.Right = &tree.TreeNode{Val: 3}
+
+	expected := 6
+
+	actual := evaluateExpressionTree(root)
+	fmt.Println(actual)
+	fmt.Println(actual == expected)
 }
 
-func lnds(arr []int) int {
+func evaluateExpressionTree(root *tree.TreeNode) int {
 	return 0
-}
-
-func lnds1(arr []int) int {
-	return 0
-}
-
-func lndsList(arr []int) []int {
-	return nil
-}
-
-func lndsList1(arr []int) []int {
-	return nil
 }
