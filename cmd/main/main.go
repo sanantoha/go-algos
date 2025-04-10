@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/tree"
+	"github.com/sanantoha/go-algos/internals/list"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -77,6 +77,7 @@ func main() {
 		"word_break.go":                                      true,
 		"longest_nondecr_subseq.go":                          true,
 		"evaluate_expression_tree.go":                        true,
+		"sort_list.go":                                       true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -98,24 +99,14 @@ func main() {
 
 func runTask() {
 
-	root := &tree.TreeNode{Val: -1}
-	root.Left = &tree.TreeNode{Val: -2}
-	root.Left.Left = &tree.TreeNode{Val: -4}
-	root.Left.Right = &tree.TreeNode{Val: 2}
-	root.Left.Left.Left = &tree.TreeNode{Val: 3}
-	root.Left.Left.Right = &tree.TreeNode{Val: 2}
+	head := &list.ListNode{Val: 9, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 5,
+		Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 8}}}}}}
 
-	root.Right = &tree.TreeNode{Val: -3}
-	root.Right.Left = &tree.TreeNode{Val: 8}
-	root.Right.Right = &tree.TreeNode{Val: 3}
+	res := sort(head)
 
-	expected := 6
-
-	actual := evaluateExpressionTree(root)
-	fmt.Println(actual)
-	fmt.Println(actual == expected)
+	fmt.Println(res)
 }
 
-func evaluateExpressionTree(root *tree.TreeNode) int {
-	return 0
+func sort(head *list.ListNode) *list.ListNode {
+	return nil
 }
