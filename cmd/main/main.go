@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/list"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -78,6 +77,7 @@ func main() {
 		"longest_nondecr_subseq.go":                          true,
 		"evaluate_expression_tree.go":                        true,
 		"sort_list.go":                                       true,
+		"search_for_range.go":                                true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -99,14 +99,18 @@ func main() {
 
 func runTask() {
 
-	head := &list.ListNode{Val: 9, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 5,
-		Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 8}}}}}}
+	arr := []int{5, 7, 7, 8, 8, 8, 8, 8, 8, 8, 10}
+	fmt.Println(searchRange(arr, 8)) // [3, 9]
 
-	res := sort(head)
+	fmt.Println(searchRange(arr, 6)) // []
 
-	fmt.Println(res)
+	arr1 := []int{1}
+	fmt.Println(searchRange(arr1, 1)) // [0, 0]
+
+	arr2 := []int{}
+	fmt.Println(searchRange(arr2, 0)) // []
 }
 
-func sort(head *list.ListNode) *list.ListNode {
+func searchRange(arr []int, target int) []int {
 	return nil
 }
