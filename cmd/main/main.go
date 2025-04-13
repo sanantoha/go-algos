@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -78,6 +79,8 @@ func main() {
 		"evaluate_expression_tree.go":                        true,
 		"sort_list.go":                                       true,
 		"search_for_range.go":                                true,
+		"first_permutation_is_substr_second_str.go":          true,
+		"dfs_tree_traverse_rec.go":                           true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -99,18 +102,43 @@ func main() {
 
 func runTask() {
 
-	arr := []int{5, 7, 7, 8, 8, 8, 8, 8, 8, 8, 10}
-	fmt.Println(searchRange(arr, 8)) // [3, 9]
+	root := &tree.TreeNode{
+		Val: 5,
+		Left: &tree.TreeNode{
+			Val: 2,
+			Left: &tree.TreeNode{
+				Val: 1,
+			},
+			Right: &tree.TreeNode{
+				Val: 3,
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 8,
+			Left: &tree.TreeNode{
+				Val: 7,
+			},
+			Right: &tree.TreeNode{
+				Val: 9,
+			},
+		},
+	}
 
-	fmt.Println(searchRange(arr, 6)) // []
+	fmt.Println(preOrderRec(root)) // 5 2 1 3 8 7 9
 
-	arr1 := []int{1}
-	fmt.Println(searchRange(arr1, 1)) // [0, 0]
+	fmt.Println(inOrderRec(root)) // 1 2 3 5 7 8 9
 
-	arr2 := []int{}
-	fmt.Println(searchRange(arr2, 0)) // []
+	fmt.Println(postOrderRec(root)) // 1 3 2 7 9 8 5
 }
 
-func searchRange(arr []int, target int) []int {
+func preOrderRec(root *tree.TreeNode) []int {
+	return nil
+}
+
+func inOrderRec(root *tree.TreeNode) []int {
+	return nil
+}
+
+func postOrderRec(root *tree.TreeNode) []int {
 	return nil
 }
