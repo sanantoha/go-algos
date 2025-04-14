@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -81,6 +80,7 @@ func main() {
 		"search_for_range.go":                                true,
 		"first_permutation_is_substr_second_str.go":          true,
 		"dfs_tree_traverse_rec.go":                           true,
+		"min_heap.go":                                        true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -102,43 +102,52 @@ func main() {
 
 func runTask() {
 
-	root := &tree.TreeNode{
-		Val: 5,
-		Left: &tree.TreeNode{
-			Val: 2,
-			Left: &tree.TreeNode{
-				Val: 1,
-			},
-			Right: &tree.TreeNode{
-				Val: 3,
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 8,
-			Left: &tree.TreeNode{
-				Val: 7,
-			},
-			Right: &tree.TreeNode{
-				Val: 9,
-			},
-		},
+	arr := []int{0, 1, 2}
+
+	heap := NewMinHeap(arr)
+	heap.Insert(3)
+	heap.Insert(4)
+	heap.Insert(5)
+
+	fmt.Println(heap.heap) // [0, 1, 2, 3, 4, 5]
+
+	fmt.Println(heap.Peek())   // 0
+	fmt.Println(heap.Remove()) // 0
+	fmt.Println(heap.heap)     // [1, 3, 2, 5, 4]
+
+	fmt.Println(heap.Remove()) // 1
+	fmt.Println(heap.Remove()) // 2
+
+	heap.Insert(4)
+	fmt.Println(heap.heap) // [3, 4, 4, 5]
+}
+
+type MinHeap struct {
+	heap []int
+}
+
+func NewMinHeap(arr []int) *MinHeap {
+	return &MinHeap{
+		heap: buildHeap(arr),
 	}
-
-	fmt.Println(preOrderRec(root)) // 5 2 1 3 8 7 9
-
-	fmt.Println(inOrderRec(root)) // 1 2 3 5 7 8 9
-
-	fmt.Println(postOrderRec(root)) // 1 3 2 7 9 8 5
 }
 
-func preOrderRec(root *tree.TreeNode) []int {
+func buildHeap(arr []int) []int {
 	return nil
 }
 
-func inOrderRec(root *tree.TreeNode) []int {
-	return nil
+func (mh *MinHeap) Peek() int {
+	return -1
 }
 
-func postOrderRec(root *tree.TreeNode) []int {
-	return nil
+func (mh *MinHeap) Remove() int {
+	return -1
+}
+
+func (mh *MinHeap) Insert(value int) {
+
+}
+
+func (mh *MinHeap) IsEmpty() bool {
+	return len(mh.heap) == 0
 }
