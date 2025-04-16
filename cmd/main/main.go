@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/sanantoha/go-algos/internals/list"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -81,6 +82,7 @@ func main() {
 		"first_permutation_is_substr_second_str.go":          true,
 		"dfs_tree_traverse_rec.go":                           true,
 		"min_heap.go":                                        true,
+		"cycle_linked_list.go":                               true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -102,52 +104,22 @@ func main() {
 
 func runTask() {
 
-	arr := []int{0, 1, 2}
+	root := &list.ListNode{Val: 0, Next: &list.ListNode{Val: 1, Next: &list.ListNode{Val: 3}}}
+	root.Next.Next.Next = &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5, Next: &list.ListNode{Val: 6, Next: &list.ListNode{Val: 7, Next: root}}}}
 
-	heap := NewMinHeap(arr)
-	heap.Insert(3)
-	heap.Insert(4)
-	heap.Insert(5)
+	root1 := &list.ListNode{Val: 0, Next: &list.ListNode{Val: 1, Next: &list.ListNode{Val: 2}}}
 
-	fmt.Println(heap.heap) // [0, 1, 2, 3, 4, 5]
+	fmt.Println(isCycle(root))
+	fmt.Println(!isCycle(root1))
 
-	fmt.Println(heap.Peek())   // 0
-	fmt.Println(heap.Remove()) // 0
-	fmt.Println(heap.heap)     // [1, 3, 2, 5, 4]
-
-	fmt.Println(heap.Remove()) // 1
-	fmt.Println(heap.Remove()) // 2
-
-	heap.Insert(4)
-	fmt.Println(heap.heap) // [3, 4, 4, 5]
+	fmt.Println(isCycleWithoutSpace(root))
+	fmt.Println(!isCycleWithoutSpace(root1))
 }
 
-type MinHeap struct {
-	heap []int
+func isCycle(root *list.ListNode) bool {
+	return false
 }
 
-func NewMinHeap(arr []int) *MinHeap {
-	return &MinHeap{
-		heap: buildHeap(arr),
-	}
-}
-
-func buildHeap(arr []int) []int {
-	return nil
-}
-
-func (mh *MinHeap) Peek() int {
-	return -1
-}
-
-func (mh *MinHeap) Remove() int {
-	return -1
-}
-
-func (mh *MinHeap) Insert(value int) {
-
-}
-
-func (mh *MinHeap) IsEmpty() bool {
-	return len(mh.heap) == 0
+func isCycleWithoutSpace(root *list.ListNode) bool {
+	return false
 }
