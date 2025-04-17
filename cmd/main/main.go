@@ -83,6 +83,7 @@ func main() {
 		"dfs_tree_traverse_rec.go":                           true,
 		"min_heap.go":                                        true,
 		"cycle_linked_list.go":                               true,
+		"delete_node_in_linked_list.go":                      true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -104,22 +105,17 @@ func main() {
 
 func runTask() {
 
-	root := &list.ListNode{Val: 0, Next: &list.ListNode{Val: 1, Next: &list.ListNode{Val: 3}}}
-	root.Next.Next.Next = &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5, Next: &list.ListNode{Val: 6, Next: &list.ListNode{Val: 7, Next: root}}}}
+	node0 := &list.ListNode{Val: 3, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5}}}
+	node1 := &list.ListNode{Val: 2, Next: node0}
+	lst := &list.ListNode{Val: 1, Next: node1}
 
-	root1 := &list.ListNode{Val: 0, Next: &list.ListNode{Val: 1, Next: &list.ListNode{Val: 2}}}
+	fmt.Println(lst)
 
-	fmt.Println(isCycle(root))
-	fmt.Println(!isCycle(root1))
+	deleteNode(node0)
 
-	fmt.Println(isCycleWithoutSpace(root))
-	fmt.Println(!isCycleWithoutSpace(root1))
+	fmt.Println(lst)
 }
 
-func isCycle(root *list.ListNode) bool {
-	return false
-}
+func deleteNode(root *list.ListNode) {
 
-func isCycleWithoutSpace(root *list.ListNode) bool {
-	return false
 }
