@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/list"
 	"math/rand"
 	"os"
 	"path/filepath"
+	"reflect"
 	"strings"
 )
 
@@ -84,6 +84,7 @@ func main() {
 		"min_heap.go":                                        true,
 		"cycle_linked_list.go":                               true,
 		"delete_node_in_linked_list.go":                      true,
+		"a_star_algo.go":                                     true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -105,17 +106,37 @@ func main() {
 
 func runTask() {
 
-	node0 := &list.ListNode{Val: 3, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5}}}
-	node1 := &list.ListNode{Val: 2, Next: node0}
-	lst := &list.ListNode{Val: 1, Next: node1}
+	startRow := 0
+	startCol := 1
+	endRow := 4
+	endCol := 3
 
-	fmt.Println(lst)
+	graph := [][]int{
+		{0, 0, 0, 0, 0},
+		{0, 1, 1, 1, 0},
+		{0, 0, 0, 0, 0},
+		{1, 0, 1, 1, 1},
+		{0, 0, 0, 0, 0},
+	}
 
-	deleteNode(node0)
+	expected := [][]int{
+		{0, 1},
+		{0, 0},
+		{1, 0},
+		{2, 0},
+		{2, 1},
+		{3, 1},
+		{4, 1},
+		{4, 2},
+		{4, 3},
+	}
 
-	fmt.Println(lst)
+	actual := aStarAlgorithm(startRow, startCol, endRow, endCol, graph)
+	fmt.Println(actual)
+
+	fmt.Println(reflect.DeepEqual(expected, actual))
 }
 
-func deleteNode(root *list.ListNode) {
-
+func aStarAlgorithm(startRow int, startCol int, endRow int, endCol int, graph [][]int) [][]int {
+	return nil
 }
