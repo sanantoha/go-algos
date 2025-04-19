@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
+	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
-	"reflect"
 	"strings"
 )
 
@@ -85,6 +85,7 @@ func main() {
 		"cycle_linked_list.go":                               true,
 		"delete_node_in_linked_list.go":                      true,
 		"a_star_algo.go":                                     true,
+		"binary_tree_tilt.go":                                true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -106,37 +107,70 @@ func main() {
 
 func runTask() {
 
-	startRow := 0
-	startCol := 1
-	endRow := 4
-	endCol := 3
-
-	graph := [][]int{
-		{0, 0, 0, 0, 0},
-		{0, 1, 1, 1, 0},
-		{0, 0, 0, 0, 0},
-		{1, 0, 1, 1, 1},
-		{0, 0, 0, 0, 0},
+	root := &tree.TreeNode{
+		Val: 1,
+		Left: &tree.TreeNode{
+			Val: 2,
+		},
+		Right: &tree.TreeNode{
+			Val: 3,
+		},
 	}
 
-	expected := [][]int{
-		{0, 1},
-		{0, 0},
-		{1, 0},
-		{2, 0},
-		{2, 1},
-		{3, 1},
-		{4, 1},
-		{4, 2},
-		{4, 3},
+	fmt.Println(findTilt(root) == 1)
+
+	root1 := &tree.TreeNode{
+		Val: 4,
+		Left: &tree.TreeNode{
+			Val: 2,
+			Left: &tree.TreeNode{
+				Val: 3,
+			},
+			Right: &tree.TreeNode{
+				Val: 5,
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 9,
+			Right: &tree.TreeNode{
+				Val: 7,
+			},
+		},
 	}
 
-	actual := aStarAlgorithm(startRow, startCol, endRow, endCol, graph)
-	fmt.Println(actual)
+	fmt.Println(findTilt(root1) == 15)
 
-	fmt.Println(reflect.DeepEqual(expected, actual))
+	root2 := &tree.TreeNode{
+		Val: 21,
+		Left: &tree.TreeNode{
+			Val: 7,
+			Left: &tree.TreeNode{
+				Val: 1,
+				Left: &tree.TreeNode{
+					Val: 3,
+				},
+				Right: &tree.TreeNode{
+					Val: 3,
+				},
+			},
+			Right: &tree.TreeNode{
+				Val: 1,
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 14,
+			Left: &tree.TreeNode{
+				Val: 2,
+			},
+			Right: &tree.TreeNode{
+				Val: 2,
+			},
+		},
+	}
+
+	fmt.Println(findTilt(root2) == 9)
 }
 
-func aStarAlgorithm(startRow int, startCol int, endRow int, endCol int, graph [][]int) [][]int {
-	return nil
+func findTilt(root *tree.TreeNode) int {
+	return 0
 }
