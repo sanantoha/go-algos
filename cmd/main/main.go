@@ -86,6 +86,7 @@ func main() {
 		"delete_node_in_linked_list.go":                      true,
 		"a_star_algo.go":                                     true,
 		"binary_tree_tilt.go":                                true,
+		"symmetric_tree.go":                                  true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -111,66 +112,68 @@ func runTask() {
 		Val: 1,
 		Left: &tree.TreeNode{
 			Val: 2,
+			Left: &tree.TreeNode{
+				Val: 3,
+			},
+			Right: &tree.TreeNode{
+				Val: 4,
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 2,
+			Left: &tree.TreeNode{
+				Val: 4,
+			},
+			Right: &tree.TreeNode{
+				Val: 3,
+			},
+		},
+	}
+
+	fmt.Println(isSymmetricRec(root))
+	fmt.Println(isSymmetric(root))
+
+	fmt.Println("==================================")
+
+	root1 := &tree.TreeNode{
+		Val: 1,
+		Left: &tree.TreeNode{
+			Val: 2,
+			Right: &tree.TreeNode{
+				Val: 3,
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 2,
+			Right: &tree.TreeNode{
+				Val: 3,
+			},
+		},
+	}
+
+	fmt.Println(!isSymmetricRec(root1))
+	fmt.Println(!isSymmetric(root1))
+
+	fmt.Println("==================================")
+
+	root2 := &tree.TreeNode{
+		Val: 2,
+		Left: &tree.TreeNode{
+			Val: 1,
 		},
 		Right: &tree.TreeNode{
 			Val: 3,
 		},
 	}
 
-	fmt.Println(findTilt(root) == 1)
-
-	root1 := &tree.TreeNode{
-		Val: 4,
-		Left: &tree.TreeNode{
-			Val: 2,
-			Left: &tree.TreeNode{
-				Val: 3,
-			},
-			Right: &tree.TreeNode{
-				Val: 5,
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 9,
-			Right: &tree.TreeNode{
-				Val: 7,
-			},
-		},
-	}
-
-	fmt.Println(findTilt(root1) == 15)
-
-	root2 := &tree.TreeNode{
-		Val: 21,
-		Left: &tree.TreeNode{
-			Val: 7,
-			Left: &tree.TreeNode{
-				Val: 1,
-				Left: &tree.TreeNode{
-					Val: 3,
-				},
-				Right: &tree.TreeNode{
-					Val: 3,
-				},
-			},
-			Right: &tree.TreeNode{
-				Val: 1,
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 14,
-			Left: &tree.TreeNode{
-				Val: 2,
-			},
-			Right: &tree.TreeNode{
-				Val: 2,
-			},
-		},
-	}
-
-	fmt.Println(findTilt(root2) == 9)
+	fmt.Println(!isSymmetricRec(root2))
+	fmt.Println(!isSymmetric(root2))
 }
 
-func findTilt(root *tree.TreeNode) int {
-	return 0
+func isSymmetric(root *tree.TreeNode) bool {
+	return false
+}
+
+func isSymmetricRec(root *tree.TreeNode) bool {
+	return false
 }
