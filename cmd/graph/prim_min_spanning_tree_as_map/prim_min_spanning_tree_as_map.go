@@ -108,7 +108,7 @@ func main() {
 	fmt.Println(grph.PrintGraphAsAdjList(graph))
 	fmt.Println("=========================================")
 	fmt.Println(grph.PrintGraphAsAdjList(mst(graph)))
-	fmt.Println("=========================================\n\n")
+	fmt.Println("=========================================")
 
 	graph1 := createGraph1()
 
