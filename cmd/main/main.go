@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/sanantoha/go-algos/internals/list"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -89,6 +90,7 @@ func main() {
 		"prim_min_spanning_tree_as_map.go":                   true,
 		"greater_common_divisor.go":                          true,
 		"house_robber.go":                                    true,
+		"middle_node.go":                                     true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -110,25 +112,17 @@ func main() {
 
 func runTask() {
 
-	fmt.Println(greaterCommonDivisor(18, 6) == 6)
+	head := &list.ListNode{Val: 4, Next: &list.ListNode{Val: 8, Next: &list.ListNode{Val: 15, Next: &list.ListNode{Val: 19}}}}
 
-	fmt.Println(greaterCommonDivisor(18, 10) == 2)
+	// 15 -> 19
+	fmt.Println(middleNode(head))
 
-	fmt.Println(greaterCommonDivisor(17, 11) == 1)
+	head1 := &list.ListNode{Val: 1, Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5}}}}}
 
-	fmt.Println(greaterCommonDivisor(5, 15) == 5)
-
-	nums := []int{4, 1, 2, 7, 5, 3, 1}
-
-	res := rob(nums)
-	fmt.Println(res)
-	fmt.Println(res == 14)
+	// 3 -> 4 -> 5
+	fmt.Println(middleNode(head1))
 }
 
-func greaterCommonDivisor(x, y int) int {
-	return 0
-}
-
-func rob(arr []int) int {
-	return 0
+func middleNode(head *list.ListNode) *list.ListNode {
+	return nil
 }
