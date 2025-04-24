@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/list"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -91,6 +90,7 @@ func main() {
 		"greater_common_divisor.go":                          true,
 		"house_robber.go":                                    true,
 		"middle_node.go":                                     true,
+		"surrounded_regions.go":                              true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -112,17 +112,47 @@ func main() {
 
 func runTask() {
 
-	head := &list.ListNode{Val: 4, Next: &list.ListNode{Val: 8, Next: &list.ListNode{Val: 15, Next: &list.ListNode{Val: 19}}}}
+	board := [][]rune{
+		{'X', 'X', 'X', 'X'},
+		{'X', 'O', 'O', 'X'},
+		{'X', 'X', 'O', 'X'},
+		{'X', 'O', 'X', 'X'},
+	}
 
-	// 15 -> 19
-	fmt.Println(middleNode(head))
+	solve(board)
+	printRuneMatrix(board)
+	fmt.Println("===============================")
 
-	head1 := &list.ListNode{Val: 1, Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5}}}}}
+	board1 := [][]rune{
+		{'O', 'O', 'O'},
+		{'O', 'O', 'O'},
+		{'O', 'O', 'O'},
+	}
 
-	// 3 -> 4 -> 5
-	fmt.Println(middleNode(head1))
+	solve(board1)
+	printRuneMatrix(board1)
+	fmt.Println("===============================")
+
+	board2 := [][]rune{
+		{'X', 'O', 'X', 'O', 'X', 'O'},
+		{'O', 'X', 'O', 'X', 'O', 'X'},
+		{'X', 'O', 'X', 'O', 'X', 'O'},
+		{'O', 'X', 'O', 'X', 'O', 'X'},
+	}
+
+	solve(board2)
+	printRuneMatrix(board2)
 }
 
-func middleNode(head *list.ListNode) *list.ListNode {
-	return nil
+func printRuneMatrix(matrix [][]rune) {
+	for _, row := range matrix {
+		for _, r := range row {
+			fmt.Printf("%c ", r)
+		}
+		fmt.Println()
+	}
+}
+
+func solve(matrix [][]rune) {
+
 }
