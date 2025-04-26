@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	grph "github.com/sanantoha/go-algos/internals/graph"
+	log "github.com/sirupsen/logrus"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -91,6 +93,7 @@ func main() {
 		"house_robber.go":                                    true,
 		"middle_node.go":                                     true,
 		"surrounded_regions.go":                              true,
+		"breadth_first_search_as_map.go":                     true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -112,47 +115,17 @@ func main() {
 
 func runTask() {
 
-	board := [][]rune{
-		{'X', 'X', 'X', 'X'},
-		{'X', 'O', 'O', 'X'},
-		{'X', 'X', 'O', 'X'},
-		{'X', 'O', 'X', 'X'},
+	graph, err := grph.NewGraphAsAdjListFromFile("cmd/graph/breadth_first_search/bfs.txt")
+	if err != nil {
+		log.Fatalln(err)
 	}
 
-	solve(board)
-	printRuneMatrix(board)
-	fmt.Println("===============================")
-
-	board1 := [][]rune{
-		{'O', 'O', 'O'},
-		{'O', 'O', 'O'},
-		{'O', 'O', 'O'},
-	}
-
-	solve(board1)
-	printRuneMatrix(board1)
-	fmt.Println("===============================")
-
-	board2 := [][]rune{
-		{'X', 'O', 'X', 'O', 'X', 'O'},
-		{'O', 'X', 'O', 'X', 'O', 'X'},
-		{'X', 'O', 'X', 'O', 'X', 'O'},
-		{'O', 'X', 'O', 'X', 'O', 'X'},
-	}
-
-	solve(board2)
-	printRuneMatrix(board2)
+	fmt.Println(grph.PrintGraphAsAdjList(graph))
+	fmt.Println("=====================================")
+	// [0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24]
+	fmt.Println(bfs(graph, "0"))
 }
 
-func printRuneMatrix(matrix [][]rune) {
-	for _, row := range matrix {
-		for _, r := range row {
-			fmt.Printf("%c ", r)
-		}
-		fmt.Println()
-	}
-}
-
-func solve(matrix [][]rune) {
-
+func bfs(graph map[string][]*grph.EdgeT[string], start string) []string {
+	return nil
 }
