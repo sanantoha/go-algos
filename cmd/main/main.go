@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	grph "github.com/sanantoha/go-algos/internals/graph"
 	log "github.com/sirupsen/logrus"
@@ -94,6 +95,7 @@ func main() {
 		"middle_node.go":                                     true,
 		"surrounded_regions.go":                              true,
 		"breadth_first_search_as_map.go":                     true,
+		"topological_sort.go":                                true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -115,17 +117,32 @@ func main() {
 
 func runTask() {
 
-	graph, err := grph.NewGraphAsAdjListFromFile("cmd/graph/breadth_first_search/bfs.txt")
+	graph, err := grph.NewDigraphFromFile("cmd/graph/topological_sort/digraph.txt")
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	fmt.Println(grph.PrintGraphAsAdjList(graph))
-	fmt.Println("=====================================")
-	// [0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24]
-	fmt.Println(bfs(graph, "0"))
+	fmt.Println(graph)
+
+	// [8 9 1 0 2 4 3 5 6 7 10 11 12 13]
+	res, err := sortRec(graph)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	fmt.Println(res)
+
+	// [0 1 8 2 9 3 4 5 10 6 11 7 12 13]
+	res, err = sortIter(graph)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	fmt.Println(res)
 }
 
-func bfs(graph map[string][]*grph.EdgeT[string], start string) []string {
-	return nil
+func sortRec(graph *grph.Digraph) ([]int, error) {
+	return nil, errors.New("not implemented")
+}
+
+func sortIter(graph *grph.Digraph) ([]int, error) {
+	return nil, errors.New("not implemented")
 }
