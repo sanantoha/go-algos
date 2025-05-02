@@ -95,6 +95,7 @@ func main() {
 		"breadth_first_search_as_map.go":                     true,
 		"topological_sort.go":                                true,
 		"validate_bst.go":                                    true,
+		"node_depths.go":                                     true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -102,7 +103,7 @@ func main() {
 	})
 
 	for _, task := range tasks {
-		if strings.HasSuffix(task, ".txt") || strings.HasSuffix(task, "test.go") {
+		if strings.HasSuffix(task, ".txt") || strings.HasSuffix(task, "test.go") || task == "main.go" {
 			continue
 		}
 		if _, exists := processedTasks[task]; exists {
@@ -139,8 +140,54 @@ func runTask() {
 	}
 
 	fmt.Println(validate(root))
+
+	//==================================================================================================================
+	root1 := &tree.TreeNode{
+		Val: 1,
+		Left: &tree.TreeNode{
+			Val: 2,
+			Left: &tree.TreeNode{
+				Val: 4,
+				Left: &tree.TreeNode{
+					Val: 8,
+				},
+				Right: &tree.TreeNode{
+					Val: 9,
+				},
+			},
+			Right: &tree.TreeNode{
+				Val: 5,
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 3,
+			Left: &tree.TreeNode{
+				Val: 6,
+			},
+			Right: &tree.TreeNode{
+				Val: 7,
+			},
+		},
+	}
+
+	actual := nodeDepthsRec(root1)
+	fmt.Println(actual)
+	fmt.Println(actual == 16)
+
+	actual = nodeDepths(root1)
+	fmt.Println(actual)
+	fmt.Println(actual == 16)
+
 }
 
 func validate(root *tree.TreeNode) bool {
 	return false
+}
+
+func nodeDepthsRec(root *tree.TreeNode) int {
+	return 0
+}
+
+func nodeDepths(root *tree.TreeNode) int {
+	return 0
 }
