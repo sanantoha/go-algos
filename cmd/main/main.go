@@ -1,10 +1,8 @@
 package main
 
 import (
-	"errors"
 	"fmt"
-	grph "github.com/sanantoha/go-algos/internals/graph"
-	log "github.com/sirupsen/logrus"
+	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -96,6 +94,7 @@ func main() {
 		"surrounded_regions.go":                              true,
 		"breadth_first_search_as_map.go":                     true,
 		"topological_sort.go":                                true,
+		"validate_bst.go":                                    true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -117,32 +116,31 @@ func main() {
 
 func runTask() {
 
-	graph, err := grph.NewDigraphFromFile("cmd/graph/topological_sort/digraph.txt")
-	if err != nil {
-		log.Fatalln(err)
+	root := &tree.TreeNode{
+		Val: 5,
+		Left: &tree.TreeNode{
+			Val: 2,
+			Left: &tree.TreeNode{
+				Val: 1,
+			},
+			Right: &tree.TreeNode{
+				Val: 3,
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 10,
+			Left: &tree.TreeNode{
+				Val: 7,
+			},
+			Right: &tree.TreeNode{
+				Val: 15,
+			},
+		},
 	}
 
-	fmt.Println(graph)
-
-	// [8 9 1 0 2 4 3 5 6 7 10 11 12 13]
-	res, err := sortRec(graph)
-	if err != nil {
-		log.Fatalln(err)
-	}
-	fmt.Println(res)
-
-	// [0 1 8 2 9 3 4 5 10 6 11 7 12 13]
-	res, err = sortIter(graph)
-	if err != nil {
-		log.Fatalln(err)
-	}
-	fmt.Println(res)
+	fmt.Println(validate(root))
 }
 
-func sortRec(graph *grph.Digraph) ([]int, error) {
-	return nil, errors.New("not implemented")
-}
-
-func sortIter(graph *grph.Digraph) ([]int, error) {
-	return nil, errors.New("not implemented")
+func validate(root *tree.TreeNode) bool {
+	return false
 }
