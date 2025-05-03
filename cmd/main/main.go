@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -96,6 +95,7 @@ func main() {
 		"topological_sort.go":                                true,
 		"validate_bst.go":                                    true,
 		"node_depths.go":                                     true,
+		"powerset.go":                                        true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -117,77 +117,17 @@ func main() {
 
 func runTask() {
 
-	root := &tree.TreeNode{
-		Val: 5,
-		Left: &tree.TreeNode{
-			Val: 2,
-			Left: &tree.TreeNode{
-				Val: 1,
-			},
-			Right: &tree.TreeNode{
-				Val: 3,
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 10,
-			Left: &tree.TreeNode{
-				Val: 7,
-			},
-			Right: &tree.TreeNode{
-				Val: 15,
-			},
-		},
-	}
+	arr := []int{1, 2, 3}
 
-	fmt.Println(validate(root))
+	fmt.Println(powerset(arr))
 
-	//==================================================================================================================
-	root1 := &tree.TreeNode{
-		Val: 1,
-		Left: &tree.TreeNode{
-			Val: 2,
-			Left: &tree.TreeNode{
-				Val: 4,
-				Left: &tree.TreeNode{
-					Val: 8,
-				},
-				Right: &tree.TreeNode{
-					Val: 9,
-				},
-			},
-			Right: &tree.TreeNode{
-				Val: 5,
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 3,
-			Left: &tree.TreeNode{
-				Val: 6,
-			},
-			Right: &tree.TreeNode{
-				Val: 7,
-			},
-		},
-	}
-
-	actual := nodeDepthsRec(root1)
-	fmt.Println(actual)
-	fmt.Println(actual == 16)
-
-	actual = nodeDepths(root1)
-	fmt.Println(actual)
-	fmt.Println(actual == 16)
-
+	fmt.Println(powersetRec(arr))
 }
 
-func validate(root *tree.TreeNode) bool {
-	return false
+func powerset(arr []int) [][]int {
+	return nil
 }
 
-func nodeDepthsRec(root *tree.TreeNode) int {
-	return 0
-}
-
-func nodeDepths(root *tree.TreeNode) int {
-	return 0
+func powersetRec(arr []int) [][]int {
+	return nil
 }
