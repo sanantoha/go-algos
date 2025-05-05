@@ -96,6 +96,7 @@ func main() {
 		"validate_bst.go":                                    true,
 		"node_depths.go":                                     true,
 		"powerset.go":                                        true,
+		"rotate_array.go":                                    true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -117,17 +118,35 @@ func main() {
 
 func runTask() {
 
-	arr := []int{1, 2, 3}
+	arr1 := []int{1, 2, 3, 4, 5, 6, 7}
+	rotate(arr1, 3)
+	fmt.Println(arr1) // 5, 6, 7, 1, 2, 3, 4
 
-	fmt.Println(powerset(arr))
+	arr11 := []int{1, 2, 3, 4, 5, 6, 7}
+	rotate1(arr11, 3)
+	fmt.Println(arr11) // 5, 6, 7, 1, 2, 3, 4
 
-	fmt.Println(powersetRec(arr))
+	arr2 := []int{-1, -100, 3, 99}
+	rotate(arr2, 2)
+	fmt.Println(arr2) // 3, 99, -1, -100
+
+	arr22 := []int{-1, -100, 3, 99}
+	rotate1(arr22, 2)
+	fmt.Println(arr22) // 3, 99, -1, -100
+
+	arr3 := []int{1, 2, 3}
+	rotate(arr3, 2)
+	fmt.Println(arr3) // 2, 3, 1
+
+	arr33 := []int{1, 2, 3}
+	rotate1(arr33, 2)
+	fmt.Println(arr33) // 2, 3, 1
 }
 
-func powerset(arr []int) [][]int {
+func rotate(arr []int, k int) []int {
 	return nil
 }
 
-func powersetRec(arr []int) [][]int {
+func rotate1(arr []int, k int) []int {
 	return nil
 }
