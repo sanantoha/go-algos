@@ -99,6 +99,7 @@ func main() {
 		"powerset.go":                                        true,
 		"rotate_array.go":                                    true,
 		"level_order_binary_tree_traverse.go":                true,
+		"find_mode_in_bst.go":                                true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -121,9 +122,27 @@ func main() {
 func runTask() {
 
 	root := &tree.TreeNode{
+		Val: 1,
+		Right: &tree.TreeNode{
+			Val: 2,
+			Left: &tree.TreeNode{
+				Val: 2,
+			},
+		},
+	}
+
+	fmt.Println(findMode(root)) // [2]
+
+	root1 := &tree.TreeNode{
+		Val: 0,
+	}
+
+	fmt.Println(findMode(root1)) // [0]
+
+	root2 := &tree.TreeNode{
 		Val: 5,
 		Left: &tree.TreeNode{
-			Val: 2,
+			Val: 3,
 			Left: &tree.TreeNode{
 				Val: 1,
 			},
@@ -132,32 +151,19 @@ func runTask() {
 			},
 		},
 		Right: &tree.TreeNode{
-			Val: 10,
+			Val: 7,
 			Left: &tree.TreeNode{
-				Val: 7,
-				Left: &tree.TreeNode{
-					Val: 6,
-				},
-				Right: &tree.TreeNode{
-					Val: 8,
-				},
+				Val: 5,
 			},
 			Right: &tree.TreeNode{
-				Val: 15,
-				Left: &tree.TreeNode{
-					Val: 14,
-				},
-				Right: &tree.TreeNode{
-					Val: 17,
-				},
+				Val: 7,
 			},
 		},
 	}
 
-	// [[5], [2, 10], [1, 3, 7, 15], [6, 8, 14, 17]]
-	fmt.Println(levelOrder(root))
+	fmt.Println(findMode(root2)) // [3, 5, 7]
 }
 
-func levelOrder(root *tree.TreeNode) [][]int {
+func findMode(root *tree.TreeNode) []int {
 	return nil
 }
