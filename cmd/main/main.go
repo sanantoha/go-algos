@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -100,6 +101,7 @@ func main() {
 		"level_order_binary_tree_traverse.go":                true,
 		"find_mode_in_bst.go":                                true,
 		"min_number_of_jumps.go":                             true,
+		"left_view_binary_tree.go":                           true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -121,21 +123,48 @@ func main() {
 
 func runTask() {
 
-	input := []int{3, 4, 2, 1, 2, 3, 7, 1, 1, 1, 3}
+	/**
+	 * left view of binary tree
+	 *          1
+	 *        /   \
+	 *       2     3
+	 *           /  \
+	 *          4    8
+	 *        /  \
+	 *       5    6
+	 *             \
+	 *              7
+	 *  output: [1, 2, 4, 5, 7]
+	 */
+	root := &tree.TreeNode{
+		Val: 1,
+		Left: &tree.TreeNode{
+			Val: 2,
+		},
+		Right: &tree.TreeNode{
+			Val: 3,
+			Left: &tree.TreeNode{
+				Val: 4,
+				Left: &tree.TreeNode{
+					Val: 5,
+				},
+				Right: &tree.TreeNode{
+					Val: 6,
+					Right: &tree.TreeNode{
+						Val: 7,
+					},
+				},
+			},
+			Right: &tree.TreeNode{
+				Val: 8,
+			},
+		},
+	}
 
-	actual := minNumberOfJumps(input)
-	fmt.Println(actual)
-	fmt.Println(actual == 4)
-
-	actual = minNumberOfJumps1(input)
-	fmt.Println(actual)
-	fmt.Println(actual == 4)
+	// 1 2 4 5 7
+	fmt.Println(leftView(root))
 }
 
-func minNumberOfJumps(arr []int) int {
-	return 0
-}
-
-func minNumberOfJumps1(arr []int) int {
-	return 0
+func leftView(root *tree.TreeNode) []int {
+	return nil
 }
