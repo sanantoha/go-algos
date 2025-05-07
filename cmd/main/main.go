@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -100,6 +99,7 @@ func main() {
 		"rotate_array.go":                                    true,
 		"level_order_binary_tree_traverse.go":                true,
 		"find_mode_in_bst.go":                                true,
+		"min_number_of_jumps.go":                             true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -121,49 +121,21 @@ func main() {
 
 func runTask() {
 
-	root := &tree.TreeNode{
-		Val: 1,
-		Right: &tree.TreeNode{
-			Val: 2,
-			Left: &tree.TreeNode{
-				Val: 2,
-			},
-		},
-	}
+	input := []int{3, 4, 2, 1, 2, 3, 7, 1, 1, 1, 3}
 
-	fmt.Println(findMode(root)) // [2]
+	actual := minNumberOfJumps(input)
+	fmt.Println(actual)
+	fmt.Println(actual == 4)
 
-	root1 := &tree.TreeNode{
-		Val: 0,
-	}
-
-	fmt.Println(findMode(root1)) // [0]
-
-	root2 := &tree.TreeNode{
-		Val: 5,
-		Left: &tree.TreeNode{
-			Val: 3,
-			Left: &tree.TreeNode{
-				Val: 1,
-			},
-			Right: &tree.TreeNode{
-				Val: 3,
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 7,
-			Left: &tree.TreeNode{
-				Val: 5,
-			},
-			Right: &tree.TreeNode{
-				Val: 7,
-			},
-		},
-	}
-
-	fmt.Println(findMode(root2)) // [3, 5, 7]
+	actual = minNumberOfJumps1(input)
+	fmt.Println(actual)
+	fmt.Println(actual == 4)
 }
 
-func findMode(root *tree.TreeNode) []int {
-	return nil
+func minNumberOfJumps(arr []int) int {
+	return 0
+}
+
+func minNumberOfJumps1(arr []int) int {
+	return 0
 }
