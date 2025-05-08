@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
+	"reflect"
 	"strings"
 )
 
@@ -102,6 +102,7 @@ func main() {
 		"find_mode_in_bst.go":                                true,
 		"min_number_of_jumps.go":                             true,
 		"left_view_binary_tree.go":                           true,
+		"max_sum_increasing_subsequence.go":                  true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -123,48 +124,17 @@ func main() {
 
 func runTask() {
 
-	/**
-	 * left view of binary tree
-	 *          1
-	 *        /   \
-	 *       2     3
-	 *           /  \
-	 *          4    8
-	 *        /  \
-	 *       5    6
-	 *             \
-	 *              7
-	 *  output: [1, 2, 4, 5, 7]
-	 */
-	root := &tree.TreeNode{
-		Val: 1,
-		Left: &tree.TreeNode{
-			Val: 2,
-		},
-		Right: &tree.TreeNode{
-			Val: 3,
-			Left: &tree.TreeNode{
-				Val: 4,
-				Left: &tree.TreeNode{
-					Val: 5,
-				},
-				Right: &tree.TreeNode{
-					Val: 6,
-					Right: &tree.TreeNode{
-						Val: 7,
-					},
-				},
-			},
-			Right: &tree.TreeNode{
-				Val: 8,
-			},
-		},
+	arr := []int{10, 70, 20, 30, 50, 11, 30}
+	expected := [][]int{
+		{110},
+		{10, 20, 30, 50},
 	}
 
-	// 1 2 4 5 7
-	fmt.Println(leftView(root))
+	actual := maxSumIncreasingSubsequence(arr)
+	fmt.Println(actual)
+	fmt.Println(reflect.DeepEqual(actual, expected))
 }
 
-func leftView(root *tree.TreeNode) []int {
+func maxSumIncreasingSubsequence(arr []int) [][]int {
 	return nil
 }
