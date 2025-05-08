@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"math/rand"
 	"os"
 	"path/filepath"
-	"reflect"
 	"strings"
 )
 
@@ -103,6 +103,7 @@ func main() {
 		"min_number_of_jumps.go":                             true,
 		"left_view_binary_tree.go":                           true,
 		"max_sum_increasing_subsequence.go":                  true,
+		"longest_incr_subseq.go":                             true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -124,17 +125,76 @@ func main() {
 
 func runTask() {
 
-	arr := []int{10, 70, 20, 30, 50, 11, 30}
-	expected := [][]int{
-		{110},
-		{10, 20, 30, 50},
-	}
+	arr0 := []int{1, 2, 3, 6, -100, -90, -80, -70, -60, 7, 8, 9, 10, -50, -40} // 9
+	fmt.Println(lis0(arr0))
+	fmt.Println(lis(arr0))
+	fmt.Println(lisList0(arr0))
+	fmt.Println(lisList(arr0))
+	fmt.Println("==============================")
 
-	actual := maxSumIncreasingSubsequence(arr)
-	fmt.Println(actual)
-	fmt.Println(reflect.DeepEqual(actual, expected))
+	arr := []int{10, 22, 9, 33, 21, 50, 41, 60, 80} // 6
+	fmt.Println(lis0(arr))
+	fmt.Println(lis(arr))
+	fmt.Println(lisList0(arr))
+	fmt.Println(lisList(arr))
+	fmt.Println("==============================")
+
+	arr1 := []int{4, 10, 4, 3, 8, 9} // 3
+	fmt.Println(lis0(arr1))
+	fmt.Println(lis(arr1))
+	fmt.Println(lisList0(arr1))
+	fmt.Println(lisList(arr1))
+	fmt.Println("==============================")
+
+	arr2 := []int{10, 9, 2, 5, 3, 7, 101, 18} // 4
+	fmt.Println(lis0(arr2))
+	fmt.Println(lis(arr2))
+	fmt.Println(lisList0(arr2))
+	fmt.Println(lisList(arr2))
+	fmt.Println("==============================")
+
+	arr3 := []int{1, -10, 20, 30, 2, 3, 4, 5} // 5
+	fmt.Println(lis0(arr3))
+	fmt.Println(lis(arr3))
+	fmt.Println(lisList0(arr3))
+	fmt.Println(lisList(arr3))
 }
 
-func maxSumIncreasingSubsequence(arr []int) [][]int {
+// O(n ^ 2) time | O(n
+func lis0(arr []int) int {
+	if len(arr) == 0 {
+		return 0
+	}
+
+	dp := make([]int, len(arr))
+	for i, _ := range arr {
+		dp[i] = 1
+	}
+
+	maxVal := math.MinInt
+
+	for i := 1; i < len(arr); i++ {
+		for j := 0; j < i; j++ {
+			if arr[j] < arr[i] && dp[i] < dp[j]+1 {
+				dp[i] = dp[j] + 1
+			}
+		}
+
+		if maxVal < dp[i] {
+			maxVal = dp[i]
+		}
+	}
+	return maxVal
+}
+
+func lis(arr []int) int {
+	return 0
+}
+
+func lisList0(arr []int) []int {
+	return nil
+}
+
+func lisList(arr []int) []int {
 	return nil
 }
