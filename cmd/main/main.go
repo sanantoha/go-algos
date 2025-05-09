@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -104,6 +103,8 @@ func main() {
 		"left_view_binary_tree.go":                           true,
 		"max_sum_increasing_subsequence.go":                  true,
 		"longest_incr_subseq.go":                             true,
+		"minimal_haviest_set_a.go":                           true,
+		"topological_sort_as_map.go":                         true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -125,76 +126,31 @@ func main() {
 
 func runTask() {
 
-	arr0 := []int{1, 2, 3, 6, -100, -90, -80, -70, -60, 7, 8, 9, 10, -50, -40} // 9
-	fmt.Println(lis0(arr0))
-	fmt.Println(lis(arr0))
-	fmt.Println(lisList0(arr0))
-	fmt.Println(lisList(arr0))
-	fmt.Println("==============================")
+	graph := make(map[string][]string, 0)
 
-	arr := []int{10, 22, 9, 33, 21, 50, 41, 60, 80} // 6
-	fmt.Println(lis0(arr))
-	fmt.Println(lis(arr))
-	fmt.Println(lisList0(arr))
-	fmt.Println(lisList(arr))
-	fmt.Println("==============================")
+	graph["A"] = []string{"B", "C", "D"}
+	graph["B"] = []string{"C"}
+	graph["C"] = []string{"D"}
+	//graph["D"] = []string{"A", "B"}
+	graph["D"] = []string{}
 
-	arr1 := []int{4, 10, 4, 3, 8, 9} // 3
-	fmt.Println(lis0(arr1))
-	fmt.Println(lis(arr1))
-	fmt.Println(lisList0(arr1))
-	fmt.Println(lisList(arr1))
-	fmt.Println("==============================")
-
-	arr2 := []int{10, 9, 2, 5, 3, 7, 101, 18} // 4
-	fmt.Println(lis0(arr2))
-	fmt.Println(lis(arr2))
-	fmt.Println(lisList0(arr2))
-	fmt.Println(lisList(arr2))
-	fmt.Println("==============================")
-
-	arr3 := []int{1, -10, 20, 30, 2, 3, 4, 5} // 5
-	fmt.Println(lis0(arr3))
-	fmt.Println(lis(arr3))
-	fmt.Println(lisList0(arr3))
-	fmt.Println(lisList(arr3))
-}
-
-// O(n ^ 2) time | O(n
-func lis0(arr []int) int {
-	if len(arr) == 0 {
-		return 0
+	res, err := sort(graph)
+	if err != nil {
+		fmt.Println(err)
 	}
+	fmt.Println(res)
 
-	dp := make([]int, len(arr))
-	for i, _ := range arr {
-		dp[i] = 1
+	res, err = sortIter(graph)
+	if err != nil {
+		fmt.Println(err)
 	}
-
-	maxVal := math.MinInt
-
-	for i := 1; i < len(arr); i++ {
-		for j := 0; j < i; j++ {
-			if arr[j] < arr[i] && dp[i] < dp[j]+1 {
-				dp[i] = dp[j] + 1
-			}
-		}
-
-		if maxVal < dp[i] {
-			maxVal = dp[i]
-		}
-	}
-	return maxVal
+	fmt.Println(res)
 }
 
-func lis(arr []int) int {
-	return 0
+func sort(graph map[string][]string) ([]string, error) {
+	return nil, nil
 }
 
-func lisList0(arr []int) []int {
-	return nil
-}
-
-func lisList(arr []int) []int {
-	return nil
+func sortIter(graph map[string][]string) ([]string, error) {
+	return nil, nil
 }
