@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	grph "github.com/sanantoha/go-algos/internals/graph"
+	log "github.com/sirupsen/logrus"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -105,6 +107,8 @@ func main() {
 		"longest_incr_subseq.go":                             true,
 		"minimal_haviest_set_a.go":                           true,
 		"topological_sort_as_map.go":                         true,
+		"insert_greatest_common_divisor.go":                  true,
+		"breadth_first_search.go":                            true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -126,31 +130,17 @@ func main() {
 
 func runTask() {
 
-	graph := make(map[string][]string, 0)
+	graph, err := grph.NewEdgeWeightedDigraphFromFile("cmd/graph/breadth_first_search/bfs.txt")
 
-	graph["A"] = []string{"B", "C", "D"}
-	graph["B"] = []string{"C"}
-	graph["C"] = []string{"D"}
-	//graph["D"] = []string{"A", "B"}
-	graph["D"] = []string{}
-
-	res, err := sort(graph)
 	if err != nil {
-		fmt.Println(err)
+		log.Fatalln(err)
 	}
-	fmt.Println(res)
 
-	res, err = sortIter(graph)
-	if err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println(res)
+	log.Println(graph)
+	log.Println("=====================================")
+	log.Println(bfs(graph, 0)) // [0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24]
 }
 
-func sort(graph map[string][]string) ([]string, error) {
-	return nil, nil
-}
-
-func sortIter(graph map[string][]string) ([]string, error) {
-	return nil, nil
+func bfs(graph *grph.EdgeWeightedDigraph, start int) []int {
+	return nil
 }
