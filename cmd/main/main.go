@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	grph "github.com/sanantoha/go-algos/internals/graph"
-	log "github.com/sirupsen/logrus"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -109,6 +107,7 @@ func main() {
 		"topological_sort_as_map.go":                         true,
 		"insert_greatest_common_divisor.go":                  true,
 		"breadth_first_search.go":                            true,
+		"number_of_island.go":                                true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -130,17 +129,20 @@ func main() {
 
 func runTask() {
 
-	graph, err := grph.NewEdgeWeightedDigraphFromFile("cmd/graph/breadth_first_search/bfs.txt")
-
-	if err != nil {
-		log.Fatalln(err)
+	grid := [][]int{
+		{0, 0, 0, 0, 1},
+		{1, 1, 0, 0, 0},
+		{1, 1, 0, 1, 1},
+		{0, 0, 0, 1, 1},
 	}
 
-	log.Println(graph)
-	log.Println("=====================================")
-	log.Println(bfs(graph, 0)) // [0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24]
+	expected := 3
+
+	actual := numberOfIsland(grid)
+	fmt.Println(actual)
+	fmt.Println(actual == expected)
 }
 
-func bfs(graph *grph.EdgeWeightedDigraph, start int) []int {
-	return nil
+func numberOfIsland(grid [][]int) int {
+	return 0
 }
