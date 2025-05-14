@@ -108,6 +108,7 @@ func main() {
 		"insert_greatest_common_divisor.go":                  true,
 		"breadth_first_search.go":                            true,
 		"number_of_island.go":                                true,
+		"heap_sort.go":                                       true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -129,20 +130,18 @@ func main() {
 
 func runTask() {
 
-	grid := [][]int{
-		{0, 0, 0, 0, 1},
-		{1, 1, 0, 0, 0},
-		{1, 1, 0, 1, 1},
-		{0, 0, 0, 1, 1},
+	arr := make([]int, 10)
+	for i := 0; i < len(arr); i++ {
+		arr[i] = rand.Intn(50)
 	}
 
-	expected := 3
+	fmt.Println(arr)
 
-	actual := numberOfIsland(grid)
-	fmt.Println(actual)
-	fmt.Println(actual == expected)
+	heapSort(arr)
+
+	fmt.Println(arr)
 }
 
-func numberOfIsland(grid [][]int) int {
-	return 0
+func heapSort(arr []int) {
+
 }
