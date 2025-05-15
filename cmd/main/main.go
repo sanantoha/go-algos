@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"github.com/sanantoha/go-algos/internals/list"
+	log "github.com/sirupsen/logrus"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -109,6 +111,7 @@ func main() {
 		"breadth_first_search.go":                            true,
 		"number_of_island.go":                                true,
 		"heap_sort.go":                                       true,
+		"deep_copy_arbitrary_pointer.go":                     true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -130,18 +133,54 @@ func main() {
 
 func runTask() {
 
-	arr := make([]int, 10)
-	for i := 0; i < len(arr); i++ {
-		arr[i] = rand.Intn(50)
-	}
+	root := &list.ArbitraryListNode{Val: 1}
+	second := &list.ArbitraryListNode{Val: 2}
+	third := &list.ArbitraryListNode{Val: 3}
+	four := &list.ArbitraryListNode{Val: 4}
+	five := &list.ArbitraryListNode{Val: 5}
 
-	fmt.Println(arr)
+	root.Next = second
+	second.Next = third
+	third.Next = four
+	four.Next = five
 
-	heapSort(arr)
+	second.Arbitrary = five
+	third.Arbitrary = root
+	five.Arbitrary = second
 
-	fmt.Println(arr)
+	copyNode := deepCopy(root)
+
+	assertArbitraryListNode(root, copyNode)
+	fmt.Println(true)
 }
 
-func heapSort(arr []int) {
+func deepCopy(root *list.ArbitraryListNode) *list.ArbitraryListNode {
+	return nil
+}
 
+func assertArbitraryListNode(root *list.ArbitraryListNode, copy *list.ArbitraryListNode) {
+	c1 := root
+	c2 := copy
+
+	for c1 != nil && c2 != nil {
+		if c1.Val != c2.Val {
+			log.Fatalf("%d != %d", c1.Val, c2.Val)
+		}
+		if c1 == c2 {
+			log.Fatalf("%v == %v", c1, c2)
+		}
+		if (c1.Arbitrary == nil && c2.Arbitrary != nil) || (c1.Arbitrary != nil && c2.Arbitrary == nil) {
+			log.Fatalf("%v != %v", c1.Arbitrary, c2.Arbitrary)
+		}
+		if c1.Arbitrary != nil && c1.Arbitrary == c2.Arbitrary {
+			log.Fatalf("%v == %v", c1.Arbitrary, c2.Arbitrary)
+		}
+
+		c1 = c1.Next
+		c2 = c2.Next
+	}
+
+	if c1 != nil || c2 != nil {
+		log.Fatalf("%v != %v", c1, c2)
+	}
 }
