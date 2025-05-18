@@ -61,7 +61,7 @@ func minimumWindowSubstring(s string, t string) string {
 
 func main() {
 
-	fmt.Println(minimumWindowSubstring("ADOBECODEBANC", "ABC")) // "BANC
+	fmt.Println(minimumWindowSubstring("ADOBECODEBANC", "ABC")) // "BANC"
 
 	fmt.Println(minimumWindowSubstring("a", "a")) // a
 

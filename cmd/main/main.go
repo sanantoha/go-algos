@@ -113,6 +113,7 @@ func main() {
 		"merge_binary_tree.go":                               true,
 		"reverse_string.go":                                  true,
 		"minimum_window_substring.go":                        true,
+		"balanced_bracets.go":                                true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -134,13 +135,13 @@ func main() {
 
 func runTask() {
 
-	fmt.Println(minimumWindowSubstring("ADOBECODEBANC", "ABC")) // "BANC
+	input := "([])(){}(())()()"
 
-	fmt.Println(minimumWindowSubstring("a", "a")) // a
+	fmt.Println(balancedBrackets(input))
 
-	fmt.Println(minimumWindowSubstring("a", "aa")) // ""
+	fmt.Println(!balancedBrackets("}{"))
 }
 
-func minimumWindowSubstring(s string, t string) string {
-	return ""
+func balancedBrackets(s string) bool {
+	return false
 }
