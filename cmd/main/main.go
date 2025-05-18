@@ -112,6 +112,7 @@ func main() {
 		"deep_copy_arbitrary_pointer.go":                     true,
 		"merge_binary_tree.go":                               true,
 		"reverse_string.go":                                  true,
+		"minimum_window_substring.go":                        true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -133,15 +134,13 @@ func main() {
 
 func runTask() {
 
-	s := []rune{'h', 'e', 't', 'l', 'l', 'o'}
+	fmt.Println(minimumWindowSubstring("ADOBECODEBANC", "ABC")) // "BANC
 
-	reverseString(s)
+	fmt.Println(minimumWindowSubstring("a", "a")) // a
 
-	for _, c := range s {
-		fmt.Printf("%v ", string(c))
-	}
+	fmt.Println(minimumWindowSubstring("a", "aa")) // ""
 }
 
-func reverseString(src []rune) {
-
+func minimumWindowSubstring(s string, t string) string {
+	return ""
 }
