@@ -113,7 +113,8 @@ func main() {
 		"merge_binary_tree.go":                               true,
 		"reverse_string.go":                                  true,
 		"minimum_window_substring.go":                        true,
-		"balanced_bracets.go":                                true,
+		"balanced_brackets.go":                               true,
+		"search_in_rotated_sorted_array.go":                  true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -135,13 +136,22 @@ func main() {
 
 func runTask() {
 
-	input := "([])(){}(())()()"
+	arr := []int{40, 50, 60, 70, 80, 90, 0, 10, 20, 30, 31, 32, 33, 34, 35}
+	target := 90
 
-	fmt.Println(balancedBrackets(input))
-
-	fmt.Println(!balancedBrackets("}{"))
+	fmt.Println(findSmallestIdx(arr))
+	fmt.Println(search(arr, target))
+	fmt.Println(search1(arr, target))
 }
 
-func balancedBrackets(s string) bool {
-	return false
+func findSmallestIdx(arr []int) int {
+	return -1
+}
+
+func search(arr []int, target int) int {
+	return -1
+}
+
+func search1(arr []int, target int) int {
+	return -1
 }
