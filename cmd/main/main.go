@@ -115,6 +115,7 @@ func main() {
 		"minimum_window_substring.go":                        true,
 		"balanced_brackets.go":                               true,
 		"search_in_rotated_sorted_array.go":                  true,
+		"all_paths_from_source_target.go":                    true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -136,22 +137,38 @@ func main() {
 
 func runTask() {
 
-	arr := []int{40, 50, 60, 70, 80, 90, 0, 10, 20, 30, 31, 32, 33, 34, 35}
-	target := 90
+	graph := [][]int{
+		{1, 2},
+		{3},
+		{3},
+		{},
+	}
 
-	fmt.Println(findSmallestIdx(arr))
-	fmt.Println(search(arr, target))
-	fmt.Println(search1(arr, target))
+	actualRec := allPathsSourceTargetRec(graph)
+	actual := allPathsSourceTarget(graph)
+
+	fmt.Println(actualRec) // [[0 1 3] [0 2 3]]
+	fmt.Println(actual)    // [[0 2 3] [0 1 3]]
+
+	graph1 := [][]int{
+		{4, 3, 1},
+		{3, 2, 4},
+		{3},
+		{4},
+		{},
+	}
+
+	actualRec = allPathsSourceTargetRec(graph1)
+	actual = allPathsSourceTarget(graph1)
+
+	fmt.Println(actualRec) // [[0 4] [0 3 4] [0 1 3 4] [0 1 2 3 4] [0 1 4]]
+	fmt.Println(actual)    // [[0 1 4] [0 1 2 3 4] [0 1 3 4] [0 3 4] [0 4]]
 }
 
-func findSmallestIdx(arr []int) int {
-	return -1
+func allPathsSourceTargetRec(graph [][]int) [][]int {
+	return nil
 }
 
-func search(arr []int, target int) int {
-	return -1
-}
-
-func search1(arr []int, target int) int {
-	return -1
+func allPathsSourceTarget(graph [][]int) [][]int {
+	return nil
 }

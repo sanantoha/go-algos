@@ -32,6 +32,9 @@ func search(arr []int, target int) int {
 }
 
 func findSmallestIdx(arr []int) int {
+	if len(arr) == 0 {
+		return -1
+	}
 	l := 0
 	r := len(arr) - 1
 
