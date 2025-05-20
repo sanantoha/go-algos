@@ -146,10 +146,10 @@ func runTask() {
 	fmt.Println(threeNumberSum1(input, 0))
 }
 
-func threeNumberSum(arr []int, target int) [][]int {
+func threeNumberSum(arr []int, target int) [][3]int {
 	return nil
 }
 
-func threeNumberSum1(arr []int, target int) [][]int {
+func threeNumberSum1(arr []int, target int) [][3]int {
 	return nil
 }
