@@ -116,6 +116,7 @@ func main() {
 		"balanced_brackets.go":                               true,
 		"search_in_rotated_sorted_array.go":                  true,
 		"all_paths_from_source_target.go":                    true,
+		"min_number_of_coins_for_change.go":                  true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -137,38 +138,12 @@ func main() {
 
 func runTask() {
 
-	graph := [][]int{
-		{1, 2},
-		{3},
-		{3},
-		{},
-	}
-
-	actualRec := allPathsSourceTargetRec(graph)
-	actual := allPathsSourceTarget(graph)
-
-	fmt.Println(actualRec) // [[0 1 3] [0 2 3]]
-	fmt.Println(actual)    // [[0 2 3] [0 1 3]]
-
-	graph1 := [][]int{
-		{4, 3, 1},
-		{3, 2, 4},
-		{3},
-		{4},
-		{},
-	}
-
-	actualRec = allPathsSourceTargetRec(graph1)
-	actual = allPathsSourceTarget(graph1)
-
-	fmt.Println(actualRec) // [[0 4] [0 3 4] [0 1 3 4] [0 1 2 3 4] [0 1 4]]
-	fmt.Println(actual)    // [[0 1 4] [0 1 2 3 4] [0 1 3 4] [0 3 4] [0 4]]
+	input := []int{1, 5, 10}
+	actual := minNumberOfCoinsForChange(7, input)
+	fmt.Println(actual)
+	fmt.Println(actual == 3)
 }
 
-func allPathsSourceTargetRec(graph [][]int) [][]int {
-	return nil
-}
-
-func allPathsSourceTarget(graph [][]int) [][]int {
-	return nil
+func minNumberOfCoinsForChange(n int, denoms []int) int {
+	return 0
 }
