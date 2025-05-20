@@ -117,6 +117,7 @@ func main() {
 		"search_in_rotated_sorted_array.go":                  true,
 		"all_paths_from_source_target.go":                    true,
 		"min_number_of_coins_for_change.go":                  true,
+		"three_sum.go":                                       true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -138,12 +139,17 @@ func main() {
 
 func runTask() {
 
-	input := []int{1, 5, 10}
-	actual := minNumberOfCoinsForChange(7, input)
-	fmt.Println(actual)
-	fmt.Println(actual == 3)
+	input := []int{12, 3, 1, 2, -6, 5, -8, 6}
+
+	fmt.Println(threeNumberSum(input, 0))
+
+	fmt.Println(threeNumberSum1(input, 0))
 }
 
-func minNumberOfCoinsForChange(n int, denoms []int) int {
-	return 0
+func threeNumberSum(arr []int, target int) [][]int {
+	return nil
+}
+
+func threeNumberSum1(arr []int, target int) [][]int {
+	return nil
 }
