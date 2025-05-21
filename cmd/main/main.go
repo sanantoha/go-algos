@@ -5,6 +5,7 @@ import (
 	"math/rand"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 )
 
@@ -118,6 +119,7 @@ func main() {
 		"all_paths_from_source_target.go":                    true,
 		"min_number_of_coins_for_change.go":                  true,
 		"three_sum.go":                                       true,
+		"populating_next_right_pointer_in_each_node.go":      true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -139,17 +141,54 @@ func main() {
 
 func runTask() {
 
-	input := []int{12, 3, 1, 2, -6, 5, -8, 6}
+	root := &Node{
+		Val: 1,
+		Left: &Node{
+			Val: 2,
+			Left: &Node{
+				Val: 4,
+			},
+			Right: &Node{
+				Val: 5,
+			},
+		},
+		Right: &Node{
+			Val: 3,
+			Left: &Node{
+				Val: 6,
+			},
+			Right: &Node{
+				Val: 7,
+			},
+		},
+	}
 
-	fmt.Println(threeNumberSum(input, 0))
+	fmt.Println(root)
 
-	fmt.Println(threeNumberSum1(input, 0))
+	res := connect(root)
+
+	fmt.Println(res)
 }
 
-func threeNumberSum(arr []int, target int) [][3]int {
-	return nil
+type Node struct {
+	Val   int
+	Left  *Node
+	Right *Node
+	Next  *Node
 }
 
-func threeNumberSum1(arr []int, target int) [][3]int {
+func (tree *Node) String() string {
+	if tree == nil {
+		return "nil"
+	}
+	pv := ""
+	if tree.Next != nil {
+		pv = strconv.Itoa(tree.Next.Val)
+	}
+	return fmt.Sprintf("Node{Val=%d, Left=%s, Right=%s, Next=%s}", tree.Val, tree.Left.String(), tree.Right.String(), pv)
+}
+
+// O(n) time | O(n) space
+func connect(root *Node) *Node {
 	return nil
 }
