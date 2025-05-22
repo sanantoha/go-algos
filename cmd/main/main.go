@@ -5,7 +5,6 @@ import (
 	"math/rand"
 	"os"
 	"path/filepath"
-	"strconv"
 	"strings"
 )
 
@@ -120,6 +119,7 @@ func main() {
 		"min_number_of_coins_for_change.go":                  true,
 		"three_sum.go":                                       true,
 		"populating_next_right_pointer_in_each_node.go":      true,
+		"generate_matrix.go":                                 true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -141,54 +141,13 @@ func main() {
 
 func runTask() {
 
-	root := &Node{
-		Val: 1,
-		Left: &Node{
-			Val: 2,
-			Left: &Node{
-				Val: 4,
-			},
-			Right: &Node{
-				Val: 5,
-			},
-		},
-		Right: &Node{
-			Val: 3,
-			Left: &Node{
-				Val: 6,
-			},
-			Right: &Node{
-				Val: 7,
-			},
-		},
-	}
-
-	fmt.Println(root)
-
-	res := connect(root)
-
-	fmt.Println(res)
+	fmt.Println(generateMatrix(3)) // [[1 2 3] [8 9 4] [7 6 5]]
+	fmt.Println("===============================")
+	fmt.Println(generateMatrix(1)) // [[1]]
+	fmt.Println("===============================")
+	fmt.Println(generateMatrix(4)) // [[1 2 3 4] [12 13 14 5] [11 16 15 6] [10 9 8 7]]
 }
 
-type Node struct {
-	Val   int
-	Left  *Node
-	Right *Node
-	Next  *Node
-}
-
-func (tree *Node) String() string {
-	if tree == nil {
-		return "nil"
-	}
-	pv := ""
-	if tree.Next != nil {
-		pv = strconv.Itoa(tree.Next.Val)
-	}
-	return fmt.Sprintf("Node{Val=%d, Left=%s, Right=%s, Next=%s}", tree.Val, tree.Left.String(), tree.Right.String(), pv)
-}
-
-// O(n) time | O(n) space
-func connect(root *Node) *Node {
+func generateMatrix(n int) [][]int {
 	return nil
 }
