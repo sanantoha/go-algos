@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -120,6 +121,7 @@ func main() {
 		"three_sum.go":                                       true,
 		"populating_next_right_pointer_in_each_node.go":      true,
 		"generate_matrix.go":                                 true,
+		"binary_tree_diameter.go":                            true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -141,13 +143,38 @@ func main() {
 
 func runTask() {
 
-	fmt.Println(generateMatrix(3)) // [[1 2 3] [8 9 4] [7 6 5]]
-	fmt.Println("===============================")
-	fmt.Println(generateMatrix(1)) // [[1]]
-	fmt.Println("===============================")
-	fmt.Println(generateMatrix(4)) // [[1 2 3 4] [12 13 14 5] [11 16 15 6] [10 9 8 7]]
+	root := &tree.TreeNode{
+		Val: 1,
+		Left: &tree.TreeNode{
+			Val: 3,
+			Left: &tree.TreeNode{
+				Val: 7,
+				Left: &tree.TreeNode{
+					Val: 8,
+					Left: &tree.TreeNode{
+						Val: 9,
+					},
+				},
+			},
+			Right: &tree.TreeNode{
+				Val: 4,
+				Right: &tree.TreeNode{
+					Val: 5,
+					Right: &tree.TreeNode{
+						Val: 6,
+					},
+				},
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 2,
+		},
+	}
+
+	fmt.Println(binaryTreeDiameter(root))
+	fmt.Println(binaryTreeDiameter(root) == 6)
 }
 
-func generateMatrix(n int) [][]int {
-	return nil
+func binaryTreeDiameter(root *tree.TreeNode) int {
+	return 0
 }
