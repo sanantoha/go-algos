@@ -122,6 +122,7 @@ func main() {
 		"populating_next_right_pointer_in_each_node.go":      true,
 		"generate_matrix.go":                                 true,
 		"binary_tree_diameter.go":                            true,
+		"lowest_common_ancestor_of_binary_tree.go":           true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -143,38 +144,41 @@ func main() {
 
 func runTask() {
 
-	root := &tree.TreeNode{
-		Val: 1,
+	node7 := &tree.TreeNode{Val: 7}
+	node5 := &tree.TreeNode{
+		Val: 5,
 		Left: &tree.TreeNode{
-			Val: 3,
-			Left: &tree.TreeNode{
-				Val: 7,
-				Left: &tree.TreeNode{
-					Val: 8,
-					Left: &tree.TreeNode{
-						Val: 9,
-					},
-				},
-			},
-			Right: &tree.TreeNode{
-				Val: 4,
-				Right: &tree.TreeNode{
-					Val: 5,
-					Right: &tree.TreeNode{
-						Val: 6,
-					},
-				},
-			},
+			Val: 6,
 		},
 		Right: &tree.TreeNode{
-			Val: 2,
+			Val:  2,
+			Left: node7,
+			Right: &tree.TreeNode{
+				Val: 4,
+			},
 		},
 	}
 
-	fmt.Println(binaryTreeDiameter(root))
-	fmt.Println(binaryTreeDiameter(root) == 6)
+	node1 := &tree.TreeNode{
+		Val: 1,
+		Left: &tree.TreeNode{
+			Val: 0,
+		},
+		Right: &tree.TreeNode{
+			Val: 8,
+		},
+	}
+
+	root := &tree.TreeNode{
+		Val:   3,
+		Left:  node5,
+		Right: node1,
+	}
+
+	// TreeNode{Val=5, Left=TreeNode{Val=6, Left=nil, Right=nil}, Right=TreeNode{Val=2, Left=TreeNode{Val=7, Left=nil, Right=nil}, Right=TreeNode{Val=4, Left=nil, Right=nil}}}
+	fmt.Println(lowestCommonAncestor(root, node7, node5))
 }
 
-func binaryTreeDiameter(root *tree.TreeNode) int {
-	return 0
+func lowestCommonAncestor(root, p, q *tree.TreeNode) *tree.TreeNode {
+	return nil
 }
