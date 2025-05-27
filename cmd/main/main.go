@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -123,6 +122,7 @@ func main() {
 		"generate_matrix.go":                                 true,
 		"binary_tree_diameter.go":                            true,
 		"lowest_common_ancestor_of_binary_tree.go":           true,
+		"staircase_traversal.go":                             true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -144,41 +144,31 @@ func main() {
 
 func runTask() {
 
-	node7 := &tree.TreeNode{Val: 7}
-	node5 := &tree.TreeNode{
-		Val: 5,
-		Left: &tree.TreeNode{
-			Val: 6,
-		},
-		Right: &tree.TreeNode{
-			Val:  2,
-			Left: node7,
-			Right: &tree.TreeNode{
-				Val: 4,
-			},
-		},
-	}
-
-	node1 := &tree.TreeNode{
-		Val: 1,
-		Left: &tree.TreeNode{
-			Val: 0,
-		},
-		Right: &tree.TreeNode{
-			Val: 8,
-		},
-	}
-
-	root := &tree.TreeNode{
-		Val:   3,
-		Left:  node5,
-		Right: node1,
-	}
-
-	// TreeNode{Val=5, Left=TreeNode{Val=6, Left=nil, Right=nil}, Right=TreeNode{Val=2, Left=TreeNode{Val=7, Left=nil, Right=nil}, Right=TreeNode{Val=4, Left=nil, Right=nil}}}
-	fmt.Println(lowestCommonAncestor(root, node7, node5))
+	fmt.Println(staircaseTraversalRec(4, 2))
+	fmt.Println(staircaseTraversalRec(4, 3))
+	fmt.Println("==============================================")
+	fmt.Println(staircaseTraversalRecMemoization(4, 2))
+	fmt.Println(staircaseTraversalRecMemoization(4, 3))
+	fmt.Println("==============================================")
+	fmt.Println(staircaseTraversalIter(4, 2))
+	fmt.Println(staircaseTraversalIter(4, 3))
+	fmt.Println("==============================================")
+	fmt.Println(staircaseTraversalSlidingWindow(4, 2))
+	fmt.Println(staircaseTraversalSlidingWindow(4, 3))
 }
 
-func lowestCommonAncestor(root, p, q *tree.TreeNode) *tree.TreeNode {
-	return nil
+func staircaseTraversalRec(height, maxSteps int) int {
+	return -1
+}
+
+func staircaseTraversalRecMemoization(height, maxSteps int) int {
+	return -1
+}
+
+func staircaseTraversalIter(height, maxSteps int) int {
+	return -1
+}
+
+func staircaseTraversalSlidingWindow(height, maxSteps int) int {
+	return -1
 }
