@@ -123,6 +123,7 @@ func main() {
 		"binary_tree_diameter.go":                            true,
 		"lowest_common_ancestor_of_binary_tree.go":           true,
 		"staircase_traversal.go":                             true,
+		"word_search.go":                                     true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -144,31 +145,37 @@ func main() {
 
 func runTask() {
 
-	fmt.Println(staircaseTraversalRec(4, 2))
-	fmt.Println(staircaseTraversalRec(4, 3))
-	fmt.Println("==============================================")
-	fmt.Println(staircaseTraversalRecMemoization(4, 2))
-	fmt.Println(staircaseTraversalRecMemoization(4, 3))
-	fmt.Println("==============================================")
-	fmt.Println(staircaseTraversalIter(4, 2))
-	fmt.Println(staircaseTraversalIter(4, 3))
-	fmt.Println("==============================================")
-	fmt.Println(staircaseTraversalSlidingWindow(4, 2))
-	fmt.Println(staircaseTraversalSlidingWindow(4, 3))
+	board := [][]rune{
+		{'A', 'B', 'C', 'E'},
+		{'S', 'F', 'C', 'S'},
+		{'A', 'D', 'E', 'E'},
+	}
+	word := "ABCCE"
+
+	fmt.Println(exist(board, word))
+
+	fmt.Println("========================")
+
+	board1 := [][]rune{
+		{'A', 'B', 'C', 'E'},
+		{'S', 'F', 'E', 'S'},
+		{'A', 'D', 'E', 'E'},
+	}
+
+	word1 := "ABCESEEEFS"
+
+	fmt.Println(exist(board1, word1))
+
+	fmt.Println("===========================")
+
+	word2 := "ABCEFSADEESE"
+	fmt.Println(exist(board1, word2))
+
+	fmt.Println("==========================")
+
+	fmt.Println(!exist(board1, "ABCEV"))
 }
 
-func staircaseTraversalRec(height, maxSteps int) int {
-	return -1
-}
-
-func staircaseTraversalRecMemoization(height, maxSteps int) int {
-	return -1
-}
-
-func staircaseTraversalIter(height, maxSteps int) int {
-	return -1
-}
-
-func staircaseTraversalSlidingWindow(height, maxSteps int) int {
-	return -1
+func exist(board [][]rune, word string) bool {
+	return false
 }
