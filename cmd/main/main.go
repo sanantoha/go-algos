@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -125,6 +126,7 @@ func main() {
 		"staircase_traversal.go":                             true,
 		"word_search.go":                                     true,
 		"unique_paths.go":                                    true,
+		"balanced_binary_tree.go":                            true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -146,11 +148,48 @@ func main() {
 
 func runTask() {
 
-	fmt.Println(uniquePaths(3, 2)) // 3
+	root1 := &tree.TreeNode{
+		Val: 3,
+		Left: &tree.TreeNode{
+			Val: 9,
+		},
+		Right: &tree.TreeNode{
+			Val: 20,
+			Left: &tree.TreeNode{
+				Val: 15,
+			},
+			Right: &tree.TreeNode{
+				Val: 7,
+			},
+		},
+	}
 
-	fmt.Println(uniquePaths(3, 7)) // 28
+	root2 := &tree.TreeNode{
+		Val: 1,
+		Left: &tree.TreeNode{
+			Val: 2,
+			Left: &tree.TreeNode{
+				Val: 3,
+			},
+			Right: &tree.TreeNode{
+				Val: 3,
+				Left: &tree.TreeNode{
+					Val: 4,
+				},
+				Right: &tree.TreeNode{
+					Val: 4,
+				},
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 2,
+		},
+	}
+
+	fmt.Println(isBalanced(root1))
+	fmt.Println(!isBalanced(root2))
 }
 
-func uniquePaths(m, n int) int {
-	return 0
+func isBalanced(root *tree.TreeNode) bool {
+	return false
 }
