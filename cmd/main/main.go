@@ -124,6 +124,7 @@ func main() {
 		"lowest_common_ancestor_of_binary_tree.go":           true,
 		"staircase_traversal.go":                             true,
 		"word_search.go":                                     true,
+		"unique_paths.go":                                    true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -145,37 +146,11 @@ func main() {
 
 func runTask() {
 
-	board := [][]rune{
-		{'A', 'B', 'C', 'E'},
-		{'S', 'F', 'C', 'S'},
-		{'A', 'D', 'E', 'E'},
-	}
-	word := "ABCCE"
+	fmt.Println(uniquePaths(3, 2)) // 3
 
-	fmt.Println(exist(board, word))
-
-	fmt.Println("========================")
-
-	board1 := [][]rune{
-		{'A', 'B', 'C', 'E'},
-		{'S', 'F', 'E', 'S'},
-		{'A', 'D', 'E', 'E'},
-	}
-
-	word1 := "ABCESEEEFS"
-
-	fmt.Println(exist(board1, word1))
-
-	fmt.Println("===========================")
-
-	word2 := "ABCEFSADEESE"
-	fmt.Println(exist(board1, word2))
-
-	fmt.Println("==========================")
-
-	fmt.Println(!exist(board1, "ABCEV"))
+	fmt.Println(uniquePaths(3, 7)) // 28
 }
 
-func exist(board [][]rune, word string) bool {
-	return false
+func uniquePaths(m, n int) int {
+	return 0
 }
