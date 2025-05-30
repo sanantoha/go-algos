@@ -127,6 +127,7 @@ func main() {
 		"word_search.go":                                     true,
 		"unique_paths.go":                                    true,
 		"balanced_binary_tree.go":                            true,
+		"find_closest_value_in_bst.go":                       true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -148,48 +149,43 @@ func main() {
 
 func runTask() {
 
-	root1 := &tree.TreeNode{
-		Val: 3,
+	root := &tree.TreeNode{
+		Val: 10,
 		Left: &tree.TreeNode{
-			Val: 9,
-		},
-		Right: &tree.TreeNode{
-			Val: 20,
+			Val: 5,
 			Left: &tree.TreeNode{
-				Val: 15,
-			},
-			Right: &tree.TreeNode{
-				Val: 7,
-			},
-		},
-	}
-
-	root2 := &tree.TreeNode{
-		Val: 1,
-		Left: &tree.TreeNode{
-			Val: 2,
-			Left: &tree.TreeNode{
-				Val: 3,
-			},
-			Right: &tree.TreeNode{
-				Val: 3,
+				Val: 2,
 				Left: &tree.TreeNode{
-					Val: 4,
+					Val: 1,
 				},
-				Right: &tree.TreeNode{
-					Val: 4,
-				},
+			},
+			Right: &tree.TreeNode{
+				Val: 5,
 			},
 		},
 		Right: &tree.TreeNode{
-			Val: 2,
+			Val: 15,
+			Left: &tree.TreeNode{
+				Val: 13,
+				Right: &tree.TreeNode{
+					Val: 14,
+				},
+			},
+			Right: &tree.TreeNode{
+				Val: 22,
+			},
 		},
 	}
 
-	fmt.Println(isBalanced(root1))
-	fmt.Println(!isBalanced(root2))
+	fmt.Println(findClosestValueInBst(root, 12)) // 13
+
+	fmt.Println(findClosestValueInBstRec(root, 12)) // 13
 }
 
-func isBalanced(root *tree.TreeNode) bool {
-	return false
+func findClosestValueInBst(root *tree.TreeNode, target int) int {
+	return 0
+}
+
+func findClosestValueInBstRec(root *tree.TreeNode, target int) int {
+	return 0
 }
