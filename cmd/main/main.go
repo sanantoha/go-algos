@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -128,6 +127,7 @@ func main() {
 		"unique_paths.go":                                    true,
 		"balanced_binary_tree.go":                            true,
 		"find_closest_value_in_bst.go":                       true,
+		"counting_sort.go":                                   true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -149,43 +149,18 @@ func main() {
 
 func runTask() {
 
-	root := &tree.TreeNode{
-		Val: 10,
-		Left: &tree.TreeNode{
-			Val: 5,
-			Left: &tree.TreeNode{
-				Val: 2,
-				Left: &tree.TreeNode{
-					Val: 1,
-				},
-			},
-			Right: &tree.TreeNode{
-				Val: 5,
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 15,
-			Left: &tree.TreeNode{
-				Val: 13,
-				Right: &tree.TreeNode{
-					Val: 14,
-				},
-			},
-			Right: &tree.TreeNode{
-				Val: 22,
-			},
-		},
+	arr := make([]int, 10)
+	for i := 0; i < len(arr); i++ {
+		arr[i] = rand.Intn(50)
 	}
 
-	fmt.Println(findClosestValueInBst(root, 12)) // 13
+	fmt.Println(arr)
 
-	fmt.Println(findClosestValueInBstRec(root, 12)) // 13
+	countingSort(arr)
+
+	fmt.Println(arr)
 }
 
-func findClosestValueInBst(root *tree.TreeNode, target int) int {
-	return 0
-}
+func countingSort(arr []int) {
 
-func findClosestValueInBstRec(root *tree.TreeNode, target int) int {
-	return 0
 }
