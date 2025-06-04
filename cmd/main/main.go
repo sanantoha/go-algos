@@ -2,9 +2,11 @@ package main
 
 import (
 	"fmt"
+	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
+	"reflect"
 	"strings"
 )
 
@@ -128,6 +130,7 @@ func main() {
 		"balanced_binary_tree.go":                            true,
 		"find_closest_value_in_bst.go":                       true,
 		"counting_sort.go":                                   true,
+		"all_elements_in_two_binary_search_trees.go":         true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -149,18 +152,52 @@ func main() {
 
 func runTask() {
 
-	arr := make([]int, 10)
-	for i := 0; i < len(arr); i++ {
-		arr[i] = rand.Intn(50)
+	root1 := &tree.TreeNode{
+		Val: 9,
+		Left: &tree.TreeNode{
+			Val: 2,
+		},
+		Right: &tree.TreeNode{
+			Val: 12,
+			Left: &tree.TreeNode{
+				Val: 11,
+			},
+			Right: &tree.TreeNode{
+				Val: 15,
+			},
+		},
 	}
 
-	fmt.Println(arr)
+	root2 := &tree.TreeNode{
+		Val: 10,
+		Left: &tree.TreeNode{
+			Val: 5,
+			Left: &tree.TreeNode{
+				Val: 3,
+				Left: &tree.TreeNode{
+					Val: 1,
+				},
+				Right: &tree.TreeNode{
+					Val: 4,
+				},
+			},
+			Right: &tree.TreeNode{
+				Val: 6,
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 16,
+		},
+	}
 
-	countingSort(arr)
+	expected := []int{1, 2, 3, 4, 5, 6, 9, 10, 11, 12, 15, 16}
 
-	fmt.Println(arr)
+	res := getAllElements(root1, root2)
+
+	fmt.Println(res)
+	fmt.Println(reflect.DeepEqual(expected, res))
 }
 
-func countingSort(arr []int) {
-
+func getAllElements(root1 *tree.TreeNode, root2 *tree.TreeNode) []int {
+	return nil
 }
