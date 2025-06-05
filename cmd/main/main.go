@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -131,6 +130,7 @@ func main() {
 		"find_closest_value_in_bst.go":                       true,
 		"counting_sort.go":                                   true,
 		"all_elements_in_two_binary_search_trees.go":         true,
+		"knapsack_problem.go":                                true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -152,52 +152,17 @@ func main() {
 
 func runTask() {
 
-	root1 := &tree.TreeNode{
-		Val: 9,
-		Left: &tree.TreeNode{
-			Val: 2,
-		},
-		Right: &tree.TreeNode{
-			Val: 12,
-			Left: &tree.TreeNode{
-				Val: 11,
-			},
-			Right: &tree.TreeNode{
-				Val: 15,
-			},
-		},
+	input := [][]int{
+		{1, 2}, {4, 3}, {5, 6}, {6, 7},
 	}
 
-	root2 := &tree.TreeNode{
-		Val: 10,
-		Left: &tree.TreeNode{
-			Val: 5,
-			Left: &tree.TreeNode{
-				Val: 3,
-				Left: &tree.TreeNode{
-					Val: 1,
-				},
-				Right: &tree.TreeNode{
-					Val: 4,
-				},
-			},
-			Right: &tree.TreeNode{
-				Val: 6,
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 16,
-		},
-	}
+	expected := [][]int{{10}, {1, 3}}
 
-	expected := []int{1, 2, 3, 4, 5, 6, 9, 10, 11, 12, 15, 16}
-
-	res := getAllElements(root1, root2)
-
+	res := knapsackProblem(input, 10)
 	fmt.Println(res)
-	fmt.Println(reflect.DeepEqual(expected, res))
+	fmt.Println(reflect.DeepEqual(res, expected))
 }
 
-func getAllElements(root1 *tree.TreeNode, root2 *tree.TreeNode) []int {
+func knapsackProblem(items [][]int, capacity int) [][]int {
 	return nil
 }
