@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
+	grph "github.com/sanantoha/go-algos/internals/graph"
+	log "github.com/sirupsen/logrus"
 	"math/rand"
 	"os"
 	"path/filepath"
-	"reflect"
 	"strings"
 )
 
@@ -131,6 +132,7 @@ func main() {
 		"counting_sort.go":                                   true,
 		"all_elements_in_two_binary_search_trees.go":         true,
 		"knapsack_problem.go":                                true,
+		"bellman_ford.go":                                    true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -152,17 +154,22 @@ func main() {
 
 func runTask() {
 
-	input := [][]int{
-		{1, 2}, {4, 3}, {5, 6}, {6, 7},
+	graph, err := grph.NewEdgeWeightedDigraphFromFile("cmd/graph/bellman_ford/bellmanFord.txt")
+	if err != nil {
+		log.Fatalln(err)
 	}
 
-	expected := [][]int{{10}, {1, 3}}
+	sp := findShortestPath(graph, 0)
+	fmt.Println(sp) // ShortestPath{Shortest=[-9.0, -20.0, -18.0, -2.0, -11.0], Prev=[4, 2, 4, 0, 1]}
 
-	res := knapsackProblem(input, 10)
-	fmt.Println(res)
-	fmt.Println(reflect.DeepEqual(res, expected))
+	circle := findNegativeWeightCycle(graph, sp)
+	fmt.Println(circle) // [1, 2, 4]
 }
 
-func knapsackProblem(items [][]int, capacity int) [][]int {
+func findShortestPath(graph *grph.EdgeWeightedDigraph, source int) *grph.ShortestPath {
+	return nil
+}
+
+func findNegativeWeightCycle(graph *grph.EdgeWeightedDigraph, sp *grph.ShortestPath) []int {
 	return nil
 }
