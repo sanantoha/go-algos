@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	grph "github.com/sanantoha/go-algos/internals/graph"
-	log "github.com/sirupsen/logrus"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -133,6 +131,7 @@ func main() {
 		"all_elements_in_two_binary_search_trees.go":         true,
 		"knapsack_problem.go":                                true,
 		"bellman_ford.go":                                    true,
+		"sparse_matrix_multiplication.go":                    true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -154,22 +153,26 @@ func main() {
 
 func runTask() {
 
-	graph, err := grph.NewEdgeWeightedDigraphFromFile("cmd/graph/bellman_ford/bellmanFord.txt")
-	if err != nil {
-		log.Fatalln(err)
+	mat1 := [][]int{
+		{1, 0, 0},
+		{-1, 0, 3},
 	}
 
-	sp := findShortestPath(graph, 0)
-	fmt.Println(sp) // ShortestPath{Shortest=[-9.0, -20.0, -18.0, -2.0, -11.0], Prev=[4, 2, 4, 0, 1]}
+	mat2 := [][]int{
+		{7, 0, 0},
+		{0, 0, 0},
+		{0, 0, 1},
+	}
 
-	circle := findNegativeWeightCycle(graph, sp)
-	fmt.Println(circle) // [1, 2, 4]
+	fmt.Println(multiply(mat1, mat2)) // [[7, 0, 0], [-7, 0, 3]]
+	fmt.Println("=================")
+	fmt.Println(multiply1(mat1, mat2)) // [[7, 0, 0], [-7, 0, 3]]
 }
 
-func findShortestPath(graph *grph.EdgeWeightedDigraph, source int) *grph.ShortestPath {
+func multiply(mat1 [][]int, mat2 [][]int) [][]int {
 	return nil
 }
 
-func findNegativeWeightCycle(graph *grph.EdgeWeightedDigraph, sp *grph.ShortestPath) []int {
+func multiply1(mat1 [][]int, mat2 [][]int) [][]int {
 	return nil
 }
