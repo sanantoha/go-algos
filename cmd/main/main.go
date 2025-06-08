@@ -132,6 +132,7 @@ func main() {
 		"knapsack_problem.go":                                true,
 		"bellman_ford.go":                                    true,
 		"sparse_matrix_multiplication.go":                    true,
+		"min_rewards.go":                                     true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -153,26 +154,21 @@ func main() {
 
 func runTask() {
 
-	mat1 := [][]int{
-		{1, 0, 0},
-		{-1, 0, 3},
-	}
+	arr := []int{8, 4, 2, 1, 3, 6, 7, 9, 5}
 
-	mat2 := [][]int{
-		{7, 0, 0},
-		{0, 0, 0},
-		{0, 0, 1},
-	}
-
-	fmt.Println(multiply(mat1, mat2)) // [[7, 0, 0], [-7, 0, 3]]
-	fmt.Println("=================")
-	fmt.Println(multiply1(mat1, mat2)) // [[7, 0, 0], [-7, 0, 3]]
+	fmt.Println(minRewards(arr))
+	fmt.Println(minRewards1(arr))
+	fmt.Println(minRewards2(arr))
 }
 
-func multiply(mat1 [][]int, mat2 [][]int) [][]int {
-	return nil
+func minRewards(arr []int) int {
+	return 0
 }
 
-func multiply1(mat1 [][]int, mat2 [][]int) [][]int {
-	return nil
+func minRewards1(arr []int) int {
+	return 0
+}
+
+func minRewards2(arr []int) int {
+	return 0
 }
