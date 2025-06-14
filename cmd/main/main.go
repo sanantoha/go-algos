@@ -135,6 +135,7 @@ func main() {
 		"min_rewards.go":                                     true,
 		"longest_decr_subseq.go":                             true,
 		"water_area.go":                                      true,
+		"unique_path_iii.go":                                 true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -156,19 +157,33 @@ func main() {
 
 func runTask() {
 
-	input := []int{0, 8, 0, 0, 5, 0, 0, 10, 0, 0, 1, 1, 0, 3}
+	grid := [][]int{
+		{1, 0, 0, 0},
+		{0, 0, 0, 0},
+		{0, 0, 2, -1},
+	}
 
-	actual := waterArea(input)
-	fmt.Println(actual == 48)
-
-	actual = waterArea1(input)
-	fmt.Println(actual == 48)
+	fmt.Println(uniquePath3(grid)) // 2
 }
 
-func waterArea(arr []int) int {
-	return 0
-}
-
-func waterArea1(arr []int) int {
+/**
+ * https://leetcode.com/problems/unique-paths-iii/description/
+ *
+ * You are given an m x n integer array grid where grid[i][j] could be:
+ *
+ * 1 representing the starting square. There is exactly one starting square.
+ * 2 representing the ending square. There is exactly one ending square.
+ * 0 representing empty squares we can walk over.
+ * -1 representing obstacles that we cannot walk over.
+ * Return the number of 4-directional walks from the starting square to the ending square,
+ * that walk over every non-obstacle square exactly once.
+ *
+ * Input: grid = [[1,0,0,0],[0,0,0,0],[0,0,2,-1]]
+ * Output: 2
+ * Explanation: We have the following two paths:
+ * 1. (0,0),(0,1),(0,2),(0,3),(1,3),(1,2),(1,1),(1,0),(2,0),(2,1),(2,2)
+ * 2. (0,0),(1,0),(2,0),(2,1),(1,1),(0,1),(0,2),(0,3),(1,3),(1,2),(2,2)
+ */
+func uniquePath3(grid [][]int) int {
 	return 0
 }
