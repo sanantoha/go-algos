@@ -7,6 +7,8 @@ import (
 	log "github.com/sirupsen/logrus"
 	"math"
 	"os"
+	"reflect"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -628,4 +630,46 @@ func NewNode(val int) *Node {
 		Val:       val,
 		Neighbors: make([]*Node, 0),
 	}
+}
+
+func EqualMaps(a, b map[string][]*EdgeT[string]) bool {
+	if len(a) != len(b) {
+		return false
+	}
+
+	for key, aSlice := range a {
+		bSlice, ok := b[key]
+		if !ok || len(aSlice) != len(bSlice) {
+			return false
+		}
+
+		sortEdgeT(aSlice)
+		sortEdgeT(bSlice)
+
+		for i := range aSlice {
+			if aSlice[i] == nil || bSlice[i] == nil {
+				if aSlice[i] != bSlice[i] {
+					return false
+				}
+				continue
+			}
+
+			if !reflect.DeepEqual(*aSlice[i], *bSlice[i]) {
+				return false
+			}
+		}
+	}
+
+	return true
+}
+
+func sortEdgeT(aSlice []*EdgeT[string]) {
+	sort.Slice(aSlice, func(i, j int) bool {
+		if aSlice[i].Weight == aSlice[j].Weight {
+			sa := fmt.Sprintf("%s-%s", aSlice[i].V, aSlice[i].U)
+			sb := fmt.Sprintf("%s-%s", aSlice[j].V, aSlice[j].U)
+			return sa <= sb
+		}
+		return aSlice[i].Weight < aSlice[j].Weight
+	})
 }

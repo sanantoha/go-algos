@@ -2,29 +2,44 @@ package main
 
 import (
 	grph "github.com/sanantoha/go-algos/internals/graph"
+	"strconv"
 	"testing"
 )
 
-func TestMstGraph(t *testing.T) {
-	graph := createGraph()
-	expGraph := expGraph()
+func TestMst(t *testing.T) {
 
-	resGraph := mst(graph)
-
-	if !grph.EqualMaps(expGraph, resGraph) {
-		t.Errorf("expected:\n%v, but got:\n%v", grph.PrintGraphAsAdjList(expGraph), grph.PrintGraphAsAdjList(resGraph))
+	funcs := []func(map[string][]*grph.EdgeT[string]) map[string][]*grph.EdgeT[string]{
+		mst,
+		mst1,
 	}
-}
 
-func TestMstGraph1(t *testing.T) {
-	graph := createGraph1()
-	expGraph := expGraph1()
-
-	resGraph := mst(graph)
-
-	if !grph.EqualMaps(expGraph, resGraph) {
-		t.Errorf("expected:\n%v, but got:\n%v", grph.PrintGraphAsAdjList(expGraph), grph.PrintGraphAsAdjList(resGraph))
+	tests := []struct {
+		name     string
+		graph    map[string][]*grph.EdgeT[string]
+		expGraph map[string][]*grph.EdgeT[string]
+	}{
+		{
+			name:     "graph 1",
+			graph:    createGraph(),
+			expGraph: expGraph(),
+		},
+		{
+			name:     "graph 2",
+			graph:    createGraph1(),
+			expGraph: expGraph1(),
+		},
 	}
+
+	for i, fn := range funcs {
+		for _, tt := range tests {
+			t.Run(tt.name+" func "+strconv.Itoa(i), func(t *testing.T) {
+				if got := fn(tt.graph); !grph.EqualMaps(tt.expGraph, got) {
+					t.Errorf("expected:\n%v, but got:\n%v", grph.PrintGraphAsAdjList(tt.expGraph), grph.PrintGraphAsAdjList(got))
+				}
+			})
+		}
+	}
+
 }
 
 func expGraph() map[string][]*grph.EdgeT[string] {
