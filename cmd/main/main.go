@@ -138,6 +138,7 @@ func main() {
 		"unique_path_iii.go":                                 true,
 		"kruskal_min_spanning_tree_as_map.go":                true,
 		"phone_number_mnemonic.go":                           true,
+		"apartment_hunting.go":                               true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -159,12 +160,21 @@ func main() {
 
 func runTask() {
 
-	str := "1905"
+	blocks := make([]map[string]bool, 0)
 
-	// [1w0j 1w0k 1w0l 1x0j 1x0k 1x0l 1y0j 1y0k 1y0l 1z0j 1z0k 1z0l]
-	fmt.Println(phoneNumberMnemonics(str))
+	blocks = append(blocks, map[string]bool{"gym": false, "school": true, "store": false})
+	blocks = append(blocks, map[string]bool{"gym": true, "school": false, "store": false})
+	blocks = append(blocks, map[string]bool{"gym": true, "school": true, "store": false})
+	blocks = append(blocks, map[string]bool{"gym": false, "school": true, "store": false})
+	blocks = append(blocks, map[string]bool{"gym": false, "school": true, "store": true})
+
+	reqs := []string{"gym", "school", "store"}
+
+	res := apartmentHunting(blocks, reqs)
+	fmt.Println(res) // 3
 }
 
-func phoneNumberMnemonics(str string) []string {
-	return nil
+func apartmentHunting(blocks []map[string]bool, reqs []string) int {
+	// Write your code here.
+	return 0
 }
