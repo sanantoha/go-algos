@@ -139,6 +139,7 @@ func main() {
 		"kruskal_min_spanning_tree_as_map.go":                true,
 		"phone_number_mnemonic.go":                           true,
 		"apartment_hunting.go":                               true,
+		"subarray_sum_equals_k.go":                           true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -160,21 +161,11 @@ func main() {
 
 func runTask() {
 
-	blocks := make([]map[string]bool, 0)
+	fmt.Println(subarraySum([]int{1, 1, 1}, 2)) // 2
 
-	blocks = append(blocks, map[string]bool{"gym": false, "school": true, "store": false})
-	blocks = append(blocks, map[string]bool{"gym": true, "school": false, "store": false})
-	blocks = append(blocks, map[string]bool{"gym": true, "school": true, "store": false})
-	blocks = append(blocks, map[string]bool{"gym": false, "school": true, "store": false})
-	blocks = append(blocks, map[string]bool{"gym": false, "school": true, "store": true})
-
-	reqs := []string{"gym", "school", "store"}
-
-	res := apartmentHunting(blocks, reqs)
-	fmt.Println(res) // 3
+	fmt.Println(subarraySum([]int{1, 2, 3}, 3)) // 2
 }
 
-func apartmentHunting(blocks []map[string]bool, reqs []string) int {
-	// Write your code here.
+func subarraySum(arr []int, k int) int {
 	return 0
 }
