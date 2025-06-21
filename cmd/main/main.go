@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -140,6 +141,7 @@ func main() {
 		"phone_number_mnemonic.go":                           true,
 		"apartment_hunting.go":                               true,
 		"subarray_sum_equals_k.go":                           true,
+		"k_th_smallest_element_in_bst.go":                    true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -161,11 +163,31 @@ func main() {
 
 func runTask() {
 
-	fmt.Println(subarraySum([]int{1, 1, 1}, 2)) // 2
+	root := &tree.TreeNode{
+		Val: 5,
+		Left: &tree.TreeNode{
+			Val:   2,
+			Left:  &tree.TreeNode{Val: 1},
+			Right: &tree.TreeNode{Val: 3},
+		},
+		Right: &tree.TreeNode{
+			Val: 10,
+			Left: &tree.TreeNode{
+				Val:   7,
+				Left:  &tree.TreeNode{Val: 6},
+				Right: &tree.TreeNode{Val: 8},
+			},
+			Right: &tree.TreeNode{
+				Val:   15,
+				Left:  &tree.TreeNode{Val: 14},
+				Right: &tree.TreeNode{Val: 17},
+			},
+		},
+	}
 
-	fmt.Println(subarraySum([]int{1, 2, 3}, 3)) // 2
+	fmt.Println(kthSmallestElement(root, 4)) // 5
 }
 
-func subarraySum(arr []int, k int) int {
+func kthSmallestElement(root *tree.TreeNode, k int) int {
 	return 0
 }
