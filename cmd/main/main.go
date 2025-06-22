@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -142,6 +141,7 @@ func main() {
 		"apartment_hunting.go":                               true,
 		"subarray_sum_equals_k.go":                           true,
 		"k_th_smallest_element_in_bst.go":                    true,
+		"number_of_way_to_make_change.go":                    true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -163,31 +163,12 @@ func main() {
 
 func runTask() {
 
-	root := &tree.TreeNode{
-		Val: 5,
-		Left: &tree.TreeNode{
-			Val:   2,
-			Left:  &tree.TreeNode{Val: 1},
-			Right: &tree.TreeNode{Val: 3},
-		},
-		Right: &tree.TreeNode{
-			Val: 10,
-			Left: &tree.TreeNode{
-				Val:   7,
-				Left:  &tree.TreeNode{Val: 6},
-				Right: &tree.TreeNode{Val: 8},
-			},
-			Right: &tree.TreeNode{
-				Val:   15,
-				Left:  &tree.TreeNode{Val: 14},
-				Right: &tree.TreeNode{Val: 17},
-			},
-		},
-	}
-
-	fmt.Println(kthSmallestElement(root, 4)) // 5
+	input := []int{1, 5}
+	actual := numberOfWaysToMakeChange(6, input)
+	fmt.Println(actual)
+	fmt.Println(actual == 2)
 }
 
-func kthSmallestElement(root *tree.TreeNode, k int) int {
+func numberOfWaysToMakeChange(n int, denoms []int) int {
 	return 0
 }
