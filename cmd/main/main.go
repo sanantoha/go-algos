@@ -142,6 +142,7 @@ func main() {
 		"subarray_sum_equals_k.go":                           true,
 		"k_th_smallest_element_in_bst.go":                    true,
 		"number_of_way_to_make_change.go":                    true,
+		"optimal_freelancing.go":                             true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -163,12 +164,47 @@ func main() {
 
 func runTask() {
 
-	input := []int{1, 5}
-	actual := numberOfWaysToMakeChange(6, input)
-	fmt.Println(actual)
-	fmt.Println(actual == 2)
+	jobs := []struct {
+		deadline int
+		payment  int
+	}{
+		{
+			deadline: 2,
+			payment:  2,
+		},
+		{
+			deadline: 4,
+			payment:  3,
+		},
+		{
+			deadline: 5,
+			payment:  1,
+		},
+		{
+			deadline: 7,
+			payment:  2,
+		},
+		{
+			deadline: 3,
+			payment:  1,
+		},
+		{
+			deadline: 3,
+			payment:  2,
+		},
+		{
+			deadline: 1,
+			payment:  3,
+		},
+	}
+
+	fmt.Println(optimalFreelancing(jobs)) // 13
 }
 
-func numberOfWaysToMakeChange(n int, denoms []int) int {
+func optimalFreelancing(jobs []struct {
+	deadline int
+	payment  int
+}) int {
+
 	return 0
 }
