@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	grph "github.com/sanantoha/go-algos/internals/graph"
+	log "github.com/sirupsen/logrus"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -143,6 +145,7 @@ func main() {
 		"k_th_smallest_element_in_bst.go":                    true,
 		"number_of_way_to_make_change.go":                    true,
 		"optimal_freelancing.go":                             true,
+		"dijkstra_shortest_path_as_map.go":                   true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -164,47 +167,21 @@ func main() {
 
 func runTask() {
 
-	jobs := []struct {
-		deadline int
-		payment  int
-	}{
-		{
-			deadline: 2,
-			payment:  2,
-		},
-		{
-			deadline: 4,
-			payment:  3,
-		},
-		{
-			deadline: 5,
-			payment:  1,
-		},
-		{
-			deadline: 7,
-			payment:  2,
-		},
-		{
-			deadline: 3,
-			payment:  1,
-		},
-		{
-			deadline: 3,
-			payment:  2,
-		},
-		{
-			deadline: 1,
-			payment:  3,
-		},
+	graph, err := grph.NewGraphAsAdjListFromFile("cmd/graph/dijkstra_shortest_path/dijkstraShortestPath.txt")
+	if err != nil {
+		log.Fatalln(err)
 	}
 
-	fmt.Println(optimalFreelancing(jobs)) // 13
+	fmt.Println(grph.PrintGraphAsAdjList(graph))
+	fmt.Println("=====================================")
+	sp, err := findShortestPath(graph, "0")
+	if err != nil {
+		log.Fatalln(err)
+	}
+	//   &{map[0:0 1:5 2:8 3:4 4:7] map[0: 1:3 2:1 3:0 4:3]}
+	fmt.Println(sp)
 }
 
-func optimalFreelancing(jobs []struct {
-	deadline int
-	payment  int
-}) int {
-
-	return 0
+func findShortestPath(graph map[string][]*grph.EdgeT[string], start string) (*grph.Pair[map[string]float64, map[string]string], error) {
+	return nil, nil
 }
