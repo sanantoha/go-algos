@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	grph "github.com/sanantoha/go-algos/internals/graph"
-	log "github.com/sirupsen/logrus"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -146,6 +144,7 @@ func main() {
 		"number_of_way_to_make_change.go":                    true,
 		"optimal_freelancing.go":                             true,
 		"dijkstra_shortest_path_as_map.go":                   true,
+		"sort_k_sorted_array.go":                             true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -167,21 +166,11 @@ func main() {
 
 func runTask() {
 
-	graph, err := grph.NewGraphAsAdjListFromFile("cmd/graph/dijkstra_shortest_path/dijkstraShortestPath.txt")
-	if err != nil {
-		log.Fatalln(err)
-	}
+	arr := []int{3, 2, 1, 5, 4, 7, 6, 5}
 
-	fmt.Println(grph.PrintGraphAsAdjList(graph))
-	fmt.Println("=====================================")
-	sp, err := findShortestPath(graph, "0")
-	if err != nil {
-		log.Fatalln(err)
-	}
-	//   &{map[0:0 1:5 2:8 3:4 4:7] map[0: 1:3 2:1 3:0 4:3]}
-	fmt.Println(sp)
+	fmt.Println(sortKSortedArray(arr, 3))
 }
 
-func findShortestPath(graph map[string][]*grph.EdgeT[string], start string) (*grph.Pair[map[string]float64, map[string]string], error) {
-	return nil, nil
+func sortKSortedArray(arr []int, k int) []int {
+	return nil
 }
