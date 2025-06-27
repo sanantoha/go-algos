@@ -146,6 +146,7 @@ func main() {
 		"dijkstra_shortest_path_as_map.go":                   true,
 		"sort_k_sorted_array.go":                             true,
 		"valid_ip_address.go":                                true,
+		"word_ladderII.go":                                   true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -167,12 +168,15 @@ func main() {
 
 func runTask() {
 
-	str := "1921680"
-	// [1.9.216.80 1.92.16.80 1.92.168.0 19.2.16.80 19.2.168.0 19.21.6.80 19.21.68.0 19.216.8.0 192.1.6.80 192.1.68.0 192.16.8.0]
-	fmt.Println(validIPAddresses(str))
+	wordList := []string{"hot", "dot", "dog", "lot", "log", "cog"}
+	beginWord := "hit"
+	endWord := "cog"
+
+	// [[hit, hot, dot, dog, cog], [hit, hot, lot, log, cog]]
+	actual := findLadders(beginWord, endWord, wordList)
+	fmt.Println(actual)
 }
 
-// O(n * log(k)) time | O(k) space
-func validIPAddresses(str string) []string {
+func findLadders(beginWord string, endWord string, wordList []string) []string {
 	return nil
 }

@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 	"strconv"
 	"strings"
 )
@@ -16,21 +15,21 @@ func validIPAddresses(str string) []string {
 
 	l := len(str)
 
-	for i := 0; i < int(math.Min(float64(l), float64(4))); i++ {
+	for i := 0; i < min(l, 4); i++ {
 		address[0] = str[0:i]
 
 		if !isValid(address[0]) {
 			continue
 		}
 
-		for j := i + 1; j < int(math.Min(float64(l), float64(i+4))); j++ {
+		for j := i + 1; j < min(l, i+4); j++ {
 			address[1] = str[i:j]
 
 			if !isValid(address[1]) {
 				continue
 			}
 
-			for k := j + 1; k < int(math.Min(float64(l), float64(j+4))); k++ {
+			for k := j + 1; k < min(l, j+4); k++ {
 				address[2] = str[j:k]
 				address[3] = str[k:]
 
