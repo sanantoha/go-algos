@@ -1,21 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"slices"
+)
 
 // O(n * l ^ 2) time | O(n * l ^ 2) space
 func findLadders(beginWord string, endWord string, wordList []string) [][]string {
-	if beginWord == "" || endWord == "" {
-		return nil
-	}
-	endWordExists := false
-	for _, v := range wordList {
-		if v == endWord {
-			endWordExists = true
-			break
-		}
-	}
-
-	if !endWordExists {
+	if beginWord == "" || endWord == "" || !slices.Contains(wordList, endWord) {
 		return nil
 	}
 
