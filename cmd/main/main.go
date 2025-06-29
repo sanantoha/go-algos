@@ -149,6 +149,7 @@ func main() {
 		"valid_ip_address.go":                                true,
 		"word_ladderII.go":                                   true,
 		"branch_sums.go":                                     true,
+		"minimum_absolute_difference_in_bst.go":              true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -171,44 +172,42 @@ func main() {
 func runTask() {
 
 	root := &tree.TreeNode{
-		Val: 1,
+		Val: 4,
 		Left: &tree.TreeNode{
 			Val: 2,
 			Left: &tree.TreeNode{
-				Val: 4,
-				Left: &tree.TreeNode{
-					Val: 8,
-				},
-				Right: &tree.TreeNode{
-					Val: 9,
-				},
+				Val: 1,
 			},
 			Right: &tree.TreeNode{
-				Val: 5,
-				Left: &tree.TreeNode{
-					Val: 10,
-				},
+				Val: 3,
 			},
 		},
 		Right: &tree.TreeNode{
-			Val: 3,
+			Val: 6,
+		},
+	}
+
+	fmt.Println(getMinimumDifference(root)) // 1
+
+	root1 := &tree.TreeNode{
+		Val: 5,
+		Left: &tree.TreeNode{
+			Val: 0,
+		},
+		Right: &tree.TreeNode{
+			Val: 48,
 			Left: &tree.TreeNode{
-				Val: 6,
+				Val: 12,
 			},
 			Right: &tree.TreeNode{
-				Val: 7,
+				Val: 50,
 			},
 		},
 	}
 
-	fmt.Println(branchSums(root))     // [15, 16, 18, 10, 11]
-	fmt.Println(branchSumsIter(root)) // [11, 10, 18, 16, 15]
+	fmt.Println(getMinimumDifference(root1)) // 2
 }
 
-func branchSums(root *tree.TreeNode) []int {
-	return nil
-}
-
-func branchSumsIter(root *tree.TreeNode) []int {
-	return nil
+func getMinimumDifference(root *tree.TreeNode) int {
+	return 0
 }
