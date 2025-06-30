@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -171,43 +170,28 @@ func main() {
 
 func runTask() {
 
-	root := &tree.TreeNode{
-		Val: 4,
-		Left: &tree.TreeNode{
-			Val: 2,
-			Left: &tree.TreeNode{
-				Val: 1,
-			},
-			Right: &tree.TreeNode{
-				Val: 3,
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 6,
-		},
+	matrix := [][]int{
+		{1, 0, 1, 0, 0},
+		{0, 0, 1, 1, 0},
+		{0, 1, 1, 1, 1},
+		{1, 0, 1, 0, 0},
 	}
 
-	fmt.Println(getMinimumDifference(root)) // 1
+	expected := 8
 
-	root1 := &tree.TreeNode{
-		Val: 5,
-		Left: &tree.TreeNode{
-			Val: 0,
-		},
-		Right: &tree.TreeNode{
-			Val: 48,
-			Left: &tree.TreeNode{
-				Val: 12,
-			},
-			Right: &tree.TreeNode{
-				Val: 50,
-			},
-		},
-	}
+	actual := largestIsland(matrix)
+	fmt.Println(actual)
+	fmt.Println(actual == expected)
 
-	fmt.Println(getMinimumDifference(root1)) // 2
+	actual = largestIsland1(matrix)
+	fmt.Println(actual)
+	fmt.Println(actual == expected)
 }
 
-func getMinimumDifference(root *tree.TreeNode) int {
+func largestIsland(matrix [][]int) int {
+	return 0
+}
+
+func largestIsland1(matrix [][]int) int {
 	return 0
 }
