@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	grph "github.com/sanantoha/go-algos/internals/graph"
+	log "github.com/sirupsen/logrus"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -149,6 +151,8 @@ func main() {
 		"word_ladderII.go":                                   true,
 		"branch_sums.go":                                     true,
 		"minimum_absolute_difference_in_bst.go":              true,
+		"largest_island.go":                                  true,
+		"depth_first_search_as_map.go":                       true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -170,28 +174,22 @@ func main() {
 
 func runTask() {
 
-	matrix := [][]int{
-		{1, 0, 1, 0, 0},
-		{0, 0, 1, 1, 0},
-		{0, 1, 1, 1, 1},
-		{1, 0, 1, 0, 0},
+	graph, err := grph.NewGraphAsAdjListFromFile("cmd/graph/depth_first_search/dfs.txt")
+	if err != nil {
+		log.Fatalln(err)
 	}
 
-	expected := 8
-
-	actual := largestIsland(matrix)
-	fmt.Println(actual)
-	fmt.Println(actual == expected)
-
-	actual = largestIsland1(matrix)
-	fmt.Println(actual)
-	fmt.Println(actual == expected)
+	fmt.Println(grph.PrintGraphAsAdjList(graph))
+	fmt.Println("=====================================")
+	fmt.Println(dfsRec(graph, "0"))
+	fmt.Println("=====================================")
+	fmt.Println(dfsIter(graph, "0"))
 }
 
-func largestIsland(matrix [][]int) int {
-	return 0
+func dfsRec(graph map[string][]*grph.EdgeT[string], start string) []string {
+	return nil
 }
 
-func largestIsland1(matrix [][]int) int {
-	return 0
+func dfsIter(graph map[string][]*grph.EdgeT[string], start string) []string {
+	return nil
 }
