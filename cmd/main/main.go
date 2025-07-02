@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	grph "github.com/sanantoha/go-algos/internals/graph"
-	log "github.com/sirupsen/logrus"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -153,6 +151,7 @@ func main() {
 		"minimum_absolute_difference_in_bst.go":              true,
 		"largest_island.go":                                  true,
 		"depth_first_search_as_map.go":                       true,
+		"one_edit.go":                                        true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -174,22 +173,12 @@ func main() {
 
 func runTask() {
 
-	graph, err := grph.NewGraphAsAdjListFromFile("cmd/graph/depth_first_search/dfs.txt")
-	if err != nil {
-		log.Fatalln(err)
-	}
-
-	fmt.Println(grph.PrintGraphAsAdjList(graph))
-	fmt.Println("=====================================")
-	fmt.Println(dfsRec(graph, "0"))
-	fmt.Println("=====================================")
-	fmt.Println(dfsIter(graph, "0"))
+	stringOne := "hello"
+	stringTwo := "helo"
+	actual := oneEdit(stringOne, stringTwo)
+	fmt.Println(actual)
 }
 
-func dfsRec(graph map[string][]*grph.EdgeT[string], start string) []string {
-	return nil
-}
-
-func dfsIter(graph map[string][]*grph.EdgeT[string], start string) []string {
-	return nil
+func oneEdit(s1, s2 string) bool {
+	return false
 }
