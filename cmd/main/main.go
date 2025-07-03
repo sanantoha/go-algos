@@ -152,6 +152,7 @@ func main() {
 		"largest_island.go":                                  true,
 		"depth_first_search_as_map.go":                       true,
 		"one_edit.go":                                        true,
+		"find_peak_element.go":                               true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -173,12 +174,10 @@ func main() {
 
 func runTask() {
 
-	stringOne := "hello"
-	stringTwo := "helo"
-	actual := oneEdit(stringOne, stringTwo)
-	fmt.Println(actual)
+	arr := []int{1, 2, 1, 3, 4, 5, 7, 8, 5, 3, 2, 11, 1}
+	fmt.Println(findPeak(arr)) // 7
 }
 
-func oneEdit(s1, s2 string) bool {
-	return false
+func findPeak(arr []int) int {
+	return -1
 }
