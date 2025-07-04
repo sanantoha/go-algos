@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -153,6 +154,7 @@ func main() {
 		"depth_first_search_as_map.go":                       true,
 		"one_edit.go":                                        true,
 		"find_peak_element.go":                               true,
+		"max_path_sum_in_binary_tree.go":                     true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -174,10 +176,33 @@ func main() {
 
 func runTask() {
 
-	arr := []int{1, 2, 1, 3, 4, 5, 7, 8, 5, 3, 2, 11, 1}
-	fmt.Println(findPeak(arr)) // 7
+	root := &tree.TreeNode{
+		Val: 1,
+		Left: &tree.TreeNode{
+			Val: 2,
+			Left: &tree.TreeNode{
+				Val: 4,
+			},
+			Right: &tree.TreeNode{
+				Val: 5,
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 3,
+			Left: &tree.TreeNode{
+				Val: 6,
+			},
+			Right: &tree.TreeNode{
+				Val: 7,
+			},
+		},
+	}
+
+	actual := maxPathSum(root)
+	fmt.Println(actual)
+	fmt.Println(actual == 18)
 }
 
-func findPeak(arr []int) int {
-	return -1
+func maxPathSum(root *tree.TreeNode) int {
+	return 0
 }
