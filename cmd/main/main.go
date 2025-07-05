@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -155,6 +154,7 @@ func main() {
 		"one_edit.go":                                        true,
 		"find_peak_element.go":                               true,
 		"max_path_sum_in_binary_tree.go":                     true,
+		"regular_expressions.go":                             true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -176,33 +176,25 @@ func main() {
 
 func runTask() {
 
-	root := &tree.TreeNode{
-		Val: 1,
-		Left: &tree.TreeNode{
-			Val: 2,
-			Left: &tree.TreeNode{
-				Val: 4,
-			},
-			Right: &tree.TreeNode{
-				Val: 5,
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 3,
-			Left: &tree.TreeNode{
-				Val: 6,
-			},
-			Right: &tree.TreeNode{
-				Val: 7,
-			},
-		},
-	}
+	fmt.Println(!isMatch("aa", "a"))
+	fmt.Println(isMatch("aa", "a*"))
+	fmt.Println(isMatch("abcde", ".*"))
+	fmt.Println(isMatch("abcde", ".*de"))
+	fmt.Println(!isMatch("abcde", ".*dk"))
 
-	actual := maxPathSum(root)
-	fmt.Println(actual)
-	fmt.Println(actual == 18)
+	fmt.Println("======================================")
+
+	fmt.Println(!isMatchIter("aa", "a"))
+	fmt.Println(isMatchIter("aa", "a*"))
+	fmt.Println(isMatchIter("abcde", ".*"))
+	fmt.Println(isMatchIter("abcde", ".*de"))
+	fmt.Println(!isMatchIter("abcde", ".*dk"))
 }
 
-func maxPathSum(root *tree.TreeNode) int {
-	return 0
+func isMatch(s, p string) bool {
+	return false
+}
+
+func isMatchIter(s, p string) bool {
+	return false
 }
