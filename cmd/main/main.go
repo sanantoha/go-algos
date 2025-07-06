@@ -155,6 +155,7 @@ func main() {
 		"find_peak_element.go":                               true,
 		"max_path_sum_in_binary_tree.go":                     true,
 		"regular_expressions.go":                             true,
+		"combination_sum.go":                                 true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -176,25 +177,11 @@ func main() {
 
 func runTask() {
 
-	fmt.Println(!isMatch("aa", "a"))
-	fmt.Println(isMatch("aa", "a*"))
-	fmt.Println(isMatch("abcde", ".*"))
-	fmt.Println(isMatch("abcde", ".*de"))
-	fmt.Println(!isMatch("abcde", ".*dk"))
+	arr := []int{2, 3, 5, 7}
 
-	fmt.Println("======================================")
-
-	fmt.Println(!isMatchIter("aa", "a"))
-	fmt.Println(isMatchIter("aa", "a*"))
-	fmt.Println(isMatchIter("abcde", ".*"))
-	fmt.Println(isMatchIter("abcde", ".*de"))
-	fmt.Println(!isMatchIter("abcde", ".*dk"))
+	fmt.Println(combinationSum(arr, 7)) // // [[2, 2, 3], [2, 5], [7]]
 }
 
-func isMatch(s, p string) bool {
-	return false
-}
-
-func isMatchIter(s, p string) bool {
-	return false
+func combinationSum(arr []int, target int) [][]int {
+	return nil
 }
