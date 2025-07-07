@@ -156,6 +156,7 @@ func main() {
 		"max_path_sum_in_binary_tree.go":                     true,
 		"regular_expressions.go":                             true,
 		"combination_sum.go":                                 true,
+		"longest_increasing_path_in_matrix.go":               true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -177,11 +178,23 @@ func main() {
 
 func runTask() {
 
-	arr := []int{2, 3, 5, 7}
+	input := [][]int{
+		{9, 9, 4},
+		{6, 6, 8},
+		{2, 1, 1},
+	}
 
-	fmt.Println(combinationSum(arr, 7)) // // [[2, 2, 3], [2, 5], [7]]
+	fmt.Println(longestIncreasingPath(input)) // 4
+
+	input1 := [][]int{
+		{3, 4, 5},
+		{3, 2, 6},
+		{2, 2, 1},
+	}
+
+	fmt.Println(longestIncreasingPath(input1)) // 4
 }
 
-func combinationSum(arr []int, target int) [][]int {
-	return nil
+func longestIncreasingPath(matrix [][]int) int {
+	return 0
 }
