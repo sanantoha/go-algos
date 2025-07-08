@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/sanantoha/go-algos/internals/list"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -157,6 +158,7 @@ func main() {
 		"regular_expressions.go":                             true,
 		"combination_sum.go":                                 true,
 		"longest_increasing_path_in_matrix.go":               true,
+		"intersection_linked_list.go":                        true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -178,23 +180,18 @@ func main() {
 
 func runTask() {
 
-	input := [][]int{
-		{9, 9, 4},
-		{6, 6, 8},
-		{2, 1, 1},
-	}
+	common := &list.ListNode{Val: 8, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5}}}
+	l1 := &list.ListNode{Val: 4, Next: &list.ListNode{Val: 1, Next: common}}
+	l2 := &list.ListNode{Val: 5, Next: &list.ListNode{Val: 6, Next: &list.ListNode{Val: 1, Next: common}}}
 
-	fmt.Println(longestIncreasingPath(input)) // 4
-
-	input1 := [][]int{
-		{3, 4, 5},
-		{3, 2, 6},
-		{2, 2, 1},
-	}
-
-	fmt.Println(longestIncreasingPath(input1)) // 4
+	fmt.Println(getIntersectionNode(l1, l2))
+	fmt.Println(getIntersectionNode1(l1, l2))
 }
 
-func longestIncreasingPath(matrix [][]int) int {
-	return 0
+func getIntersectionNode(l1, l2 *list.ListNode) *list.ListNode {
+	return nil
+}
+
+func getIntersectionNode1(l1, l2 *list.ListNode) *list.ListNode {
+	return nil
 }
