@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/list"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -159,6 +158,7 @@ func main() {
 		"combination_sum.go":                                 true,
 		"longest_increasing_path_in_matrix.go":               true,
 		"intersection_linked_list.go":                        true,
+		"generate_parentheses.go":                            true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -180,18 +180,11 @@ func main() {
 
 func runTask() {
 
-	common := &list.ListNode{Val: 8, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5}}}
-	l1 := &list.ListNode{Val: 4, Next: &list.ListNode{Val: 1, Next: common}}
-	l2 := &list.ListNode{Val: 5, Next: &list.ListNode{Val: 6, Next: &list.ListNode{Val: 1, Next: common}}}
+	fmt.Println(generateParentheses(3))
 
-	fmt.Println(getIntersectionNode(l1, l2))
-	fmt.Println(getIntersectionNode1(l1, l2))
+	fmt.Println(generateParentheses(2))
 }
 
-func getIntersectionNode(l1, l2 *list.ListNode) *list.ListNode {
-	return nil
-}
-
-func getIntersectionNode1(l1, l2 *list.ListNode) *list.ListNode {
+func generateParentheses(cnt int) []string {
 	return nil
 }
