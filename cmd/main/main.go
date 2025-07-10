@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -159,6 +160,7 @@ func main() {
 		"longest_increasing_path_in_matrix.go":               true,
 		"intersection_linked_list.go":                        true,
 		"generate_parentheses.go":                            true,
+		"lowest_common_ancestor_of_bst.go":                   true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -180,11 +182,44 @@ func main() {
 
 func runTask() {
 
-	fmt.Println(generateParentheses(3))
+	root := &tree.TreeNode{
+		Val: 6,
+		Left: &tree.TreeNode{
+			Val: 2,
+			Left: &tree.TreeNode{
+				Val: 0,
+			},
+			Right: &tree.TreeNode{
+				Val: 4,
+				Left: &tree.TreeNode{
+					Val: 3,
+				},
+				Right: &tree.TreeNode{
+					Val: 5,
+				},
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 8,
+			Left: &tree.TreeNode{
+				Val: 7,
+			},
+			Right: &tree.TreeNode{
+				Val: 9,
+			},
+		},
+	}
 
-	fmt.Println(generateParentheses(2))
+	fmt.Println(lowestCommonAncestor(root, &tree.TreeNode{Val: 0}, &tree.TreeNode{Val: 5}))
+
+	root1 := &tree.TreeNode{
+		Val:  2,
+		Left: &tree.TreeNode{Val: 1},
+	}
+
+	fmt.Println(lowestCommonAncestor(root1, &tree.TreeNode{Val: 2}, &tree.TreeNode{Val: 1}))
 }
 
-func generateParentheses(cnt int) []string {
+func lowestCommonAncestor(root *tree.TreeNode, p *tree.TreeNode, q *tree.TreeNode) *tree.TreeNode {
 	return nil
 }
