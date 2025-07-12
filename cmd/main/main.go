@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/list"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -162,6 +161,7 @@ func main() {
 		"generate_parentheses.go":                            true,
 		"lowest_common_ancestor_of_bst.go":                   true,
 		"remove_nth_from_end_of_list.go":                     true,
+		"validate_starting_city.go":                          true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -183,15 +183,24 @@ func main() {
 
 func runTask() {
 
-	head := &list.ListNode{Val: 1, Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5}}}}}
+	distances := []int{5, 25, 15, 10, 15}
+	fuel := []int{1, 2, 1, 0, 3}
+	mpg := 10
+	expected := 4
 
-	fmt.Println(head)
+	actual := validateStartingCity(distances, fuel, mpg)
+	fmt.Println(actual)
+	fmt.Println(expected == actual)
 
-	res := removeNthFromEnd(head, 10)
-
-	fmt.Println(res)
+	actual = validateStartingCity1(distances, fuel, mpg)
+	fmt.Println(actual)
+	fmt.Println(expected == actual)
 }
 
-func removeNthFromEnd(root *list.ListNode, n int) *list.ListNode {
-	return nil
+func validateStartingCity(distance []int, fuel []int, mpg int) int {
+	return -1
+}
+
+func validateStartingCity1(distance []int, fuel []int, mpg int) int {
+	return -1
 }
