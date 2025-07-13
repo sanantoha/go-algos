@@ -162,6 +162,7 @@ func main() {
 		"lowest_common_ancestor_of_bst.go":                   true,
 		"remove_nth_from_end_of_list.go":                     true,
 		"validate_starting_city.go":                          true,
+		"search_2d_matrix.go":                                true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -183,24 +184,24 @@ func main() {
 
 func runTask() {
 
-	distances := []int{5, 25, 15, 10, 15}
-	fuel := []int{1, 2, 1, 0, 3}
-	mpg := 10
-	expected := 4
+	matrix := [][]int{
+		{1, 4, 7, 11, 15},
+		{2, 5, 8, 12, 19},
+		{3, 6, 9, 16, 22},
+		{10, 13, 14, 17, 24},
+		{18, 21, 23, 26, 30},
+	}
 
-	actual := validateStartingCity(distances, fuel, mpg)
-	fmt.Println(actual)
-	fmt.Println(expected == actual)
+	fmt.Println(searchMatrix(matrix, 21))
 
-	actual = validateStartingCity1(distances, fuel, mpg)
-	fmt.Println(actual)
-	fmt.Println(expected == actual)
+	matrix1 := [][]int{
+		{1, 4},
+		{2, 5},
+	}
+
+	fmt.Println(searchMatrix(matrix1, 5))
 }
 
-func validateStartingCity(distance []int, fuel []int, mpg int) int {
-	return -1
-}
-
-func validateStartingCity1(distance []int, fuel []int, mpg int) int {
-	return -1
+func searchMatrix(matrix [][]int, target int) bool {
+	return false
 }
