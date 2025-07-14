@@ -163,6 +163,7 @@ func main() {
 		"remove_nth_from_end_of_list.go":                     true,
 		"validate_starting_city.go":                          true,
 		"search_2d_matrix.go":                                true,
+		"reverse_integer.go":                                 true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -184,24 +185,15 @@ func main() {
 
 func runTask() {
 
-	matrix := [][]int{
-		{1, 4, 7, 11, 15},
-		{2, 5, 8, 12, 19},
-		{3, 6, 9, 16, 22},
-		{10, 13, 14, 17, 24},
-		{18, 21, 23, 26, 30},
-	}
+	fmt.Println(reverse(123))
 
-	fmt.Println(searchMatrix(matrix, 21))
+	fmt.Println(reverse(0))
 
-	matrix1 := [][]int{
-		{1, 4},
-		{2, 5},
-	}
+	fmt.Println(reverse(-123))
 
-	fmt.Println(searchMatrix(matrix1, 5))
+	fmt.Println(reverse(120))
 }
 
-func searchMatrix(matrix [][]int, target int) bool {
-	return false
+func reverse(n int) int {
+	return 0
 }
