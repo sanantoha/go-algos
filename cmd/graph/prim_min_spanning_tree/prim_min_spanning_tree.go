@@ -103,7 +103,6 @@ func main() {
 	fmt.Println(graph)
 	fmt.Println("=========================================")
 	fmt.Println(mst(graph))
-	fmt.Println("\n\n")
 	fmt.Println("=========================================")
 
 	graph1 := grph.NewEdgeWeightedGraph(7)
