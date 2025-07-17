@@ -5,6 +5,7 @@ import (
 	"math/rand"
 	"os"
 	"path/filepath"
+	"reflect"
 	"strings"
 )
 
@@ -166,6 +167,7 @@ func main() {
 		"reverse_integer.go":                                 true,
 		"prim_min_spanning_tree.go":                          true,
 		"median_of_two_sorted_arrays.go":                     true,
+		"disk_stacking.go":                                   true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -187,17 +189,27 @@ func main() {
 
 func runTask() {
 
-	arr1 := []int{1, 2, 3, 4, 5, 6}
-	arr2 := []int{7, 8, 9, 10, 11, 12}
+	input := [][]int{
+		{2, 1, 2},
+		{3, 2, 3},
+		{2, 2, 8},
+		{2, 3, 4},
+		{2, 2, 1},
+		{4, 4, 5},
+	}
 
-	fmt.Println(medianOfTwoSortedArrays(arr1, arr2))
-	fmt.Println(medianOfTwoSortedArrays1(arr1, arr2))
+	expected := [][]int{
+		{2, 1, 2},
+		{3, 2, 3},
+		{4, 4, 5},
+	}
+
+	actual := diskStacking(input)
+	fmt.Println(actual)
+
+	fmt.Println(reflect.DeepEqual(actual, expected))
 }
 
-func medianOfTwoSortedArrays(arr1, arr2 []int) float64 {
-	return 0
-}
-
-func medianOfTwoSortedArrays1(arr1, arr2 []int) float64 {
-	return 0
+func diskStacking(disks [][]int) [][]int {
+	return nil
 }
