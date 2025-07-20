@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -169,6 +170,7 @@ func main() {
 		"disk_stacking.go":                                   true,
 		"bst_successor_search.go":                            true,
 		"largest_range.go":                                   true,
+		"convert_sorted_array_to_bst.go":                     true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -190,15 +192,11 @@ func main() {
 
 func runTask() {
 
-	fmt.Println(largestRange([]int{1, 11, 3, 0, 15, 5, 2, 4, 10, 7, 12, 6}))
+	arr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 
-	fmt.Println(largestRange1([]int{1, 11, 3, 0, 15, 5, 2, 4, 10, 7, 12, 6}))
+	fmt.Println(sortedArrayToBst(arr))
 }
 
-func largestRange(arr []int) [2]int {
-	return [2]int{-1, -1}
-}
-
-func largestRange1(arr []int) [2]int {
-	return [2]int{-1, -1}
+func sortedArrayToBst(arr []int) *tree.TreeNode {
+	return nil
 }
