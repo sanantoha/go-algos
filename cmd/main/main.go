@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -171,6 +170,7 @@ func main() {
 		"bst_successor_search.go":                            true,
 		"largest_range.go":                                   true,
 		"convert_sorted_array_to_bst.go":                     true,
+		"min_swaps_transform_string_to_palindrom.go":         true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -192,11 +192,11 @@ func main() {
 
 func runTask() {
 
-	arr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-
-	fmt.Println(sortedArrayToBst(arr))
+	fmt.Println(minSwapsRequired("0100101")) // 2
+	fmt.Println(minSwapsRequired("1110"))    // -1
+	fmt.Println(minSwapsRequired("11101"))   // 1
 }
 
-func sortedArrayToBst(arr []int) *tree.TreeNode {
-	return nil
+func minSwapsRequired(data string) int {
+	return -1
 }
