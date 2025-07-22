@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -170,7 +171,8 @@ func main() {
 		"bst_successor_search.go":                            true,
 		"largest_range.go":                                   true,
 		"convert_sorted_array_to_bst.go":                     true,
-		"min_swaps_transform_string_to_palindrom.go":         true,
+		"min_swaps_transform_string_to_palindrome.go":        true,
+		"pow.go": true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -192,11 +194,14 @@ func main() {
 
 func runTask() {
 
-	fmt.Println(minSwapsRequired("0100101")) // 2
-	fmt.Println(minSwapsRequired("1110"))    // -1
-	fmt.Println(minSwapsRequired("11101"))   // 1
+	fmt.Println(pow(4, 2))
+	fmt.Println(pow(2, 4))
+	fmt.Println(pow(2.0, -2))
+
+	fmt.Println(pow(2.1, 3))
+	fmt.Println(math.Pow(2.1, 3))
 }
 
-func minSwapsRequired(data string) int {
-	return -1
+func pow(x float64, n int) float64 {
+	return 0.0
 }
