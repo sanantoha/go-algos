@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -172,7 +171,8 @@ func main() {
 		"largest_range.go":                                   true,
 		"convert_sorted_array_to_bst.go":                     true,
 		"min_swaps_transform_string_to_palindrome.go":        true,
-		"pow.go": true,
+		"pow.go":         true,
+		"select_sort.go": true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -194,14 +194,26 @@ func main() {
 
 func runTask() {
 
-	fmt.Println(pow(4, 2))
-	fmt.Println(pow(2, 4))
-	fmt.Println(pow(2.0, -2))
+	arr := make([]int, 10)
+	for i := 0; i < len(arr); i++ {
+		arr[i] = rand.Intn(50)
+	}
 
-	fmt.Println(pow(2.1, 3))
-	fmt.Println(math.Pow(2.1, 3))
+	fmt.Println(arr)
+
+	selectSort(arr)
+
+	fmt.Println(arr)
+
+	for i := 0; i < len(arr)-1; i++ {
+		if arr[i] > arr[i+1] {
+			panic(fmt.Sprintf("array is not sorted: %d != %d", arr[i], arr[i+1]))
+		}
+	}
+
+	fmt.Println("done")
 }
 
-func pow(x float64, n int) float64 {
-	return 0.0
+func selectSort(arr []int) {
+
 }
