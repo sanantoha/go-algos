@@ -173,6 +173,7 @@ func main() {
 		"min_swaps_transform_string_to_palindrome.go":        true,
 		"pow.go":         true,
 		"select_sort.go": true,
+		"word_ladder.go": true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -194,26 +195,19 @@ func main() {
 
 func runTask() {
 
-	arr := make([]int, 10)
-	for i := 0; i < len(arr); i++ {
-		arr[i] = rand.Intn(50)
-	}
+	actual := ladderLength("hit", "cog", []string{"hot", "dot", "dog", "lot", "log", "cog"})
+	fmt.Println(actual)
+	fmt.Println(actual == 5)
 
-	fmt.Println(arr)
+	actual = ladderLength("hit", "cog", []string{"hot", "dot", "dog", "lot", "log"})
+	fmt.Println(actual)
+	fmt.Println(actual == 0)
 
-	selectSort(arr)
-
-	fmt.Println(arr)
-
-	for i := 0; i < len(arr)-1; i++ {
-		if arr[i] > arr[i+1] {
-			panic(fmt.Sprintf("array is not sorted: %d != %d", arr[i], arr[i+1]))
-		}
-	}
-
-	fmt.Println("done")
+	actual = ladderLength("MAMA", "SIRI", []string{"SAMA", "SIMA", "SIRA", "SIRI", "MISA", "DISA"})
+	fmt.Println(actual)
+	fmt.Println(actual == 5)
 }
 
-func selectSort(arr []int) {
-
+func ladderLength(beginWord string, endWord string, wordList []string) int {
+	return -1
 }
