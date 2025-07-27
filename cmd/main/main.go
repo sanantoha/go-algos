@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/list"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -176,6 +175,7 @@ func main() {
 		"select_sort.go":          true,
 		"word_ladder.go":          true,
 		"odd_even_linked_list.go": true,
+		"find_pivot_index.go":     true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -197,24 +197,13 @@ func main() {
 
 func runTask() {
 
-	head := &list.ListNode{Val: 1, Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5}}}}}
-	head1 := &list.ListNode{Val: 1, Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5}}}}}
+	fmt.Println(findPivotIndex([]int{1, 7, 3, 6, 5, 6}) == 3)
 
-	fmt.Println(head)
-	// 1 -> 3 -> 5 -> 2 -> 4
-	fmt.Println(oddEvenList(head))
+	fmt.Println(findPivotIndex([]int{1, 2, 3}) == -1)
 
-	fmt.Println("============================================")
-
-	fmt.Println(head1)
-	// 1 -> 3 -> 5 -> 2 -> 4
-	fmt.Println(oddEvenList1(head1))
+	fmt.Println(findPivotIndex([]int{2, 1, -1}) == 0)
 }
 
-func oddEvenList(head *list.ListNode) *list.ListNode {
-	return nil
-}
-
-func oddEvenList1(head *list.ListNode) *list.ListNode {
-	return nil
+func findPivotIndex(arr []int) int {
+	return -1
 }
