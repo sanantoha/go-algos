@@ -171,11 +171,12 @@ func main() {
 		"largest_range.go":                                   true,
 		"convert_sorted_array_to_bst.go":                     true,
 		"min_swaps_transform_string_to_palindrome.go":        true,
-		"pow.go":                  true,
-		"select_sort.go":          true,
-		"word_ladder.go":          true,
-		"odd_even_linked_list.go": true,
-		"find_pivot_index.go":     true,
+		"pow.go":                      true,
+		"select_sort.go":              true,
+		"word_ladder.go":              true,
+		"odd_even_linked_list.go":     true,
+		"find_pivot_index.go":         true,
+		"minimum_passes_of_matrix.go": true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -197,13 +198,19 @@ func main() {
 
 func runTask() {
 
-	fmt.Println(findPivotIndex([]int{1, 7, 3, 6, 5, 6}) == 3)
+	matrix := [][]int{
+		{0, -1, -3, 2, 0},
+		{1, -2, -5, -1, -3},
+		{3, 0, 0, -4, -1},
+	}
 
-	fmt.Println(findPivotIndex([]int{1, 2, 3}) == -1)
+	expected := 3
 
-	fmt.Println(findPivotIndex([]int{2, 1, -1}) == 0)
+	actual := minimumPassesOfMatrix(matrix)
+	fmt.Println(actual)
+	fmt.Println(actual == expected)
 }
 
-func findPivotIndex(arr []int) int {
-	return -1
+func minimumPassesOfMatrix(matrix [][]int) int {
+	return 0
 }
