@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -177,6 +178,7 @@ func main() {
 		"odd_even_linked_list.go":     true,
 		"find_pivot_index.go":         true,
 		"minimum_passes_of_matrix.go": true,
+		"bfs_tree_traverse.go":        true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -198,19 +200,38 @@ func main() {
 
 func runTask() {
 
-	matrix := [][]int{
-		{0, -1, -3, 2, 0},
-		{1, -2, -5, -1, -3},
-		{3, 0, 0, -4, -1},
+	root := &tree.TreeNode{
+		Val: 5,
+		Left: &tree.TreeNode{
+			Val: 2,
+			Left: &tree.TreeNode{
+				Val: 1,
+			},
+			Right: &tree.TreeNode{
+				Val: 3,
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 10,
+			Left: &tree.TreeNode{
+				Val: 7,
+			},
+			Right: &tree.TreeNode{
+				Val: 15,
+				Left: &tree.TreeNode{
+					Val: 13,
+				},
+				Right: &tree.TreeNode{
+					Val: 17,
+				},
+			},
+		},
 	}
 
-	expected := 3
-
-	actual := minimumPassesOfMatrix(matrix)
-	fmt.Println(actual)
-	fmt.Println(actual == expected)
+	// 5, 2, 10, 1, 3, 7, 15, 13, 17
+	fmt.Println(bfs(root))
 }
 
-func minimumPassesOfMatrix(matrix [][]int) int {
-	return 0
+func bfs(root *tree.TreeNode) []int {
+	return nil
 }
