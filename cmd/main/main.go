@@ -179,6 +179,7 @@ func main() {
 		"find_pivot_index.go":         true,
 		"minimum_passes_of_matrix.go": true,
 		"bfs_tree_traverse.go":        true,
+		"max_depth_of_bst.go":         true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -207,9 +208,6 @@ func runTask() {
 			Left: &tree.TreeNode{
 				Val: 1,
 			},
-			Right: &tree.TreeNode{
-				Val: 3,
-			},
 		},
 		Right: &tree.TreeNode{
 			Val: 10,
@@ -217,21 +215,65 @@ func runTask() {
 				Val: 7,
 			},
 			Right: &tree.TreeNode{
-				Val: 15,
-				Left: &tree.TreeNode{
-					Val: 13,
-				},
+				Val: 20,
 				Right: &tree.TreeNode{
-					Val: 17,
+					Val: 25,
 				},
 			},
 		},
 	}
 
-	// 5, 2, 10, 1, 3, 7, 15, 13, 17
-	fmt.Println(bfs(root))
+	// 4
+	fmt.Println(maxDepth(root))
+	fmt.Println(maxDepthIter(root))
+	fmt.Println(maxDepthBfs(root))
+
+	fmt.Println("==================================")
+
+	root1 := &tree.TreeNode{
+		Val: 3,
+		Left: &tree.TreeNode{
+			Val: 9,
+		},
+		Right: &tree.TreeNode{
+			Val: 20,
+			Left: &tree.TreeNode{
+				Val: 15,
+			},
+			Right: &tree.TreeNode{
+				Val: 7,
+			},
+		},
+	}
+
+	// 3
+	fmt.Println(maxDepth(root1))
+	fmt.Println(maxDepthIter(root1))
+	fmt.Println(maxDepthBfs(root1))
+
+	fmt.Println("==================================")
+
+	root2 := &tree.TreeNode{
+		Val: 1,
+		Right: &tree.TreeNode{
+			Val: 2,
+		},
+	}
+
+	// 2
+	fmt.Println(maxDepth(root2))
+	fmt.Println(maxDepthIter(root2))
+	fmt.Println(maxDepthBfs(root2))
 }
 
-func bfs(root *tree.TreeNode) []int {
-	return nil
+func maxDepth(root *tree.TreeNode) int {
+	return -1
+}
+
+func maxDepthIter(root *tree.TreeNode) int {
+	return -1
+}
+
+func maxDepthBfs(root *tree.TreeNode) int {
+	return -1
 }
