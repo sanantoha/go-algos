@@ -180,6 +180,7 @@ func main() {
 		"minimum_passes_of_matrix.go": true,
 		"bfs_tree_traverse.go":        true,
 		"max_depth_of_bst.go":         true,
+		"subtree_of_another_tree.go":  true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -201,79 +202,80 @@ func main() {
 
 func runTask() {
 
-	root := &tree.TreeNode{
-		Val: 5,
+	root1 := &tree.TreeNode{
+		Val: 3,
 		Left: &tree.TreeNode{
-			Val: 2,
+			Val: 4,
 			Left: &tree.TreeNode{
 				Val: 1,
 			},
+			Right: &tree.TreeNode{
+				Val: 2,
+			},
 		},
 		Right: &tree.TreeNode{
-			Val: 10,
+			Val: 5,
+		},
+	}
+
+	subTree := &tree.TreeNode{
+		Val: 4,
+		Left: &tree.TreeNode{
+			Val: 1,
+		},
+		Right: &tree.TreeNode{
+			Val: 2,
+		},
+	}
+
+	fmt.Println(isSubtree(root1, subTree)) // true
+
+	root2 := &tree.TreeNode{
+		Val: 3,
+		Left: &tree.TreeNode{
+			Val: 4,
 			Left: &tree.TreeNode{
-				Val: 7,
+				Val: 1,
 			},
 			Right: &tree.TreeNode{
-				Val: 20,
-				Right: &tree.TreeNode{
-					Val: 25,
+				Val: 2,
+				Left: &tree.TreeNode{
+					Val: 0,
+				},
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 5,
+		},
+	}
+
+	fmt.Println(isSubtree(root2, subTree)) // false
+
+	root3 := &tree.TreeNode{
+		Val: 4,
+		Left: &tree.TreeNode{
+			Val: 4,
+			Left: &tree.TreeNode{
+				Val: 4,
+				Left: &tree.TreeNode{
+					Val: 4,
+					Left: &tree.TreeNode{
+						Val: 4,
+						Left: &tree.TreeNode{
+							Val: 1,
+						},
+						Right: &tree.TreeNode{
+							Val: 2,
+						},
+					},
 				},
 			},
 		},
 	}
 
-	// 4
-	fmt.Println(maxDepth(root))
-	fmt.Println(maxDepthIter(root))
-	fmt.Println(maxDepthBfs(root))
-
-	fmt.Println("==================================")
-
-	root1 := &tree.TreeNode{
-		Val: 3,
-		Left: &tree.TreeNode{
-			Val: 9,
-		},
-		Right: &tree.TreeNode{
-			Val: 20,
-			Left: &tree.TreeNode{
-				Val: 15,
-			},
-			Right: &tree.TreeNode{
-				Val: 7,
-			},
-		},
-	}
-
-	// 3
-	fmt.Println(maxDepth(root1))
-	fmt.Println(maxDepthIter(root1))
-	fmt.Println(maxDepthBfs(root1))
-
-	fmt.Println("==================================")
-
-	root2 := &tree.TreeNode{
-		Val: 1,
-		Right: &tree.TreeNode{
-			Val: 2,
-		},
-	}
-
-	// 2
-	fmt.Println(maxDepth(root2))
-	fmt.Println(maxDepthIter(root2))
-	fmt.Println(maxDepthBfs(root2))
+	fmt.Println(isSubtree(root3, subTree)) // true
 }
 
-func maxDepth(root *tree.TreeNode) int {
-	return -1
-}
-
-func maxDepthIter(root *tree.TreeNode) int {
-	return -1
-}
-
-func maxDepthBfs(root *tree.TreeNode) int {
-	return -1
+func isSubtree(root *tree.TreeNode, subTree *tree.TreeNode) bool {
+	return false
 }
