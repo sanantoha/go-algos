@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	grph "github.com/sanantoha/go-algos/internals/graph"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -171,16 +172,17 @@ func main() {
 		"largest_range.go":                                   true,
 		"convert_sorted_array_to_bst.go":                     true,
 		"min_swaps_transform_string_to_palindrome.go":        true,
-		"pow.go":                      true,
-		"select_sort.go":              true,
-		"word_ladder.go":              true,
-		"odd_even_linked_list.go":     true,
-		"find_pivot_index.go":         true,
-		"minimum_passes_of_matrix.go": true,
-		"bfs_tree_traverse.go":        true,
-		"max_depth_of_bst.go":         true,
-		"subtree_of_another_tree.go":  true,
-		"same_bst.go":                 true,
+		"pow.go":                       true,
+		"select_sort.go":               true,
+		"word_ladder.go":               true,
+		"odd_even_linked_list.go":      true,
+		"find_pivot_index.go":          true,
+		"minimum_passes_of_matrix.go":  true,
+		"bfs_tree_traverse.go":         true,
+		"max_depth_of_bst.go":          true,
+		"subtree_of_another_tree.go":   true,
+		"same_bst.go":                  true,
+		"kruskal_min_spanning_tree.go": true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -202,17 +204,67 @@ func main() {
 
 func runTask() {
 
-	arr1 := []int{10, 15, 8, 12, 94, 81, 5, 2, 11}
-	arr2 := []int{10, 8, 5, 15, 2, 12, 11, 94, 81}
+	graph := grph.NewEdgeWeightedGraph(6)
 
-	fmt.Println(sameBsts(arr1, arr2))
-	fmt.Println(sameBsts1(arr1, arr2))
+	graph.AddEdge(grph.NewEdge(0, 1, 7.0))
+	graph.AddEdge(grph.NewEdge(0, 2, 8.0))
+	graph.AddEdge(grph.NewEdge(1, 2, 3.0))
+	graph.AddEdge(grph.NewEdge(1, 3, 6.0))
+	graph.AddEdge(grph.NewEdge(2, 3, 4.0))
+	graph.AddEdge(grph.NewEdge(2, 4, 3.0))
+	graph.AddEdge(grph.NewEdge(3, 4, 2.0))
+	graph.AddEdge(grph.NewEdge(3, 5, 5.0))
+	graph.AddEdge(grph.NewEdge(4, 5, 2.0))
+	/*
+	   6 5
+	   0: 0-1 7.00
+	   1: 1-2 3.00  0-1 7.00
+	   2: 1-2 3.00  2-4 3.00
+	   3: 3-4 2.00
+	   4: 3-4 2.00  4-5 2.00  2-4 3.00
+	   5: 4-5 2.00
+	*/
+	fmt.Println(graph)
+	fmt.Println("=========================================")
+	fmt.Println(mst(graph))
+	fmt.Println("=========================================")
+	fmt.Println(mst1(graph))
+	fmt.Println("\n\n")
+	fmt.Println("=========================================")
+
+	graph1 := grph.NewEdgeWeightedGraph(7)
+	graph1.AddEdge(grph.NewEdge(0, 1, 2.0))
+	graph1.AddEdge(grph.NewEdge(0, 2, 3.0))
+	graph1.AddEdge(grph.NewEdge(0, 3, 7.0))
+	graph1.AddEdge(grph.NewEdge(1, 2, 6.0))
+	graph1.AddEdge(grph.NewEdge(1, 6, 3.0))
+	graph1.AddEdge(grph.NewEdge(2, 4, 1.0))
+	graph1.AddEdge(grph.NewEdge(2, 5, 8.0))
+	graph1.AddEdge(grph.NewEdge(3, 4, 5.0))
+	graph1.AddEdge(grph.NewEdge(4, 5, 4.0))
+	graph1.AddEdge(grph.NewEdge(5, 6, 2.0))
+
+	/*
+	   7 6
+	   0: 0-1 2.00000  0-2 3.00000
+	   1: 0-1 2.00000  1-6 3.00000
+	   2: 2-4 1.00000  0-2 3.00000
+	   3: 3-4 5.00000
+	   4: 2-4 1.00000  3-4 5.00000
+	   5: 5-6 2.00000
+	   6: 5-6 2.00000  1-6 3.00000
+	*/
+	fmt.Println(graph1)
+	fmt.Println("=========================================")
+	fmt.Println(mst(graph1))
+	fmt.Println("=========================================")
+	fmt.Println(mst1(graph1))
 }
 
-func sameBsts(arr1, arr2 []int) bool {
-	return false
+func mst(graph *grph.EdgeWeightedGraph) *grph.EdgeWeightedGraph {
+	return nil
 }
 
-func sameBsts1(arr1, arr2 []int) bool {
-	return false
+func mst1(graph *grph.EdgeWeightedGraph) *grph.EdgeWeightedGraph {
+	return nil
 }
