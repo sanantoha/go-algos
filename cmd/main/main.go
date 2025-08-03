@@ -1,11 +1,14 @@
 package main
 
 import (
+	"container/heap"
 	"fmt"
 	grph "github.com/sanantoha/go-algos/internals/graph"
+	log "github.com/sirupsen/logrus"
 	"math/rand"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 )
 
@@ -261,10 +264,134 @@ func runTask() {
 	fmt.Println(mst1(graph1))
 }
 
+// O(E * log(E)) time | O(E + V) space
 func mst(graph *grph.EdgeWeightedGraph) *grph.EdgeWeightedGraph {
-	return nil
+
+	ngraph := grph.NewEdgeWeightedGraph(graph.V)
+
+	parents := makeSet(graph.V)
+	rank := makeRank(graph.V)
+
+	h := &HeapEdges{}
+
+	for _, edge := range graph.Edges() {
+		heap.Push(h, edge)
+	}
+
+	for h.Len() > 0 {
+		minEdge := heap.Pop(h).(*grph.Edge)
+		v := minEdge.Either()
+		u := minEdge.Other(minEdge.Either())
+
+		pv := find(parents, v)
+		pu := find(parents, u)
+
+		if pv != pu {
+			union(parents, rank, pv, pu)
+
+			edge := grph.NewEdge(v, u, minEdge.Weight)
+			err := ngraph.AddEdge(edge)
+			if err != nil {
+				log.Fatalln(err)
+			}
+		}
+	}
+
+	return ngraph
 }
 
+type HeapEdges []*grph.Edge
+
+func (h HeapEdges) Len() int {
+	return len(h)
+}
+
+func (h HeapEdges) Less(i, j int) bool {
+	return h[i].Weight < h[j].Weight
+}
+
+func (h HeapEdges) Swap(i, j int) {
+	h[i], h[j] = h[j], h[i]
+}
+
+func (h *HeapEdges) Push(i interface{}) {
+	*h = append(*h, i.(*grph.Edge))
+}
+
+func (h *HeapEdges) Pop() interface{} {
+	old := *h
+	l := len(old)
+	v := old[l-1]
+	*h = old[:l-1]
+	return v
+}
+
+// O(E * log(E)) time | O(E + V) space
 func mst1(graph *grph.EdgeWeightedGraph) *grph.EdgeWeightedGraph {
-	return nil
+
+	ngraph := grph.NewEdgeWeightedGraph(graph.V)
+
+	parents := makeSet(graph.V)
+	rank := makeRank(graph.V)
+
+	edges := graph.Edges()
+
+	sort.Slice(edges, func(i, j int) bool {
+		return edges[i].Weight < edges[j].Weight
+	})
+
+	for _, minEdge := range edges {
+		v := minEdge.Either()
+		u := minEdge.Other(minEdge.Either())
+
+		pv := find(parents, v)
+		pu := find(parents, u)
+
+		if pv != pu {
+			union(parents, rank, pv, pu)
+
+			edge := grph.NewEdge(v, u, minEdge.Weight)
+			err := ngraph.AddEdge(edge)
+			if err != nil {
+				log.Fatalln(err)
+			}
+		}
+	}
+
+	return ngraph
+}
+
+func makeSet(size int) []int {
+	parents := make([]int, size)
+	for i := 0; i < size; i++ {
+		parents[i] = i
+	}
+	return parents
+}
+
+func makeRank(size int) []int {
+	rank := make([]int, size)
+	for i := 0; i < size; i++ {
+		rank[i] = 0
+	}
+	return rank
+}
+
+func find(parents []int, v int) int {
+	if parents[v] == v {
+		return v
+	}
+	parents[v] = find(parents, parents[v])
+	return parents[v]
+}
+
+func union(parents []int, rank []int, v int, u int) {
+	if rank[v] < rank[u] {
+		parents[v] = u
+	} else if rank[v] > rank[u] {
+		parents[u] = v
+	} else {
+		rank[u]++
+		parents[v] = u
+	}
 }

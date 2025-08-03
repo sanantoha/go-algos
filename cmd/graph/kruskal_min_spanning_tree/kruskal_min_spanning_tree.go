@@ -15,6 +15,9 @@ func mst(graph *grph.EdgeWeightedGraph) *grph.EdgeWeightedGraph {
 	edges := graph.Edges()
 
 	sort.Slice(edges, func(i, j int) bool {
+		if edges[i].Weight == edges[j].Weight { // not required for tests only
+			return edges[i].V < edges[j].V
+		}
 		return edges[i].Weight < edges[j].Weight
 	})
 
@@ -116,6 +119,9 @@ func (h EdgeHeap) Len() int {
 }
 
 func (h EdgeHeap) Less(i, j int) bool {
+	if h[i].Weight == h[j].Weight {
+		return h[i].V < h[j].V
+	}
 	return h[i].Weight < h[j].Weight
 }
 
@@ -162,7 +168,6 @@ func main() {
 	fmt.Println(mst(graph))
 	fmt.Println("=========================================")
 	fmt.Println(mst1(graph))
-	fmt.Println("\n\n")
 	fmt.Println("=========================================")
 
 	graph1 := grph.NewEdgeWeightedGraph(7)
