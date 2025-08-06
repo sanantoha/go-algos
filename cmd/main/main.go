@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	grph "github.com/sanantoha/go-algos/internals/graph"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -31,8 +30,9 @@ func main() {
 	}
 
 	processedTasks := map[string]bool{
-		"symmetric_tree.go":         true,
-		"prim_min_spanning_tree.go": true,
+		"symmetric_tree.go":                           true,
+		"prim_min_spanning_tree.go":                   true,
+		"min_swaps_transform_string_to_palindrome.go": true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -54,58 +54,11 @@ func main() {
 
 func runTask() {
 
-	graph := grph.NewEdgeWeightedGraph(6)
-
-	graph.AddEdge(grph.NewEdge(0, 1, 7.0))
-	graph.AddEdge(grph.NewEdge(0, 2, 8.0))
-	graph.AddEdge(grph.NewEdge(1, 2, 3.0))
-	graph.AddEdge(grph.NewEdge(1, 3, 6.0))
-	graph.AddEdge(grph.NewEdge(2, 3, 4.0))
-	graph.AddEdge(grph.NewEdge(2, 4, 3.0))
-	graph.AddEdge(grph.NewEdge(3, 4, 2.0))
-	graph.AddEdge(grph.NewEdge(3, 5, 5.0))
-	graph.AddEdge(grph.NewEdge(4, 5, 2.0))
-	/*
-	   6 5
-	   0: 0-1 7.00
-	   1: 1-2 3.00  0-1 7.00
-	   2: 1-2 3.00  2-4 3.00
-	   3: 3-4 2.00
-	   4: 3-4 2.00  4-5 2.00  2-4 3.00
-	   5: 4-5 2.00
-	*/
-	fmt.Println(graph)
-	fmt.Println("=========================================")
-	fmt.Println(mst(graph))
-	fmt.Println("=========================================")
-
-	graph1 := grph.NewEdgeWeightedGraph(7)
-	graph1.AddEdge(grph.NewEdge(0, 1, 2.0))
-	graph1.AddEdge(grph.NewEdge(0, 2, 3.0))
-	graph1.AddEdge(grph.NewEdge(0, 3, 7.0))
-	graph1.AddEdge(grph.NewEdge(1, 2, 6.0))
-	graph1.AddEdge(grph.NewEdge(1, 6, 3.0))
-	graph1.AddEdge(grph.NewEdge(2, 4, 1.0))
-	graph1.AddEdge(grph.NewEdge(2, 5, 8.0))
-	graph1.AddEdge(grph.NewEdge(3, 4, 5.0))
-	graph1.AddEdge(grph.NewEdge(4, 5, 4.0))
-	graph1.AddEdge(grph.NewEdge(5, 6, 2.0))
-
-	/*
-	   7 6
-	   0: 0-1 2.00000  0-2 3.00000
-	   1: 0-1 2.00000  1-6 3.00000
-	   2: 2-4 1.00000  0-2 3.00000
-	   3: 3-4 5.00000
-	   4: 2-4 1.00000  3-4 5.00000
-	   5: 5-6 2.00000
-	   6: 5-6 2.00000  1-6 3.00000
-	*/
-	fmt.Println(graph1)
-	fmt.Println("=========================================")
-	fmt.Println(mst(graph1))
+	fmt.Println(minSwapsRequired("0100101")) // 2
+	fmt.Println(minSwapsRequired("1110"))    // -1
+	fmt.Println(minSwapsRequired("11101"))   // 1
 }
 
-func mst(graph *grph.EdgeWeightedGraph) *grph.EdgeWeightedGraph {
-	return nil
+func minSwapsRequired(str string) int {
+	return -1
 }
