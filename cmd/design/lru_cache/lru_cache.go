@@ -16,6 +16,10 @@ type Node struct {
 	prev  *Node
 }
 
+func (n Node) String() string {
+	return fmt.Sprintf("Node{key=%v, value=%v}", n.key, n.value)
+}
+
 func NewLRUCache(capacity int) *LRUCache {
 	head := &Node{}
 	tail := &Node{}
