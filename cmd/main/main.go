@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/sanantoha/go-algos/internals/list"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -35,6 +36,7 @@ func main() {
 		"min_swaps_transform_string_to_palindrome.go": true,
 		"lru_cache.go":                                true,
 		"heap_sort.go":                                true,
+		"reverse_list.go":                             true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -56,18 +58,12 @@ func main() {
 
 func runTask() {
 
-	arr := make([]int, 10)
-	for i := 0; i < len(arr); i++ {
-		arr[i] = rand.Intn(50)
-	}
+	head := &list.ListNode{Val: 1, Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5}}}}}
 
-	fmt.Println(arr)
-
-	heapSort(arr)
-
-	fmt.Println(arr)
+	fmt.Println(head)
+	fmt.Println(reverseList(head)) // 5 -> 4 -> 3 -> 2 -> 1
 }
 
-func heapSort(arr []int) {
-
+func reverseList(head *list.ListNode) *list.ListNode {
+	return nil
 }
