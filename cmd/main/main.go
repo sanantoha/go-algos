@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/list"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -37,6 +36,7 @@ func main() {
 		"lru_cache.go":                                true,
 		"heap_sort.go":                                true,
 		"reverse_list.go":                             true,
+		"levenshtein_distance.go":                     true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -58,12 +58,14 @@ func main() {
 
 func runTask() {
 
-	head := &list.ListNode{Val: 1, Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5}}}}}
-
-	fmt.Println(head)
-	fmt.Println(reverseList(head)) // 5 -> 4 -> 3 -> 2 -> 1
+	fmt.Println(levenshteinDistance("abc", "yabd") == 2)
+	fmt.Println(levenshteinDistance1("abc", "yabd") == 2)
 }
 
-func reverseList(head *list.ListNode) *list.ListNode {
-	return nil
+func levenshteinDistance(str1, str2 string) int {
+	return 0
+}
+
+func levenshteinDistance1(str1, str2 string) int {
+	return 0
 }
