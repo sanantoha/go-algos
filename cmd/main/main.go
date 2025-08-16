@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -39,6 +40,7 @@ func main() {
 		"levenshtein_distance.go":                     true,
 		"bst_successor_search.go":                     true,
 		"all_paths_from_source_target.go":             true,
+		"level_order_binary_tree_traverse.go":         true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -60,38 +62,44 @@ func main() {
 
 func runTask() {
 
-	graph := [][]int{
-		{1, 2},
-		{3},
-		{3},
-		{},
+	root := &tree.TreeNode{
+		Val: 5,
+		Left: &tree.TreeNode{
+			Val: 2,
+			Left: &tree.TreeNode{
+				Val: 1,
+			},
+			Right: &tree.TreeNode{
+				Val: 3,
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 10,
+			Left: &tree.TreeNode{
+				Val: 7,
+				Left: &tree.TreeNode{
+					Val: 6,
+				},
+				Right: &tree.TreeNode{
+					Val: 8,
+				},
+			},
+			Right: &tree.TreeNode{
+				Val: 15,
+				Left: &tree.TreeNode{
+					Val: 14,
+				},
+				Right: &tree.TreeNode{
+					Val: 17,
+				},
+			},
+		},
 	}
 
-	actualRec := allPathsSourceTargetRec(graph)
-	actual := allPathsSourceTarget(graph)
-
-	fmt.Println(actualRec) // [[0 1 3] [0 2 3]]
-	fmt.Println(actual)    // [[0 2 3] [0 1 3]]
-
-	graph1 := [][]int{
-		{4, 3, 1},
-		{3, 2, 4},
-		{3},
-		{4},
-		{},
-	}
-
-	actualRec = allPathsSourceTargetRec(graph1)
-	actual = allPathsSourceTarget(graph1)
-
-	fmt.Println(actualRec) // [[0 4] [0 3 4] [0 1 3 4] [0 1 2 3 4] [0 1 4]]
-	fmt.Println(actual)    // [[0 1 4] [0 1 2 3 4] [0 1 3 4] [0 3 4] [0 4]]
+	// [[5], [2, 10], [1, 3, 7, 15], [6, 8, 14, 17]]
+	fmt.Println(levelOrder(root))
 }
 
-func allPathsSourceTargetRec(graph [][]int) [][]int {
-	return nil
-}
-
-func allPathsSourceTarget(graph [][]int) [][]int {
+func levelOrder(root *tree.TreeNode) [][]int {
 	return nil
 }
