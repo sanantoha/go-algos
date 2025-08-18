@@ -6,6 +6,7 @@ import (
 	"math/rand"
 	"os"
 	"path/filepath"
+	"reflect"
 	"strings"
 )
 
@@ -41,6 +42,7 @@ func main() {
 		"bst_successor_search.go":                     true,
 		"all_paths_from_source_target.go":             true,
 		"level_order_binary_tree_traverse.go":         true,
+		"all_elements_in_two_binary_search_trees.go":  true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -62,44 +64,52 @@ func main() {
 
 func runTask() {
 
-	root := &tree.TreeNode{
-		Val: 5,
+	root1 := &tree.TreeNode{
+		Val: 9,
 		Left: &tree.TreeNode{
 			Val: 2,
-			Left: &tree.TreeNode{
-				Val: 1,
-			},
-			Right: &tree.TreeNode{
-				Val: 3,
-			},
 		},
 		Right: &tree.TreeNode{
-			Val: 10,
+			Val: 12,
 			Left: &tree.TreeNode{
-				Val: 7,
-				Left: &tree.TreeNode{
-					Val: 6,
-				},
-				Right: &tree.TreeNode{
-					Val: 8,
-				},
+				Val: 11,
 			},
 			Right: &tree.TreeNode{
 				Val: 15,
-				Left: &tree.TreeNode{
-					Val: 14,
-				},
-				Right: &tree.TreeNode{
-					Val: 17,
-				},
 			},
 		},
 	}
 
-	// [[5], [2, 10], [1, 3, 7, 15], [6, 8, 14, 17]]
-	fmt.Println(levelOrder(root))
+	root2 := &tree.TreeNode{
+		Val: 10,
+		Left: &tree.TreeNode{
+			Val: 5,
+			Left: &tree.TreeNode{
+				Val: 3,
+				Left: &tree.TreeNode{
+					Val: 1,
+				},
+				Right: &tree.TreeNode{
+					Val: 4,
+				},
+			},
+			Right: &tree.TreeNode{
+				Val: 6,
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 16,
+		},
+	}
+
+	expected := []int{1, 2, 3, 4, 5, 6, 9, 10, 11, 12, 15, 16}
+
+	res := getAllElements(root1, root2)
+
+	fmt.Println(res)
+	fmt.Println(reflect.DeepEqual(expected, res))
 }
 
-func levelOrder(root *tree.TreeNode) [][]int {
+func getAllElements(root1, root2 *tree.TreeNode) *tree.TreeNode {
 	return nil
 }
