@@ -2,11 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
-	"reflect"
 	"strings"
 )
 
@@ -43,6 +41,7 @@ func main() {
 		"all_paths_from_source_target.go":             true,
 		"level_order_binary_tree_traverse.go":         true,
 		"all_elements_in_two_binary_search_trees.go":  true,
+		"subarray_sort.go":                            true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -64,52 +63,16 @@ func main() {
 
 func runTask() {
 
-	root1 := &tree.TreeNode{
-		Val: 9,
-		Left: &tree.TreeNode{
-			Val: 2,
-		},
-		Right: &tree.TreeNode{
-			Val: 12,
-			Left: &tree.TreeNode{
-				Val: 11,
-			},
-			Right: &tree.TreeNode{
-				Val: 15,
-			},
-		},
-	}
+	output := []int{1, 2, 4, 7, 10, 11, 7, 12, 6, 7, 16, 18, 19}
+	fmt.Println(subarraySort(output))
 
-	root2 := &tree.TreeNode{
-		Val: 10,
-		Left: &tree.TreeNode{
-			Val: 5,
-			Left: &tree.TreeNode{
-				Val: 3,
-				Left: &tree.TreeNode{
-					Val: 1,
-				},
-				Right: &tree.TreeNode{
-					Val: 4,
-				},
-			},
-			Right: &tree.TreeNode{
-				Val: 6,
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 16,
-		},
-	}
+	output1 := []int{1, 2, 4, 7, 10, 11, 7, 12, 7, 7, 16, 18, 19}
+	fmt.Println(subarraySort(output1))
 
-	expected := []int{1, 2, 3, 4, 5, 6, 9, 10, 11, 12, 15, 16}
-
-	res := getAllElements(root1, root2)
-
-	fmt.Println(res)
-	fmt.Println(reflect.DeepEqual(expected, res))
+	output2 := []int{1, 2}
+	fmt.Println(subarraySort(output2))
 }
 
-func getAllElements(root1, root2 *tree.TreeNode) *tree.TreeNode {
+func subarraySort(arr []int) []int {
 	return nil
 }
