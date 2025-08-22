@@ -42,6 +42,7 @@ func main() {
 		"level_order_binary_tree_traverse.go":         true,
 		"all_elements_in_two_binary_search_trees.go":  true,
 		"subarray_sort.go":                            true,
+		"search_in_rotated_sorted_array.go":           true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -63,16 +64,22 @@ func main() {
 
 func runTask() {
 
-	output := []int{1, 2, 4, 7, 10, 11, 7, 12, 6, 7, 16, 18, 19}
-	fmt.Println(subarraySort(output))
+	arr := []int{40, 50, 60, 70, 80, 90, 0, 10, 20, 30, 31, 32, 33, 34, 35}
+	target := 90
 
-	output1 := []int{1, 2, 4, 7, 10, 11, 7, 12, 7, 7, 16, 18, 19}
-	fmt.Println(subarraySort(output1))
-
-	output2 := []int{1, 2}
-	fmt.Println(subarraySort(output2))
+	fmt.Println(findSmallestIdx(arr))
+	fmt.Println(search(arr, target))
+	fmt.Println(search1(arr, target))
 }
 
-func subarraySort(arr []int) []int {
-	return nil
+func findSmallestIdx(arr []int) int {
+	return -1
+}
+
+func search(arr []int, target int) int {
+	return -1
+}
+
+func search1(arr []int, target int) int {
+	return -1
 }
