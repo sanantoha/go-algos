@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
-	"math"
 	"math/rand"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 )
 
@@ -31,21 +31,22 @@ func main() {
 	}
 
 	processedTasks := map[string]bool{
-		"symmetric_tree.go":                           true,
-		"prim_min_spanning_tree.go":                   true,
-		"min_swaps_transform_string_to_palindrome.go": true,
-		"lru_cache.go":                                true,
-		"heap_sort.go":                                true,
-		"reverse_list.go":                             true,
-		"levenshtein_distance.go":                     true,
-		"bst_successor_search.go":                     true,
-		"all_paths_from_source_target.go":             true,
-		"level_order_binary_tree_traverse.go":         true,
-		"all_elements_in_two_binary_search_trees.go":  true,
-		"subarray_sort.go":                            true,
-		"search_in_rotated_sorted_array.go":           true,
-		"branch_sums.go":                              true,
-		"sqrt.go":                                     true,
+		"symmetric_tree.go":                             true,
+		"prim_min_spanning_tree.go":                     true,
+		"min_swaps_transform_string_to_palindrome.go":   true,
+		"lru_cache.go":                                  true,
+		"heap_sort.go":                                  true,
+		"reverse_list.go":                               true,
+		"levenshtein_distance.go":                       true,
+		"bst_successor_search.go":                       true,
+		"all_paths_from_source_target.go":               true,
+		"level_order_binary_tree_traverse.go":           true,
+		"all_elements_in_two_binary_search_trees.go":    true,
+		"subarray_sort.go":                              true,
+		"search_in_rotated_sorted_array.go":             true,
+		"branch_sums.go":                                true,
+		"sqrt.go":                                       true,
+		"populating_next_right_pointer_in_each_node.go": true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -65,19 +66,55 @@ func main() {
 	runTask()
 }
 
-func runTask() {
-
-	fmt.Println(sqrt(4))
-	fmt.Println(sqrt(5))
-	fmt.Println(sqrt(6))
-	fmt.Println(sqrt(7))
-	fmt.Println(sqrt(8))
-	fmt.Println(sqrt(9))
-	fmt.Println(sqrt(16))
-
-	fmt.Println(math.Sqrt(7))
+type Node struct {
+	Val   int
+	Left  *Node
+	Right *Node
+	Next  *Node
 }
 
-func sqrt(n int) int {
-	return -1
+func (tree *Node) String() string {
+	if tree == nil {
+		return "nil"
+	}
+	pv := ""
+	if tree.Next != nil {
+		pv = strconv.Itoa(tree.Next.Val)
+	}
+	return fmt.Sprintf("Node{Val=%d, Left=%s, Right=%s, Next=%s}", tree.Val, tree.Left.String(), tree.Right.String(), pv)
+}
+
+func runTask() {
+
+	root := &Node{
+		Val: 1,
+		Left: &Node{
+			Val: 2,
+			Left: &Node{
+				Val: 4,
+			},
+			Right: &Node{
+				Val: 5,
+			},
+		},
+		Right: &Node{
+			Val: 3,
+			Left: &Node{
+				Val: 6,
+			},
+			Right: &Node{
+				Val: 7,
+			},
+		},
+	}
+
+	fmt.Println(root)
+
+	res := connect(root)
+
+	fmt.Println(res)
+}
+
+func connect(node *Node) *Node {
+	return nil
 }
