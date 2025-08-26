@@ -5,6 +5,7 @@ import (
 	"math/rand"
 	"os"
 	"path/filepath"
+	"reflect"
 	"strconv"
 	"strings"
 )
@@ -47,6 +48,7 @@ func main() {
 		"branch_sums.go":                                true,
 		"sqrt.go":                                       true,
 		"populating_next_right_pointer_in_each_node.go": true,
+		"disk_stacking.go":                              true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -86,35 +88,27 @@ func (tree *Node) String() string {
 
 func runTask() {
 
-	root := &Node{
-		Val: 1,
-		Left: &Node{
-			Val: 2,
-			Left: &Node{
-				Val: 4,
-			},
-			Right: &Node{
-				Val: 5,
-			},
-		},
-		Right: &Node{
-			Val: 3,
-			Left: &Node{
-				Val: 6,
-			},
-			Right: &Node{
-				Val: 7,
-			},
-		},
+	input := [][]int{
+		{2, 1, 2},
+		{3, 2, 3},
+		{2, 2, 8},
+		{2, 3, 4},
+		{2, 2, 1},
+		{4, 4, 5},
 	}
 
-	fmt.Println(root)
+	expected := [][]int{
+		{2, 1, 2},
+		{3, 2, 3},
+		{4, 4, 5},
+	}
 
-	res := connect(root)
+	actual := diskStacking(input)
+	fmt.Println(actual)
 
-	fmt.Println(res)
+	fmt.Println(reflect.DeepEqual(actual, expected))
 }
 
-func connect(node *Node) *Node {
+func diskStacking(disks [][]int) [][]int {
 	return nil
 }
