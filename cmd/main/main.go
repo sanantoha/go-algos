@@ -6,7 +6,6 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
-	"strconv"
 	"strings"
 )
 
@@ -49,6 +48,7 @@ func main() {
 		"sqrt.go":                                       true,
 		"populating_next_right_pointer_in_each_node.go": true,
 		"disk_stacking.go":                              true,
+		"max_sum_increasing_subsequence.go":             true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -68,47 +68,19 @@ func main() {
 	runTask()
 }
 
-type Node struct {
-	Val   int
-	Left  *Node
-	Right *Node
-	Next  *Node
-}
-
-func (tree *Node) String() string {
-	if tree == nil {
-		return "nil"
-	}
-	pv := ""
-	if tree.Next != nil {
-		pv = strconv.Itoa(tree.Next.Val)
-	}
-	return fmt.Sprintf("Node{Val=%d, Left=%s, Right=%s, Next=%s}", tree.Val, tree.Left.String(), tree.Right.String(), pv)
-}
-
 func runTask() {
 
-	input := [][]int{
-		{2, 1, 2},
-		{3, 2, 3},
-		{2, 2, 8},
-		{2, 3, 4},
-		{2, 2, 1},
-		{4, 4, 5},
-	}
-
+	arr := []int{10, 70, 20, 30, 50, 11, 30}
 	expected := [][]int{
-		{2, 1, 2},
-		{3, 2, 3},
-		{4, 4, 5},
+		{110},
+		{10, 20, 30, 50},
 	}
 
-	actual := diskStacking(input)
+	actual := maxSumIncreasingSubsequence(arr)
 	fmt.Println(actual)
-
 	fmt.Println(reflect.DeepEqual(actual, expected))
 }
 
-func diskStacking(disks [][]int) [][]int {
+func maxSumIncreasingSubsequence(arr []int) [][]int {
 	return nil
 }
