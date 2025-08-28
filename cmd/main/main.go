@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
+	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
-	"reflect"
 	"strings"
 )
 
@@ -49,6 +49,7 @@ func main() {
 		"populating_next_right_pointer_in_each_node.go": true,
 		"disk_stacking.go":                              true,
 		"max_sum_increasing_subsequence.go":             true,
+		"max_depth_of_bst.go":                           true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -70,17 +71,79 @@ func main() {
 
 func runTask() {
 
-	arr := []int{10, 70, 20, 30, 50, 11, 30}
-	expected := [][]int{
-		{110},
-		{10, 20, 30, 50},
+	root := &tree.TreeNode{
+		Val: 5,
+		Left: &tree.TreeNode{
+			Val: 2,
+			Left: &tree.TreeNode{
+				Val: 1,
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 10,
+			Left: &tree.TreeNode{
+				Val: 7,
+			},
+			Right: &tree.TreeNode{
+				Val: 20,
+				Right: &tree.TreeNode{
+					Val: 25,
+				},
+			},
+		},
 	}
 
-	actual := maxSumIncreasingSubsequence(arr)
-	fmt.Println(actual)
-	fmt.Println(reflect.DeepEqual(actual, expected))
+	// 4
+	fmt.Println(maxDepth(root))
+	fmt.Println(maxDepthIter(root))
+	fmt.Println(maxDepthBfs(root))
+
+	fmt.Println("==================================")
+
+	root1 := &tree.TreeNode{
+		Val: 3,
+		Left: &tree.TreeNode{
+			Val: 9,
+		},
+		Right: &tree.TreeNode{
+			Val: 20,
+			Left: &tree.TreeNode{
+				Val: 15,
+			},
+			Right: &tree.TreeNode{
+				Val: 7,
+			},
+		},
+	}
+
+	// 3
+	fmt.Println(maxDepth(root1))
+	fmt.Println(maxDepthIter(root1))
+	fmt.Println(maxDepthBfs(root1))
+
+	fmt.Println("==================================")
+
+	root2 := &tree.TreeNode{
+		Val: 1,
+		Right: &tree.TreeNode{
+			Val: 2,
+		},
+	}
+
+	// 2
+	fmt.Println(maxDepth(root2))
+	fmt.Println(maxDepthIter(root2))
+	fmt.Println(maxDepthBfs(root2))
 }
 
-func maxSumIncreasingSubsequence(arr []int) [][]int {
-	return nil
+func maxDepth(root *tree.TreeNode) int {
+	return -1
+}
+
+func maxDepthIter(root *tree.TreeNode) int {
+	return -1
+}
+
+func maxDepthBfs(root *tree.TreeNode) int {
+	return -1
 }
