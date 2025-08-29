@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
+	"reflect"
 	"strings"
 )
 
@@ -50,6 +50,7 @@ func main() {
 		"disk_stacking.go":                              true,
 		"max_sum_increasing_subsequence.go":             true,
 		"max_depth_of_bst.go":                           true,
+		"knapsack_problem.go":                           true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -71,79 +72,17 @@ func main() {
 
 func runTask() {
 
-	root := &tree.TreeNode{
-		Val: 5,
-		Left: &tree.TreeNode{
-			Val: 2,
-			Left: &tree.TreeNode{
-				Val: 1,
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 10,
-			Left: &tree.TreeNode{
-				Val: 7,
-			},
-			Right: &tree.TreeNode{
-				Val: 20,
-				Right: &tree.TreeNode{
-					Val: 25,
-				},
-			},
-		},
+	input := [][]int{
+		{1, 2}, {4, 3}, {5, 6}, {6, 7},
 	}
 
-	// 4
-	fmt.Println(maxDepth(root))
-	fmt.Println(maxDepthIter(root))
-	fmt.Println(maxDepthBfs(root))
+	expected := [][]int{{10}, {1, 3}}
 
-	fmt.Println("==================================")
-
-	root1 := &tree.TreeNode{
-		Val: 3,
-		Left: &tree.TreeNode{
-			Val: 9,
-		},
-		Right: &tree.TreeNode{
-			Val: 20,
-			Left: &tree.TreeNode{
-				Val: 15,
-			},
-			Right: &tree.TreeNode{
-				Val: 7,
-			},
-		},
-	}
-
-	// 3
-	fmt.Println(maxDepth(root1))
-	fmt.Println(maxDepthIter(root1))
-	fmt.Println(maxDepthBfs(root1))
-
-	fmt.Println("==================================")
-
-	root2 := &tree.TreeNode{
-		Val: 1,
-		Right: &tree.TreeNode{
-			Val: 2,
-		},
-	}
-
-	// 2
-	fmt.Println(maxDepth(root2))
-	fmt.Println(maxDepthIter(root2))
-	fmt.Println(maxDepthBfs(root2))
+	res := knapsackProblem(input, 10)
+	fmt.Println(res)
+	fmt.Println(reflect.DeepEqual(res, expected))
 }
 
-func maxDepth(root *tree.TreeNode) int {
-	return -1
-}
-
-func maxDepthIter(root *tree.TreeNode) int {
-	return -1
-}
-
-func maxDepthBfs(root *tree.TreeNode) int {
-	return -1
+func knapsackProblem(items [][]int, capacity int) [][]int {
+	return nil
 }
