@@ -5,7 +5,6 @@ import (
 	"math/rand"
 	"os"
 	"path/filepath"
-	"reflect"
 	"strings"
 )
 
@@ -51,6 +50,7 @@ func main() {
 		"max_sum_increasing_subsequence.go":             true,
 		"max_depth_of_bst.go":                           true,
 		"knapsack_problem.go":                           true,
+		"three_sum.go":                                  true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -72,17 +72,17 @@ func main() {
 
 func runTask() {
 
-	input := [][]int{
-		{1, 2}, {4, 3}, {5, 6}, {6, 7},
-	}
+	input := []int{12, 3, 1, 2, -6, 5, -8, 6}
 
-	expected := [][]int{{10}, {1, 3}}
+	fmt.Println(threeNumberSum(input, 0))
 
-	res := knapsackProblem(input, 10)
-	fmt.Println(res)
-	fmt.Println(reflect.DeepEqual(res, expected))
+	fmt.Println(threeNumberSum1(input, 0))
 }
 
-func knapsackProblem(items [][]int, capacity int) [][]int {
+func threeNumberSum(arr []int, target int) [][3]int {
+	return nil
+}
+
+func threeNumberSum1(arr []int, target int) [][3]int {
 	return nil
 }
