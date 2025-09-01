@@ -2,9 +2,12 @@ package main
 
 import (
 	"fmt"
+	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
+	"reflect"
+	"sort"
 	"strings"
 )
 
@@ -51,6 +54,7 @@ func main() {
 		"max_depth_of_bst.go":                           true,
 		"knapsack_problem.go":                           true,
 		"three_sum.go":                                  true,
+		"find_nodes_distance_k.go":                      true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -72,17 +76,35 @@ func main() {
 
 func runTask() {
 
-	input := []int{12, 3, 1, 2, -6, 5, -8, 6}
+	root := &tree.TreeNode{Val: 1}
+	root.Left = &tree.TreeNode{Val: 2}
+	root.Right = &tree.TreeNode{Val: 3}
+	root.Left.Left = &tree.TreeNode{Val: 4}
+	root.Left.Right = &tree.TreeNode{Val: 5}
+	root.Right.Right = &tree.TreeNode{Val: 6}
+	root.Right.Right.Left = &tree.TreeNode{Val: 7}
+	root.Right.Right.Right = &tree.TreeNode{Val: 8}
 
-	fmt.Println(threeNumberSum(input, 0))
+	target := 3
+	k := 2
 
-	fmt.Println(threeNumberSum1(input, 0))
+	expected := []int{2, 7, 8}
+
+	actual := findNodesDistanceK(root, target, k)
+	sort.Ints(actual)
+	fmt.Println(actual)
+	fmt.Println(reflect.DeepEqual(actual, expected))
+
+	actual = findNodesDistanceKRec(root, target, k)
+	sort.Ints(actual)
+	fmt.Println(actual)
+	fmt.Println(reflect.DeepEqual(actual, expected))
 }
 
-func threeNumberSum(arr []int, target int) [][3]int {
+func findNodesDistanceK(root *tree.TreeNode, target int, k int) []int {
 	return nil
 }
 
-func threeNumberSum1(arr []int, target int) [][3]int {
+func findNodesDistanceKRec(root *tree.TreeNode, target int, k int) []int {
 	return nil
 }
