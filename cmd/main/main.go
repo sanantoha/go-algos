@@ -2,12 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/tree"
+	grph "github.com/sanantoha/go-algos/internals/graph"
+	log "github.com/sirupsen/logrus"
 	"math/rand"
 	"os"
 	"path/filepath"
-	"reflect"
-	"sort"
 	"strings"
 )
 
@@ -55,6 +54,7 @@ func main() {
 		"knapsack_problem.go":                           true,
 		"three_sum.go":                                  true,
 		"find_nodes_distance_k.go":                      true,
+		"dijkstra_shortest_path_as_map.go":              true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -76,35 +76,21 @@ func main() {
 
 func runTask() {
 
-	root := &tree.TreeNode{Val: 1}
-	root.Left = &tree.TreeNode{Val: 2}
-	root.Right = &tree.TreeNode{Val: 3}
-	root.Left.Left = &tree.TreeNode{Val: 4}
-	root.Left.Right = &tree.TreeNode{Val: 5}
-	root.Right.Right = &tree.TreeNode{Val: 6}
-	root.Right.Right.Left = &tree.TreeNode{Val: 7}
-	root.Right.Right.Right = &tree.TreeNode{Val: 8}
+	graph, err := grph.NewGraphAsAdjListFromFile("cmd/graph/dijkstra_shortest_path/dijkstraShortestPath.txt")
+	if err != nil {
+		log.Fatalln(err)
+	}
 
-	target := 3
-	k := 2
-
-	expected := []int{2, 7, 8}
-
-	actual := findNodesDistanceK(root, target, k)
-	sort.Ints(actual)
-	fmt.Println(actual)
-	fmt.Println(reflect.DeepEqual(actual, expected))
-
-	actual = findNodesDistanceKRec(root, target, k)
-	sort.Ints(actual)
-	fmt.Println(actual)
-	fmt.Println(reflect.DeepEqual(actual, expected))
+	fmt.Println(grph.PrintGraphAsAdjList(graph))
+	fmt.Println("=====================================")
+	sp, err := findShortestPath(graph, "0")
+	if err != nil {
+		log.Fatalln(err)
+	}
+	//   &{map[0:0 1:5 2:8 3:4 4:7] map[0: 1:3 2:1 3:0 4:3]}
+	log.Println(sp)
 }
 
-func findNodesDistanceK(root *tree.TreeNode, target int, k int) []int {
-	return nil
-}
-
-func findNodesDistanceKRec(root *tree.TreeNode, target int, k int) []int {
-	return nil
+func findShortestPath(graph map[string][]*grph.EdgeT[string], start string) (*grph.Pair[map[string]float64, map[string]string], error) {
+	return nil, nil
 }
