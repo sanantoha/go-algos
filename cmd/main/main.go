@@ -2,8 +2,7 @@ package main
 
 import (
 	"fmt"
-	grph "github.com/sanantoha/go-algos/internals/graph"
-	log "github.com/sirupsen/logrus"
+	"github.com/sanantoha/go-algos/internals/list"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -55,6 +54,7 @@ func main() {
 		"three_sum.go":                                  true,
 		"find_nodes_distance_k.go":                      true,
 		"dijkstra_shortest_path_as_map.go":              true,
+		"intersection_linked_list.go":                   true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -76,21 +76,18 @@ func main() {
 
 func runTask() {
 
-	graph, err := grph.NewGraphAsAdjListFromFile("cmd/graph/dijkstra_shortest_path/dijkstraShortestPath.txt")
-	if err != nil {
-		log.Fatalln(err)
-	}
+	common := &list.ListNode{Val: 8, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5}}}
+	l1 := &list.ListNode{Val: 4, Next: &list.ListNode{Val: 1, Next: common}}
+	l2 := &list.ListNode{Val: 5, Next: &list.ListNode{Val: 6, Next: &list.ListNode{Val: 1, Next: common}}}
 
-	fmt.Println(grph.PrintGraphAsAdjList(graph))
-	fmt.Println("=====================================")
-	sp, err := findShortestPath(graph, "0")
-	if err != nil {
-		log.Fatalln(err)
-	}
-	//   &{map[0:0 1:5 2:8 3:4 4:7] map[0: 1:3 2:1 3:0 4:3]}
-	log.Println(sp)
+	fmt.Println(getIntersectionNode(l1, l2))
+	fmt.Println(getIntersectionNode1(l1, l2))
 }
 
-func findShortestPath(graph map[string][]*grph.EdgeT[string], start string) (*grph.Pair[map[string]float64, map[string]string], error) {
-	return nil, nil
+func getIntersectionNode(l *list.ListNode, r *list.ListNode) *list.ListNode {
+	return nil
+}
+
+func getIntersectionNode1(l *list.ListNode, r *list.ListNode) *list.ListNode {
+	return nil
 }
