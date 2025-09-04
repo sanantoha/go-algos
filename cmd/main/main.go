@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/list"
+	grph "github.com/sanantoha/go-algos/internals/graph"
+	log "github.com/sirupsen/logrus"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -55,6 +56,7 @@ func main() {
 		"find_nodes_distance_k.go":                      true,
 		"dijkstra_shortest_path_as_map.go":              true,
 		"intersection_linked_list.go":                   true,
+		"depth_first_search.go":                         true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -76,18 +78,24 @@ func main() {
 
 func runTask() {
 
-	common := &list.ListNode{Val: 8, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5}}}
-	l1 := &list.ListNode{Val: 4, Next: &list.ListNode{Val: 1, Next: common}}
-	l2 := &list.ListNode{Val: 5, Next: &list.ListNode{Val: 6, Next: &list.ListNode{Val: 1, Next: common}}}
+	graph, err := grph.NewEdgeWeightedDigraphFromFile("cmd/graph/depth_first_search/dfs.txt")
+	if err != nil {
+		log.Fatalln(err)
+	}
+	log.Println(graph)
 
-	fmt.Println(getIntersectionNode(l1, l2))
-	fmt.Println(getIntersectionNode1(l1, l2))
+	log.Println("\n")
+	log.Println("=======================================")
+	log.Println(dfsRec(graph, 0))
+	log.Println("=======================================")
+	log.Println(dfsIter(graph, 0))
 }
 
-func getIntersectionNode(l *list.ListNode, r *list.ListNode) *list.ListNode {
+// test required
+func dfsRec(graph *grph.EdgeWeightedDigraph, start int) []int {
 	return nil
 }
 
-func getIntersectionNode1(l *list.ListNode, r *list.ListNode) *list.ListNode {
+func dfsIter(graph *grph.EdgeWeightedDigraph, start int) []int {
 	return nil
 }
