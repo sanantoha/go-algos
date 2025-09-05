@@ -2,8 +2,7 @@ package main
 
 import (
 	"fmt"
-	grph "github.com/sanantoha/go-algos/internals/graph"
-	log "github.com/sirupsen/logrus"
+	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -57,6 +56,7 @@ func main() {
 		"dijkstra_shortest_path_as_map.go":              true,
 		"intersection_linked_list.go":                   true,
 		"depth_first_search.go":                         true,
+		"bfs_tree_traverse.go":                          true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -78,24 +78,38 @@ func main() {
 
 func runTask() {
 
-	graph, err := grph.NewEdgeWeightedDigraphFromFile("cmd/graph/depth_first_search/dfs.txt")
-	if err != nil {
-		log.Fatalln(err)
+	root := &tree.TreeNode{
+		Val: 5,
+		Left: &tree.TreeNode{
+			Val: 2,
+			Left: &tree.TreeNode{
+				Val: 1,
+			},
+			Right: &tree.TreeNode{
+				Val: 3,
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 10,
+			Left: &tree.TreeNode{
+				Val: 7,
+			},
+			Right: &tree.TreeNode{
+				Val: 15,
+				Left: &tree.TreeNode{
+					Val: 13,
+				},
+				Right: &tree.TreeNode{
+					Val: 17,
+				},
+			},
+		},
 	}
-	log.Println(graph)
 
-	log.Println("\n")
-	log.Println("=======================================")
-	log.Println(dfsRec(graph, 0))
-	log.Println("=======================================")
-	log.Println(dfsIter(graph, 0))
+	// 5, 2, 10, 1, 3, 7, 15, 13, 17
+	fmt.Println(bfs(root))
 }
 
-// test required
-func dfsRec(graph *grph.EdgeWeightedDigraph, start int) []int {
-	return nil
-}
-
-func dfsIter(graph *grph.EdgeWeightedDigraph, start int) []int {
+func bfs(root *tree.TreeNode) []int {
 	return nil
 }

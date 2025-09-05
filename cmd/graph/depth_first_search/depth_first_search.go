@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	grph "github.com/sanantoha/go-algos/internals/graph"
 	log "github.com/sirupsen/logrus"
 	"slices"
@@ -66,11 +67,10 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	log.Println(graph)
+	fmt.Println(graph)
 
-	log.Println("\n")
-	log.Println("=======================================")
-	log.Println(dfsRec(graph, 0))
-	log.Println("=======================================")
-	log.Println(dfsIter(graph, 0))
+	fmt.Println("=======================================")
+	fmt.Println(dfsRec(graph, 0))
+	fmt.Println("=======================================")
+	fmt.Println(dfsIter(graph, 0))
 }
