@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -57,6 +56,7 @@ func main() {
 		"intersection_linked_list.go":                   true,
 		"depth_first_search.go":                         true,
 		"bfs_tree_traverse.go":                          true,
+		"binary_search.go":                              true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -78,38 +78,12 @@ func main() {
 
 func runTask() {
 
-	root := &tree.TreeNode{
-		Val: 5,
-		Left: &tree.TreeNode{
-			Val: 2,
-			Left: &tree.TreeNode{
-				Val: 1,
-			},
-			Right: &tree.TreeNode{
-				Val: 3,
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 10,
-			Left: &tree.TreeNode{
-				Val: 7,
-			},
-			Right: &tree.TreeNode{
-				Val: 15,
-				Left: &tree.TreeNode{
-					Val: 13,
-				},
-				Right: &tree.TreeNode{
-					Val: 17,
-				},
-			},
-		},
-	}
+	arr := []int{10, 20, 30, 40, 50, 60, 70, 80, 90, 100}
 
-	// 5, 2, 10, 1, 3, 7, 15, 13, 17
-	fmt.Println(bfs(root))
+	fmt.Println(binarySearch(arr, 80))
 }
 
-func bfs(root *tree.TreeNode) []int {
-	return nil
+// write test
+func binarySearch(arr []int, target int) int {
+	return -1
 }
