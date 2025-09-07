@@ -57,6 +57,7 @@ func main() {
 		"depth_first_search.go":                         true,
 		"bfs_tree_traverse.go":                          true,
 		"binary_search.go":                              true,
+		"find_pivot_index.go":                           true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -78,12 +79,13 @@ func main() {
 
 func runTask() {
 
-	arr := []int{10, 20, 30, 40, 50, 60, 70, 80, 90, 100}
+	fmt.Println(findPivotIndex([]int{1, 7, 3, 6, 5, 6}) == 3)
 
-	fmt.Println(binarySearch(arr, 80))
+	fmt.Println(findPivotIndex([]int{1, 2, 3}) == -1)
+
+	fmt.Println(findPivotIndex([]int{2, 1, -1}) == 0)
 }
 
-// write test
-func binarySearch(arr []int, target int) int {
+func findPivotIndex(arr []int) int {
 	return -1
 }
