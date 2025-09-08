@@ -58,6 +58,7 @@ func main() {
 		"bfs_tree_traverse.go":                          true,
 		"binary_search.go":                              true,
 		"find_pivot_index.go":                           true,
+		"longest_decr_subseq.go":                        true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -79,13 +80,33 @@ func main() {
 
 func runTask() {
 
-	fmt.Println(findPivotIndex([]int{1, 7, 3, 6, 5, 6}) == 3)
+	arr := []int{5, 6, 7, 6, 5, 4, 3, 10, 14, 12} // 5
 
-	fmt.Println(findPivotIndex([]int{1, 2, 3}) == -1)
+	fmt.Println(lds(arr))
+	fmt.Println(lds1(arr))
+	fmt.Println(ldsList(arr))
+	fmt.Println(ldsList1(arr))
 
-	fmt.Println(findPivotIndex([]int{2, 1, -1}) == 0)
+	arr1 := []int{100, 10, 9, 8, 7, 6, 5, 90, 80, 70, 60, 50, 40, 30, 20} // 9
+
+	fmt.Println(lds(arr1))
+	fmt.Println(lds1(arr1))
+	fmt.Println(ldsList(arr1))
+	fmt.Println(ldsList1(arr1))
 }
 
-func findPivotIndex(arr []int) int {
+func lds(arr []int) int {
 	return -1
+}
+
+func lds1(arr []int) int {
+	return -1
+}
+
+func ldsList(arr []int) []int {
+	return nil
+}
+
+func ldsList1(arr []int) []int {
+	return nil
 }
