@@ -59,6 +59,7 @@ func main() {
 		"binary_search.go":                              true,
 		"find_pivot_index.go":                           true,
 		"longest_decr_subseq.go":                        true,
+		"median_of_two_sorted_arrays.go":                true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -80,33 +81,17 @@ func main() {
 
 func runTask() {
 
-	arr := []int{5, 6, 7, 6, 5, 4, 3, 10, 14, 12} // 5
+	arr1 := []int{1, 2, 3, 4, 5, 6}
+	arr2 := []int{7, 8, 9, 10, 11, 12}
 
-	fmt.Println(lds(arr))
-	fmt.Println(lds1(arr))
-	fmt.Println(ldsList(arr))
-	fmt.Println(ldsList1(arr))
-
-	arr1 := []int{100, 10, 9, 8, 7, 6, 5, 90, 80, 70, 60, 50, 40, 30, 20} // 9
-
-	fmt.Println(lds(arr1))
-	fmt.Println(lds1(arr1))
-	fmt.Println(ldsList(arr1))
-	fmt.Println(ldsList1(arr1))
+	fmt.Println(medianOfTwoSortedArrays(arr1, arr2))
+	fmt.Println(medianOfTwoSortedArrays1(arr1, arr2))
 }
 
-func lds(arr []int) int {
-	return -1
+func medianOfTwoSortedArrays(arr1, arr2 []int) float64 {
+	return 0
 }
 
-func lds1(arr []int) int {
-	return -1
-}
-
-func ldsList(arr []int) []int {
-	return nil
-}
-
-func ldsList1(arr []int) []int {
-	return nil
+func medianOfTwoSortedArrays1(arr1, arr2 []int) float64 {
+	return 0
 }
