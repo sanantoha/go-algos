@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -60,6 +61,7 @@ func main() {
 		"find_pivot_index.go":                           true,
 		"longest_decr_subseq.go":                        true,
 		"median_of_two_sorted_arrays.go":                true,
+		"dfs_tree_traverse.go":                          true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -81,17 +83,43 @@ func main() {
 
 func runTask() {
 
-	arr1 := []int{1, 2, 3, 4, 5, 6}
-	arr2 := []int{7, 8, 9, 10, 11, 12}
+	root := &tree.TreeNode{
+		Val: 5,
+		Left: &tree.TreeNode{
+			Val: 2,
+			Left: &tree.TreeNode{
+				Val: 1,
+			},
+			Right: &tree.TreeNode{
+				Val: 3,
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 8,
+			Left: &tree.TreeNode{
+				Val: 7,
+			},
+			Right: &tree.TreeNode{
+				Val: 9,
+			},
+		},
+	}
 
-	fmt.Println(medianOfTwoSortedArrays(arr1, arr2))
-	fmt.Println(medianOfTwoSortedArrays1(arr1, arr2))
+	fmt.Println(preOrder(root)) // 5 2 1 3 8 7 9
+
+	fmt.Println(inOrder(root)) // 1 2 3 5 7 8 9
+
+	fmt.Println(postOrder(root)) // 1 3 2 7 9 8 5
 }
 
-func medianOfTwoSortedArrays(arr1, arr2 []int) float64 {
-	return 0
+func preOrder(root *tree.TreeNode) []int {
+	return nil
 }
 
-func medianOfTwoSortedArrays1(arr1, arr2 []int) float64 {
-	return 0
+func inOrder(root *tree.TreeNode) []int {
+	return nil
+}
+
+func postOrder(root *tree.TreeNode) []int {
+	return nil
 }
