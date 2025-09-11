@@ -62,6 +62,7 @@ func main() {
 		"longest_decr_subseq.go":                        true,
 		"median_of_two_sorted_arrays.go":                true,
 		"dfs_tree_traverse.go":                          true,
+		"binary_tree_zigzag_level_order_traverse.go":    true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -95,31 +96,26 @@ func runTask() {
 			},
 		},
 		Right: &tree.TreeNode{
-			Val: 8,
+			Val: 10,
 			Left: &tree.TreeNode{
 				Val: 7,
 			},
 			Right: &tree.TreeNode{
-				Val: 9,
+				Val: 15,
+				Left: &tree.TreeNode{
+					Val: 14,
+				},
+				Right: &tree.TreeNode{
+					Val: 17,
+				},
 			},
 		},
 	}
 
-	fmt.Println(preOrder(root)) // 5 2 1 3 8 7 9
-
-	fmt.Println(inOrder(root)) // 1 2 3 5 7 8 9
-
-	fmt.Println(postOrder(root)) // 1 3 2 7 9 8 5
+	// [[5], [10, 2], [1, 3, 7, 15], [17, 14]]
+	fmt.Println(zigZag(root))
 }
 
-func preOrder(root *tree.TreeNode) []int {
-	return nil
-}
-
-func inOrder(root *tree.TreeNode) []int {
-	return nil
-}
-
-func postOrder(root *tree.TreeNode) []int {
+func zigZag(root *tree.TreeNode) [][]int {
 	return nil
 }
