@@ -2,11 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
-	"slices"
 	"strings"
 )
 
@@ -64,6 +62,7 @@ func main() {
 		"median_of_two_sorted_arrays.go":                true,
 		"dfs_tree_traverse.go":                          true,
 		"binary_tree_zigzag_level_order_traverse.go":    true,
+		"regular_expressions.go":                        true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -85,75 +84,25 @@ func main() {
 
 func runTask() {
 
-	root := &tree.TreeNode{
-		Val: 5,
-		Left: &tree.TreeNode{
-			Val: 2,
-			Left: &tree.TreeNode{
-				Val: 1,
-			},
-			Right: &tree.TreeNode{
-				Val: 3,
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 10,
-			Left: &tree.TreeNode{
-				Val: 7,
-			},
-			Right: &tree.TreeNode{
-				Val: 15,
-				Left: &tree.TreeNode{
-					Val: 14,
-				},
-				Right: &tree.TreeNode{
-					Val: 17,
-				},
-			},
-		},
-	}
+	fmt.Println(!isMatch("aa", "a"))
+	fmt.Println(isMatch("aa", "a*"))
+	fmt.Println(isMatch("abcde", ".*"))
+	fmt.Println(isMatch("abcde", ".*de"))
+	fmt.Println(!isMatch("abcde", ".*dk"))
 
-	// [[5], [10, 2], [1, 3, 7, 15], [17, 14]]
-	fmt.Println(zigZag(root))
+	fmt.Println("======================================")
+
+	fmt.Println(!isMatchIter("aa", "a"))
+	fmt.Println(isMatchIter("aa", "a*"))
+	fmt.Println(isMatchIter("abcde", ".*"))
+	fmt.Println(isMatchIter("abcde", ".*de"))
+	fmt.Println(!isMatchIter("abcde", ".*dk"))
 }
 
-func zigZag(root *tree.TreeNode) [][]int {
-	if root == nil {
-		return nil
-	}
-	res := make([][]int, 0)
-	queue := make([]*tree.TreeNode, 1)
-	queue[0] = root
+func isMatch(s string, p string) bool {
+	return false
+}
 
-	idx := 0
-	for len(queue) > 0 {
-		size := len(queue)
-
-		subRes := make([]int, 0)
-
-		for size > 0 {
-			size--
-			curr := queue[0]
-			queue = queue[1:]
-			if curr == nil {
-				continue
-			}
-			subRes = append(subRes, curr.Val)
-
-			queue = append(queue, curr.Left)
-			queue = append(queue, curr.Right)
-		}
-
-		if idx%2 == 1 {
-			slices.Reverse(subRes)
-		}
-
-		if len(subRes) > 0 {
-			res = append(res, subRes)
-		}
-
-		idx++
-	}
-
-	return res
+func isMatchIter(s string, p string) bool {
+	return false
 }
