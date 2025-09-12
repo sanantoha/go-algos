@@ -6,6 +6,7 @@ import (
 	"math/rand"
 	"os"
 	"path/filepath"
+	"slices"
 	"strings"
 )
 
@@ -117,5 +118,42 @@ func runTask() {
 }
 
 func zigZag(root *tree.TreeNode) [][]int {
-	return nil
+	if root == nil {
+		return nil
+	}
+	res := make([][]int, 0)
+	queue := make([]*tree.TreeNode, 1)
+	queue[0] = root
+
+	idx := 0
+	for len(queue) > 0 {
+		size := len(queue)
+
+		subRes := make([]int, 0)
+
+		for size > 0 {
+			size--
+			curr := queue[0]
+			queue = queue[1:]
+			if curr == nil {
+				continue
+			}
+			subRes = append(subRes, curr.Val)
+
+			queue = append(queue, curr.Left)
+			queue = append(queue, curr.Right)
+		}
+
+		if idx%2 == 1 {
+			slices.Reverse(subRes)
+		}
+
+		if len(subRes) > 0 {
+			res = append(res, subRes)
+		}
+
+		idx++
+	}
+
+	return res
 }
