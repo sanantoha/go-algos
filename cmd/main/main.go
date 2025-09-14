@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -65,6 +64,7 @@ func main() {
 		"binary_tree_zigzag_level_order_traverse.go":    true,
 		"regular_expressions.go":                        true,
 		"dfs_tree_traverse_rec.go":                      true,
+		"spiral_matrix_traverse.go":                     true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -86,43 +86,17 @@ func main() {
 
 func runTask() {
 
-	root := &tree.TreeNode{
-		Val: 5,
-		Left: &tree.TreeNode{
-			Val: 2,
-			Left: &tree.TreeNode{
-				Val: 1,
-			},
-			Right: &tree.TreeNode{
-				Val: 3,
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 8,
-			Left: &tree.TreeNode{
-				Val: 7,
-			},
-			Right: &tree.TreeNode{
-				Val: 9,
-			},
-		},
+	matrix := [][]int{
+		{1, 2, 3, 5, 6, 7},
+		{19, 20, 21, 22, 23, 8},
+		{18, 29, 30, 31, 24, 9},
+		{17, 28, 27, 26, 25, 10},
+		{16, 15, 14, 13, 12, 11},
 	}
 
-	fmt.Println(preOrderRec(root)) // 5 2 1 3 8 7 9
-
-	fmt.Println(inOrderRec(root)) // 1 2 3 5 7 8 9
-
-	fmt.Println(postOrderRec(root)) // 1 3 2 7 9 8 5
+	fmt.Println(spiral(matrix))
 }
 
-func preOrderRec(root *tree.TreeNode) []int {
-	return nil
-}
-
-func inOrderRec(root *tree.TreeNode) []int {
-	return nil
-}
-
-func postOrderRec(root *tree.TreeNode) []int {
+func spiral(matrix [][]int) []int {
 	return nil
 }
