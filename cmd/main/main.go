@@ -5,6 +5,8 @@ import (
 	"math/rand"
 	"os"
 	"path/filepath"
+	"reflect"
+	"sort"
 	"strings"
 )
 
@@ -65,6 +67,7 @@ func main() {
 		"regular_expressions.go":                        true,
 		"dfs_tree_traverse_rec.go":                      true,
 		"spiral_matrix_traverse.go":                     true,
+		"stable_internships.go":                         true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -86,17 +89,33 @@ func main() {
 
 func runTask() {
 
-	matrix := [][]int{
-		{1, 2, 3, 5, 6, 7},
-		{19, 20, 21, 22, 23, 8},
-		{18, 29, 30, 31, 24, 9},
-		{17, 28, 27, 26, 25, 10},
-		{16, 15, 14, 13, 12, 11},
+	interns := [][]int{
+		{0, 1, 2},
+		{0, 2, 1},
+		{1, 2, 0},
 	}
 
-	fmt.Println(spiral(matrix))
+	teams := [][]int{
+		{2, 1, 0},
+		{0, 1, 2},
+		{0, 1, 2},
+	}
+
+	expected := [][]int{
+		{0, 1},
+		{1, 0},
+		{2, 2},
+	}
+
+	result := stableInternships(interns, teams)
+	sort.Slice(result, func(i, j int) bool {
+		return result[i][0] < result[j][0]
+	})
+
+	fmt.Println(result)
+	fmt.Println(reflect.DeepEqual(expected, result))
 }
 
-func spiral(matrix [][]int) []int {
+func stableInternships(interns [][]int, teams [][]int) [][]int {
 	return nil
 }
