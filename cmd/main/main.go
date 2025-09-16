@@ -2,11 +2,10 @@ package main
 
 import (
 	"fmt"
+	"github.com/sanantoha/go-algos/internals/list"
 	"math/rand"
 	"os"
 	"path/filepath"
-	"reflect"
-	"sort"
 	"strings"
 )
 
@@ -68,6 +67,7 @@ func main() {
 		"dfs_tree_traverse_rec.go":                      true,
 		"spiral_matrix_traverse.go":                     true,
 		"stable_internships.go":                         true,
+		"merge_two_sorted_list.go":                      true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -89,33 +89,12 @@ func main() {
 
 func runTask() {
 
-	interns := [][]int{
-		{0, 1, 2},
-		{0, 2, 1},
-		{1, 2, 0},
-	}
+	head1 := &list.ListNode{Val: 4, Next: &list.ListNode{Val: 8, Next: &list.ListNode{Val: 15, Next: &list.ListNode{Val: 19}}}}
+	head2 := &list.ListNode{Val: 7, Next: &list.ListNode{Val: 9, Next: &list.ListNode{Val: 10, Next: &list.ListNode{Val: 16}}}}
 
-	teams := [][]int{
-		{2, 1, 0},
-		{0, 1, 2},
-		{0, 1, 2},
-	}
-
-	expected := [][]int{
-		{0, 1},
-		{1, 0},
-		{2, 2},
-	}
-
-	result := stableInternships(interns, teams)
-	sort.Slice(result, func(i, j int) bool {
-		return result[i][0] < result[j][0]
-	})
-
-	fmt.Println(result)
-	fmt.Println(reflect.DeepEqual(expected, result))
+	fmt.Println(mergeTwoLists(head1, head2))
 }
 
-func stableInternships(interns [][]int, teams [][]int) [][]int {
+func mergeTwoLists(head1, head2 *list.ListNode) *list.ListNode {
 	return nil
 }
