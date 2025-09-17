@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/list"
+	grph "github.com/sanantoha/go-algos/internals/graph"
+	log "github.com/sirupsen/logrus"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -68,6 +69,7 @@ func main() {
 		"spiral_matrix_traverse.go":                     true,
 		"stable_internships.go":                         true,
 		"merge_two_sorted_list.go":                      true,
+		"breadth_first_search.go":                       true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -89,12 +91,17 @@ func main() {
 
 func runTask() {
 
-	head1 := &list.ListNode{Val: 4, Next: &list.ListNode{Val: 8, Next: &list.ListNode{Val: 15, Next: &list.ListNode{Val: 19}}}}
-	head2 := &list.ListNode{Val: 7, Next: &list.ListNode{Val: 9, Next: &list.ListNode{Val: 10, Next: &list.ListNode{Val: 16}}}}
+	graph, err := grph.NewEdgeWeightedDigraphFromFile("cmd/graph/breadth_first_search/bfs.txt")
 
-	fmt.Println(mergeTwoLists(head1, head2))
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	log.Println(graph)
+	log.Println("=====================================")
+	log.Println(bfs(graph, 0)) // [0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24]
 }
 
-func mergeTwoLists(head1, head2 *list.ListNode) *list.ListNode {
+func bfs(graph *grph.EdgeWeightedDigraph, start int) []int {
 	return nil
 }
