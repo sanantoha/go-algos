@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	grph "github.com/sanantoha/go-algos/internals/graph"
-	log "github.com/sirupsen/logrus"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -70,6 +68,7 @@ func main() {
 		"stable_internships.go":                         true,
 		"merge_two_sorted_list.go":                      true,
 		"breadth_first_search.go":                       true,
+		"validate_starting_city.go":                     true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -91,17 +90,24 @@ func main() {
 
 func runTask() {
 
-	graph, err := grph.NewEdgeWeightedDigraphFromFile("cmd/graph/breadth_first_search/bfs.txt")
+	distances := []int{5, 25, 15, 10, 15}
+	fuel := []int{1, 2, 1, 0, 3}
+	mpg := 10
+	expected := 4
 
-	if err != nil {
-		log.Fatalln(err)
-	}
+	actual := validateStartingCity(distances, fuel, mpg)
+	fmt.Println(actual)
+	fmt.Println(expected == actual)
 
-	log.Println(graph)
-	log.Println("=====================================")
-	log.Println(bfs(graph, 0)) // [0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24]
+	actual = validateStartingCity1(distances, fuel, mpg)
+	fmt.Println(actual)
+	fmt.Println(expected == actual)
 }
 
-func bfs(graph *grph.EdgeWeightedDigraph, start int) []int {
-	return nil
+func validateStartingCity(distances []int, fuel []int, mpg int) int {
+	return -1
+}
+
+func validateStartingCity1(distances []int, fuel []int, mpg int) int {
+	return -1
 }
