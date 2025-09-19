@@ -69,6 +69,7 @@ func main() {
 		"merge_two_sorted_list.go":                      true,
 		"breadth_first_search.go":                       true,
 		"validate_starting_city.go":                     true,
+		"string_permutations.go":                        true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -90,24 +91,11 @@ func main() {
 
 func runTask() {
 
-	distances := []int{5, 25, 15, 10, 15}
-	fuel := []int{1, 2, 1, 0, 3}
-	mpg := 10
-	expected := 4
+	str := "abc"
 
-	actual := validateStartingCity(distances, fuel, mpg)
-	fmt.Println(actual)
-	fmt.Println(expected == actual)
-
-	actual = validateStartingCity1(distances, fuel, mpg)
-	fmt.Println(actual)
-	fmt.Println(expected == actual)
+	fmt.Println(permute(str))
 }
 
-func validateStartingCity(distances []int, fuel []int, mpg int) int {
-	return -1
-}
-
-func validateStartingCity1(distances []int, fuel []int, mpg int) int {
-	return -1
+func permute(str string) []string {
+	return nil
 }
