@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -72,6 +71,7 @@ func main() {
 		"validate_starting_city.go":                     true,
 		"string_permutations.go":                        true,
 		"balanced_binary_tree.go":                       true,
+		"generate_parentheses.go":                       true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -93,48 +93,11 @@ func main() {
 
 func runTask() {
 
-	root1 := &tree.TreeNode{
-		Val: 3,
-		Left: &tree.TreeNode{
-			Val: 9,
-		},
-		Right: &tree.TreeNode{
-			Val: 20,
-			Left: &tree.TreeNode{
-				Val: 15,
-			},
-			Right: &tree.TreeNode{
-				Val: 7,
-			},
-		},
-	}
+	fmt.Println(generateParentheses(3))
 
-	root2 := &tree.TreeNode{
-		Val: 1,
-		Left: &tree.TreeNode{
-			Val: 2,
-			Left: &tree.TreeNode{
-				Val: 3,
-			},
-			Right: &tree.TreeNode{
-				Val: 3,
-				Left: &tree.TreeNode{
-					Val: 4,
-				},
-				Right: &tree.TreeNode{
-					Val: 4,
-				},
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 2,
-		},
-	}
-
-	fmt.Println(isBalanced(root1))
-	fmt.Println(!isBalanced(root2))
+	fmt.Println(generateParentheses(2))
 }
 
-func isBalanced(root *tree.TreeNode) bool {
-	return false
+func generateParentheses(cnt int) []string {
+	return nil
 }
