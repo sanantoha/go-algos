@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/list"
-	log "github.com/sirupsen/logrus"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -75,6 +73,7 @@ func main() {
 		"balanced_binary_tree.go":                       true,
 		"generate_parentheses.go":                       true,
 		"deep_copy_arbitrary_pointer.go":                true,
+		"optimal_freelancing.go":                        true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -96,54 +95,46 @@ func main() {
 
 func runTask() {
 
-	root := &list.ArbitraryListNode{Val: 1}
-	second := &list.ArbitraryListNode{Val: 2}
-	third := &list.ArbitraryListNode{Val: 3}
-	four := &list.ArbitraryListNode{Val: 4}
-	five := &list.ArbitraryListNode{Val: 5}
-
-	root.Next = second
-	second.Next = third
-	third.Next = four
-	four.Next = five
-
-	second.Arbitrary = five
-	third.Arbitrary = root
-	five.Arbitrary = second
-
-	copyNode := deepCopy(root)
-
-	assertArbitraryListNode(root, copyNode)
-	fmt.Println(true)
-}
-
-func deepCopy(root *list.ArbitraryListNode) *list.ArbitraryListNode {
-	return nil
-}
-
-func assertArbitraryListNode(root *list.ArbitraryListNode, copy *list.ArbitraryListNode) {
-	c1 := root
-	c2 := copy
-
-	for c1 != nil && c2 != nil {
-		if c1.Val != c2.Val {
-			log.Fatalf("%d != %d", c1.Val, c2.Val)
-		}
-		if c1 == c2 {
-			log.Fatalf("%v == %v", c1, c2)
-		}
-		if (c1.Arbitrary == nil && c2.Arbitrary != nil) || (c1.Arbitrary != nil && c2.Arbitrary == nil) {
-			log.Fatalf("%v != %v", c1.Arbitrary, c2.Arbitrary)
-		}
-		if c1.Arbitrary != nil && c1.Arbitrary == c2.Arbitrary {
-			log.Fatalf("%v == %v", c1.Arbitrary, c2.Arbitrary)
-		}
-
-		c1 = c1.Next
-		c2 = c2.Next
+	jobs := []struct {
+		deadline int
+		payment  int
+	}{
+		{
+			deadline: 2,
+			payment:  2,
+		},
+		{
+			deadline: 4,
+			payment:  3,
+		},
+		{
+			deadline: 5,
+			payment:  1,
+		},
+		{
+			deadline: 7,
+			payment:  2,
+		},
+		{
+			deadline: 3,
+			payment:  1,
+		},
+		{
+			deadline: 3,
+			payment:  2,
+		},
+		{
+			deadline: 1,
+			payment:  3,
+		},
 	}
 
-	if c1 != nil || c2 != nil {
-		log.Fatalf("%v != %v", c1, c2)
-	}
+	fmt.Println(optimalFreelancing(jobs)) // 13
+}
+
+func optimalFreelancing(jobs []struct {
+	deadline int
+	payment  int
+}) int {
+	return 0
 }
