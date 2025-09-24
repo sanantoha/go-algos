@@ -2,11 +2,12 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/sanantoha/go-algos/internals/tree"
 )
 
 func main() {
@@ -105,5 +106,6 @@ func runTask() {
 }
 
 func buildTree(preorder []int, inorder []int) *tree.TreeNode {
+	fmt.Println("test")
 	return nil
 }
