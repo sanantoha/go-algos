@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/sanantoha/go-algos/internals/tree"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -30,50 +31,51 @@ func main() {
 	}
 
 	processedTasks := map[string]bool{
-		"symmetric_tree.go":                             true,
-		"prim_min_spanning_tree.go":                     true,
-		"min_swaps_transform_string_to_palindrome.go":   true,
-		"lru_cache.go":                                  true,
-		"heap_sort.go":                                  true,
-		"reverse_list.go":                               true,
-		"levenshtein_distance.go":                       true,
-		"bst_successor_search.go":                       true,
-		"all_paths_from_source_target.go":               true,
-		"level_order_binary_tree_traverse.go":           true,
-		"all_elements_in_two_binary_search_trees.go":    true,
-		"subarray_sort.go":                              true,
-		"search_in_rotated_sorted_array.go":             true,
-		"branch_sums.go":                                true,
-		"sqrt.go":                                       true,
-		"populating_next_right_pointer_in_each_node.go": true,
-		"disk_stacking.go":                              true,
-		"max_sum_increasing_subsequence.go":             true,
-		"max_depth_of_bst.go":                           true,
-		"knapsack_problem.go":                           true,
-		"three_sum.go":                                  true,
-		"find_nodes_distance_k.go":                      true,
-		"dijkstra_shortest_path_as_map.go":              true,
-		"intersection_linked_list.go":                   true,
-		"depth_first_search.go":                         true,
-		"bfs_tree_traverse.go":                          true,
-		"binary_search.go":                              true,
-		"find_pivot_index.go":                           true,
-		"longest_decr_subseq.go":                        true,
-		"median_of_two_sorted_arrays.go":                true,
-		"dfs_tree_traverse.go":                          true,
-		"binary_tree_zigzag_level_order_traverse.go":    true,
-		"regular_expressions.go":                        true,
-		"dfs_tree_traverse_rec.go":                      true,
-		"spiral_matrix_traverse.go":                     true,
-		"stable_internships.go":                         true,
-		"merge_two_sorted_list.go":                      true,
-		"breadth_first_search.go":                       true,
-		"validate_starting_city.go":                     true,
-		"string_permutations.go":                        true,
-		"balanced_binary_tree.go":                       true,
-		"generate_parentheses.go":                       true,
-		"deep_copy_arbitrary_pointer.go":                true,
-		"optimal_freelancing.go":                        true,
+		"symmetric_tree.go":                                  true,
+		"prim_min_spanning_tree.go":                          true,
+		"min_swaps_transform_string_to_palindrome.go":        true,
+		"lru_cache.go":                                       true,
+		"heap_sort.go":                                       true,
+		"reverse_list.go":                                    true,
+		"levenshtein_distance.go":                            true,
+		"bst_successor_search.go":                            true,
+		"all_paths_from_source_target.go":                    true,
+		"level_order_binary_tree_traverse.go":                true,
+		"all_elements_in_two_binary_search_trees.go":         true,
+		"subarray_sort.go":                                   true,
+		"search_in_rotated_sorted_array.go":                  true,
+		"branch_sums.go":                                     true,
+		"sqrt.go":                                            true,
+		"populating_next_right_pointer_in_each_node.go":      true,
+		"disk_stacking.go":                                   true,
+		"max_sum_increasing_subsequence.go":                  true,
+		"max_depth_of_bst.go":                                true,
+		"knapsack_problem.go":                                true,
+		"three_sum.go":                                       true,
+		"find_nodes_distance_k.go":                           true,
+		"dijkstra_shortest_path_as_map.go":                   true,
+		"intersection_linked_list.go":                        true,
+		"depth_first_search.go":                              true,
+		"bfs_tree_traverse.go":                               true,
+		"binary_search.go":                                   true,
+		"find_pivot_index.go":                                true,
+		"longest_decr_subseq.go":                             true,
+		"median_of_two_sorted_arrays.go":                     true,
+		"dfs_tree_traverse.go":                               true,
+		"binary_tree_zigzag_level_order_traverse.go":         true,
+		"regular_expressions.go":                             true,
+		"dfs_tree_traverse_rec.go":                           true,
+		"spiral_matrix_traverse.go":                          true,
+		"stable_internships.go":                              true,
+		"merge_two_sorted_list.go":                           true,
+		"breadth_first_search.go":                            true,
+		"validate_starting_city.go":                          true,
+		"string_permutations.go":                             true,
+		"balanced_binary_tree.go":                            true,
+		"generate_parentheses.go":                            true,
+		"deep_copy_arbitrary_pointer.go":                     true,
+		"optimal_freelancing.go":                             true,
+		"construct_binary_tree_from_preorder_and_inorder.go": true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -95,46 +97,13 @@ func main() {
 
 func runTask() {
 
-	jobs := []struct {
-		deadline int
-		payment  int
-	}{
-		{
-			deadline: 2,
-			payment:  2,
-		},
-		{
-			deadline: 4,
-			payment:  3,
-		},
-		{
-			deadline: 5,
-			payment:  1,
-		},
-		{
-			deadline: 7,
-			payment:  2,
-		},
-		{
-			deadline: 3,
-			payment:  1,
-		},
-		{
-			deadline: 3,
-			payment:  2,
-		},
-		{
-			deadline: 1,
-			payment:  3,
-		},
-	}
-
-	fmt.Println(optimalFreelancing(jobs)) // 13
+	preorder := []int{3, 9, 20, 15, 7}
+	inorder := []int{9, 3, 15, 20, 7}
+	// TreeNode{Val=3, Left=TreeNode{Val=9, Left=nil, Right=nil}, Right=TreeNode{Val=20, Left=TreeNode{Val=15, Left=nil, Right=nil}, Right=TreeNode{Val=7, Left=nil, Right=nil}}}
+	root := buildTree(preorder, inorder)
+	fmt.Println(root)
 }
 
-func optimalFreelancing(jobs []struct {
-	deadline int
-	payment  int
-}) int {
-	return 0
+func buildTree(preorder []int, inorder []int) *tree.TreeNode {
+	return nil
 }

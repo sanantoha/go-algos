@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 	"sort"
 )
 
@@ -22,7 +21,7 @@ func optimalFreelancing(jobs []struct {
 	maxProfit := 0
 
 	for _, job := range jobs {
-		maxTime := int(math.Min(float64(job.deadline), float64(lengthOfWeek)))
+		maxTime := min(lengthOfWeek, job.deadline)
 		for time := maxTime - 1; time >= 0; time-- {
 			if !timelines[time] {
 				timelines[time] = true
