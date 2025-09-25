@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/sanantoha/go-algos/internals/tree"
+	"github.com/sanantoha/go-algos/internals/graph"
 )
 
 func main() {
@@ -77,6 +77,7 @@ func main() {
 		"deep_copy_arbitrary_pointer.go":                     true,
 		"optimal_freelancing.go":                             true,
 		"construct_binary_tree_from_preorder_and_inorder.go": true,
+		"clone_graph.go":                                     true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -98,14 +99,28 @@ func main() {
 
 func runTask() {
 
-	preorder := []int{3, 9, 20, 15, 7}
-	inorder := []int{9, 3, 15, 20, 7}
-	// TreeNode{Val=3, Left=TreeNode{Val=9, Left=nil, Right=nil}, Right=TreeNode{Val=20, Left=TreeNode{Val=15, Left=nil, Right=nil}, Right=TreeNode{Val=7, Left=nil, Right=nil}}}
-	root := buildTree(preorder, inorder)
-	fmt.Println(root)
+	n1 := graph.NewNode(1)
+	n2 := graph.NewNode(2)
+	n3 := graph.NewNode(3)
+	n4 := graph.NewNode(4)
+
+	n1.Neighbors = append(n1.Neighbors, n2)
+	n1.Neighbors = append(n1.Neighbors, n4)
+
+	n2.Neighbors = append(n2.Neighbors, n1)
+	n2.Neighbors = append(n2.Neighbors, n3)
+
+	n3.Neighbors = append(n3.Neighbors, n2)
+	n3.Neighbors = append(n3.Neighbors, n4)
+
+	n4.Neighbors = append(n4.Neighbors, n1)
+	n4.Neighbors = append(n4.Neighbors, n3)
+
+	res := cloneGraph(n1)
+
+	fmt.Println(res)
 }
 
-func buildTree(preorder []int, inorder []int) *tree.TreeNode {
-	fmt.Println("test")
+func cloneGraph(node *graph.Node) *graph.Node {
 	return nil
 }
