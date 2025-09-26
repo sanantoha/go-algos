@@ -1,13 +1,13 @@
 package main
 
 import (
+	"errors"
 	"fmt"
+	"log"
 	"math/rand"
 	"os"
 	"path/filepath"
 	"strings"
-
-	"github.com/sanantoha/go-algos/internals/graph"
 )
 
 func main() {
@@ -78,6 +78,7 @@ func main() {
 		"optimal_freelancing.go":                             true,
 		"construct_binary_tree_from_preorder_and_inorder.go": true,
 		"clone_graph.go":                                     true,
+		"topological_sort_as_map.go":                         true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -99,28 +100,31 @@ func main() {
 
 func runTask() {
 
-	n1 := graph.NewNode(1)
-	n2 := graph.NewNode(2)
-	n3 := graph.NewNode(3)
-	n4 := graph.NewNode(4)
+	graph := make(map[string][]string, 0)
 
-	n1.Neighbors = append(n1.Neighbors, n2)
-	n1.Neighbors = append(n1.Neighbors, n4)
+	graph["A"] = []string{"B", "C", "D"}
+	graph["B"] = []string{"C"}
+	graph["C"] = []string{"D"}
+	//graph["D"] = []string{"A", "B"}
+	graph["D"] = []string{}
 
-	n2.Neighbors = append(n2.Neighbors, n1)
-	n2.Neighbors = append(n2.Neighbors, n3)
+	res, err := sort(graph)
+	if err != nil {
+		log.Println(err)
+	}
+	fmt.Println(res)
 
-	n3.Neighbors = append(n3.Neighbors, n2)
-	n3.Neighbors = append(n3.Neighbors, n4)
-
-	n4.Neighbors = append(n4.Neighbors, n1)
-	n4.Neighbors = append(n4.Neighbors, n3)
-
-	res := cloneGraph(n1)
-
+	res, err = sortIter(graph)
+	if err != nil {
+		log.Println(err)
+	}
 	fmt.Println(res)
 }
 
-func cloneGraph(node *graph.Node) *graph.Node {
-	return nil
+func sort(graph map[string][]string) ([]string, error) {
+	return nil, errors.New("not implemented")
+}
+
+func sortIter(graph map[string][]string) ([]string, error) {
+	return nil, errors.New("not implemented")
 }
