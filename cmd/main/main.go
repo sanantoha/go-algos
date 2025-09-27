@@ -1,9 +1,7 @@
 package main
 
 import (
-	"errors"
 	"fmt"
-	"log"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -79,6 +77,7 @@ func main() {
 		"construct_binary_tree_from_preorder_and_inorder.go": true,
 		"clone_graph.go":                                     true,
 		"topological_sort_as_map.go":                         true,
+		"counting_sort.go":                                   true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -100,31 +99,18 @@ func main() {
 
 func runTask() {
 
-	graph := make(map[string][]string, 0)
-
-	graph["A"] = []string{"B", "C", "D"}
-	graph["B"] = []string{"C"}
-	graph["C"] = []string{"D"}
-	//graph["D"] = []string{"A", "B"}
-	graph["D"] = []string{}
-
-	res, err := sort(graph)
-	if err != nil {
-		log.Println(err)
+	arr := make([]int, 10)
+	for i := 0; i < len(arr); i++ {
+		arr[i] = rand.Intn(50)
 	}
-	fmt.Println(res)
 
-	res, err = sortIter(graph)
-	if err != nil {
-		log.Println(err)
-	}
-	fmt.Println(res)
+	fmt.Println(arr)
+
+	countingSort(arr)
+
+	fmt.Println(arr)
 }
 
-func sort(graph map[string][]string) ([]string, error) {
-	return nil, errors.New("not implemented")
-}
+func countingSort(arr []int) {
 
-func sortIter(graph map[string][]string) ([]string, error) {
-	return nil, errors.New("not implemented")
 }
