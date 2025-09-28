@@ -6,6 +6,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/sanantoha/go-algos/internals/tree"
 )
 
 func main() {
@@ -78,6 +80,7 @@ func main() {
 		"clone_graph.go":                                     true,
 		"topological_sort_as_map.go":                         true,
 		"counting_sort.go":                                   true,
+		"kth_smallest_element.go":                            true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -99,18 +102,31 @@ func main() {
 
 func runTask() {
 
-	arr := make([]int, 10)
-	for i := 0; i < len(arr); i++ {
-		arr[i] = rand.Intn(50)
+	root := &tree.TreeNode{
+		Val: 5,
+		Left: &tree.TreeNode{
+			Val:   2,
+			Left:  &tree.TreeNode{Val: 1},
+			Right: &tree.TreeNode{Val: 3},
+		},
+		Right: &tree.TreeNode{
+			Val: 10,
+			Left: &tree.TreeNode{
+				Val:   7,
+				Left:  &tree.TreeNode{Val: 6},
+				Right: &tree.TreeNode{Val: 8},
+			},
+			Right: &tree.TreeNode{
+				Val:   15,
+				Left:  &tree.TreeNode{Val: 14},
+				Right: &tree.TreeNode{Val: 17},
+			},
+		},
 	}
 
-	fmt.Println(arr)
-
-	countingSort(arr)
-
-	fmt.Println(arr)
+	fmt.Println(kthSmallestElement(root, 4)) // 5
 }
 
-func countingSort(arr []int) {
-
+func kthSmallestElement(root *tree.TreeNode, k int) int {
+	return 0
 }
