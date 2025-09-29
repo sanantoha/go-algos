@@ -2,12 +2,11 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"math/rand"
 	"os"
 	"path/filepath"
 	"strings"
-
-	"github.com/sanantoha/go-algos/internals/tree"
 )
 
 func main() {
@@ -81,6 +80,7 @@ func main() {
 		"topological_sort_as_map.go":                         true,
 		"counting_sort.go":                                   true,
 		"kth_smallest_element.go":                            true,
+		"first_duplicate_value.go":                           true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -102,31 +102,12 @@ func main() {
 
 func runTask() {
 
-	root := &tree.TreeNode{
-		Val: 5,
-		Left: &tree.TreeNode{
-			Val:   2,
-			Left:  &tree.TreeNode{Val: 1},
-			Right: &tree.TreeNode{Val: 3},
-		},
-		Right: &tree.TreeNode{
-			Val: 10,
-			Left: &tree.TreeNode{
-				Val:   7,
-				Left:  &tree.TreeNode{Val: 6},
-				Right: &tree.TreeNode{Val: 8},
-			},
-			Right: &tree.TreeNode{
-				Val:   15,
-				Left:  &tree.TreeNode{Val: 14},
-				Right: &tree.TreeNode{Val: 17},
-			},
-		},
-	}
+	// create test
+	fmt.Println(firstDuplicateValue([]int{2, 1, 3, 4, 5, 6, 2, 7, 8, 9}))
 
-	fmt.Println(kthSmallestElement(root, 4)) // 5
+	fmt.Println(firstDuplicateValue([]int{}))
 }
 
-func kthSmallestElement(root *tree.TreeNode, k int) int {
-	return 0
+func firstDuplicateValue(arr []int) int {
+	return math.MinInt
 }
