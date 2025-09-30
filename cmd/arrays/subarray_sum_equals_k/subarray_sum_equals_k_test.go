@@ -12,7 +12,7 @@ func TestSubarraySum(t *testing.T) {
 		{
 			name: "subarraySum1",
 			arr:  []int{1, 1, 1},
-			k:    3,
+			k:    2,
 			exp:  2,
 		},
 		{

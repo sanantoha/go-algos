@@ -7,7 +7,7 @@ import (
 )
 
 func TestFindShortestPath(t *testing.T) {
-	path := "dijkstraShortestPath1.txt"
+	path := "dijkstraShortestPath.txt"
 	graph, err := grph.NewEdgeWeightedDigraphFromFile(path)
 	if err != nil {
 		t.Fatalf("can not load the graph from path %s", path)

@@ -535,7 +535,7 @@ func (e *EdgeT[T]) Other(t T) T {
 	} else if e.U == t {
 		return e.V
 	}
-	log.Fatalf("undefined vertex %s\n", t)
+	log.Fatalf("undefined vertex %v\n", t)
 	return e.V
 }
 

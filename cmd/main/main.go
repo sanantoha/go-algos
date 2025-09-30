@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -81,6 +80,7 @@ func main() {
 		"counting_sort.go":                                   true,
 		"kth_smallest_element.go":                            true,
 		"first_duplicate_value.go":                           true,
+		"search_2d_matrix.go":                                true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -102,12 +102,24 @@ func main() {
 
 func runTask() {
 
-	// create test
-	fmt.Println(firstDuplicateValue([]int{2, 1, 3, 4, 5, 6, 2, 7, 8, 9}))
+	matrix := [][]int{
+		{1, 4, 7, 11, 15},
+		{2, 5, 8, 12, 19},
+		{3, 6, 9, 16, 22},
+		{10, 13, 14, 17, 24},
+		{18, 21, 23, 26, 30},
+	}
 
-	fmt.Println(firstDuplicateValue([]int{}))
+	fmt.Println(searchMatrix(matrix, 21))
+
+	matrix1 := [][]int{
+		{1, 4},
+		{2, 5},
+	}
+
+	fmt.Println(searchMatrix(matrix1, 5))
 }
 
-func firstDuplicateValue(arr []int) int {
-	return math.MinInt
+func searchMatrix(matrix [][]int, target int) bool {
+	return false
 }
