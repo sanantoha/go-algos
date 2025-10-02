@@ -82,6 +82,7 @@ func main() {
 		"first_duplicate_value.go":                           true,
 		"search_2d_matrix.go":                                true,
 		"unique_path_iii.go":                                 true,
+		"first_permutation_is_substr_second_str.go":          true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -103,15 +104,17 @@ func main() {
 
 func runTask() {
 
-	grid := [][]int{
-		{1, 0, 0, 0},
-		{0, 0, 0, 0},
-		{0, 0, 2, -1},
-	}
+	fmt.Println(findPermutation("abc", "hdflebacworld"))
+	fmt.Println(findPermutation1("abc", "hdflebacworld"))
 
-	fmt.Println(uniquePath3(grid)) // 2
+	fmt.Println(findPermutation("abbc", "hbbcadflebdworld"))
+	fmt.Println(findPermutation1("abbc", "hbbcadflebdworld"))
 }
 
-func uniquePath3(grid [][]int) int {
-	return -1
+func findPermutation(s1, s2 string) bool {
+	return false
+}
+
+func findPermutation1(s1, s2 string) bool {
+	return false
 }
