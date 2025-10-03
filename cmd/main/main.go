@@ -83,6 +83,7 @@ func main() {
 		"search_2d_matrix.go":                                true,
 		"unique_path_iii.go":                                 true,
 		"first_permutation_is_substr_second_str.go":          true,
+		"four_sum.go":                                        true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -104,17 +105,15 @@ func main() {
 
 func runTask() {
 
-	fmt.Println(findPermutation("abc", "hdflebacworld"))
-	fmt.Println(findPermutation1("abc", "hdflebacworld"))
+	fmt.Println(fourSum([]int{7, 6, 4, -1, 1, 2}, 16))
 
-	fmt.Println(findPermutation("abbc", "hbbcadflebdworld"))
-	fmt.Println(findPermutation1("abbc", "hbbcadflebdworld"))
+	fmt.Println(fourSum1([]int{7, 6, 4, -1, 1, 2}, 16))
 }
 
-func findPermutation(s1, s2 string) bool {
-	return false
+func fourSum(arr []int, target int) [][4]int {
+	return nil
 }
 
-func findPermutation1(s1, s2 string) bool {
-	return false
+func fourSum1(arr []int, target int) [][4]int {
+	return nil
 }
