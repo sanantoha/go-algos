@@ -6,6 +6,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/sanantoha/go-algos/internals/list"
 )
 
 func main() {
@@ -85,6 +87,7 @@ func main() {
 		"first_permutation_is_substr_second_str.go":          true,
 		"four_sum.go":                                        true,
 		"merge_sort.go":                                      true,
+		"cycle_linked_list.go":                               true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -106,26 +109,22 @@ func main() {
 
 func runTask() {
 
-	arr := make([]int, 10)
-	for i := 0; i < len(arr); i++ {
-		arr[i] = rand.Intn(50)
-	}
+	root := &list.ListNode{Val: 0, Next: &list.ListNode{Val: 1, Next: &list.ListNode{Val: 3}}}
+	root.Next.Next.Next = &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5, Next: &list.ListNode{Val: 6, Next: &list.ListNode{Val: 7, Next: root}}}}
 
-	fmt.Println(arr)
+	root1 := &list.ListNode{Val: 0, Next: &list.ListNode{Val: 1, Next: &list.ListNode{Val: 2}}}
 
-	arr = mergeSort(arr)
+	fmt.Println(isCycle(root))
+	fmt.Println(!isCycle(root1))
 
-	fmt.Println(arr)
-
-	for i := 0; i < len(arr)-1; i++ {
-		if arr[i] > arr[i+1] {
-			panic(fmt.Sprintf("array is not sorted: %d != %d", arr[i], arr[i+1]))
-		}
-	}
-
-	fmt.Println("done")
+	fmt.Println(isCycleWithoutSpace(root))
+	fmt.Println(!isCycleWithoutSpace(root1))
 }
 
-func mergeSort(arr []int) []int {
-	return nil
+func isCycle(root *list.ListNode) bool {
+	return false
+}
+
+func isCycleWithoutSpace(root *list.ListNode) bool {
+	return false
 }
