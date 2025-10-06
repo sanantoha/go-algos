@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/sanantoha/go-algos/internals/list"
+	"github.com/sanantoha/go-algos/internals/tree"
 )
 
 func main() {
@@ -88,6 +88,7 @@ func main() {
 		"four_sum.go":                                        true,
 		"merge_sort.go":                                      true,
 		"cycle_linked_list.go":                               true,
+		"binary_tree_diameter.go":                            true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -109,22 +110,38 @@ func main() {
 
 func runTask() {
 
-	root := &list.ListNode{Val: 0, Next: &list.ListNode{Val: 1, Next: &list.ListNode{Val: 3}}}
-	root.Next.Next.Next = &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5, Next: &list.ListNode{Val: 6, Next: &list.ListNode{Val: 7, Next: root}}}}
+	root := &tree.TreeNode{
+		Val: 1,
+		Left: &tree.TreeNode{
+			Val: 3,
+			Left: &tree.TreeNode{
+				Val: 7,
+				Left: &tree.TreeNode{
+					Val: 8,
+					Left: &tree.TreeNode{
+						Val: 9,
+					},
+				},
+			},
+			Right: &tree.TreeNode{
+				Val: 4,
+				Right: &tree.TreeNode{
+					Val: 5,
+					Right: &tree.TreeNode{
+						Val: 6,
+					},
+				},
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 2,
+		},
+	}
 
-	root1 := &list.ListNode{Val: 0, Next: &list.ListNode{Val: 1, Next: &list.ListNode{Val: 2}}}
-
-	fmt.Println(isCycle(root))
-	fmt.Println(!isCycle(root1))
-
-	fmt.Println(isCycleWithoutSpace(root))
-	fmt.Println(!isCycleWithoutSpace(root1))
+	fmt.Println(binaryTreeDiameter(root))
+	fmt.Println(binaryTreeDiameter(root) == 6)
 }
 
-func isCycle(root *list.ListNode) bool {
-	return false
-}
-
-func isCycleWithoutSpace(root *list.ListNode) bool {
-	return false
+func binaryTreeDiameter(root *tree.TreeNode) int {
+	return 0
 }
