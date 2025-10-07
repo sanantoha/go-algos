@@ -6,8 +6,6 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-
-	"github.com/sanantoha/go-algos/internals/tree"
 )
 
 func main() {
@@ -110,38 +108,19 @@ func main() {
 
 func runTask() {
 
-	root := &tree.TreeNode{
-		Val: 1,
-		Left: &tree.TreeNode{
-			Val: 3,
-			Left: &tree.TreeNode{
-				Val: 7,
-				Left: &tree.TreeNode{
-					Val: 8,
-					Left: &tree.TreeNode{
-						Val: 9,
-					},
-				},
-			},
-			Right: &tree.TreeNode{
-				Val: 4,
-				Right: &tree.TreeNode{
-					Val: 5,
-					Right: &tree.TreeNode{
-						Val: 6,
-					},
-				},
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 2,
-		},
+	matrix := [][]int{
+		{0, -1, -3, 2, 0},
+		{1, -2, -5, -1, -3},
+		{3, 0, 0, -4, -1},
 	}
 
-	fmt.Println(binaryTreeDiameter(root))
-	fmt.Println(binaryTreeDiameter(root) == 6)
+	expected := 3
+
+	actual := minimumPassesOfMatrix(matrix)
+	fmt.Println(actual)
+	fmt.Println(actual == expected)
 }
 
-func binaryTreeDiameter(root *tree.TreeNode) int {
+func minimumPassesOfMatrix(matrix [][]int) int {
 	return 0
 }
