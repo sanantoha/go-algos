@@ -87,6 +87,7 @@ func main() {
 		"merge_sort.go":                                      true,
 		"cycle_linked_list.go":                               true,
 		"binary_tree_diameter.go":                            true,
+		"greater_common_divisor.go":                          true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -108,19 +109,15 @@ func main() {
 
 func runTask() {
 
-	matrix := [][]int{
-		{0, -1, -3, 2, 0},
-		{1, -2, -5, -1, -3},
-		{3, 0, 0, -4, -1},
-	}
+	fmt.Println(greaterCommonDivisor(18, 6) == 6)
 
-	expected := 3
+	fmt.Println(greaterCommonDivisor(18, 10) == 2)
 
-	actual := minimumPassesOfMatrix(matrix)
-	fmt.Println(actual)
-	fmt.Println(actual == expected)
+	fmt.Println(greaterCommonDivisor(17, 11) == 1)
+
+	fmt.Println(greaterCommonDivisor(5, 15) == 5)
 }
 
-func minimumPassesOfMatrix(matrix [][]int) int {
+func greaterCommonDivisor(x, y int) int {
 	return 0
 }
