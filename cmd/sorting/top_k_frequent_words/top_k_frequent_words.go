@@ -9,7 +9,7 @@ import (
 
 // O(n * log(k)) time | O(n) space
 func topKFrequent(words []string, k int) []string {
-	if words == nil || len(words) == 0 || k < 0 {
+	if len(words) == 0 || k < 0 {
 		return nil
 	}
 	mp := make(map[string]*Word, 0)

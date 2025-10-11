@@ -90,6 +90,7 @@ func main() {
 		"greater_common_divisor.go":                          true,
 		"same_tree.go":                                       true,
 		"sparse_matrix_multiplication.go":                    true,
+		"top_k_frequent_words.go":                            true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -111,26 +112,13 @@ func main() {
 
 func runTask() {
 
-	mat1 := [][]int{
-		{1, 0, 0},
-		{-1, 0, 3},
-	}
+	words := []string{"i", "love", "leetcode", "i", "love", "coding"}
+	fmt.Println(topKFrequent(words, 2)) // {"i", "love"}
 
-	mat2 := [][]int{
-		{7, 0, 0},
-		{0, 0, 0},
-		{0, 0, 1},
-	}
-
-	fmt.Println(multiply(mat1, mat2)) // [[7, 0, 0], [-7, 0, 3]]
-	fmt.Println("=================")
-	fmt.Println(multiply1(mat1, mat2)) // [[7, 0, 0], [-7, 0, 3]]
+	words1 := []string{"the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"}
+	fmt.Println(topKFrequent(words1, 4)) // {"the","is","sunny","day"}
 }
 
-func multiply(mat1 [][]int, mat2 [][]int) [][]int {
-	return nil
-}
-
-func multiply1(mat1 [][]int, mat2 [][]int) [][]int {
+func topKFrequent(words []string, k int) []string {
 	return nil
 }
