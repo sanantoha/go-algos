@@ -29,7 +29,7 @@ func topKFrequent(words []string, k int) []string {
 	h := &WordHeap{}
 	i := 0
 	for _, word := range mp {
-		heap.Push(h, *word)
+		heap.Push(h, word)
 
 		if i >= k {
 			heap.Pop(h)
@@ -40,7 +40,7 @@ func topKFrequent(words []string, k int) []string {
 	res := make([]string, 0)
 
 	for h.Len() > 0 {
-		word := heap.Pop(h).(Word)
+		word := heap.Pop(h).(*Word)
 		res = append(res, word.w)
 	}
 
@@ -54,7 +54,7 @@ type Word struct {
 	cnt int
 }
 
-type WordHeap []Word
+type WordHeap []*Word
 
 func (h WordHeap) Len() int {
 	return len(h)
@@ -72,7 +72,7 @@ func (h WordHeap) Swap(i, j int) {
 }
 
 func (h *WordHeap) Push(x interface{}) {
-	*h = append(*h, x.(Word))
+	*h = append(*h, x.(*Word))
 }
 
 func (h *WordHeap) Pop() interface{} {
