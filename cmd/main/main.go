@@ -6,6 +6,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/sanantoha/go-algos/internals/tree"
 )
 
 func main() {
@@ -91,6 +93,7 @@ func main() {
 		"same_tree.go":                                       true,
 		"sparse_matrix_multiplication.go":                    true,
 		"top_k_frequent_words.go":                            true,
+		"find_closest_value_in_bst.go":                       true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -112,13 +115,43 @@ func main() {
 
 func runTask() {
 
-	words := []string{"i", "love", "leetcode", "i", "love", "coding"}
-	fmt.Println(topKFrequent(words, 2)) // {"i", "love"}
+	root := &tree.TreeNode{
+		Val: 10,
+		Left: &tree.TreeNode{
+			Val: 5,
+			Left: &tree.TreeNode{
+				Val: 2,
+				Left: &tree.TreeNode{
+					Val: 1,
+				},
+			},
+			Right: &tree.TreeNode{
+				Val: 5,
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 15,
+			Left: &tree.TreeNode{
+				Val: 13,
+				Right: &tree.TreeNode{
+					Val: 14,
+				},
+			},
+			Right: &tree.TreeNode{
+				Val: 22,
+			},
+		},
+	}
 
-	words1 := []string{"the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"}
-	fmt.Println(topKFrequent(words1, 4)) // {"the","is","sunny","day"}
+	fmt.Println(findClosestValueInBst(root, 12)) // 13
+
+	fmt.Println(findClosestValueInBstRec(root, 12)) // 13
 }
 
-func topKFrequent(words []string, k int) []string {
-	return nil
+func findClosestValueInBstRec(root *tree.TreeNode, target int) int {
+	return -1
+}
+
+func findClosestValueInBst(root *tree.TreeNode, target int) int {
+	return -1
 }
