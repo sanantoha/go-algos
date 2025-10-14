@@ -6,8 +6,6 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-
-	"github.com/sanantoha/go-algos/internals/tree"
 )
 
 func main() {
@@ -94,6 +92,7 @@ func main() {
 		"sparse_matrix_multiplication.go":                    true,
 		"top_k_frequent_words.go":                            true,
 		"find_closest_value_in_bst.go":                       true,
+		"number_of_island.go":                                true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -115,43 +114,20 @@ func main() {
 
 func runTask() {
 
-	root := &tree.TreeNode{
-		Val: 10,
-		Left: &tree.TreeNode{
-			Val: 5,
-			Left: &tree.TreeNode{
-				Val: 2,
-				Left: &tree.TreeNode{
-					Val: 1,
-				},
-			},
-			Right: &tree.TreeNode{
-				Val: 5,
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 15,
-			Left: &tree.TreeNode{
-				Val: 13,
-				Right: &tree.TreeNode{
-					Val: 14,
-				},
-			},
-			Right: &tree.TreeNode{
-				Val: 22,
-			},
-		},
+	grid := [][]int{
+		{0, 0, 0, 0, 1},
+		{1, 1, 0, 0, 0},
+		{1, 1, 0, 1, 1},
+		{0, 0, 0, 1, 1},
 	}
 
-	fmt.Println(findClosestValueInBst(root, 12)) // 13
+	expected := 3
 
-	fmt.Println(findClosestValueInBstRec(root, 12)) // 13
+	actual := numberOfIsland(grid)
+	fmt.Println(actual)
+	fmt.Println(actual == expected)
 }
 
-func findClosestValueInBstRec(root *tree.TreeNode, target int) int {
-	return -1
-}
-
-func findClosestValueInBst(root *tree.TreeNode, target int) int {
+func numberOfIsland(grid [][]int) int {
 	return -1
 }
