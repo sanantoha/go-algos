@@ -93,6 +93,7 @@ func main() {
 		"top_k_frequent_words.go":                            true,
 		"find_closest_value_in_bst.go":                       true,
 		"number_of_island.go":                                true,
+		"reverse_words_in_string.go":                         true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -114,20 +115,15 @@ func main() {
 
 func runTask() {
 
-	grid := [][]int{
-		{0, 0, 0, 0, 1},
-		{1, 1, 0, 0, 0},
-		{1, 1, 0, 1, 1},
-		{0, 0, 0, 1, 1},
-	}
+	s := "the sky is blue"
 
-	expected := 3
+	fmt.Println(reverse(s))
 
-	actual := numberOfIsland(grid)
-	fmt.Println(actual)
-	fmt.Println(actual == expected)
+	fmt.Printf("|%s|\n", reverse(" a good   example     "))
+
+	fmt.Println(reverse("this      string     has a     lot of   whitespace"))
 }
 
-func numberOfIsland(grid [][]int) int {
-	return -1
+func reverse(str string) string {
+	return ""
 }
