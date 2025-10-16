@@ -94,6 +94,7 @@ func main() {
 		"find_closest_value_in_bst.go":                       true,
 		"number_of_island.go":                                true,
 		"reverse_words_in_string.go":                         true,
+		"select_sort.go":                                     true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -115,15 +116,26 @@ func main() {
 
 func runTask() {
 
-	s := "the sky is blue"
+	arr := make([]int, 10)
+	for i := 0; i < len(arr); i++ {
+		arr[i] = rand.Intn(50)
+	}
 
-	fmt.Println(reverse(s))
+	fmt.Println(arr)
 
-	fmt.Printf("|%s|\n", reverse(" a good   example     "))
+	selectSort(arr)
 
-	fmt.Println(reverse("this      string     has a     lot of   whitespace"))
+	fmt.Println(arr)
+
+	for i := 0; i < len(arr)-1; i++ {
+		if arr[i] > arr[i+1] {
+			panic(fmt.Sprintf("array is not sorted: %d != %d", arr[i], arr[i+1]))
+		}
+	}
+
+	fmt.Println("done")
 }
 
-func reverse(str string) string {
-	return ""
+func selectSort(arr []int) {
+
 }
