@@ -95,6 +95,7 @@ func main() {
 		"number_of_island.go":                                true,
 		"reverse_words_in_string.go":                         true,
 		"select_sort.go":                                     true,
+		"sort_k_sorted_array.go":                             true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -116,26 +117,11 @@ func main() {
 
 func runTask() {
 
-	arr := make([]int, 10)
-	for i := 0; i < len(arr); i++ {
-		arr[i] = rand.Intn(50)
-	}
+	arr := []int{3, 2, 1, 5, 4, 7, 6, 5}
 
-	fmt.Println(arr)
-
-	selectSort(arr)
-
-	fmt.Println(arr)
-
-	for i := 0; i < len(arr)-1; i++ {
-		if arr[i] > arr[i+1] {
-			panic(fmt.Sprintf("array is not sorted: %d != %d", arr[i], arr[i+1]))
-		}
-	}
-
-	fmt.Println("done")
+	fmt.Println(sortKSortedArray(arr, 3))
 }
 
-func selectSort(arr []int) {
-
+func sortKSortedArray(arr []int, k int) []int {
+	return nil
 }
