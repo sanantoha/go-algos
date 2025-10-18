@@ -96,6 +96,7 @@ func main() {
 		"reverse_words_in_string.go":                         true,
 		"select_sort.go":                                     true,
 		"sort_k_sorted_array.go":                             true,
+		"subarray_sum_equals_k.go":                           true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -117,11 +118,11 @@ func main() {
 
 func runTask() {
 
-	arr := []int{3, 2, 1, 5, 4, 7, 6, 5}
+	fmt.Println(subarraySum([]int{1, 1, 1}, 2)) // 2
 
-	fmt.Println(sortKSortedArray(arr, 3))
+	fmt.Println(subarraySum([]int{1, 2, 3}, 3)) // 2
 }
 
-func sortKSortedArray(arr []int, k int) []int {
-	return nil
+func subarraySum(arr []int, k int) int {
+	return 0
 }
