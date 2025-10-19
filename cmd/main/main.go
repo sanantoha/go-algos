@@ -6,6 +6,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/sanantoha/go-algos/internals/tree"
 )
 
 func main() {
@@ -97,6 +99,7 @@ func main() {
 		"select_sort.go":                                     true,
 		"sort_k_sorted_array.go":                             true,
 		"subarray_sum_equals_k.go":                           true,
+		"reverse_binary_tree.go":                             true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -118,11 +121,99 @@ func main() {
 
 func runTask() {
 
-	fmt.Println(subarraySum([]int{1, 1, 1}, 2)) // 2
+	root := &tree.TreeNode{
+		Val: 5,
+		Left: &tree.TreeNode{
+			Val: 2,
+			Left: &tree.TreeNode{
+				Val: 1,
+			},
+			Right: &tree.TreeNode{
+				Val: 3,
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 10,
+			Left: &tree.TreeNode{
+				Val: 7,
+			},
+			Right: &tree.TreeNode{
+				Val: 15,
+				Left: &tree.TreeNode{
+					Val: 14,
+				},
+				Right: &tree.TreeNode{
+					Val: 17,
+				},
+			},
+		},
+	}
 
-	fmt.Println(subarraySum([]int{1, 2, 3}, 3)) // 2
+	fmt.Println(root)
+
+	reverse(root)
+
+	fmt.Println(root)
+	fmt.Println(root.Val == 5)
+	fmt.Println(root.Left.Val == 10)
+	fmt.Println(root.Right.Val == 2)
+	fmt.Println(root.Left.Left.Val == 15)
+	fmt.Println(root.Left.Right.Val == 7)
+	fmt.Println(root.Right.Left.Val == 3)
+	fmt.Println(root.Right.Right.Val == 1)
+	fmt.Println(root.Left.Left.Left.Val == 17)
+	fmt.Println(root.Left.Left.Right.Val == 14)
+
+	fmt.Println("==============================")
+
+	root1 := &tree.TreeNode{
+		Val: 5,
+		Left: &tree.TreeNode{
+			Val: 2,
+			Left: &tree.TreeNode{
+				Val: 1,
+			},
+			Right: &tree.TreeNode{
+				Val: 3,
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 10,
+			Left: &tree.TreeNode{
+				Val: 7,
+			},
+			Right: &tree.TreeNode{
+				Val: 15,
+				Left: &tree.TreeNode{
+					Val: 14,
+				},
+				Right: &tree.TreeNode{
+					Val: 17,
+				},
+			},
+		},
+	}
+
+	fmt.Println(root1)
+
+	reverseIter(root1)
+
+	fmt.Println(root1)
+	fmt.Println(root1.Val == 5)
+	fmt.Println(root1.Left.Val == 10)
+	fmt.Println(root1.Right.Val == 2)
+	fmt.Println(root1.Left.Left.Val == 15)
+	fmt.Println(root1.Left.Right.Val == 7)
+	fmt.Println(root1.Right.Left.Val == 3)
+	fmt.Println(root1.Right.Right.Val == 1)
+	fmt.Println(root1.Left.Left.Left.Val == 17)
+	fmt.Println(root1.Left.Left.Right.Val == 14)
 }
 
-func subarraySum(arr []int, k int) int {
-	return 0
+func reverse(root *tree.TreeNode) *tree.TreeNode {
+	return nil
+}
+
+func reverseIter(root *tree.TreeNode) *tree.TreeNode {
+	return nil
 }
