@@ -6,6 +6,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/sanantoha/go-algos/internals/tree"
 )
 
 func main() {
@@ -99,6 +101,7 @@ func main() {
 		"subarray_sum_equals_k.go":                           true,
 		"reverse_binary_tree.go":                             true,
 		"unique_paths.go":                                    true,
+		"node_depths.go":                                     true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -120,11 +123,47 @@ func main() {
 
 func runTask() {
 
-	fmt.Println(uniquePaths(3, 2)) // 3
+	root := &tree.TreeNode{
+		Val: 1,
+		Left: &tree.TreeNode{
+			Val: 2,
+			Left: &tree.TreeNode{
+				Val: 4,
+				Left: &tree.TreeNode{
+					Val: 8,
+				},
+				Right: &tree.TreeNode{
+					Val: 9,
+				},
+			},
+			Right: &tree.TreeNode{
+				Val: 5,
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 3,
+			Left: &tree.TreeNode{
+				Val: 6,
+			},
+			Right: &tree.TreeNode{
+				Val: 7,
+			},
+		},
+	}
 
-	fmt.Println(uniquePaths(3, 7)) // 28
+	actual := nodeDepthsRec(root)
+	fmt.Println(actual)
+	fmt.Println(actual == 16)
+
+	actual = nodeDepths(root)
+	fmt.Println(actual)
+	fmt.Println(actual == 16)
 }
 
-func uniquePaths(m, n int) int {
+func nodeDepthsRec(root *tree.TreeNode) int {
+	return 0
+}
+
+func nodeDepths(root *tree.TreeNode) int {
 	return 0
 }
