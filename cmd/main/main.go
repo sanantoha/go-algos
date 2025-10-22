@@ -6,8 +6,6 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-
-	"github.com/sanantoha/go-algos/internals/tree"
 )
 
 func main() {
@@ -102,6 +100,7 @@ func main() {
 		"reverse_binary_tree.go":                             true,
 		"unique_paths.go":                                    true,
 		"node_depths.go":                                     true,
+		"insert_sort.go":                                     true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -123,47 +122,18 @@ func main() {
 
 func runTask() {
 
-	root := &tree.TreeNode{
-		Val: 1,
-		Left: &tree.TreeNode{
-			Val: 2,
-			Left: &tree.TreeNode{
-				Val: 4,
-				Left: &tree.TreeNode{
-					Val: 8,
-				},
-				Right: &tree.TreeNode{
-					Val: 9,
-				},
-			},
-			Right: &tree.TreeNode{
-				Val: 5,
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 3,
-			Left: &tree.TreeNode{
-				Val: 6,
-			},
-			Right: &tree.TreeNode{
-				Val: 7,
-			},
-		},
+	arr := make([]int, 10)
+	for i := 0; i < len(arr); i++ {
+		arr[i] = rand.Intn(50)
 	}
 
-	actual := nodeDepthsRec(root)
-	fmt.Println(actual)
-	fmt.Println(actual == 16)
+	fmt.Println(arr)
 
-	actual = nodeDepths(root)
-	fmt.Println(actual)
-	fmt.Println(actual == 16)
+	insertSort(arr)
+
+	fmt.Println(arr)
 }
 
-func nodeDepthsRec(root *tree.TreeNode) int {
-	return 0
-}
+func insertSort(arr []int) {
 
-func nodeDepths(root *tree.TreeNode) int {
-	return 0
 }
