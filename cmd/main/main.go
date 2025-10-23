@@ -6,6 +6,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/sanantoha/go-algos/internals/list"
 )
 
 func main() {
@@ -101,6 +103,7 @@ func main() {
 		"unique_paths.go":                                    true,
 		"node_depths.go":                                     true,
 		"insert_sort.go":                                     true,
+		"insert_greatest_common_divisor.go":                  true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -122,18 +125,17 @@ func main() {
 
 func runTask() {
 
-	arr := make([]int, 10)
-	for i := 0; i < len(arr); i++ {
-		arr[i] = rand.Intn(50)
-	}
+	lst := &list.ListNode{Val: 18, Next: &list.ListNode{Val: 6, Next: &list.ListNode{Val: 10, Next: &list.ListNode{Val: 3}}}}
 
-	fmt.Println(arr)
+	// 18 -> 6 -> 10 -> 3 -> null
+	fmt.Println(lst)
 
-	insertSort(arr)
+	res := insertGreatestCommonDivisors(lst)
 
-	fmt.Println(arr)
+	// 18 -> 6 -> 6 -> 2 -> 10 -> 1 -> 3 -> null
+	fmt.Println(res)
 }
 
-func insertSort(arr []int) {
-
+func insertGreatestCommonDivisors(head *list.ListNode) *list.ListNode {
+	return nil
 }
