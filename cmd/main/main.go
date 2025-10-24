@@ -6,8 +6,6 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-
-	"github.com/sanantoha/go-algos/internals/list"
 )
 
 func main() {
@@ -104,6 +102,7 @@ func main() {
 		"node_depths.go":                                     true,
 		"insert_sort.go":                                     true,
 		"insert_greatest_common_divisor.go":                  true,
+		"powerset.go":                                        true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -125,17 +124,17 @@ func main() {
 
 func runTask() {
 
-	lst := &list.ListNode{Val: 18, Next: &list.ListNode{Val: 6, Next: &list.ListNode{Val: 10, Next: &list.ListNode{Val: 3}}}}
+	arr := []int{1, 2, 3}
 
-	// 18 -> 6 -> 10 -> 3 -> null
-	fmt.Println(lst)
+	fmt.Println(powerset(arr))
 
-	res := insertGreatestCommonDivisors(lst)
-
-	// 18 -> 6 -> 6 -> 2 -> 10 -> 1 -> 3 -> null
-	fmt.Println(res)
+	fmt.Println(powersetRec(arr))
 }
 
-func insertGreatestCommonDivisors(head *list.ListNode) *list.ListNode {
+func powerset(arr []int) [][]int {
+	return nil
+}
+
+func powersetRec(arr []int) [][]int {
 	return nil
 }
