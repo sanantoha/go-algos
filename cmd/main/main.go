@@ -6,6 +6,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/sanantoha/go-algos/internals/tree"
 )
 
 func main() {
@@ -103,6 +105,7 @@ func main() {
 		"insert_sort.go":                                     true,
 		"insert_greatest_common_divisor.go":                  true,
 		"powerset.go":                                        true,
+		"find_mode_in_bst.go":                                true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -124,17 +127,49 @@ func main() {
 
 func runTask() {
 
-	arr := []int{1, 2, 3}
+	root := &tree.TreeNode{
+		Val: 1,
+		Right: &tree.TreeNode{
+			Val: 2,
+			Left: &tree.TreeNode{
+				Val: 2,
+			},
+		},
+	}
 
-	fmt.Println(powerset(arr))
+	fmt.Println(findMode(root)) // [2]
 
-	fmt.Println(powersetRec(arr))
+	root1 := &tree.TreeNode{
+		Val: 0,
+	}
+
+	fmt.Println(findMode(root1)) // [0]
+
+	root2 := &tree.TreeNode{
+		Val: 5,
+		Left: &tree.TreeNode{
+			Val: 3,
+			Left: &tree.TreeNode{
+				Val: 1,
+			},
+			Right: &tree.TreeNode{
+				Val: 3,
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 7,
+			Left: &tree.TreeNode{
+				Val: 5,
+			},
+			Right: &tree.TreeNode{
+				Val: 7,
+			},
+		},
+	}
+
+	fmt.Println(findMode(root2)) // [3, 5, 7]
 }
 
-func powerset(arr []int) [][]int {
-	return nil
-}
-
-func powersetRec(arr []int) [][]int {
+func findMode(root *tree.TreeNode) []int {
 	return nil
 }
