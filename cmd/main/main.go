@@ -6,8 +6,6 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-
-	"github.com/sanantoha/go-algos/internals/tree"
 )
 
 func main() {
@@ -108,6 +106,7 @@ func main() {
 		"find_mode_in_bst.go":                                true,
 		"rotate_array.go":                                    true,
 		"subtree_of_another_tree.go":                         true,
+		"zig_zag_traverse.go":                                true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -129,80 +128,16 @@ func main() {
 
 func runTask() {
 
-	root1 := &tree.TreeNode{
-		Val: 3,
-		Left: &tree.TreeNode{
-			Val: 4,
-			Left: &tree.TreeNode{
-				Val: 1,
-			},
-			Right: &tree.TreeNode{
-				Val: 2,
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 5,
-		},
+	matrix := [][]int{
+		{1, 3, 4, 10},
+		{2, 5, 9, 11},
+		{6, 8, 12, 15},
+		{7, 13, 14, 16},
 	}
 
-	subTree := &tree.TreeNode{
-		Val: 4,
-		Left: &tree.TreeNode{
-			Val: 1,
-		},
-		Right: &tree.TreeNode{
-			Val: 2,
-		},
-	}
-
-	fmt.Println(isSubtree(root1, subTree)) // true
-
-	root2 := &tree.TreeNode{
-		Val: 3,
-		Left: &tree.TreeNode{
-			Val: 4,
-			Left: &tree.TreeNode{
-				Val: 1,
-			},
-			Right: &tree.TreeNode{
-				Val: 2,
-				Left: &tree.TreeNode{
-					Val: 0,
-				},
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 5,
-		},
-	}
-
-	fmt.Println(isSubtree(root2, subTree)) // false
-
-	root3 := &tree.TreeNode{
-		Val: 4,
-		Left: &tree.TreeNode{
-			Val: 4,
-			Left: &tree.TreeNode{
-				Val: 4,
-				Left: &tree.TreeNode{
-					Val: 4,
-					Left: &tree.TreeNode{
-						Val: 4,
-						Left: &tree.TreeNode{
-							Val: 1,
-						},
-						Right: &tree.TreeNode{
-							Val: 2,
-						},
-					},
-				},
-			},
-		},
-	}
-
-	fmt.Println(isSubtree(root3, subTree)) // true
+	fmt.Println(zigZagTraverse(matrix))
 }
 
-func isSubtree(root *tree.TreeNode, subTree *tree.TreeNode) bool {
-	return false
+func zigZagTraverse(matrix [][]int) []int {
+	return nil
 }
