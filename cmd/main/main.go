@@ -2,10 +2,13 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"math/rand"
 	"os"
 	"path/filepath"
 	"strings"
+
+	grph "github.com/sanantoha/go-algos/internals/graph"
 )
 
 func main() {
@@ -107,6 +110,7 @@ func main() {
 		"rotate_array.go":                                    true,
 		"subtree_of_another_tree.go":                         true,
 		"zig_zag_traverse.go":                                true,
+		"depth_first_search_as_map.go":                       true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -128,16 +132,22 @@ func main() {
 
 func runTask() {
 
-	matrix := [][]int{
-		{1, 3, 4, 10},
-		{2, 5, 9, 11},
-		{6, 8, 12, 15},
-		{7, 13, 14, 16},
+	graph, err := grph.NewGraphAsAdjListFromFile("cmd/graph/depth_first_search/dfs.txt")
+	if err != nil {
+		log.Fatalln(err)
 	}
 
-	fmt.Println(zigZagTraverse(matrix))
+	fmt.Println(grph.PrintGraphAsAdjList(graph))
+	fmt.Println("=====================================")
+	fmt.Println(dfsRec(graph, "0"))
+	fmt.Println("=====================================")
+	fmt.Println(dfsIter(graph, "0"))
 }
 
-func zigZagTraverse(matrix [][]int) []int {
+func dfsRec(graph map[string][]*grph.EdgeT[string], start string) []string {
+	return nil
+}
+
+func dfsIter(graph map[string][]*grph.EdgeT[string], start string) []string {
 	return nil
 }

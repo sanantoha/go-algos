@@ -4,7 +4,7 @@ import "fmt"
 
 // O(w * h) time | O(w * h) space
 func riverSizes(matrix [][]int) []int {
-	if matrix == nil || len(matrix) == 0 {
+	if len(matrix) == 0 {
 		return nil
 	}
 
