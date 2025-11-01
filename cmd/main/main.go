@@ -2,13 +2,12 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"math/rand"
 	"os"
 	"path/filepath"
 	"strings"
 
-	grph "github.com/sanantoha/go-algos/internals/graph"
+	"github.com/sanantoha/go-algos/internals/tree"
 )
 
 func main() {
@@ -111,6 +110,7 @@ func main() {
 		"subtree_of_another_tree.go":                         true,
 		"zig_zag_traverse.go":                                true,
 		"depth_first_search_as_map.go":                       true,
+		"k_th_smallest_element_in_bst.go":                    true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -132,22 +132,31 @@ func main() {
 
 func runTask() {
 
-	graph, err := grph.NewGraphAsAdjListFromFile("cmd/graph/depth_first_search/dfs.txt")
-	if err != nil {
-		log.Fatalln(err)
+	root := &tree.TreeNode{
+		Val: 5,
+		Left: &tree.TreeNode{
+			Val:   2,
+			Left:  &tree.TreeNode{Val: 1},
+			Right: &tree.TreeNode{Val: 3},
+		},
+		Right: &tree.TreeNode{
+			Val: 10,
+			Left: &tree.TreeNode{
+				Val:   7,
+				Left:  &tree.TreeNode{Val: 6},
+				Right: &tree.TreeNode{Val: 8},
+			},
+			Right: &tree.TreeNode{
+				Val:   15,
+				Left:  &tree.TreeNode{Val: 14},
+				Right: &tree.TreeNode{Val: 17},
+			},
+		},
 	}
 
-	fmt.Println(grph.PrintGraphAsAdjList(graph))
-	fmt.Println("=====================================")
-	fmt.Println(dfsRec(graph, "0"))
-	fmt.Println("=====================================")
-	fmt.Println(dfsIter(graph, "0"))
+	fmt.Println(kthSmallestElement(root, 4)) // 5
 }
 
-func dfsRec(graph map[string][]*grph.EdgeT[string], start string) []string {
-	return nil
-}
-
-func dfsIter(graph map[string][]*grph.EdgeT[string], start string) []string {
-	return nil
+func kthSmallestElement(root *tree.TreeNode, k int) int {
+	return 0
 }
