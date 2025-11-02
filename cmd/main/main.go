@@ -6,8 +6,6 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-
-	"github.com/sanantoha/go-algos/internals/tree"
 )
 
 func main() {
@@ -111,6 +109,7 @@ func main() {
 		"zig_zag_traverse.go":                                true,
 		"depth_first_search_as_map.go":                       true,
 		"k_th_smallest_element_in_bst.go":                    true,
+		"palindromic_substrings.go":                          true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -132,31 +131,15 @@ func main() {
 
 func runTask() {
 
-	root := &tree.TreeNode{
-		Val: 5,
-		Left: &tree.TreeNode{
-			Val:   2,
-			Left:  &tree.TreeNode{Val: 1},
-			Right: &tree.TreeNode{Val: 3},
-		},
-		Right: &tree.TreeNode{
-			Val: 10,
-			Left: &tree.TreeNode{
-				Val:   7,
-				Left:  &tree.TreeNode{Val: 6},
-				Right: &tree.TreeNode{Val: 8},
-			},
-			Right: &tree.TreeNode{
-				Val:   15,
-				Left:  &tree.TreeNode{Val: 14},
-				Right: &tree.TreeNode{Val: 17},
-			},
-		},
-	}
+	fmt.Println(countSubstrings("abc")) // 3
 
-	fmt.Println(kthSmallestElement(root, 4)) // 5
+	fmt.Println(countSubstrings("aaa")) // 6
+
+	fmt.Println(countSubstrings("aabbbaa")) // 14
+
+	fmt.Println(countSubstrings("aaab")) // 7
 }
 
-func kthSmallestElement(root *tree.TreeNode, k int) int {
+func countSubstrings(str string) int {
 	return 0
 }
