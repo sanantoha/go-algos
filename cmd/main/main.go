@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -110,6 +111,7 @@ func main() {
 		"depth_first_search_as_map.go":                       true,
 		"k_th_smallest_element_in_bst.go":                    true,
 		"palindromic_substrings.go":                          true,
+		"pow.go":                                             true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -131,15 +133,14 @@ func main() {
 
 func runTask() {
 
-	fmt.Println(countSubstrings("abc")) // 3
+	fmt.Println(pow(4, 2))
+	fmt.Println(pow(2, 4))
+	fmt.Println(pow(2.0, -2))
 
-	fmt.Println(countSubstrings("aaa")) // 6
-
-	fmt.Println(countSubstrings("aabbbaa")) // 14
-
-	fmt.Println(countSubstrings("aaab")) // 7
+	fmt.Println(pow(2.1, 3))
+	fmt.Println(math.Pow(2.1, 3))
 }
 
-func countSubstrings(str string) int {
-	return 0
+func pow(x float64, n int) float64 {
+	return 0.0
 }
