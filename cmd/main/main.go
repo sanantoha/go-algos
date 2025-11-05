@@ -112,6 +112,7 @@ func main() {
 		"palindromic_substrings.go":                          true,
 		"pow.go":                                             true,
 		"one_edit.go":                                        true,
+		"merge_intervals.go":                                 true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -133,12 +134,29 @@ func main() {
 
 func runTask() {
 
-	stringOne := "hello"
-	stringTwo := "helo"
-	actual := oneEdit(stringOne, stringTwo)
-	fmt.Println(actual)
+	intervals := [][]int{
+		{1, 5},
+		{3, 7},
+		{4, 6},
+		{6, 8},
+	}
+	fmt.Println(merge(intervals))
+
+	intervals1 := [][]int{
+		{1, 3},
+		{2, 6},
+		{8, 10},
+		{15, 18},
+	}
+	fmt.Println(merge(intervals1))
+
+	intervals2 := [][]int{
+		{1, 4},
+		{4, 5},
+	}
+	fmt.Println(merge(intervals2))
 }
 
-func oneEdit(s1, s2 string) bool {
-	return false
+func merge(intervals [][]int) [][]int {
+	return nil
 }
