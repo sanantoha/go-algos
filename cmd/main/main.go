@@ -113,6 +113,7 @@ func main() {
 		"pow.go":                                             true,
 		"one_edit.go":                                        true,
 		"merge_intervals.go":                                 true,
+		"search_for_range.go":                                true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -134,29 +135,18 @@ func main() {
 
 func runTask() {
 
-	intervals := [][]int{
-		{1, 5},
-		{3, 7},
-		{4, 6},
-		{6, 8},
-	}
-	fmt.Println(merge(intervals))
+	arr := []int{5, 7, 7, 8, 8, 8, 8, 8, 8, 8, 10}
+	fmt.Println(searchRange(arr, 8)) // [3, 9]
 
-	intervals1 := [][]int{
-		{1, 3},
-		{2, 6},
-		{8, 10},
-		{15, 18},
-	}
-	fmt.Println(merge(intervals1))
+	fmt.Println(searchRange(arr, 6)) // []
 
-	intervals2 := [][]int{
-		{1, 4},
-		{4, 5},
-	}
-	fmt.Println(merge(intervals2))
+	arr1 := []int{1}
+	fmt.Println(searchRange(arr1, 1)) // [0, 0]
+
+	arr2 := []int{}
+	fmt.Println(searchRange(arr2, 0)) // []
 }
 
-func merge(intervals [][]int) [][]int {
+func searchRange(arr []int, target int) []int {
 	return nil
 }
