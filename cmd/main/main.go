@@ -6,6 +6,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/sanantoha/go-algos/internals/list"
 )
 
 func main() {
@@ -114,6 +116,8 @@ func main() {
 		"one_edit.go":                                        true,
 		"merge_intervals.go":                                 true,
 		"search_for_range.go":                                true,
+		"max_path_sum_in_binary_tree.go":                     true,
+		"add_two_numbers.go":                                 true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -135,18 +139,14 @@ func main() {
 
 func runTask() {
 
-	arr := []int{5, 7, 7, 8, 8, 8, 8, 8, 8, 8, 10}
-	fmt.Println(searchRange(arr, 8)) // [3, 9]
+	l1 := &list.ListNode{Val: 1, Next: &list.ListNode{Val: 0, Next: &list.ListNode{Val: 9, Next: &list.ListNode{Val: 9}}}}
+	l2 := &list.ListNode{Val: 7, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 2}}}
 
-	fmt.Println(searchRange(arr, 6)) // []
-
-	arr1 := []int{1}
-	fmt.Println(searchRange(arr1, 1)) // [0, 0]
-
-	arr2 := []int{}
-	fmt.Println(searchRange(arr2, 0)) // []
+	fmt.Println(l1)
+	fmt.Println(l2)
+	fmt.Println(addTwoNumbers(l1, l2)) // 8 -> 3 -> 1 -> 0 -> 1
 }
 
-func searchRange(arr []int, target int) []int {
+func addTwoNumbers(l1, l2 *list.ListNode) *list.ListNode {
 	return nil
 }
