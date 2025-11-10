@@ -6,8 +6,6 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-
-	"github.com/sanantoha/go-algos/internals/list"
 )
 
 func main() {
@@ -118,6 +116,7 @@ func main() {
 		"search_for_range.go":                                true,
 		"max_path_sum_in_binary_tree.go":                     true,
 		"add_two_numbers.go":                                 true,
+		"phone_number_mnemonic.go":                           true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -139,14 +138,15 @@ func main() {
 
 func runTask() {
 
-	l1 := &list.ListNode{Val: 1, Next: &list.ListNode{Val: 0, Next: &list.ListNode{Val: 9, Next: &list.ListNode{Val: 9}}}}
-	l2 := &list.ListNode{Val: 7, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 2}}}
+	str := "1905"
 
-	fmt.Println(l1)
-	fmt.Println(l2)
-	fmt.Println(addTwoNumbers(l1, l2)) // 8 -> 3 -> 1 -> 0 -> 1
+	// [1w0j 1w0k 1w0l 1x0j 1x0k 1x0l 1y0j 1y0k 1y0l 1z0j 1z0k 1z0l]
+	fmt.Println(phoneNumberMnemonics(str))
 }
 
-func addTwoNumbers(l1, l2 *list.ListNode) *list.ListNode {
+func phoneNumberMnemonics(str string) []string {
+
+	letters := []string{"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"}
+	fmt.Println(letters)
 	return nil
 }
