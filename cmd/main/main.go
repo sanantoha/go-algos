@@ -117,6 +117,7 @@ func main() {
 		"max_path_sum_in_binary_tree.go":                     true,
 		"add_two_numbers.go":                                 true,
 		"phone_number_mnemonic.go":                           true,
+		"product_of_array.go":                                true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -138,15 +139,12 @@ func main() {
 
 func runTask() {
 
-	str := "1905"
-
-	// [1w0j 1w0k 1w0l 1x0j 1x0k 1x0l 1y0j 1y0k 1y0l 1z0j 1z0k 1z0l]
-	fmt.Println(phoneNumberMnemonics(str))
+	fmt.Println(productOfArray([]int{1, 2, 3, 4}))
+	fmt.Println(productOfArray([]int{1, 2, 3, 0}))
+	fmt.Println(productOfArray([]int{1, 0, 3, 4}))
+	fmt.Println(productOfArray([]int{1, 0, 0, 4}))
 }
 
-func phoneNumberMnemonics(str string) []string {
-
-	letters := []string{"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"}
-	fmt.Println(letters)
+func productOfArray(arr []int) []int {
 	return nil
 }
