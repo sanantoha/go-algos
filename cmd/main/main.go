@@ -118,6 +118,7 @@ func main() {
 		"add_two_numbers.go":                                 true,
 		"phone_number_mnemonic.go":                           true,
 		"product_of_array.go":                                true,
+		"min_rewards.go":                                     true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -139,12 +140,21 @@ func main() {
 
 func runTask() {
 
-	fmt.Println(productOfArray([]int{1, 2, 3, 4}))
-	fmt.Println(productOfArray([]int{1, 2, 3, 0}))
-	fmt.Println(productOfArray([]int{1, 0, 3, 4}))
-	fmt.Println(productOfArray([]int{1, 0, 0, 4}))
+	arr := []int{8, 4, 2, 1, 3, 6, 7, 9, 5}
+
+	fmt.Println(minRewards(arr))
+	fmt.Println(minRewards1(arr))
+	fmt.Println(minRewards2(arr))
 }
 
-func productOfArray(arr []int) []int {
-	return nil
+func minRewards(arr []int) int {
+	return 0
+}
+
+func minRewards1(arr []int) int {
+	return 0
+}
+
+func minRewards2(arr []int) int {
+	return 0
 }
