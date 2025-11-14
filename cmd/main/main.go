@@ -6,6 +6,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/sanantoha/go-algos/internals/tree"
 )
 
 func main() {
@@ -119,6 +121,7 @@ func main() {
 		"phone_number_mnemonic.go":                           true,
 		"product_of_array.go":                                true,
 		"min_rewards.go":                                     true,
+		"minimum_absolute_difference_in_bst.go":              true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -140,21 +143,43 @@ func main() {
 
 func runTask() {
 
-	arr := []int{8, 4, 2, 1, 3, 6, 7, 9, 5}
+	root := &tree.TreeNode{
+		Val: 4,
+		Left: &tree.TreeNode{
+			Val: 2,
+			Left: &tree.TreeNode{
+				Val: 1,
+			},
+			Right: &tree.TreeNode{
+				Val: 3,
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 6,
+		},
+	}
 
-	fmt.Println(minRewards(arr))
-	fmt.Println(minRewards1(arr))
-	fmt.Println(minRewards2(arr))
+	fmt.Println(getMinimumDifference(root)) // 1
+
+	root1 := &tree.TreeNode{
+		Val: 5,
+		Left: &tree.TreeNode{
+			Val: 0,
+		},
+		Right: &tree.TreeNode{
+			Val: 48,
+			Left: &tree.TreeNode{
+				Val: 12,
+			},
+			Right: &tree.TreeNode{
+				Val: 50,
+			},
+		},
+	}
+
+	fmt.Println(getMinimumDifference(root1)) // 2
 }
 
-func minRewards(arr []int) int {
-	return 0
-}
-
-func minRewards1(arr []int) int {
-	return 0
-}
-
-func minRewards2(arr []int) int {
+func getMinimumDifference(root *tree.TreeNode) int {
 	return 0
 }
