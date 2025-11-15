@@ -122,6 +122,7 @@ func main() {
 		"product_of_array.go":                                true,
 		"min_rewards.go":                                     true,
 		"minimum_absolute_difference_in_bst.go":              true,
+		"evaluate_expression_tree.go":                        true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -143,43 +144,24 @@ func main() {
 
 func runTask() {
 
-	root := &tree.TreeNode{
-		Val: 4,
-		Left: &tree.TreeNode{
-			Val: 2,
-			Left: &tree.TreeNode{
-				Val: 1,
-			},
-			Right: &tree.TreeNode{
-				Val: 3,
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 6,
-		},
-	}
+	root := &tree.TreeNode{Val: -1}
+	root.Left = &tree.TreeNode{Val: -2}
+	root.Left.Left = &tree.TreeNode{Val: -4}
+	root.Left.Right = &tree.TreeNode{Val: 2}
+	root.Left.Left.Left = &tree.TreeNode{Val: 3}
+	root.Left.Left.Right = &tree.TreeNode{Val: 2}
 
-	fmt.Println(getMinimumDifference(root)) // 1
+	root.Right = &tree.TreeNode{Val: -3}
+	root.Right.Left = &tree.TreeNode{Val: 8}
+	root.Right.Right = &tree.TreeNode{Val: 3}
 
-	root1 := &tree.TreeNode{
-		Val: 5,
-		Left: &tree.TreeNode{
-			Val: 0,
-		},
-		Right: &tree.TreeNode{
-			Val: 48,
-			Left: &tree.TreeNode{
-				Val: 12,
-			},
-			Right: &tree.TreeNode{
-				Val: 50,
-			},
-		},
-	}
+	expected := 6
 
-	fmt.Println(getMinimumDifference(root1)) // 2
+	actual := evaluateExpressionTree(root)
+	fmt.Println(actual)
+	fmt.Println(actual == expected)
 }
 
-func getMinimumDifference(root *tree.TreeNode) int {
+func evaluateExpressionTree(root *tree.TreeNode) int {
 	return 0
 }
