@@ -6,8 +6,6 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-
-	"github.com/sanantoha/go-algos/internals/tree"
 )
 
 func main() {
@@ -123,6 +121,7 @@ func main() {
 		"min_rewards.go":                                     true,
 		"minimum_absolute_difference_in_bst.go":              true,
 		"evaluate_expression_tree.go":                        true,
+		"water_area.go":                                      true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -144,24 +143,19 @@ func main() {
 
 func runTask() {
 
-	root := &tree.TreeNode{Val: -1}
-	root.Left = &tree.TreeNode{Val: -2}
-	root.Left.Left = &tree.TreeNode{Val: -4}
-	root.Left.Right = &tree.TreeNode{Val: 2}
-	root.Left.Left.Left = &tree.TreeNode{Val: 3}
-	root.Left.Left.Right = &tree.TreeNode{Val: 2}
+	input := []int{0, 8, 0, 0, 5, 0, 0, 10, 0, 0, 1, 1, 0, 3}
 
-	root.Right = &tree.TreeNode{Val: -3}
-	root.Right.Left = &tree.TreeNode{Val: 8}
-	root.Right.Right = &tree.TreeNode{Val: 3}
+	actual := waterArea(input)
+	fmt.Println(actual == 48)
 
-	expected := 6
-
-	actual := evaluateExpressionTree(root)
-	fmt.Println(actual)
-	fmt.Println(actual == expected)
+	actual = waterArea1(input)
+	fmt.Println(actual == 48)
 }
 
-func evaluateExpressionTree(root *tree.TreeNode) int {
+func waterArea(heights []int) int {
+	return 0
+}
+
+func waterArea1(heights []int) int {
 	return 0
 }
