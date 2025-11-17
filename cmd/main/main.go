@@ -122,6 +122,7 @@ func main() {
 		"minimum_absolute_difference_in_bst.go":              true,
 		"evaluate_expression_tree.go":                        true,
 		"water_area.go":                                      true,
+		"surrounded_regions.go":                              true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -143,19 +144,47 @@ func main() {
 
 func runTask() {
 
-	input := []int{0, 8, 0, 0, 5, 0, 0, 10, 0, 0, 1, 1, 0, 3}
+	board := [][]rune{
+		{'X', 'X', 'X', 'X'},
+		{'X', 'O', 'O', 'X'},
+		{'X', 'X', 'O', 'X'},
+		{'X', 'O', 'X', 'X'},
+	}
 
-	actual := waterArea(input)
-	fmt.Println(actual == 48)
+	solve(board)
+	printRuneMatrix(board)
+	fmt.Println("===============================")
 
-	actual = waterArea1(input)
-	fmt.Println(actual == 48)
+	board1 := [][]rune{
+		{'O', 'O', 'O'},
+		{'O', 'O', 'O'},
+		{'O', 'O', 'O'},
+	}
+
+	solve(board1)
+	printRuneMatrix(board1)
+	fmt.Println("===============================")
+
+	board2 := [][]rune{
+		{'X', 'O', 'X', 'O', 'X', 'O'},
+		{'O', 'X', 'O', 'X', 'O', 'X'},
+		{'X', 'O', 'X', 'O', 'X', 'O'},
+		{'O', 'X', 'O', 'X', 'O', 'X'},
+	}
+
+	solve(board2)
+	printRuneMatrix(board2)
 }
 
-func waterArea(heights []int) int {
-	return 0
+func printRuneMatrix(matrix [][]rune) {
+	for _, row := range matrix {
+		for _, r := range row {
+			fmt.Printf("%c ", r)
+		}
+		fmt.Println()
+	}
 }
 
-func waterArea1(heights []int) int {
-	return 0
+func solve(board [][]rune) {
+
 }
