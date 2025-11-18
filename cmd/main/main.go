@@ -123,6 +123,7 @@ func main() {
 		"evaluate_expression_tree.go":                        true,
 		"water_area.go":                                      true,
 		"surrounded_regions.go":                              true,
+		"best_time_to_buy_and_sell_stocks.go":                true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -144,47 +145,15 @@ func main() {
 
 func runTask() {
 
-	board := [][]rune{
-		{'X', 'X', 'X', 'X'},
-		{'X', 'O', 'O', 'X'},
-		{'X', 'X', 'O', 'X'},
-		{'X', 'O', 'X', 'X'},
-	}
+	prices := []int{7, 1, 5, 3, 6, 4}
 
-	solve(board)
-	printRuneMatrix(board)
-	fmt.Println("===============================")
+	fmt.Println(maxProfit(prices) == 5)
 
-	board1 := [][]rune{
-		{'O', 'O', 'O'},
-		{'O', 'O', 'O'},
-		{'O', 'O', 'O'},
-	}
+	prices1 := []int{7, 6, 4, 3, 1}
 
-	solve(board1)
-	printRuneMatrix(board1)
-	fmt.Println("===============================")
-
-	board2 := [][]rune{
-		{'X', 'O', 'X', 'O', 'X', 'O'},
-		{'O', 'X', 'O', 'X', 'O', 'X'},
-		{'X', 'O', 'X', 'O', 'X', 'O'},
-		{'O', 'X', 'O', 'X', 'O', 'X'},
-	}
-
-	solve(board2)
-	printRuneMatrix(board2)
+	fmt.Println(maxProfit(prices1) == 0)
 }
 
-func printRuneMatrix(matrix [][]rune) {
-	for _, row := range matrix {
-		for _, r := range row {
-			fmt.Printf("%c ", r)
-		}
-		fmt.Println()
-	}
-}
-
-func solve(board [][]rune) {
-
+func maxProfit(arr []int) int {
+	return 0
 }
