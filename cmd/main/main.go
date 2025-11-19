@@ -6,6 +6,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/sanantoha/go-algos/internals/tree"
 )
 
 func main() {
@@ -124,6 +126,7 @@ func main() {
 		"water_area.go":                                      true,
 		"surrounded_regions.go":                              true,
 		"best_time_to_buy_and_sell_stocks.go":                true,
+		"left_view_binary_tree.go":                           true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -145,15 +148,48 @@ func main() {
 
 func runTask() {
 
-	prices := []int{7, 1, 5, 3, 6, 4}
+	/**
+	 * left view of binary tree
+	 *          1
+	 *        /   \
+	 *       2     3
+	 *           /  \
+	 *          4    8
+	 *        /  \
+	 *       5    6
+	 *             \
+	 *              7
+	 *  output: [1, 2, 4, 5, 7]
+	 */
+	root := &tree.TreeNode{
+		Val: 1,
+		Left: &tree.TreeNode{
+			Val: 2,
+		},
+		Right: &tree.TreeNode{
+			Val: 3,
+			Left: &tree.TreeNode{
+				Val: 4,
+				Left: &tree.TreeNode{
+					Val: 5,
+				},
+				Right: &tree.TreeNode{
+					Val: 6,
+					Right: &tree.TreeNode{
+						Val: 7,
+					},
+				},
+			},
+			Right: &tree.TreeNode{
+				Val: 8,
+			},
+		},
+	}
 
-	fmt.Println(maxProfit(prices) == 5)
-
-	prices1 := []int{7, 6, 4, 3, 1}
-
-	fmt.Println(maxProfit(prices1) == 0)
+	// 1 2 4 5 7
+	fmt.Println(leftView(root))
 }
 
-func maxProfit(arr []int) int {
-	return 0
+func leftView(root *tree.TreeNode) []int {
+	return nil
 }
