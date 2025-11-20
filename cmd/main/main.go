@@ -6,8 +6,6 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-
-	"github.com/sanantoha/go-algos/internals/tree"
 )
 
 func main() {
@@ -127,6 +125,7 @@ func main() {
 		"surrounded_regions.go":                              true,
 		"best_time_to_buy_and_sell_stocks.go":                true,
 		"left_view_binary_tree.go":                           true,
+		"generate_matrix.go":                                 true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -148,48 +147,13 @@ func main() {
 
 func runTask() {
 
-	/**
-	 * left view of binary tree
-	 *          1
-	 *        /   \
-	 *       2     3
-	 *           /  \
-	 *          4    8
-	 *        /  \
-	 *       5    6
-	 *             \
-	 *              7
-	 *  output: [1, 2, 4, 5, 7]
-	 */
-	root := &tree.TreeNode{
-		Val: 1,
-		Left: &tree.TreeNode{
-			Val: 2,
-		},
-		Right: &tree.TreeNode{
-			Val: 3,
-			Left: &tree.TreeNode{
-				Val: 4,
-				Left: &tree.TreeNode{
-					Val: 5,
-				},
-				Right: &tree.TreeNode{
-					Val: 6,
-					Right: &tree.TreeNode{
-						Val: 7,
-					},
-				},
-			},
-			Right: &tree.TreeNode{
-				Val: 8,
-			},
-		},
-	}
-
-	// 1 2 4 5 7
-	fmt.Println(leftView(root))
+	fmt.Println(generateMatrix(3)) // [[1 2 3] [8 9 4] [7 6 5]]
+	fmt.Println("===============================")
+	fmt.Println(generateMatrix(1)) // [[1]]
+	fmt.Println("===============================")
+	fmt.Println(generateMatrix(4)) // [[1 2 3 4] [12 13 14 5] [11 16 15 6] [10 9 8 7]]
 }
 
-func leftView(root *tree.TreeNode) []int {
+func generateMatrix(n int) [][]int {
 	return nil
 }
