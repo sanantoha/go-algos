@@ -126,6 +126,7 @@ func main() {
 		"best_time_to_buy_and_sell_stocks.go":                true,
 		"left_view_binary_tree.go":                           true,
 		"generate_matrix.go":                                 true,
+		"longest_increasing_path_in_matrix.go":               true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -147,13 +148,23 @@ func main() {
 
 func runTask() {
 
-	fmt.Println(generateMatrix(3)) // [[1 2 3] [8 9 4] [7 6 5]]
-	fmt.Println("===============================")
-	fmt.Println(generateMatrix(1)) // [[1]]
-	fmt.Println("===============================")
-	fmt.Println(generateMatrix(4)) // [[1 2 3 4] [12 13 14 5] [11 16 15 6] [10 9 8 7]]
+	input := [][]int{
+		{9, 9, 4},
+		{6, 6, 8},
+		{2, 1, 1},
+	}
+
+	fmt.Println(longestIncreasingPath(input)) // 4
+
+	input1 := [][]int{
+		{3, 4, 5},
+		{3, 2, 6},
+		{2, 2, 1},
+	}
+
+	fmt.Println(longestIncreasingPath(input1)) // 4
 }
 
-func generateMatrix(n int) [][]int {
-	return nil
+func longestIncreasingPath(matrix [][]int) int {
+	return 0
 }
