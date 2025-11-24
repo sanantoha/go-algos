@@ -127,6 +127,7 @@ func main() {
 		"left_view_binary_tree.go":                           true,
 		"generate_matrix.go":                                 true,
 		"longest_increasing_path_in_matrix.go":               true,
+		"ongest_incr_subseq.go":                              true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -148,23 +149,53 @@ func main() {
 
 func runTask() {
 
-	input := [][]int{
-		{9, 9, 4},
-		{6, 6, 8},
-		{2, 1, 1},
-	}
+	arr0 := []int{1, 2, 3, 6, -100, -90, -80, -70, -60, 7, 8, 9, 10, -50, -40} // 9
+	fmt.Println(lis0(arr0))
+	fmt.Println(lis(arr0))
+	fmt.Println(lisList0(arr0))
+	fmt.Println(lisList(arr0))
+	fmt.Println("==============================")
 
-	fmt.Println(longestIncreasingPath(input)) // 4
+	arr := []int{10, 22, 9, 33, 21, 50, 41, 60, 80} // 6
+	fmt.Println(lis0(arr))
+	fmt.Println(lis(arr))
+	fmt.Println(lisList0(arr))
+	fmt.Println(lisList(arr))
+	fmt.Println("==============================")
 
-	input1 := [][]int{
-		{3, 4, 5},
-		{3, 2, 6},
-		{2, 2, 1},
-	}
+	arr1 := []int{4, 10, 4, 3, 8, 9} // 3
+	fmt.Println(lis0(arr1))
+	fmt.Println(lis(arr1))
+	fmt.Println(lisList0(arr1))
+	fmt.Println(lisList(arr1))
+	fmt.Println("==============================")
 
-	fmt.Println(longestIncreasingPath(input1)) // 4
+	arr2 := []int{10, 9, 2, 5, 3, 7, 101, 18} // 4
+	fmt.Println(lis0(arr2))
+	fmt.Println(lis(arr2))
+	fmt.Println(lisList0(arr2))
+	fmt.Println(lisList(arr2))
+	fmt.Println("==============================")
+
+	arr3 := []int{1, -10, 20, 30, 2, 3, 4, 5} // 5
+	fmt.Println(lis0(arr3))
+	fmt.Println(lis(arr3))
+	fmt.Println(lisList0(arr3))
+	fmt.Println(lisList(arr3))
 }
 
-func longestIncreasingPath(matrix [][]int) int {
+func lis0(arr []int) int {
 	return 0
+}
+
+func lis(arr []int) int {
+	return 0
+}
+
+func lisList0(arr []int) []int {
+	return nil
+}
+
+func lisList(arr []int) []int {
+	return nil
 }
