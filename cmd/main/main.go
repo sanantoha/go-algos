@@ -6,6 +6,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/sanantoha/go-algos/internals/list"
 )
 
 func main() {
@@ -129,6 +131,7 @@ func main() {
 		"longest_increasing_path_in_matrix.go":               true,
 		"longest_incr_subseq.go":                             true,
 		"minimal_haviest_set_a.go":                           true,
+		"palindrome_linked_list.go":                          true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -150,11 +153,13 @@ func main() {
 
 func runTask() {
 
-	arr := []int{6, 4, 2, 3, 1, 5}
+	lst := &list.ListNode{Val: 1, Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 1}}}}}}
+	lst1 := &list.ListNode{Val: 1, Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 1}}}}}
 
-	fmt.Println(minimalHaviestSetA(arr))
+	fmt.Println(isPalindrome(lst))
+	fmt.Println(isPalindrome(lst1))
 }
 
-func minimalHaviestSetA(arr []int) []int {
+func isPalindrome(head *list.ListNode) *list.ListNode {
 	return nil
 }
