@@ -6,8 +6,6 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-
-	"github.com/sanantoha/go-algos/internals/list"
 )
 
 func main() {
@@ -132,6 +130,7 @@ func main() {
 		"longest_incr_subseq.go":                             true,
 		"minimal_haviest_set_a.go":                           true,
 		"palindrome_linked_list.go":                          true,
+		"number_of_way_to_make_change.go":                    true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -153,13 +152,12 @@ func main() {
 
 func runTask() {
 
-	lst := &list.ListNode{Val: 1, Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 1}}}}}}
-	lst1 := &list.ListNode{Val: 1, Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 1}}}}}
-
-	fmt.Println(isPalindrome(lst))
-	fmt.Println(isPalindrome(lst1))
+	input := []int{1, 5}
+	actual := numberOfWaysToMakeChange(6, input)
+	fmt.Println(actual)
+	fmt.Println(actual == 2)
 }
 
-func isPalindrome(head *list.ListNode) *list.ListNode {
-	return nil
+func numberOfWaysToMakeChange(n int, denoms []int) int {
+	return 0
 }
