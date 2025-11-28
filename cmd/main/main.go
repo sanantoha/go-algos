@@ -131,6 +131,7 @@ func main() {
 		"minimal_haviest_set_a.go":                           true,
 		"palindrome_linked_list.go":                          true,
 		"number_of_way_to_make_change.go":                    true,
+		"combination_sum.go":                                 true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -152,12 +153,11 @@ func main() {
 
 func runTask() {
 
-	input := []int{1, 5}
-	actual := numberOfWaysToMakeChange(6, input)
-	fmt.Println(actual)
-	fmt.Println(actual == 2)
+	arr := []int{2, 3, 5, 7}
+
+	fmt.Println(combinationSum(arr, 7)) // // [[2, 2, 3], [2, 5], [7]]
 }
 
-func numberOfWaysToMakeChange(n int, denoms []int) int {
-	return 0
+func combinationSum(arr []int, target int) [][]int {
+	return nil
 }
