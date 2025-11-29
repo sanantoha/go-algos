@@ -132,6 +132,7 @@ func main() {
 		"palindrome_linked_list.go":                          true,
 		"number_of_way_to_make_change.go":                    true,
 		"combination_sum.go":                                 true,
+		"longest_nondecr_subseq.go":                          true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -153,11 +154,27 @@ func main() {
 
 func runTask() {
 
-	arr := []int{2, 3, 5, 7}
+	arr := []int{-2, -1, 2, 3, 4, 5, 2, 2, 2, 2, 3} // 8
+	// arr := []int{-1, 3, 4, 5, 2, 2, 2, 2} // 5
 
-	fmt.Println(combinationSum(arr, 7)) // // [[2, 2, 3], [2, 5], [7]]
+	fmt.Println(lnds(arr))
+	fmt.Println(lnds1(arr))
+	fmt.Println(lndsList(arr))
+	fmt.Println(lndsList1(arr))
 }
 
-func combinationSum(arr []int, target int) [][]int {
+func lnds(arr []int) int {
+	return 0
+}
+
+func lnds1(arr []int) int {
+	return 0
+}
+
+func lndsList(arr []int) []int {
+	return nil
+}
+
+func lndsList1(arr []int) []int {
 	return nil
 }
