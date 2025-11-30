@@ -6,6 +6,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/sanantoha/go-algos/internals/list"
 )
 
 func main() {
@@ -133,6 +135,7 @@ func main() {
 		"number_of_way_to_make_change.go":                    true,
 		"combination_sum.go":                                 true,
 		"longest_nondecr_subseq.go":                          true,
+		"middle_node.go":                                     true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -154,27 +157,17 @@ func main() {
 
 func runTask() {
 
-	arr := []int{-2, -1, 2, 3, 4, 5, 2, 2, 2, 2, 3} // 8
-	// arr := []int{-1, 3, 4, 5, 2, 2, 2, 2} // 5
+	head := &list.ListNode{Val: 4, Next: &list.ListNode{Val: 8, Next: &list.ListNode{Val: 15, Next: &list.ListNode{Val: 19}}}}
 
-	fmt.Println(lnds(arr))
-	fmt.Println(lnds1(arr))
-	fmt.Println(lndsList(arr))
-	fmt.Println(lndsList1(arr))
+	// 15 -> 19
+	fmt.Println(middleNode(head))
+
+	head1 := &list.ListNode{Val: 1, Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5}}}}}
+
+	// 3 -> 4 -> 5
+	fmt.Println(middleNode(head1))
 }
 
-func lnds(arr []int) int {
-	return 0
-}
-
-func lnds1(arr []int) int {
-	return 0
-}
-
-func lndsList(arr []int) []int {
-	return nil
-}
-
-func lndsList1(arr []int) []int {
+func middleNode(head *list.ListNode) *list.ListNode {
 	return nil
 }
