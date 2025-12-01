@@ -6,8 +6,6 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-
-	"github.com/sanantoha/go-algos/internals/list"
 )
 
 func main() {
@@ -136,6 +134,7 @@ func main() {
 		"combination_sum.go":                                 true,
 		"longest_nondecr_subseq.go":                          true,
 		"middle_node.go":                                     true,
+		"word_ladder.go":                                     true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -157,17 +156,19 @@ func main() {
 
 func runTask() {
 
-	head := &list.ListNode{Val: 4, Next: &list.ListNode{Val: 8, Next: &list.ListNode{Val: 15, Next: &list.ListNode{Val: 19}}}}
+	actual := ladderLength("hit", "cog", []string{"hot", "dot", "dog", "lot", "log", "cog"})
+	fmt.Println(actual)
+	fmt.Println(actual == 5)
 
-	// 15 -> 19
-	fmt.Println(middleNode(head))
+	actual = ladderLength("hit", "cog", []string{"hot", "dot", "dog", "lot", "log"})
+	fmt.Println(actual)
+	fmt.Println(actual == 0)
 
-	head1 := &list.ListNode{Val: 1, Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5}}}}}
-
-	// 3 -> 4 -> 5
-	fmt.Println(middleNode(head1))
+	actual = ladderLength("MAMA", "SIRI", []string{"SAMA", "SIMA", "SIRA", "SIRI", "MISA", "DISA"})
+	fmt.Println(actual)
+	fmt.Println(actual == 5)
 }
 
-func middleNode(head *list.ListNode) *list.ListNode {
-	return nil
+func ladderLength(beginWord string, endWord string, wordList []string) int {
+	return 0
 }
