@@ -6,6 +6,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/sanantoha/go-algos/internals/tree"
 )
 
 func main() {
@@ -135,6 +137,7 @@ func main() {
 		"longest_nondecr_subseq.go":                          true,
 		"middle_node.go":                                     true,
 		"word_ladder.go":                                     true,
+		"validate_bst.go":                                    true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -156,19 +159,31 @@ func main() {
 
 func runTask() {
 
-	actual := ladderLength("hit", "cog", []string{"hot", "dot", "dog", "lot", "log", "cog"})
-	fmt.Println(actual)
-	fmt.Println(actual == 5)
+	root := &tree.TreeNode{
+		Val: 5,
+		Left: &tree.TreeNode{
+			Val: 2,
+			Left: &tree.TreeNode{
+				Val: 1,
+			},
+			Right: &tree.TreeNode{
+				Val: 3,
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 10,
+			Left: &tree.TreeNode{
+				Val: 7,
+			},
+			Right: &tree.TreeNode{
+				Val: 15,
+			},
+		},
+	}
 
-	actual = ladderLength("hit", "cog", []string{"hot", "dot", "dog", "lot", "log"})
-	fmt.Println(actual)
-	fmt.Println(actual == 0)
-
-	actual = ladderLength("MAMA", "SIRI", []string{"SAMA", "SIMA", "SIRA", "SIRI", "MISA", "DISA"})
-	fmt.Println(actual)
-	fmt.Println(actual == 5)
+	fmt.Println(validate(root))
 }
 
-func ladderLength(beginWord string, endWord string, wordList []string) int {
-	return 0
+func validate(root *tree.TreeNode) bool {
+	return false
 }
