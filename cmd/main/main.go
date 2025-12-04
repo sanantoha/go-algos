@@ -137,6 +137,7 @@ func main() {
 		"word_ladder.go":                                     true,
 		"validate_bst.go":                                    true,
 		"balanced_brackets.go":                               true,
+		"word_break.go":                                      true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -158,13 +159,13 @@ func main() {
 
 func runTask() {
 
-	input := "([])(){}(())()()"
+	fmt.Println(wordBreak("leetcode", []string{"leet", "code"})) // true
 
-	fmt.Println(balancedBrackets(input))
+	fmt.Println(wordBreak("applepenapple", []string{"apple", "pen"})) // true
 
-	fmt.Println(!balancedBrackets("}{"))
+	fmt.Println(wordBreak("catsandog", []string{"cats", "dog", "sand", "and", "cat"})) // false
 }
 
-func balancedBrackets(str string) bool {
+func wordBreak(s string, wordDict []string) bool {
 	return false
 }
