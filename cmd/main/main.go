@@ -138,6 +138,7 @@ func main() {
 		"validate_bst.go":                                    true,
 		"balanced_brackets.go":                               true,
 		"word_break.go":                                      true,
+		"rotting_oranges.go":                                 true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -159,13 +160,23 @@ func main() {
 
 func runTask() {
 
-	fmt.Println(wordBreak("leetcode", []string{"leet", "code"})) // true
+	input := [][]int{
+		{2, 1, 1},
+		{1, 1, 0},
+		{0, 1, 1},
+	}
 
-	fmt.Println(wordBreak("applepenapple", []string{"apple", "pen"})) // true
+	res := rottingOranges(input)
+	fmt.Println(res)
 
-	fmt.Println(wordBreak("catsandog", []string{"cats", "dog", "sand", "and", "cat"})) // false
+	input = [][]int{
+		{0},
+	}
+
+	res = rottingOranges(input)
+	fmt.Println(res)
 }
 
-func wordBreak(s string, wordDict []string) bool {
-	return false
+func rottingOranges(grid [][]int) int {
+	return 0
 }
