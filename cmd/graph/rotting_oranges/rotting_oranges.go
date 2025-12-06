@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// O(w * h) time | O(w * h) space
 func rottingOranges(grid [][]int) int {
 	if len(grid) == 0 {
 		return 0
@@ -10,7 +11,6 @@ func rottingOranges(grid [][]int) int {
 	queue := findAllRotten(grid)
 
 	if len(queue) == 0 {
-		fmt.Println("here")
 		if isAtLeastOneFresh(grid) {
 			return -1
 		} else {

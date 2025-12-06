@@ -139,6 +139,7 @@ func main() {
 		"balanced_brackets.go":                               true,
 		"word_break.go":                                      true,
 		"rotting_oranges.go":                                 true,
+		"quick_sort.go":                                      true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -160,23 +161,26 @@ func main() {
 
 func runTask() {
 
-	input := [][]int{
-		{2, 1, 1},
-		{1, 1, 0},
-		{0, 1, 1},
+	arr := make([]int, 10)
+	for i := 0; i < len(arr); i++ {
+		arr[i] = rand.Intn(50)
 	}
 
-	res := rottingOranges(input)
-	fmt.Println(res)
+	fmt.Println(arr)
 
-	input = [][]int{
-		{0},
+	quickSort(arr, 0, len(arr)-1)
+
+	fmt.Println(arr)
+
+	for i := 0; i < len(arr)-1; i++ {
+		if arr[i] > arr[i+1] {
+			panic(fmt.Sprintf("array is not sorted: %d != %d", arr[i], arr[i+1]))
+		}
 	}
 
-	res = rottingOranges(input)
-	fmt.Println(res)
+	fmt.Println("done")
 }
 
-func rottingOranges(grid [][]int) int {
-	return 0
+func quickSort(arr []int, l int, r int) {
+
 }
