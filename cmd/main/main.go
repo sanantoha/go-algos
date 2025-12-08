@@ -1,15 +1,11 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 	"math/rand"
 	"os"
 	"path/filepath"
 	"strings"
-
-	grph "github.com/sanantoha/go-algos/internals/graph"
-	log "github.com/sirupsen/logrus"
 )
 
 func main() {
@@ -145,6 +141,7 @@ func main() {
 		"rotting_oranges.go":                                 true,
 		"quick_sort.go":                                      true,
 		"dijkstra_shortest_path.go":                          true,
+		"convert_sorted_array_to_bst.go":                     true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -166,22 +163,11 @@ func main() {
 
 func runTask() {
 
-	graph, err := grph.NewEdgeWeightedDigraphFromFile("cmd/graph/dijkstra_shortest_path/dijkstraShortestPath.txt")
+	arr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 
-	if err != nil {
-		log.Fatalln(err)
-	}
-
-	fmt.Println(graph)
-	log.Println("=====================================")
-	sp, err := findShortestPath(graph, 0)
-	if err != nil {
-		log.Fatalln(err)
-	}
-	//  &{[0 5 8 4 7] [-1 3 1 0 3]}
-	fmt.Println(sp)
+	fmt.Println(sortedArrayToBst(arr))
 }
 
-func findShortestPath(graph *grph.EdgeWeightedDigraph, start int) (*grph.ShortestPath, error) {
-	return nil, errors.New("not implemented")
+func sortedArrayToBst(arr []int) []int {
+	return nil
 }
