@@ -142,6 +142,7 @@ func main() {
 		"quick_sort.go":                                      true,
 		"dijkstra_shortest_path.go":                          true,
 		"convert_sorted_array_to_bst.go":                     true,
+		"find_peak_element.go":                               true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -163,11 +164,10 @@ func main() {
 
 func runTask() {
 
-	arr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-
-	fmt.Println(sortedArrayToBst(arr))
+	arr := []int{1, 2, 1, 3, 4, 5, 7, 8, 5, 3, 2, 11, 1}
+	fmt.Println(findPeak(arr)) // 7
 }
 
-func sortedArrayToBst(arr []int) []int {
-	return nil
+func findPeak(arr []int) int {
+	return -1
 }
