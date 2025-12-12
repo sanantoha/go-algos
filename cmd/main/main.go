@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/sanantoha/go-algos/internals/tree"
+	"github.com/sanantoha/go-algos/internals/list"
 )
 
 func main() {
@@ -147,6 +147,7 @@ func main() {
 		"find_peak_element.go":                               true,
 		"largest_range.go":                                   true,
 		"lowest_common_ancestor_of_bst.go":                   true,
+		"sort_list.go":                                       true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -167,44 +168,14 @@ func main() {
 }
 
 func runTask() {
-	root := &tree.TreeNode{
-		Val: 6,
-		Left: &tree.TreeNode{
-			Val: 2,
-			Left: &tree.TreeNode{
-				Val: 0,
-			},
-			Right: &tree.TreeNode{
-				Val: 4,
-				Left: &tree.TreeNode{
-					Val: 3,
-				},
-				Right: &tree.TreeNode{
-					Val: 5,
-				},
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 8,
-			Left: &tree.TreeNode{
-				Val: 7,
-			},
-			Right: &tree.TreeNode{
-				Val: 9,
-			},
-		},
-	}
+	head := &list.ListNode{Val: 9, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 5,
+		Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 8}}}}}}
 
-	fmt.Println(lowestCommonAncestor(root, &tree.TreeNode{Val: 0}, &tree.TreeNode{Val: 5}))
+	res := sort(head)
 
-	root1 := &tree.TreeNode{
-		Val:  2,
-		Left: &tree.TreeNode{Val: 1},
-	}
-
-	fmt.Println(lowestCommonAncestor(root1, &tree.TreeNode{Val: 2}, &tree.TreeNode{Val: 1}))
+	fmt.Println(res)
 }
 
-func lowestCommonAncestor(root *tree.TreeNode, p *tree.TreeNode, q *tree.TreeNode) *tree.TreeNode {
+func sort(root *list.ListNode) *list.ListNode {
 	return nil
 }
