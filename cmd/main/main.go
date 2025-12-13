@@ -6,8 +6,6 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-
-	"github.com/sanantoha/go-algos/internals/list"
 )
 
 func main() {
@@ -168,14 +166,27 @@ func main() {
 }
 
 func runTask() {
-	head := &list.ListNode{Val: 9, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 5,
-		Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 8}}}}}}
+	fmt.Println(climbStairsDP(0) == 0)
+	fmt.Println(climbStairsDP(1) == 1)
+	fmt.Println(climbStairsDP(2) == 2)
+	fmt.Println(climbStairsDP(3) == 3)
+	fmt.Println(climbStairsDP(4) == 5)
+	fmt.Println(climbStairsDP(5) == 8)
 
-	res := sort(head)
+	fmt.Println("=======================")
 
-	fmt.Println(res)
+	fmt.Println(climbStairs(0) == 0)
+	fmt.Println(climbStairs(1) == 1)
+	fmt.Println(climbStairs(2) == 2)
+	fmt.Println(climbStairs(3) == 3)
+	fmt.Println(climbStairs(4) == 5)
+	fmt.Println(climbStairs(5) == 8)
 }
 
-func sort(root *list.ListNode) *list.ListNode {
-	return nil
+func climbStairsDP(n int) int {
+	return -1
+}
+
+func climbStairs(n int) int {
+	return -1
 }
