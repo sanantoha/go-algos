@@ -146,6 +146,7 @@ func main() {
 		"largest_range.go":                                   true,
 		"lowest_common_ancestor_of_bst.go":                   true,
 		"sort_list.go":                                       true,
+		"reverse_integer.go":                                 true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -166,27 +167,15 @@ func main() {
 }
 
 func runTask() {
-	fmt.Println(climbStairsDP(0) == 0)
-	fmt.Println(climbStairsDP(1) == 1)
-	fmt.Println(climbStairsDP(2) == 2)
-	fmt.Println(climbStairsDP(3) == 3)
-	fmt.Println(climbStairsDP(4) == 5)
-	fmt.Println(climbStairsDP(5) == 8)
+	fmt.Println(reverse(123))
 
-	fmt.Println("=======================")
+	fmt.Println(reverse(0))
 
-	fmt.Println(climbStairs(0) == 0)
-	fmt.Println(climbStairs(1) == 1)
-	fmt.Println(climbStairs(2) == 2)
-	fmt.Println(climbStairs(3) == 3)
-	fmt.Println(climbStairs(4) == 5)
-	fmt.Println(climbStairs(5) == 8)
+	fmt.Println(reverse(-123))
+
+	fmt.Println(reverse(120))
 }
 
-func climbStairsDP(n int) int {
-	return -1
-}
-
-func climbStairs(n int) int {
-	return -1
+func reverse(n int) int {
+	return 0
 }
