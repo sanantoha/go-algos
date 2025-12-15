@@ -2,10 +2,13 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"math/rand"
 	"os"
 	"path/filepath"
 	"strings"
+
+	grph "github.com/sanantoha/go-algos/internals/graph"
 )
 
 func main() {
@@ -147,6 +150,7 @@ func main() {
 		"lowest_common_ancestor_of_bst.go":                   true,
 		"sort_list.go":                                       true,
 		"reverse_integer.go":                                 true,
+		"breadth_first_search_as_map.go":                     true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -167,15 +171,17 @@ func main() {
 }
 
 func runTask() {
-	fmt.Println(reverse(123))
+	graph, err := grph.NewGraphAsAdjListFromFile("cmd/graph/breadth_first_search/bfs.txt")
+	if err != nil {
+		log.Fatalln(err)
+	}
 
-	fmt.Println(reverse(0))
-
-	fmt.Println(reverse(-123))
-
-	fmt.Println(reverse(120))
+	fmt.Println(grph.PrintGraphAsAdjList(graph))
+	fmt.Println("=====================================")
+	// [0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24]
+	fmt.Println(bfs(graph, "0"))
 }
 
-func reverse(n int) int {
-	return 0
+func bfs(graph map[string][]*grph.EdgeT[string], start string) []string {
+	return nil
 }
