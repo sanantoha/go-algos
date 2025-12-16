@@ -2,13 +2,11 @@ package main
 
 import (
 	"fmt"
-	"log"
+	"math"
 	"math/rand"
 	"os"
 	"path/filepath"
 	"strings"
-
-	grph "github.com/sanantoha/go-algos/internals/graph"
 )
 
 func main() {
@@ -151,6 +149,7 @@ func main() {
 		"sort_list.go":                                       true,
 		"reverse_integer.go":                                 true,
 		"breadth_first_search_as_map.go":                     true,
+		"min_heap.go":                                        true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -171,17 +170,62 @@ func main() {
 }
 
 func runTask() {
-	graph, err := grph.NewGraphAsAdjListFromFile("cmd/graph/breadth_first_search/bfs.txt")
-	if err != nil {
-		log.Fatalln(err)
-	}
 
-	fmt.Println(grph.PrintGraphAsAdjList(graph))
-	fmt.Println("=====================================")
-	// [0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24]
-	fmt.Println(bfs(graph, "0"))
+	arr := []int{0, 1, 2}
+
+	heap := NewMinHeap(arr)
+	heap.Insert(3)
+	heap.Insert(4)
+	heap.Insert(5)
+
+	fmt.Println(heap.heap) // [0, 1, 2, 3, 4, 5]
+
+	fmt.Println(heap.Peek())   // 0
+	fmt.Println(heap.Remove()) // 0
+	fmt.Println(heap.heap)     // [1, 3, 2, 5, 4]
+
+	fmt.Println(heap.Remove()) // 1
+	fmt.Println(heap.Remove()) // 2
+
+	heap.Insert(4)
+	fmt.Println(heap.heap) // [3, 4, 4, 5]
 }
 
-func bfs(graph map[string][]*grph.EdgeT[string], start string) []string {
+type MinHeap struct {
+	heap []int
+}
+
+func NewMinHeap(arr []int) *MinHeap {
+	return &MinHeap{
+		heap: buildHeap(arr),
+	}
+}
+
+func buildHeap(arr []int) []int {
 	return nil
+}
+
+func siftDown(currentIdx int, endIdx int, heap []int) {
+
+}
+
+func siftUp(currentIdx int, heap []int) {
+
+}
+
+// O(1) time | O(1) space
+func (mh *MinHeap) Peek() int {
+	return math.MinInt
+}
+
+func (mh *MinHeap) Remove() int {
+	return math.MinInt
+}
+
+func (mh *MinHeap) Insert(value int) {
+
+}
+
+func (mh *MinHeap) IsEmpty() bool {
+	return false
 }
