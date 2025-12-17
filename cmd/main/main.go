@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -150,6 +149,7 @@ func main() {
 		"reverse_integer.go":                                 true,
 		"breadth_first_search_as_map.go":                     true,
 		"min_heap.go":                                        true,
+		"zero_one_matrix.go":                                 true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -171,61 +171,23 @@ func main() {
 
 func runTask() {
 
-	arr := []int{0, 1, 2}
-
-	heap := NewMinHeap(arr)
-	heap.Insert(3)
-	heap.Insert(4)
-	heap.Insert(5)
-
-	fmt.Println(heap.heap) // [0, 1, 2, 3, 4, 5]
-
-	fmt.Println(heap.Peek())   // 0
-	fmt.Println(heap.Remove()) // 0
-	fmt.Println(heap.heap)     // [1, 3, 2, 5, 4]
-
-	fmt.Println(heap.Remove()) // 1
-	fmt.Println(heap.Remove()) // 2
-
-	heap.Insert(4)
-	fmt.Println(heap.heap) // [3, 4, 4, 5]
-}
-
-type MinHeap struct {
-	heap []int
-}
-
-func NewMinHeap(arr []int) *MinHeap {
-	return &MinHeap{
-		heap: buildHeap(arr),
+	input0 := [][]int{
+		{0, 0, 0},
+		{0, 1, 0},
+		{0, 0, 0},
 	}
+
+	input1 := [][]int{
+		{0, 0, 0},
+		{0, 1, 0},
+		{1, 1, 1},
+	}
+
+	fmt.Println(updateMatrix(input0))
+
+	fmt.Println(updateMatrix(input1))
 }
 
-func buildHeap(arr []int) []int {
-	return nil
-}
-
-func siftDown(currentIdx int, endIdx int, heap []int) {
-
-}
-
-func siftUp(currentIdx int, heap []int) {
-
-}
-
-// O(1) time | O(1) space
-func (mh *MinHeap) Peek() int {
-	return math.MinInt
-}
-
-func (mh *MinHeap) Remove() int {
-	return math.MinInt
-}
-
-func (mh *MinHeap) Insert(value int) {
-
-}
-
-func (mh *MinHeap) IsEmpty() bool {
-	return false
+func updateMatrix(matrix [][]int) int {
+	return -1
 }

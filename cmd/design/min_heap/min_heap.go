@@ -81,7 +81,7 @@ func (mh *MinHeap) Remove() int {
 	return val
 }
 
-// O(1) time | O(1) space
+// O(log(n)) time | O(1) space
 func (mh *MinHeap) Insert(value int) {
 	mh.heap = append(mh.heap, value)
 	siftUp(len(mh.heap)-1, mh.heap)
