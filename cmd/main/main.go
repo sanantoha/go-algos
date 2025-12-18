@@ -150,6 +150,7 @@ func main() {
 		"breadth_first_search_as_map.go":                     true,
 		"min_heap.go":                                        true,
 		"zero_one_matrix.go":                                 true,
+		"house_robber.go":                                    true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -171,23 +172,13 @@ func main() {
 
 func runTask() {
 
-	input0 := [][]int{
-		{0, 0, 0},
-		{0, 1, 0},
-		{0, 0, 0},
-	}
+	nums := []int{4, 1, 2, 7, 5, 3, 1}
 
-	input1 := [][]int{
-		{0, 0, 0},
-		{0, 1, 0},
-		{1, 1, 1},
-	}
-
-	fmt.Println(updateMatrix(input0))
-
-	fmt.Println(updateMatrix(input1))
+	res := rob(nums)
+	fmt.Println(res)
+	fmt.Println(res == 14)
 }
 
-func updateMatrix(matrix [][]int) int {
-	return -1
+func rob(arr []int) int {
+	return 0
 }
