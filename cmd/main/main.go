@@ -151,6 +151,7 @@ func main() {
 		"min_heap.go":                                        true,
 		"zero_one_matrix.go":                                 true,
 		"house_robber.go":                                    true,
+		"minimum_passes_of_matrix.go":                        true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -172,13 +173,19 @@ func main() {
 
 func runTask() {
 
-	nums := []int{4, 1, 2, 7, 5, 3, 1}
+	matrix := [][]int{
+		{0, -1, -3, 2, 0},
+		{1, -2, -5, -1, -3},
+		{3, 0, 0, -4, -1},
+	}
 
-	res := rob(nums)
-	fmt.Println(res)
-	fmt.Println(res == 14)
+	expected := 3
+
+	actual := minimumPassesOfMatrix(matrix)
+	fmt.Println(actual)
+	fmt.Println(actual == expected)
 }
 
-func rob(arr []int) int {
+func minimumPassesOfMatrix(matrix [][]int) int {
 	return 0
 }
