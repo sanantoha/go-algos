@@ -152,6 +152,7 @@ func main() {
 		"zero_one_matrix.go":                                 true,
 		"house_robber.go":                                    true,
 		"minimum_passes_of_matrix.go":                        true,
+		"reverse_string.go":                                  true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -173,19 +174,15 @@ func main() {
 
 func runTask() {
 
-	matrix := [][]int{
-		{0, -1, -3, 2, 0},
-		{1, -2, -5, -1, -3},
-		{3, 0, 0, -4, -1},
+	s := []rune{'h', 'e', 't', 'l', 'l', 'o'}
+
+	reverseString(s)
+
+	for _, c := range s {
+		fmt.Printf("%v ", string(c))
 	}
-
-	expected := 3
-
-	actual := minimumPassesOfMatrix(matrix)
-	fmt.Println(actual)
-	fmt.Println(actual == expected)
 }
 
-func minimumPassesOfMatrix(matrix [][]int) int {
-	return 0
+func reverseString(arr []rune) {
+
 }
