@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-// O(maxSteps ^ height) time | O(maxSteps ^ height) space
+// O(maxSteps ^ height) time | O(height) space
 func staircaseTraversalRec(height, maxSteps int) int {
 	if height <= 1 {
 		return 1

@@ -155,6 +155,7 @@ func main() {
 		"reverse_string.go":                                  true,
 		"kruskal_min_spanning_tree_as_map.go":                true,
 		"staircase_traversal.go":                             true,
+		"minimum_window_substring.go":                        true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -176,31 +177,13 @@ func main() {
 
 func runTask() {
 
-	fmt.Println(staircaseTraversalRec(4, 2))
-	fmt.Println(staircaseTraversalRec(4, 3))
-	fmt.Println("==============================================")
-	fmt.Println(staircaseTraversalRecMemoization(4, 2))
-	fmt.Println(staircaseTraversalRecMemoization(4, 3))
-	fmt.Println("==============================================")
-	fmt.Println(staircaseTraversalIter(4, 2))
-	fmt.Println(staircaseTraversalIter(4, 3))
-	fmt.Println("==============================================")
-	fmt.Println(staircaseTraversalSlidingWindow(4, 2))
-	fmt.Println(staircaseTraversalSlidingWindow(4, 3))
+	fmt.Println(minimumWindowSubstring("ADOBECODEBANC", "ABC")) // "BANC"
+
+	fmt.Println(minimumWindowSubstring("a", "a")) // a
+
+	fmt.Println(minimumWindowSubstring("a", "aa")) // ""
 }
 
-func staircaseTraversalRec(height int, maxSteps int) int {
-	return -1
-}
-
-func staircaseTraversalRecMemoization(height int, maxSteps int) int {
-	return -1
-}
-
-func staircaseTraversalIter(height int, maxSteps int) int {
-	return -1
-}
-
-func staircaseTraversalSlidingWindow(height int, maxSteps int) int {
-	return -1
+func minimumWindowSubstring(s string, t string) string {
+	return ""
 }
