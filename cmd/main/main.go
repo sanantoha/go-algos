@@ -6,8 +6,6 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-
-	"github.com/sanantoha/go-algos/internals/tree"
 )
 
 func main() {
@@ -159,6 +157,7 @@ func main() {
 		"staircase_traversal.go":                             true,
 		"minimum_window_substring.go":                        true,
 		"merge_binary_tree.go":                               true,
+		"maximum_subarray.go":                                true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -180,103 +179,16 @@ func main() {
 
 func runTask() {
 
-	tree1 := &tree.TreeNode{
-		Val: 1,
-		Left: &tree.TreeNode{
-			Val: 3,
-			Left: &tree.TreeNode{
-				Val: 7,
-			},
-			Right: &tree.TreeNode{
-				Val: 4,
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 2,
-		},
-	}
+	arr := []int{3, 5, -9, 1, 3, -2, 3, 4, 7, 2, -9, 6, 3, 1, -5, 4} // 19
+	fmt.Println(maximumSubarray(arr))
 
-	tree2 := &tree.TreeNode{
-		Val: 1,
-		Left: &tree.TreeNode{
-			Val: 5,
-			Left: &tree.TreeNode{
-				Val: 2,
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 9,
-			Left: &tree.TreeNode{
-				Val: 7,
-			},
-			Right: &tree.TreeNode{
-				Val: 6,
-			},
-		},
-	}
+	arr1 := []int{-2, 1, -3, 4, -1, 2, 1, -5, 4} // 6
+	fmt.Println(maximumSubarray(arr1))
 
-	actual := mergeBinaryTrees(tree1, tree2)
-
-	fmt.Println(actual.Val == 2)
-	fmt.Println(actual.Left.Val == 8)
-	fmt.Println(actual.Left.Left.Val == 9)
-	fmt.Println(actual.Left.Right.Val == 4)
-	fmt.Println(actual.Right.Val == 11)
-	fmt.Println(actual.Right.Left.Val == 7)
-	fmt.Println(actual.Right.Right.Val == 6)
-
-	fmt.Println("==========================================")
-
-	tree3 := &tree.TreeNode{
-		Val: 1,
-		Left: &tree.TreeNode{
-			Val: 3,
-			Left: &tree.TreeNode{
-				Val: 7,
-			},
-			Right: &tree.TreeNode{
-				Val: 4,
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 2,
-		},
-	}
-
-	tree4 := &tree.TreeNode{
-		Val: 1,
-		Left: &tree.TreeNode{
-			Val: 5,
-			Left: &tree.TreeNode{
-				Val: 2,
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 9,
-			Left: &tree.TreeNode{
-				Val: 7,
-			},
-			Right: &tree.TreeNode{
-				Val: 6,
-			},
-		},
-	}
-
-	actual = mergeBinaryTreesIter(tree3, tree4)
-
-	fmt.Println(actual.Val == 2)
-	fmt.Println(actual.Left.Val == 8)
-	fmt.Println(actual.Left.Left.Val == 9)
-	fmt.Println(actual.Left.Right.Val == 4)
-	fmt.Println(actual.Right.Val == 11)
-	fmt.Println(actual.Right.Left.Val == 7)
-	fmt.Println(actual.Right.Right.Val == 6)
+	arr2 := []int{3, 4, -6, 7, 8, -18, 100} // 100
+	fmt.Println(maximumSubarray(arr2))
 }
 
-func mergeBinaryTrees(tree1, tree2 *tree.TreeNode) *tree.TreeNode {
-	return nil
-}
-
-func mergeBinaryTreesIter(tree1, tree2 *tree.TreeNode) *tree.TreeNode {
-	return nil
+func maximumSubarray(arr []int) int {
+	return 0
 }
