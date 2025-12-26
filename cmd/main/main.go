@@ -158,6 +158,7 @@ func main() {
 		"minimum_window_substring.go":                        true,
 		"merge_binary_tree.go":                               true,
 		"maximum_subarray.go":                                true,
+		"next_greater_element.go":                            true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -179,16 +180,18 @@ func main() {
 
 func runTask() {
 
-	arr := []int{3, 5, -9, 1, 3, -2, 3, 4, 7, 2, -9, 6, 3, 1, -5, 4} // 19
-	fmt.Println(maximumSubarray(arr))
+	input := []int{2, 5, -3, -4, 6, 7, 2}
+	actual := nextGreaterElement(input)
+	fmt.Println(actual) // [5, 6, 6, 6, 7, -1, 5]
 
-	arr1 := []int{-2, 1, -3, 4, -1, 2, 1, -5, 4} // 6
-	fmt.Println(maximumSubarray(arr1))
-
-	arr2 := []int{3, 4, -6, 7, 8, -18, 100} // 100
-	fmt.Println(maximumSubarray(arr2))
+	actual = nextGreaterElement1(input)
+	fmt.Println(actual) // [5, 6, 6, 6, 7, -1, 5]
 }
 
-func maximumSubarray(arr []int) int {
-	return 0
+func nextGreaterElement(arr []int) []int {
+	return nil
+}
+
+func nextGreaterElement1(arr []int) []int {
+	return nil
 }
