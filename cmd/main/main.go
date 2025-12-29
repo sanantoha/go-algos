@@ -160,6 +160,7 @@ func main() {
 		"maximum_subarray.go":                                true,
 		"next_greater_element.go":                            true,
 		"min_number_of_jumps.go":                             true,
+		"permutations.go":                                    true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -181,21 +182,11 @@ func main() {
 
 func runTask() {
 
-	input := []int{3, 4, 2, 1, 2, 3, 7, 1, 1, 1, 3}
+	arr := []int{1, 2, 3}
 
-	actual := minNumberOfJumps(input)
-	fmt.Println(actual)
-	fmt.Println(actual == 4)
-
-	actual = minNumberOfJumps1(input)
-	fmt.Println(actual)
-	fmt.Println(actual == 4)
+	fmt.Println(permute(arr))
 }
 
-func minNumberOfJumps(arr []int) int {
-	return 0
-}
-
-func minNumberOfJumps1(arr []int) int {
-	return 0
+func permute(arr []int) [][]int {
+	return nil
 }
