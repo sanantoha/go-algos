@@ -162,6 +162,8 @@ func main() {
 		"min_number_of_jumps.go":                             true,
 		"permutations.go":                                    true,
 		"first_unique_character_in_string.go":                true,
+		"remove_nth_from_end_of_list.go":                     true,
+		"word_search.go":                                     true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -183,11 +185,37 @@ func main() {
 
 func runTask() {
 
-	fmt.Println(firstUniqChar("leetcode"))     // 0
-	fmt.Println(firstUniqChar("loveleetcode")) // 2
-	fmt.Println(firstUniqChar("aabb"))         // -1
+	board := [][]rune{
+		{'A', 'B', 'C', 'E'},
+		{'S', 'F', 'C', 'S'},
+		{'A', 'D', 'E', 'E'},
+	}
+	word := "ABCCE"
+
+	fmt.Println(exist(board, word))
+
+	fmt.Println("========================")
+
+	board1 := [][]rune{
+		{'A', 'B', 'C', 'E'},
+		{'S', 'F', 'E', 'S'},
+		{'A', 'D', 'E', 'E'},
+	}
+
+	word1 := "ABCESEEEFS"
+
+	fmt.Println(exist(board1, word1))
+
+	fmt.Println("===========================")
+
+	word2 := "ABCEFSADEESE"
+	fmt.Println(exist(board1, word2))
+
+	fmt.Println("==========================")
+
+	fmt.Println(!exist(board1, "ABCEV"))
 }
 
-func firstUniqChar(str string) int {
-	return -1
+func exist(board [][]rune, word string) bool {
+	return false
 }
