@@ -109,7 +109,7 @@ func canFinish1(numCourses int, prerequisites [][]int) bool {
 func main() {
 
 	fmt.Println(
-		canFinish(2, [][]int{}),
+		canFinish(1, [][]int{}),
 	)
 
 	fmt.Println(
@@ -145,7 +145,7 @@ func main() {
 	fmt.Println("================================================")
 
 	fmt.Println(
-		canFinish1(2, [][]int{}),
+		canFinish1(1, [][]int{}),
 	)
 
 	fmt.Println(

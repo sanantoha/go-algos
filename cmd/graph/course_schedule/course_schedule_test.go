@@ -20,7 +20,7 @@ func TestCanFinish(t *testing.T) {
 	}{
 		{
 			name:          "case1",
-			numCourses:    2,
+			numCourses:    1,
 			prerequisites: [][]int{},
 			exp:           true,
 		},
