@@ -197,6 +197,6 @@ func runTask() {
 	fmt.Println(stringWithoutAAAorBBB(1, 4)) // bbabb
 }
 
-func stringWithoutAAAorBBB(b int, b int) string {
+func stringWithoutAAAorBBB(a int, b int) string {
 	return ""
 }
