@@ -164,6 +164,7 @@ func main() {
 		"first_unique_character_in_string.go":                true,
 		"remove_nth_from_end_of_list.go":                     true,
 		"word_search.go":                                     true,
+		"string_without_aaa_or_bbb.go":                       true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -185,37 +186,17 @@ func main() {
 
 func runTask() {
 
-	board := [][]rune{
-		{'A', 'B', 'C', 'E'},
-		{'S', 'F', 'C', 'S'},
-		{'A', 'D', 'E', 'E'},
-	}
-	word := "ABCCE"
+	fmt.Println(stringWithoutAAAorBBB(1, 1)) // ab
+	fmt.Println(stringWithoutAAAorBBB(3, 3)) // abbaab
+	fmt.Println(stringWithoutAAAorBBB(2, 5)) // babbabb
 
-	fmt.Println(exist(board, word))
+	fmt.Println(stringWithoutAAAorBBB(5, 3)) // aabaabab
 
-	fmt.Println("========================")
+	fmt.Println(stringWithoutAAAorBBB(3, 3)) // abbaab
 
-	board1 := [][]rune{
-		{'A', 'B', 'C', 'E'},
-		{'S', 'F', 'E', 'S'},
-		{'A', 'D', 'E', 'E'},
-	}
-
-	word1 := "ABCESEEEFS"
-
-	fmt.Println(exist(board1, word1))
-
-	fmt.Println("===========================")
-
-	word2 := "ABCEFSADEESE"
-	fmt.Println(exist(board1, word2))
-
-	fmt.Println("==========================")
-
-	fmt.Println(!exist(board1, "ABCEV"))
+	fmt.Println(stringWithoutAAAorBBB(1, 4)) // bbabb
 }
 
-func exist(board [][]rune, word string) bool {
-	return false
+func stringWithoutAAAorBBB(b int, b int) string {
+	return ""
 }
