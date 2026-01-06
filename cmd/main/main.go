@@ -6,6 +6,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/sanantoha/go-algos/internals/list"
 )
 
 func main() {
@@ -165,6 +167,7 @@ func main() {
 		"remove_nth_from_end_of_list.go":                     true,
 		"word_search.go":                                     true,
 		"string_without_aaa_or_bbb.go":                       true,
+		"delete_node_in_linked_list.go":                      true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -186,17 +189,17 @@ func main() {
 
 func runTask() {
 
-	fmt.Println(stringWithoutAAAorBBB(1, 1)) // ab
-	fmt.Println(stringWithoutAAAorBBB(3, 3)) // abbaab
-	fmt.Println(stringWithoutAAAorBBB(2, 5)) // babbabb
+	node0 := &list.ListNode{Val: 3, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5}}}
+	node1 := &list.ListNode{Val: 2, Next: node0}
+	lst := &list.ListNode{Val: 1, Next: node1}
 
-	fmt.Println(stringWithoutAAAorBBB(5, 3)) // aabaabab
+	fmt.Println(lst)
 
-	fmt.Println(stringWithoutAAAorBBB(3, 3)) // abbaab
+	deleteNode(node0)
 
-	fmt.Println(stringWithoutAAAorBBB(1, 4)) // bbabb
+	fmt.Println(lst)
 }
 
-func stringWithoutAAAorBBB(a int, b int) string {
-	return ""
+func deleteNode(node *list.ListNode) {
+
 }
