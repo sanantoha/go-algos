@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/sanantoha/go-algos/internals/list"
+	"github.com/sanantoha/go-algos/internals/tree"
 )
 
 func main() {
@@ -168,6 +168,7 @@ func main() {
 		"word_search.go":                                     true,
 		"string_without_aaa_or_bbb.go":                       true,
 		"delete_node_in_linked_list.go":                      true,
+		"lowest_common_ancestor_of_binary_tree.go":           true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -187,19 +188,52 @@ func main() {
 	runTask()
 }
 
+/*
+		      3
+		   /     \
+		  5       1
+		/   \    /  \
+	   6     2  0    8
+	       / \
+		  7   4
+*/
 func runTask() {
 
-	node0 := &list.ListNode{Val: 3, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5}}}
-	node1 := &list.ListNode{Val: 2, Next: node0}
-	lst := &list.ListNode{Val: 1, Next: node1}
+	node7 := &tree.TreeNode{Val: 7}
+	node5 := &tree.TreeNode{
+		Val: 5,
+		Left: &tree.TreeNode{
+			Val: 6,
+		},
+		Right: &tree.TreeNode{
+			Val:  2,
+			Left: node7,
+			Right: &tree.TreeNode{
+				Val: 4,
+			},
+		},
+	}
 
-	fmt.Println(lst)
+	node1 := &tree.TreeNode{
+		Val: 1,
+		Left: &tree.TreeNode{
+			Val: 0,
+		},
+		Right: &tree.TreeNode{
+			Val: 8,
+		},
+	}
 
-	deleteNode(node0)
+	root := &tree.TreeNode{
+		Val:   3,
+		Left:  node5,
+		Right: node1,
+	}
 
-	fmt.Println(lst)
+	// TreeNode{Val=5, Left=TreeNode{Val=6, Left=nil, Right=nil}, Right=TreeNode{Val=2, Left=TreeNode{Val=7, Left=nil, Right=nil}, Right=TreeNode{Val=4, Left=nil, Right=nil}}}
+	fmt.Println(lowestCommonAncestor(root, node7, node5))
 }
 
-func deleteNode(node *list.ListNode) {
-
+func lowestCommonAncestor(root *tree.TreeNode, p *tree.TreeNode, q *tree.TreeNode) *tree.TreeNode {
+	return nil
 }
