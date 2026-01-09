@@ -2,12 +2,13 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"math/rand"
 	"os"
 	"path/filepath"
 	"strings"
 
-	"github.com/sanantoha/go-algos/internals/tree"
+	grph "github.com/sanantoha/go-algos/internals/graph"
 )
 
 func main() {
@@ -169,6 +170,7 @@ func main() {
 		"string_without_aaa_or_bbb.go":                       true,
 		"delete_node_in_linked_list.go":                      true,
 		"lowest_common_ancestor_of_binary_tree.go":           true,
+		"bellman_ford.go":                                    true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -199,41 +201,22 @@ func main() {
 */
 func runTask() {
 
-	node7 := &tree.TreeNode{Val: 7}
-	node5 := &tree.TreeNode{
-		Val: 5,
-		Left: &tree.TreeNode{
-			Val: 6,
-		},
-		Right: &tree.TreeNode{
-			Val:  2,
-			Left: node7,
-			Right: &tree.TreeNode{
-				Val: 4,
-			},
-		},
+	graph, err := grph.NewEdgeWeightedDigraphFromFile("cmd/graph/bellman_ford/bellmanFord.txt")
+	if err != nil {
+		log.Fatalln(err)
 	}
 
-	node1 := &tree.TreeNode{
-		Val: 1,
-		Left: &tree.TreeNode{
-			Val: 0,
-		},
-		Right: &tree.TreeNode{
-			Val: 8,
-		},
-	}
+	sp := findShortestPath(graph, 0)
+	fmt.Println(sp) // ShortestPath{Shortest=[-9.0, -20.0, -18.0, -2.0, -11.0], Prev=[4, 2, 4, 0, 1]}
 
-	root := &tree.TreeNode{
-		Val:   3,
-		Left:  node5,
-		Right: node1,
-	}
-
-	// TreeNode{Val=5, Left=TreeNode{Val=6, Left=nil, Right=nil}, Right=TreeNode{Val=2, Left=TreeNode{Val=7, Left=nil, Right=nil}, Right=TreeNode{Val=4, Left=nil, Right=nil}}}
-	fmt.Println(lowestCommonAncestor(root, node7, node5))
+	circle := findNegativeWeightCycle(graph, sp)
+	fmt.Println(circle) // [1, 2, 4]
 }
 
-func lowestCommonAncestor(root *tree.TreeNode, p *tree.TreeNode, q *tree.TreeNode) *tree.TreeNode {
+func findShortestPath(graph *grph.EdgeWeightedDigraph, start int) *grph.ShortestPath {
+	return nil
+}
+
+func findNegativeWeightCycle(graph *grph.EdgeWeightedDigraph, sp *grph.ShortestPath) []int {
 	return nil
 }
