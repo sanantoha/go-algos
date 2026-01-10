@@ -2,13 +2,10 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"math/rand"
 	"os"
 	"path/filepath"
 	"strings"
-
-	grph "github.com/sanantoha/go-algos/internals/graph"
 )
 
 func main() {
@@ -171,6 +168,7 @@ func main() {
 		"delete_node_in_linked_list.go":                      true,
 		"lowest_common_ancestor_of_binary_tree.go":           true,
 		"bellman_ford.go":                                    true,
+		"word_ladderII.go":                                   true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -201,22 +199,15 @@ func main() {
 */
 func runTask() {
 
-	graph, err := grph.NewEdgeWeightedDigraphFromFile("cmd/graph/bellman_ford/bellmanFord.txt")
-	if err != nil {
-		log.Fatalln(err)
-	}
+	wordList := []string{"hot", "dot", "dog", "lot", "log", "cog"}
+	beginWord := "hit"
+	endWord := "cog"
 
-	sp := findShortestPath(graph, 0)
-	fmt.Println(sp) // ShortestPath{Shortest=[-9.0, -20.0, -18.0, -2.0, -11.0], Prev=[4, 2, 4, 0, 1]}
-
-	circle := findNegativeWeightCycle(graph, sp)
-	fmt.Println(circle) // [1, 2, 4]
+	// [[hit, hot, dot, dog, cog], [hit, hot, lot, log, cog]]
+	actual := findLadders(beginWord, endWord, wordList)
+	fmt.Println(actual)
 }
 
-func findShortestPath(graph *grph.EdgeWeightedDigraph, start int) *grph.ShortestPath {
-	return nil
-}
-
-func findNegativeWeightCycle(graph *grph.EdgeWeightedDigraph, sp *grph.ShortestPath) []int {
+func findLadders(beginWord string, endWord string, wordList []string) [][]string {
 	return nil
 }
