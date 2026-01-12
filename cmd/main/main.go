@@ -169,6 +169,7 @@ func main() {
 		"lowest_common_ancestor_of_binary_tree.go":           true,
 		"bellman_ford.go":                                    true,
 		"word_ladderII.go":                                   true,
+		"same_bst.go":                                        true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -188,26 +189,19 @@ func main() {
 	runTask()
 }
 
-/*
-		      3
-		   /     \
-		  5       1
-		/   \    /  \
-	   6     2  0    8
-	       / \
-		  7   4
-*/
 func runTask() {
 
-	wordList := []string{"hot", "dot", "dog", "lot", "log", "cog"}
-	beginWord := "hit"
-	endWord := "cog"
+	arr1 := []int{10, 15, 8, 12, 94, 81, 5, 2, 11}
+	arr2 := []int{10, 8, 5, 15, 2, 12, 11, 94, 81}
 
-	// [[hit, hot, dot, dog, cog], [hit, hot, lot, log, cog]]
-	actual := findLadders(beginWord, endWord, wordList)
-	fmt.Println(actual)
+	fmt.Println(sameBsts(arr1, arr2))
+	fmt.Println(sameBsts1(arr1, arr2))
 }
 
-func findLadders(beginWord string, endWord string, wordList []string) [][]string {
-	return nil
+func sameBsts(arr1 []int, arr2 []int) bool {
+	return false
+}
+
+func sameBsts1(arr1 []int, arr2 []int) bool {
+	return false
 }
