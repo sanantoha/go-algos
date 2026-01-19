@@ -2,13 +2,11 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"math/rand"
 	"os"
 	"path/filepath"
+	"reflect"
 	"strings"
-
-	grph "github.com/sanantoha/go-algos/internals/graph"
 )
 
 func main() {
@@ -176,6 +174,7 @@ func main() {
 		"prim_min_spanning_tree_as_map.go":                   true,
 		"kruskal_min_spanning_tree.go":                       true,
 		"bellman_ford_as_map.go":                             true,
+		"longest_common_subsequence.go":                      true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -197,24 +196,21 @@ func main() {
 
 func runTask() {
 
-	graph, err := grph.NewGraphAsAdjListFromFile("cmd/graph/bellman_ford/bellmanFord.txt")
-	if err != nil {
-		log.Fatalln(err)
-	}
+	expected := []rune{'X', 'Y', 'Z', 'W'}
 
-	fmt.Println(grph.PrintGraphAsAdjList(graph))
-	fmt.Println("=====================================")
-	// ShortestPath{Shortest=[-9.0, -20.0, -18.0, -2.0, -11.0], Prev=[4, 2, 4, 0, 1]}
-	sp := findShortestPath(graph, "0")
-	fmt.Println(sp)
-	cycle := findNegativeWeightCycle(graph, sp)
-	fmt.Println(cycle)
+	actual := longestCommonSubsequence("ZXVVYZW", "XKYKZPW")
+	fmt.Println(actual) // [88 89 90 87]
+	fmt.Println(reflect.DeepEqual(actual, expected))
+
+	actual = longestCommonSubsequence1("ZXVVYZW", "XKYKZPW")
+	fmt.Println(actual) // [88 89 90 87]
+	fmt.Println(reflect.DeepEqual(actual, expected))
 }
 
-func findShortestPath(graph map[string][]*grph.EdgeT[string], start string) *grph.Pair[map[string]float64, map[string]string] {
+func longestCommonSubsequence(s1 string, s2 string) []rune {
 	return nil
 }
 
-func findNegativeWeightCycle(graph map[string][]*grph.EdgeT[string], path *grph.Pair[map[string]float64, map[string]string]) []string {
+func longestCommonSubsequence1(s1 string, s2 string) []rune {
 	return nil
 }
