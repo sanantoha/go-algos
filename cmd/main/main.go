@@ -5,7 +5,6 @@ import (
 	"math/rand"
 	"os"
 	"path/filepath"
-	"reflect"
 	"strings"
 )
 
@@ -175,6 +174,7 @@ func main() {
 		"kruskal_min_spanning_tree.go":                       true,
 		"bellman_ford_as_map.go":                             true,
 		"longest_common_subsequence.go":                      true,
+		"course_schedule.go":                                 true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -196,21 +196,81 @@ func main() {
 
 func runTask() {
 
-	expected := []rune{'X', 'Y', 'Z', 'W'}
+	fmt.Println(
+		canFinish(1, [][]int{}),
+	)
 
-	actual := longestCommonSubsequence("ZXVVYZW", "XKYKZPW")
-	fmt.Println(actual) // [88 89 90 87]
-	fmt.Println(reflect.DeepEqual(actual, expected))
+	fmt.Println(
+		canFinish(2, [][]int{
+			{1, 0},
+		}),
+	)
 
-	actual = longestCommonSubsequence1("ZXVVYZW", "XKYKZPW")
-	fmt.Println(actual) // [88 89 90 87]
-	fmt.Println(reflect.DeepEqual(actual, expected))
+	fmt.Println(
+		!canFinish(2, [][]int{
+			{1, 0},
+			{0, 1},
+		}),
+	)
+
+	fmt.Println(
+		!canFinish(4, [][]int{
+			{1, 0},
+			{2, 1},
+			{3, 2},
+			{0, 3},
+		}),
+	)
+
+	fmt.Println(
+		canFinish(4, [][]int{
+			{1, 0},
+			{2, 1},
+			{3, 2},
+		}),
+	)
+
+	fmt.Println("================================================")
+
+	fmt.Println(
+		canFinish1(1, [][]int{}),
+	)
+
+	fmt.Println(
+		canFinish1(2, [][]int{
+			{1, 0},
+		}),
+	)
+
+	fmt.Println(
+		!canFinish1(2, [][]int{
+			{1, 0},
+			{0, 1},
+		}),
+	)
+
+	fmt.Println(
+		!canFinish1(4, [][]int{
+			{1, 0},
+			{2, 1},
+			{3, 2},
+			{0, 3},
+		}),
+	)
+
+	fmt.Println(
+		canFinish1(4, [][]int{
+			{1, 0},
+			{2, 1},
+			{3, 2},
+		}),
+	)
 }
 
-func longestCommonSubsequence(s1 string, s2 string) []rune {
-	return nil
+func canFinish(numCourses int, prereq [][]int) bool {
+	return true
 }
 
-func longestCommonSubsequence1(s1 string, s2 string) []rune {
-	return nil
+func canFinish1(numCourses int, prereq [][]int) bool {
+	return true
 }
