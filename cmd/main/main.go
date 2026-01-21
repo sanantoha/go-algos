@@ -175,6 +175,7 @@ func main() {
 		"bellman_ford_as_map.go":                             true,
 		"longest_common_subsequence.go":                      true,
 		"course_schedule.go":                                 true,
+		"river_sizes.go":                                     true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -196,81 +197,17 @@ func main() {
 
 func runTask() {
 
-	fmt.Println(
-		canFinish(1, [][]int{}),
-	)
+	matrix := [][]int{
+		{1, 0, 0, 1, 0},
+		{1, 0, 1, 0, 0},
+		{0, 0, 1, 0, 1},
+		{1, 0, 1, 0, 1},
+		{1, 0, 1, 1, 0},
+	}
 
-	fmt.Println(
-		canFinish(2, [][]int{
-			{1, 0},
-		}),
-	)
-
-	fmt.Println(
-		!canFinish(2, [][]int{
-			{1, 0},
-			{0, 1},
-		}),
-	)
-
-	fmt.Println(
-		!canFinish(4, [][]int{
-			{1, 0},
-			{2, 1},
-			{3, 2},
-			{0, 3},
-		}),
-	)
-
-	fmt.Println(
-		canFinish(4, [][]int{
-			{1, 0},
-			{2, 1},
-			{3, 2},
-		}),
-	)
-
-	fmt.Println("================================================")
-
-	fmt.Println(
-		canFinish1(1, [][]int{}),
-	)
-
-	fmt.Println(
-		canFinish1(2, [][]int{
-			{1, 0},
-		}),
-	)
-
-	fmt.Println(
-		!canFinish1(2, [][]int{
-			{1, 0},
-			{0, 1},
-		}),
-	)
-
-	fmt.Println(
-		!canFinish1(4, [][]int{
-			{1, 0},
-			{2, 1},
-			{3, 2},
-			{0, 3},
-		}),
-	)
-
-	fmt.Println(
-		canFinish1(4, [][]int{
-			{1, 0},
-			{2, 1},
-			{3, 2},
-		}),
-	)
+	fmt.Println(riverSizes(matrix)) // [2, 1, 5, 2, 2]
 }
 
-func canFinish(numCourses int, prereq [][]int) bool {
-	return true
-}
-
-func canFinish1(numCourses int, prereq [][]int) bool {
-	return true
+func riverSizes(matrix [][]int) []int {
+	return nil
 }
