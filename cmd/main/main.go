@@ -1,15 +1,11 @@
 package main
 
 import (
-	"errors"
 	"fmt"
-	"log"
 	"math/rand"
 	"os"
 	"path/filepath"
 	"strings"
-
-	grph "github.com/sanantoha/go-algos/internals/graph"
 )
 
 func main() {
@@ -182,6 +178,7 @@ func main() {
 		"river_sizes.go":                                     true,
 		"binary_tree_tilt.go":                                true,
 		"topological_sort.go":                                true,
+		"largest_island.go":                                  true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -203,32 +200,28 @@ func main() {
 
 func runTask() {
 
-	graph, err := grph.NewDigraphFromFile("cmd/graph/topological_sort/digraph.txt")
-	if err != nil {
-		log.Fatalln(err)
+	matrix := [][]int{
+		{1, 0, 1, 0, 0},
+		{0, 0, 1, 1, 0},
+		{0, 1, 1, 1, 1},
+		{1, 0, 1, 0, 0},
 	}
 
-	fmt.Println(graph)
+	expected := 8
 
-	// [8 9 1 0 2 4 3 5 6 7 10 11 12 13]
-	res, err := sortRec(graph)
-	if err != nil {
-		log.Fatalln(err)
-	}
-	fmt.Println(res)
+	actual := largestIsland(matrix)
+	fmt.Println(actual)
+	fmt.Println(actual == expected)
 
-	// [0 1 8 2 9 3 4 5 10 6 11 7 12 13]
-	res, err = sortIter(graph)
-	if err != nil {
-		log.Fatalln(err)
-	}
-	fmt.Println(res)
+	actual = largestIsland1(matrix)
+	fmt.Println(actual)
+	fmt.Println(actual == expected)
 }
 
-func sortRec(graph *grph.Digraph) ([]int, error) {
-	return nil, errors.New("not implemented")
+func largestIsland(matrix [][]int) int {
+	return 0
 }
 
-func sortIter(graph *grph.Digraph) ([]int, error) {
-	return nil, errors.New("not implemented")
+func largestIsland1(matrix [][]int) int {
+	return 0
 }
