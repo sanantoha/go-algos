@@ -179,6 +179,7 @@ func main() {
 		"binary_tree_tilt.go":                                true,
 		"topological_sort.go":                                true,
 		"largest_island.go":                                  true,
+		"min_number_of_coins_for_change.go":                  true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -200,28 +201,12 @@ func main() {
 
 func runTask() {
 
-	matrix := [][]int{
-		{1, 0, 1, 0, 0},
-		{0, 0, 1, 1, 0},
-		{0, 1, 1, 1, 1},
-		{1, 0, 1, 0, 0},
-	}
-
-	expected := 8
-
-	actual := largestIsland(matrix)
+	input := []int{1, 5, 10}
+	actual := minNumberOfCoinsForChange(7, input)
 	fmt.Println(actual)
-	fmt.Println(actual == expected)
-
-	actual = largestIsland1(matrix)
-	fmt.Println(actual)
-	fmt.Println(actual == expected)
+	fmt.Println(actual == 3)
 }
 
-func largestIsland(matrix [][]int) int {
-	return 0
-}
-
-func largestIsland1(matrix [][]int) int {
-	return 0
+func minNumberOfCoinsForChange(n int, denoms []int) int {
+	return -1
 }
