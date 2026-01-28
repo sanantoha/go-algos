@@ -180,6 +180,7 @@ func main() {
 		"topological_sort.go":                                true,
 		"largest_island.go":                                  true,
 		"min_number_of_coins_for_change.go":                  true,
+		"climbing_stars.go":                                  true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -201,12 +202,27 @@ func main() {
 
 func runTask() {
 
-	input := []int{1, 5, 10}
-	actual := minNumberOfCoinsForChange(7, input)
-	fmt.Println(actual)
-	fmt.Println(actual == 3)
+	fmt.Println(climbStairsDP(0) == 0)
+	fmt.Println(climbStairsDP(1) == 1)
+	fmt.Println(climbStairsDP(2) == 2)
+	fmt.Println(climbStairsDP(3) == 3)
+	fmt.Println(climbStairsDP(4) == 5)
+	fmt.Println(climbStairsDP(5) == 8)
+
+	fmt.Println("=======================")
+
+	fmt.Println(climbStairs(0) == 0)
+	fmt.Println(climbStairs(1) == 1)
+	fmt.Println(climbStairs(2) == 2)
+	fmt.Println(climbStairs(3) == 3)
+	fmt.Println(climbStairs(4) == 5)
+	fmt.Println(climbStairs(5) == 8)
 }
 
-func minNumberOfCoinsForChange(n int, denoms []int) int {
+func climbStairsDP(n int) int {
+	return -1
+}
+
+func climbStairs(n int) int {
 	return -1
 }
