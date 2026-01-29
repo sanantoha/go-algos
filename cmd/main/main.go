@@ -181,6 +181,7 @@ func main() {
 		"largest_island.go":                                  true,
 		"min_number_of_coins_for_change.go":                  true,
 		"climbing_stars.go":                                  true,
+		"valid_ip_address.go":                                true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -202,27 +203,11 @@ func main() {
 
 func runTask() {
 
-	fmt.Println(climbStairsDP(0) == 0)
-	fmt.Println(climbStairsDP(1) == 1)
-	fmt.Println(climbStairsDP(2) == 2)
-	fmt.Println(climbStairsDP(3) == 3)
-	fmt.Println(climbStairsDP(4) == 5)
-	fmt.Println(climbStairsDP(5) == 8)
-
-	fmt.Println("=======================")
-
-	fmt.Println(climbStairs(0) == 0)
-	fmt.Println(climbStairs(1) == 1)
-	fmt.Println(climbStairs(2) == 2)
-	fmt.Println(climbStairs(3) == 3)
-	fmt.Println(climbStairs(4) == 5)
-	fmt.Println(climbStairs(5) == 8)
+	str := "1921680"
+	// [1.9.216.80 1.92.16.80 1.92.168.0 19.2.16.80 19.2.168.0 19.21.6.80 19.21.68.0 19.216.8.0 192.1.6.80 192.1.68.0 192.16.8.0]
+	fmt.Println(validIPAddresses(str))
 }
 
-func climbStairsDP(n int) int {
-	return -1
-}
-
-func climbStairs(n int) int {
-	return -1
+func validIPAddresses(str string) []string {
+	return nil
 }
