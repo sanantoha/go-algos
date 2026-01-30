@@ -6,6 +6,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/sanantoha/go-algos/internals/list"
 )
 
 func main() {
@@ -182,6 +184,7 @@ func main() {
 		"min_number_of_coins_for_change.go":                  true,
 		"climbing_stars.go":                                  true,
 		"valid_ip_address.go":                                true,
+		"odd_even_linked_list.go":                            true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -203,11 +206,24 @@ func main() {
 
 func runTask() {
 
-	str := "1921680"
-	// [1.9.216.80 1.92.16.80 1.92.168.0 19.2.16.80 19.2.168.0 19.21.6.80 19.21.68.0 19.216.8.0 192.1.6.80 192.1.68.0 192.16.8.0]
-	fmt.Println(validIPAddresses(str))
+	head := &list.ListNode{Val: 1, Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5}}}}}
+	head1 := &list.ListNode{Val: 1, Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5}}}}}
+
+	fmt.Println(head)
+	// 1 -> 3 -> 5 -> 2 -> 4
+	fmt.Println(oddEvenList(head))
+
+	fmt.Println("============================================")
+
+	fmt.Println(head1)
+	// 1 -> 3 -> 5 -> 2 -> 4
+	fmt.Println(oddEvenList1(head1))
 }
 
-func validIPAddresses(str string) []string {
+func oddEvenList(root *list.ListNode) *list.ListNode {
+	return nil
+}
+
+func oddEvenList1(root *list.ListNode) *list.ListNode {
 	return nil
 }
