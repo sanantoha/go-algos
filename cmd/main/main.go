@@ -6,8 +6,6 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-
-	"github.com/sanantoha/go-algos/internals/list"
 )
 
 func main() {
@@ -185,6 +183,7 @@ func main() {
 		"climbing_stars.go":                                  true,
 		"valid_ip_address.go":                                true,
 		"odd_even_linked_list.go":                            true,
+		"apartment_hunting.go":                               true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -206,24 +205,20 @@ func main() {
 
 func runTask() {
 
-	head := &list.ListNode{Val: 1, Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5}}}}}
-	head1 := &list.ListNode{Val: 1, Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5}}}}}
+	blocks := make([]map[string]bool, 0)
 
-	fmt.Println(head)
-	// 1 -> 3 -> 5 -> 2 -> 4
-	fmt.Println(oddEvenList(head))
+	blocks = append(blocks, map[string]bool{"gym": false, "school": true, "store": false})
+	blocks = append(blocks, map[string]bool{"gym": true, "school": false, "store": false})
+	blocks = append(blocks, map[string]bool{"gym": true, "school": true, "store": false})
+	blocks = append(blocks, map[string]bool{"gym": false, "school": true, "store": false})
+	blocks = append(blocks, map[string]bool{"gym": false, "school": true, "store": true})
 
-	fmt.Println("============================================")
+	reqs := []string{"gym", "school", "store"}
 
-	fmt.Println(head1)
-	// 1 -> 3 -> 5 -> 2 -> 4
-	fmt.Println(oddEvenList1(head1))
+	res := apartmentHunting(blocks, reqs)
+	fmt.Println(res) // 3
 }
 
-func oddEvenList(root *list.ListNode) *list.ListNode {
-	return nil
-}
-
-func oddEvenList1(root *list.ListNode) *list.ListNode {
-	return nil
+func apartmentHunting(blocks []map[string]bool, reqs []string) int {
+	return -1
 }
