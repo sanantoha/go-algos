@@ -5,6 +5,7 @@ import (
 	"math/rand"
 	"os"
 	"path/filepath"
+	"reflect"
 	"strings"
 )
 
@@ -184,6 +185,7 @@ func main() {
 		"valid_ip_address.go":                                true,
 		"odd_even_linked_list.go":                            true,
 		"apartment_hunting.go":                               true,
+		"a_star_algo.go":                                     true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -205,20 +207,37 @@ func main() {
 
 func runTask() {
 
-	blocks := make([]map[string]bool, 0)
+	startRow := 0
+	startCol := 1
+	endRow := 4
+	endCol := 3
 
-	blocks = append(blocks, map[string]bool{"gym": false, "school": true, "store": false})
-	blocks = append(blocks, map[string]bool{"gym": true, "school": false, "store": false})
-	blocks = append(blocks, map[string]bool{"gym": true, "school": true, "store": false})
-	blocks = append(blocks, map[string]bool{"gym": false, "school": true, "store": false})
-	blocks = append(blocks, map[string]bool{"gym": false, "school": true, "store": true})
+	graph := [][]int{
+		{0, 0, 0, 0, 0},
+		{0, 1, 1, 1, 0},
+		{0, 0, 0, 0, 0},
+		{1, 0, 1, 1, 1},
+		{0, 0, 0, 0, 0},
+	}
 
-	reqs := []string{"gym", "school", "store"}
+	expected := [][]int{
+		{0, 1},
+		{0, 0},
+		{1, 0},
+		{2, 0},
+		{2, 1},
+		{3, 1},
+		{4, 1},
+		{4, 2},
+		{4, 3},
+	}
 
-	res := apartmentHunting(blocks, reqs)
-	fmt.Println(res) // 3
+	actual := aStarAlgorithm(startRow, startCol, endRow, endCol, graph)
+	fmt.Println(actual)
+
+	fmt.Println(reflect.DeepEqual(expected, actual))
 }
 
-func apartmentHunting(blocks []map[string]bool, reqs []string) int {
-	return -1
+func aStarAlgorithm(startRow int, startCol int, endRow int, endCol int, graph [][]int) [][]int {
+	return nil
 }
