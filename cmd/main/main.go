@@ -7,6 +7,8 @@ import (
 	"path/filepath"
 	"reflect"
 	"strings"
+
+	"github.com/sanantoha/go-algos/internals/tree"
 )
 
 func main() {
@@ -186,6 +188,7 @@ func main() {
 		"odd_even_linked_list.go":                            true,
 		"apartment_hunting.go":                               true,
 		"a_star_algo.go":                                     true,
+		"reconstruct_bst.go":                                 true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -207,37 +210,59 @@ func main() {
 
 func runTask() {
 
-	startRow := 0
-	startCol := 1
-	endRow := 4
-	endCol := 3
+	preOrderTraversalValues := []int{10, 4, 2, 1, 3, 17, 19, 18}
 
-	graph := [][]int{
-		{0, 0, 0, 0, 0},
-		{0, 1, 1, 1, 0},
-		{0, 0, 0, 0, 0},
-		{1, 0, 1, 1, 1},
-		{0, 0, 0, 0, 0},
+	root := &tree.TreeNode{
+		Val: 10,
+		Left: &tree.TreeNode{
+			Val: 4,
+			Left: &tree.TreeNode{
+				Val: 2,
+				Left: &tree.TreeNode{
+					Val: 1,
+				},
+			},
+			Right: &tree.TreeNode{
+				Val: 3,
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 17,
+			Right: &tree.TreeNode{
+				Val: 19,
+				Left: &tree.TreeNode{
+					Val: 18,
+				},
+			},
+		},
 	}
 
-	expected := [][]int{
-		{0, 1},
-		{0, 0},
-		{1, 0},
-		{2, 0},
-		{2, 1},
-		{3, 1},
-		{4, 1},
-		{4, 2},
-		{4, 3},
-	}
+	expected := getDfsOrder(root, []int{})
 
-	actual := aStarAlgorithm(startRow, startCol, endRow, endCol, graph)
+	actualTree := reconstructBst(preOrderTraversalValues)
+	actual := getDfsOrder(actualTree, []int{})
 	fmt.Println(actual)
+	fmt.Println(reflect.DeepEqual(actual, expected))
 
-	fmt.Println(reflect.DeepEqual(expected, actual))
+	actualTree = reconstructBst1(preOrderTraversalValues)
+	actual = getDfsOrder(actualTree, []int{})
+	fmt.Println(actual)
+	fmt.Println(reflect.DeepEqual(actual, expected))
 }
 
-func aStarAlgorithm(startRow int, startCol int, endRow int, endCol int, graph [][]int) [][]int {
+func getDfsOrder(root *tree.TreeNode, arr []int) []int {
+	if root == nil {
+		return arr
+	}
+	arr = append(arr, root.Val)
+	arr = getDfsOrder(root.Left, arr)
+	return getDfsOrder(root.Right, arr)
+}
+
+func reconstructBst(preorder []int) *tree.TreeNode {
+	return nil
+}
+
+func reconstructBst1(preorder []int) *tree.TreeNode {
 	return nil
 }
