@@ -7,7 +7,7 @@ import (
 
 // O(n ^ 2) time | O(n) space
 func minNumberOfJumps(arr []int) int {
-	if arr == nil || len(arr) == 0 {
+	if len(arr) == 0 {
 		return 0
 	}
 
@@ -30,7 +30,7 @@ func minNumberOfJumps(arr []int) int {
 
 // O(n) time | O(1) space
 func minNumberOfJumps1(arr []int) int {
-	if arr == nil || len(arr) == 0 {
+	if len(arr) == 0 {
 		return 0
 	}
 

@@ -6,6 +6,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/sanantoha/go-algos/internals/list"
 )
 
 func main() {
@@ -30,7 +32,8 @@ func main() {
 	}
 
 	processedTasks := map[string]bool{
-		"min_number_of_jumps.go": true,
+		"min_number_of_jumps.go":      true,
+		"intersection_linked_list.go": true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -52,21 +55,18 @@ func main() {
 
 func runTask() {
 
-	input := []int{3, 4, 2, 1, 2, 3, 7, 1, 1, 1, 3}
+	common := &list.ListNode{Val: 8, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5}}}
+	l1 := &list.ListNode{Val: 4, Next: &list.ListNode{Val: 1, Next: common}}
+	l2 := &list.ListNode{Val: 5, Next: &list.ListNode{Val: 6, Next: &list.ListNode{Val: 1, Next: common}}}
 
-	actual := minNumberOfJumps(input)
-	fmt.Println(actual)
-	fmt.Println(actual == 4)
-
-	actual = minNumberOfJumps1(input)
-	fmt.Println(actual)
-	fmt.Println(actual == 4)
+	fmt.Println(getIntersectionNode(l1, l2))
+	fmt.Println(getIntersectionNode1(l1, l2))
 }
 
-func minNumberOfJumps(arr []int) int {
-	return 0
+func getIntersectionNode(l *list.ListNode, r *list.ListNode) *list.ListNode {
+	return nil
 }
 
-func minNumberOfJumps1(arr []int) int {
-	return 0
+func getIntersectionNode1(l *list.ListNode, r *list.ListNode) *list.ListNode {
+	return nil
 }
