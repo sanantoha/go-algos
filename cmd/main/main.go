@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/sanantoha/go-algos/internals/list"
+	"github.com/sanantoha/go-algos/internals/tree"
 )
 
 func main() {
@@ -34,6 +34,7 @@ func main() {
 	processedTasks := map[string]bool{
 		"min_number_of_jumps.go":      true,
 		"intersection_linked_list.go": true,
+		"find_mode_in_bst.go":         true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -55,18 +56,49 @@ func main() {
 
 func runTask() {
 
-	common := &list.ListNode{Val: 8, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5}}}
-	l1 := &list.ListNode{Val: 4, Next: &list.ListNode{Val: 1, Next: common}}
-	l2 := &list.ListNode{Val: 5, Next: &list.ListNode{Val: 6, Next: &list.ListNode{Val: 1, Next: common}}}
+	root := &tree.TreeNode{
+		Val: 1,
+		Right: &tree.TreeNode{
+			Val: 2,
+			Left: &tree.TreeNode{
+				Val: 2,
+			},
+		},
+	}
 
-	fmt.Println(getIntersectionNode(l1, l2))
-	fmt.Println(getIntersectionNode1(l1, l2))
+	fmt.Println(findMode(root)) // [2]
+
+	root1 := &tree.TreeNode{
+		Val: 0,
+	}
+
+	fmt.Println(findMode(root1)) // [0]
+
+	root2 := &tree.TreeNode{
+		Val: 5,
+		Left: &tree.TreeNode{
+			Val: 3,
+			Left: &tree.TreeNode{
+				Val: 1,
+			},
+			Right: &tree.TreeNode{
+				Val: 3,
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 7,
+			Left: &tree.TreeNode{
+				Val: 5,
+			},
+			Right: &tree.TreeNode{
+				Val: 7,
+			},
+		},
+	}
+
+	fmt.Println(findMode(root2)) // [3, 5, 7]
 }
 
-func getIntersectionNode(l *list.ListNode, r *list.ListNode) *list.ListNode {
-	return nil
-}
-
-func getIntersectionNode1(l *list.ListNode, r *list.ListNode) *list.ListNode {
+func findMode(root *tree.TreeNode) []int {
 	return nil
 }
