@@ -5,6 +5,7 @@ import (
 	"math/rand"
 	"os"
 	"path/filepath"
+	"reflect"
 	"strings"
 
 	"github.com/sanantoha/go-algos/internals/tree"
@@ -56,49 +57,59 @@ func main() {
 
 func runTask() {
 
+	preOrderTraversalValues := []int{10, 4, 2, 1, 3, 17, 19, 18}
+
 	root := &tree.TreeNode{
-		Val: 1,
-		Right: &tree.TreeNode{
-			Val: 2,
+		Val: 10,
+		Left: &tree.TreeNode{
+			Val: 4,
 			Left: &tree.TreeNode{
 				Val: 2,
-			},
-		},
-	}
-
-	fmt.Println(findMode(root)) // [2]
-
-	root1 := &tree.TreeNode{
-		Val: 0,
-	}
-
-	fmt.Println(findMode(root1)) // [0]
-
-	root2 := &tree.TreeNode{
-		Val: 5,
-		Left: &tree.TreeNode{
-			Val: 3,
-			Left: &tree.TreeNode{
-				Val: 1,
+				Left: &tree.TreeNode{
+					Val: 1,
+				},
 			},
 			Right: &tree.TreeNode{
 				Val: 3,
 			},
 		},
 		Right: &tree.TreeNode{
-			Val: 7,
-			Left: &tree.TreeNode{
-				Val: 5,
-			},
+			Val: 17,
 			Right: &tree.TreeNode{
-				Val: 7,
+				Val: 19,
+				Left: &tree.TreeNode{
+					Val: 18,
+				},
 			},
 		},
 	}
 
-	fmt.Println(findMode(root2)) // [3, 5, 7]
+	expected := getDfsOrder(root, []int{})
+
+	actualTree := reconstructBst(preOrderTraversalValues)
+	actual := getDfsOrder(actualTree, []int{})
+	fmt.Println(actual)
+	fmt.Println(reflect.DeepEqual(actual, expected))
+
+	actualTree = reconstructBst1(preOrderTraversalValues)
+	actual = getDfsOrder(actualTree, []int{})
+	fmt.Println(actual)
+	fmt.Println(reflect.DeepEqual(actual, expected))
 }
 
-func findMode(root *tree.TreeNode) []int {
+func reconstructBst(preorder []int) *tree.TreeNode {
 	return nil
+}
+
+func reconstructBst1(preorder []int) *tree.TreeNode {
+	return nil
+}
+
+func getDfsOrder(root *tree.TreeNode, arr []int) []int {
+	if root == nil {
+		return arr
+	}
+	arr = append(arr, root.Val)
+	arr = getDfsOrder(root.Left, arr)
+	return getDfsOrder(root.Right, arr)
 }
