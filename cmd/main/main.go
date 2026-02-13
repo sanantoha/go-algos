@@ -6,6 +6,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/sanantoha/go-algos/internals/list"
 )
 
 func main() {
@@ -34,6 +36,7 @@ func main() {
 		"intersection_linked_list.go": true,
 		"find_mode_in_bst.go":         true,
 		"heap_sort.go":                true,
+		"odd_even_linked_list.go":     true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -55,18 +58,24 @@ func main() {
 
 func runTask() {
 
-	arr := make([]int, 10)
-	for i := 0; i < len(arr); i++ {
-		arr[i] = rand.Intn(50)
-	}
+	head := &list.ListNode{Val: 1, Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5}}}}}
+	head1 := &list.ListNode{Val: 1, Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5}}}}}
 
-	fmt.Println(arr)
+	fmt.Println(head)
+	// 1 -> 3 -> 5 -> 2 -> 4
+	fmt.Println(oddEvenList(head))
 
-	heapSort(arr)
+	fmt.Println("============================================")
 
-	fmt.Println(arr)
+	fmt.Println(head1)
+	// 1 -> 3 -> 5 -> 2 -> 4
+	fmt.Println(oddEvenList1(head1))
 }
 
-func heapSort(arr []int) {
+func oddEvenList(head *list.ListNode) *list.ListNode {
+	return nil
+}
 
+func oddEvenList1(head *list.ListNode) *list.ListNode {
+	return nil
 }
