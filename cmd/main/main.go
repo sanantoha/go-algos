@@ -6,8 +6,6 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-
-	"github.com/sanantoha/go-algos/internals/list"
 )
 
 func main() {
@@ -37,6 +35,7 @@ func main() {
 		"find_mode_in_bst.go":         true,
 		"heap_sort.go":                true,
 		"odd_even_linked_list.go":     true,
+		"subarray_sort.go":            true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -58,24 +57,16 @@ func main() {
 
 func runTask() {
 
-	head := &list.ListNode{Val: 1, Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5}}}}}
-	head1 := &list.ListNode{Val: 1, Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 5}}}}}
+	output := []int{1, 2, 4, 7, 10, 11, 7, 12, 6, 7, 16, 18, 19}
+	fmt.Println(subarraySort(output))
 
-	fmt.Println(head)
-	// 1 -> 3 -> 5 -> 2 -> 4
-	fmt.Println(oddEvenList(head))
+	output1 := []int{1, 2, 4, 7, 10, 11, 7, 12, 7, 7, 16, 18, 19}
+	fmt.Println(subarraySort(output1))
 
-	fmt.Println("============================================")
-
-	fmt.Println(head1)
-	// 1 -> 3 -> 5 -> 2 -> 4
-	fmt.Println(oddEvenList1(head1))
+	output2 := []int{1, 2}
+	fmt.Println(subarraySort(output2))
 }
 
-func oddEvenList(head *list.ListNode) *list.ListNode {
-	return nil
-}
-
-func oddEvenList1(head *list.ListNode) *list.ListNode {
+func subarraySort(arr []int) []int {
 	return nil
 }
