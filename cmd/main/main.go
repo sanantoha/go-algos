@@ -36,6 +36,7 @@ func main() {
 		"heap_sort.go":                true,
 		"odd_even_linked_list.go":     true,
 		"subarray_sort.go":            true,
+		"rotting_oranges.go":          true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -57,17 +58,23 @@ func main() {
 
 func runTask() {
 
-	output := []int{1, 2, 4, 7, 10, 11, 7, 12, 6, 7, 16, 18, 19}
-	fmt.Println(subarraySort(output))
+	input := [][]int{
+		{2, 1, 1},
+		{1, 1, 0},
+		{0, 1, 1},
+	}
 
-	output1 := []int{1, 2, 4, 7, 10, 11, 7, 12, 7, 7, 16, 18, 19}
-	fmt.Println(subarraySort(output1))
+	res := rottingOranges(input)
+	fmt.Println(res)
 
-	output2 := []int{1, 2}
-	fmt.Println(subarraySort(output2))
+	input = [][]int{
+		{0},
+	}
+
+	res = rottingOranges(input)
+	fmt.Println(res)
 }
 
-func subarraySort(arr []int) []int {
-
-	return nil
+func rottingOranges(matrix [][]int) int {
+	return -1
 }
