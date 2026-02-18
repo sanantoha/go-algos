@@ -6,6 +6,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/sanantoha/go-algos/internals/tree"
 )
 
 func main() {
@@ -30,13 +32,14 @@ func main() {
 	}
 
 	processedTasks := map[string]bool{
-		"min_number_of_jumps.go":      true,
-		"intersection_linked_list.go": true,
-		"find_mode_in_bst.go":         true,
-		"heap_sort.go":                true,
-		"odd_even_linked_list.go":     true,
-		"subarray_sort.go":            true,
-		"rotting_oranges.go":          true,
+		"min_number_of_jumps.go":                             true,
+		"intersection_linked_list.go":                        true,
+		"find_mode_in_bst.go":                                true,
+		"heap_sort.go":                                       true,
+		"odd_even_linked_list.go":                            true,
+		"subarray_sort.go":                                   true,
+		"rotting_oranges.go":                                 true,
+		"construct_binary_tree_from_preorder_and_inorder.go": true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -58,23 +61,13 @@ func main() {
 
 func runTask() {
 
-	input := [][]int{
-		{2, 1, 1},
-		{1, 1, 0},
-		{0, 1, 1},
-	}
-
-	res := rottingOranges(input)
-	fmt.Println(res)
-
-	input = [][]int{
-		{0},
-	}
-
-	res = rottingOranges(input)
-	fmt.Println(res)
+	preorder := []int{3, 9, 20, 15, 7}
+	inorder := []int{9, 3, 15, 20, 7}
+	// TreeNode{Val=3, Left=TreeNode{Val=9, Left=nil, Right=nil}, Right=TreeNode{Val=20, Left=TreeNode{Val=15, Left=nil, Right=nil}, Right=TreeNode{Val=7, Left=nil, Right=nil}}}
+	root := buildTree(preorder, inorder)
+	fmt.Println(root)
 }
 
-func rottingOranges(matrix [][]int) int {
-	return -1
+func buildTree(preorder []int, inorder []int) *tree.TreeNode {
+	return nil
 }
