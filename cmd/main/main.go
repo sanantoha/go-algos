@@ -5,10 +5,7 @@ import (
 	"math/rand"
 	"os"
 	"path/filepath"
-	"reflect"
 	"strings"
-
-	"github.com/sanantoha/go-algos/internals/tree"
 )
 
 func main() {
@@ -42,6 +39,7 @@ func main() {
 		"rotting_oranges.go":                                 true,
 		"construct_binary_tree_from_preorder_and_inorder.go": true,
 		"all_elements_in_two_binary_search_trees.go":         true,
+		"zero_one_matrix.go":                                 true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -63,52 +61,23 @@ func main() {
 
 func runTask() {
 
-	root1 := &tree.TreeNode{
-		Val: 9,
-		Left: &tree.TreeNode{
-			Val: 2,
-		},
-		Right: &tree.TreeNode{
-			Val: 12,
-			Left: &tree.TreeNode{
-				Val: 11,
-			},
-			Right: &tree.TreeNode{
-				Val: 15,
-			},
-		},
+	input0 := [][]int{
+		{0, 0, 0},
+		{0, 1, 0},
+		{0, 0, 0},
 	}
 
-	root2 := &tree.TreeNode{
-		Val: 10,
-		Left: &tree.TreeNode{
-			Val: 5,
-			Left: &tree.TreeNode{
-				Val: 3,
-				Left: &tree.TreeNode{
-					Val: 1,
-				},
-				Right: &tree.TreeNode{
-					Val: 4,
-				},
-			},
-			Right: &tree.TreeNode{
-				Val: 6,
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 16,
-		},
+	input1 := [][]int{
+		{0, 0, 0},
+		{0, 1, 0},
+		{1, 1, 1},
 	}
 
-	expected := []int{1, 2, 3, 4, 5, 6, 9, 10, 11, 12, 15, 16}
+	fmt.Println(updateMatrix(input0))
 
-	res := getAllElements(root1, root2)
-
-	fmt.Println(res)
-	fmt.Println(reflect.DeepEqual(expected, res))
+	fmt.Println(updateMatrix(input1))
 }
 
-func getAllElements(root1, root2 *tree.TreeNode) []int {
+func updateMatrix(matrix [][]int) [][]int {
 	return nil
 }
