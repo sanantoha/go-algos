@@ -40,6 +40,7 @@ func main() {
 		"construct_binary_tree_from_preorder_and_inorder.go": true,
 		"all_elements_in_two_binary_search_trees.go":         true,
 		"zero_one_matrix.go":                                 true,
+		"spiral_matrix_traverse.go":                          true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -61,23 +62,17 @@ func main() {
 
 func runTask() {
 
-	input0 := [][]int{
-		{0, 0, 0},
-		{0, 1, 0},
-		{0, 0, 0},
+	matrix := [][]int{
+		{1, 2, 3, 5, 6, 7},
+		{19, 20, 21, 22, 23, 8},
+		{18, 29, 30, 31, 24, 9},
+		{17, 28, 27, 26, 25, 10},
+		{16, 15, 14, 13, 12, 11},
 	}
 
-	input1 := [][]int{
-		{0, 0, 0},
-		{0, 1, 0},
-		{1, 1, 1},
-	}
-
-	fmt.Println(updateMatrix(input0))
-
-	fmt.Println(updateMatrix(input1))
+	fmt.Println(spiral(matrix))
 }
 
-func updateMatrix(matrix [][]int) [][]int {
+func spiral(matrix [][]int) []int {
 	return nil
 }
