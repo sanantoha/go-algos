@@ -6,6 +6,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/sanantoha/go-algos/internals/list"
 )
 
 func main() {
@@ -41,6 +43,7 @@ func main() {
 		"all_elements_in_two_binary_search_trees.go":         true,
 		"zero_one_matrix.go":                                 true,
 		"spiral_matrix_traverse.go":                          true,
+		"sort_list.go":                                       true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -62,17 +65,16 @@ func main() {
 
 func runTask() {
 
-	matrix := [][]int{
-		{1, 2, 3, 5, 6, 7},
-		{19, 20, 21, 22, 23, 8},
-		{18, 29, 30, 31, 24, 9},
-		{17, 28, 27, 26, 25, 10},
-		{16, 15, 14, 13, 12, 11},
-	}
+	head := &list.ListNode{Val: 9, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 5,
+		Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 8}}}}}}
 
-	fmt.Println(spiral(matrix))
+	fmt.Println(head)
+
+	res := sort(head)
+
+	fmt.Println(res)
 }
 
-func spiral(matrix [][]int) []int {
+func sort(head *list.ListNode) *list.ListNode {
 	return nil
 }
