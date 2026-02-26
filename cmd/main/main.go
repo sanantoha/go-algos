@@ -6,8 +6,6 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-
-	"github.com/sanantoha/go-algos/internals/list"
 )
 
 func main() {
@@ -44,6 +42,7 @@ func main() {
 		"zero_one_matrix.go":                                 true,
 		"spiral_matrix_traverse.go":                          true,
 		"sort_list.go":                                       true,
+		"word_ladder.go":                                     true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -65,16 +64,19 @@ func main() {
 
 func runTask() {
 
-	head := &list.ListNode{Val: 9, Next: &list.ListNode{Val: 3, Next: &list.ListNode{Val: 5,
-		Next: &list.ListNode{Val: 2, Next: &list.ListNode{Val: 4, Next: &list.ListNode{Val: 8}}}}}}
+	actual := ladderLength("hit", "cog", []string{"hot", "dot", "dog", "lot", "log", "cog"})
+	fmt.Println(actual)
+	fmt.Println(actual == 5)
 
-	fmt.Println(head)
+	actual = ladderLength("hit", "cog", []string{"hot", "dot", "dog", "lot", "log"})
+	fmt.Println(actual)
+	fmt.Println(actual == 0)
 
-	res := sort(head)
-
-	fmt.Println(res)
+	actual = ladderLength("MAMA", "SIRI", []string{"SAMA", "SIMA", "SIRA", "SIRI", "MISA", "DISA"})
+	fmt.Println(actual)
+	fmt.Println(actual == 5)
 }
 
-func sort(head *list.ListNode) *list.ListNode {
-	return nil
+func ladderLength(beginWord string, endWord string, wordList []string) int {
+	return 0
 }
