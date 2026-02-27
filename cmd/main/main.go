@@ -43,6 +43,7 @@ func main() {
 		"spiral_matrix_traverse.go":                          true,
 		"sort_list.go":                                       true,
 		"word_ladder.go":                                     true,
+		"number_of_island.go":                                true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -64,19 +65,20 @@ func main() {
 
 func runTask() {
 
-	actual := ladderLength("hit", "cog", []string{"hot", "dot", "dog", "lot", "log", "cog"})
-	fmt.Println(actual)
-	fmt.Println(actual == 5)
+	grid := [][]int{
+		{0, 0, 0, 0, 1},
+		{1, 1, 0, 0, 0},
+		{1, 1, 0, 1, 1},
+		{0, 0, 0, 1, 1},
+	}
 
-	actual = ladderLength("hit", "cog", []string{"hot", "dot", "dog", "lot", "log"})
-	fmt.Println(actual)
-	fmt.Println(actual == 0)
+	expected := 3
 
-	actual = ladderLength("MAMA", "SIRI", []string{"SAMA", "SIMA", "SIRA", "SIRI", "MISA", "DISA"})
+	actual := numberOfIsland(grid)
 	fmt.Println(actual)
-	fmt.Println(actual == 5)
+	fmt.Println(actual == expected)
 }
 
-func ladderLength(beginWord string, endWord string, wordList []string) int {
+func numberOfIsland(grid [][]int) int {
 	return 0
 }
