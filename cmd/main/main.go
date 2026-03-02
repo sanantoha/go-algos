@@ -44,6 +44,7 @@ func main() {
 		"sort_list.go":                                       true,
 		"word_ladder.go":                                     true,
 		"number_of_island.go":                                true,
+		"min_heap.go":                                        true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -65,20 +66,52 @@ func main() {
 
 func runTask() {
 
-	grid := [][]int{
-		{0, 0, 0, 0, 1},
-		{1, 1, 0, 0, 0},
-		{1, 1, 0, 1, 1},
-		{0, 0, 0, 1, 1},
-	}
+	arr := []int{0, 1, 2}
 
-	expected := 3
+	heap := NewMinHeap(arr)
+	heap.Insert(3)
+	heap.Insert(4)
+	heap.Insert(5)
 
-	actual := numberOfIsland(grid)
-	fmt.Println(actual)
-	fmt.Println(actual == expected)
+	fmt.Println(heap.heap) // [0, 1, 2, 3, 4, 5]
+
+	fmt.Println(heap.Peek())   // 0
+	fmt.Println(heap.Remove()) // 0
+	fmt.Println(heap.heap)     // [1, 3, 2, 5, 4]
+
+	fmt.Println(heap.Remove()) // 1
+	fmt.Println(heap.Remove()) // 2
+
+	heap.Insert(4)
+	fmt.Println(heap.heap) // [3, 4, 4, 5]
 }
 
-func numberOfIsland(grid [][]int) int {
-	return 0
+type MinHeap struct {
+	heap []int
+}
+
+func NewMinHeap(arr []int) *MinHeap {
+	return &MinHeap{
+		heap: buildHeap(arr),
+	}
+}
+
+func buildHeap(arr []int) []int {
+	return nil
+}
+
+func (mh *MinHeap) Peek() int {
+	return -1
+}
+
+func (mh *MinHeap) Remove() int {
+	return -1
+}
+
+func (mh *MinHeap) Insert(value int) {
+
+}
+
+func (mh *MinHeap) IsEmpty() bool {
+	return false
 }
