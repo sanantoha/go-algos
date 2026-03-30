@@ -45,6 +45,7 @@ func main() {
 		"word_ladder.go":                                     true,
 		"number_of_island.go":                                true,
 		"min_heap.go":                                        true,
+		"river_sizes.go":                                     true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -66,52 +67,17 @@ func main() {
 
 func runTask() {
 
-	arr := []int{0, 1, 2}
-
-	heap := NewMinHeap(arr)
-	heap.Insert(3)
-	heap.Insert(4)
-	heap.Insert(5)
-
-	fmt.Println(heap.heap) // [0, 1, 2, 3, 4, 5]
-
-	fmt.Println(heap.Peek())   // 0
-	fmt.Println(heap.Remove()) // 0
-	fmt.Println(heap.heap)     // [1, 3, 2, 5, 4]
-
-	fmt.Println(heap.Remove()) // 1
-	fmt.Println(heap.Remove()) // 2
-
-	heap.Insert(4)
-	fmt.Println(heap.heap) // [3, 4, 4, 5]
-}
-
-type MinHeap struct {
-	heap []int
-}
-
-func NewMinHeap(arr []int) *MinHeap {
-	return &MinHeap{
-		heap: buildHeap(arr),
+	matrix := [][]int{
+		{1, 0, 0, 1, 0},
+		{1, 0, 1, 0, 0},
+		{0, 0, 1, 0, 1},
+		{1, 0, 1, 0, 1},
+		{1, 0, 1, 1, 0},
 	}
+
+	fmt.Println(riverSizes(matrix)) // [2, 1, 5, 2, 2]
 }
 
-func buildHeap(arr []int) []int {
+func riverSizes(matrix [][]int) []int {
 	return nil
-}
-
-func (mh *MinHeap) Peek() int {
-	return -1
-}
-
-func (mh *MinHeap) Remove() int {
-	return -1
-}
-
-func (mh *MinHeap) Insert(value int) {
-
-}
-
-func (mh *MinHeap) IsEmpty() bool {
-	return false
 }
