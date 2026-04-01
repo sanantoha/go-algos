@@ -47,6 +47,7 @@ func main() {
 		"min_heap.go":                                        true,
 		"river_sizes.go":                                     true,
 		"house_robber.go":                                    true,
+		"merge_sort.go":                                      true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -68,13 +69,26 @@ func main() {
 
 func runTask() {
 
-	nums := []int{4, 1, 2, 7, 5, 3, 1}
+	arr := make([]int, 10)
+	for i := 0; i < len(arr); i++ {
+		arr[i] = rand.Intn(50)
+	}
 
-	res := rob(nums)
-	fmt.Println(res)
-	fmt.Println(res == 14)
+	fmt.Println(arr)
+
+	arr = mergeSort(arr)
+
+	fmt.Println(arr)
+
+	for i := 0; i < len(arr)-1; i++ {
+		if arr[i] > arr[i+1] {
+			panic(fmt.Sprintf("array is not sorted: %d != %d", arr[i], arr[i+1]))
+		}
+	}
+
+	fmt.Println("done")
 }
 
-func rob(arr []int) int {
-	return 0
+func mergeSort(arr []int) []int {
+	return nil
 }
