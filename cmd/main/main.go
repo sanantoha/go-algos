@@ -6,6 +6,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/sanantoha/go-algos/internals/tree"
 )
 
 func main() {
@@ -48,6 +50,7 @@ func main() {
 		"river_sizes.go":                                     true,
 		"house_robber.go":                                    true,
 		"merge_sort.go":                                      true,
+		"binary_tree_diameter.go":                            true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -69,26 +72,38 @@ func main() {
 
 func runTask() {
 
-	arr := make([]int, 10)
-	for i := 0; i < len(arr); i++ {
-		arr[i] = rand.Intn(50)
+	root := &tree.TreeNode{
+		Val: 1,
+		Left: &tree.TreeNode{
+			Val: 3,
+			Left: &tree.TreeNode{
+				Val: 7,
+				Left: &tree.TreeNode{
+					Val: 8,
+					Left: &tree.TreeNode{
+						Val: 9,
+					},
+				},
+			},
+			Right: &tree.TreeNode{
+				Val: 4,
+				Right: &tree.TreeNode{
+					Val: 5,
+					Right: &tree.TreeNode{
+						Val: 6,
+					},
+				},
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 2,
+		},
 	}
 
-	fmt.Println(arr)
-
-	arr = mergeSort(arr)
-
-	fmt.Println(arr)
-
-	for i := 0; i < len(arr)-1; i++ {
-		if arr[i] > arr[i+1] {
-			panic(fmt.Sprintf("array is not sorted: %d != %d", arr[i], arr[i+1]))
-		}
-	}
-
-	fmt.Println("done")
+	fmt.Println(binaryTreeDiameter(root))
+	fmt.Println(binaryTreeDiameter(root) == 6)
 }
 
-func mergeSort(arr []int) []int {
-	return nil
+func binaryTreeDiameter(root *tree.TreeNode) int {
+	return 0
 }
