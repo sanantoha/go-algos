@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/sanantoha/go-algos/internals/tree"
 	"math"
 	"reflect"
+
+	"github.com/sanantoha/go-algos/internals/tree"
 )
 
 // O(n ^ 2) time | O(n ^ 2) space
@@ -32,7 +33,7 @@ func reconstructBst(arr []int) *tree.TreeNode {
 
 // O(n) time | O(n) space
 func reconstructBst1(arr []int) *tree.TreeNode {
-	if arr == nil || len(arr) == 0 {
+	if len(arr) == 0 {
 		return nil
 	}
 
