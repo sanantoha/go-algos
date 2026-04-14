@@ -52,6 +52,7 @@ func main() {
 		"minimum_passes_of_matrix.go":                        true,
 		"lru_cache.go":                                       true,
 		"validate_starting_city.go":                          true,
+		"largest_island.go":                                  true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -73,24 +74,28 @@ func main() {
 
 func runTask() {
 
-	distances := []int{5, 25, 15, 10, 15}
-	fuel := []int{1, 2, 1, 0, 3}
-	mpg := 10
-	expected := 4
+	matrix := [][]int{
+		{1, 0, 1, 0, 0},
+		{0, 0, 1, 1, 0},
+		{0, 1, 1, 1, 1},
+		{1, 0, 1, 0, 0},
+	}
 
-	actual := validateStartingCity(distances, fuel, mpg)
-	fmt.Println(actual)
-	fmt.Println(expected == actual)
+	expected := 8
 
-	actual = validateStartingCity1(distances, fuel, mpg)
+	actual := largestIsland(matrix)
 	fmt.Println(actual)
-	fmt.Println(expected == actual)
+	fmt.Println(actual == expected)
+
+	actual = largestIsland1(matrix)
+	fmt.Println(actual)
+	fmt.Println(actual == expected)
 }
 
-func validateStartingCity(distances []int, fule []int, mpg int) int {
+func largestIsland(matrix [][]int) int {
 	return -1
 }
 
-func validateStartingCity1(distances []int, fule []int, mpg int) int {
+func largestIsland1(matrix [][]int) int {
 	return -1
 }
