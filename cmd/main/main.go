@@ -53,6 +53,7 @@ func main() {
 		"lru_cache.go":                                       true,
 		"validate_starting_city.go":                          true,
 		"largest_island.go":                                  true,
+		"maximum_subarray.go":                                true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -74,28 +75,16 @@ func main() {
 
 func runTask() {
 
-	matrix := [][]int{
-		{1, 0, 1, 0, 0},
-		{0, 0, 1, 1, 0},
-		{0, 1, 1, 1, 1},
-		{1, 0, 1, 0, 0},
-	}
+	arr := []int{3, 5, -9, 1, 3, -2, 3, 4, 7, 2, -9, 6, 3, 1, -5, 4} // 19
+	fmt.Println(maximumSubarray(arr))
 
-	expected := 8
+	arr1 := []int{-2, 1, -3, 4, -1, 2, 1, -5, 4} // 6
+	fmt.Println(maximumSubarray(arr1))
 
-	actual := largestIsland(matrix)
-	fmt.Println(actual)
-	fmt.Println(actual == expected)
-
-	actual = largestIsland1(matrix)
-	fmt.Println(actual)
-	fmt.Println(actual == expected)
+	arr2 := []int{3, 4, -6, 7, 8, -18, 100} // 100
+	fmt.Println(maximumSubarray(arr2))
 }
 
-func largestIsland(matrix [][]int) int {
-	return -1
-}
-
-func largestIsland1(matrix [][]int) int {
-	return -1
+func maximumSubarray(arr []int) int {
+	return 0
 }
