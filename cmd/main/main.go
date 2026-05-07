@@ -6,6 +6,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/sanantoha/go-algos/internals/tree"
 )
 
 func main() {
@@ -54,6 +56,7 @@ func main() {
 		"validate_starting_city.go":                          true,
 		"largest_island.go":                                  true,
 		"maximum_subarray.go":                                true,
+		"max_path_sum_in_binary_tree.go":                     true,
 	}
 
 	rand.Shuffle(len(tasks), func(i, j int) {
@@ -75,16 +78,33 @@ func main() {
 
 func runTask() {
 
-	arr := []int{3, 5, -9, 1, 3, -2, 3, 4, 7, 2, -9, 6, 3, 1, -5, 4} // 19
-	fmt.Println(maximumSubarray(arr))
+	root := &tree.TreeNode{
+		Val: 1,
+		Left: &tree.TreeNode{
+			Val: 2,
+			Left: &tree.TreeNode{
+				Val: 4,
+			},
+			Right: &tree.TreeNode{
+				Val: 5,
+			},
+		},
+		Right: &tree.TreeNode{
+			Val: 3,
+			Left: &tree.TreeNode{
+				Val: 6,
+			},
+			Right: &tree.TreeNode{
+				Val: 7,
+			},
+		},
+	}
 
-	arr1 := []int{-2, 1, -3, 4, -1, 2, 1, -5, 4} // 6
-	fmt.Println(maximumSubarray(arr1))
-
-	arr2 := []int{3, 4, -6, 7, 8, -18, 100} // 100
-	fmt.Println(maximumSubarray(arr2))
+	actual := maxPathSum(root)
+	fmt.Println(actual)
+	fmt.Println(actual == 18)
 }
 
-func maximumSubarray(arr []int) int {
+func maxPathSum(root *tree.TreeNode) int {
 	return 0
 }
